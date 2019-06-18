@@ -1,0 +1,32 @@
+.logo-img {
+    fill: #fff;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo-text {
+    color: #fff;
+    font-weight: 800;
+    margin-bottom: 4px;
+    margin-left: 4px;
+}
+
+.img-shadow {
+    box-shadow: 0px 0px 30px grey;
+}
+
+.active-about-carusel > .owl-stage-outer {
+    box-shadow: 0px 0px 10px grey;
+}
+
+.callto-action-area a {
+    color: lightgray;
+}
+
+.bottom-margin {
+    margin-bottom: 5px;
+}
