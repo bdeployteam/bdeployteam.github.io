@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.8">
+<link rel="icon" type="image/x-icon" href="images/logo.ico">
+<title>BDeploy End User Documentation</title>
+<link rel="stylesheet" href="./plain.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/lightgallery-all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#content").lightGallery({
+            mode: 'lg-fade',
+            share: false,
+            thumbnail: false,
+            hideBarsDelay: 1000,
+            selector: '.image'
+        });
+    });
+</script>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>BDeploy End User Documentation</h1>
+<div class="details">
+<span id="revnumber">version 1.0.0</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#_deployment_systems_on_the_market">Deployment Systems on the Market</a></li>
+<li><a href="#_bdeploy_is_different">BDeploy is different</a></li>
+</ul>
+</li>
+<li><a href="#_user_interface">User Interface</a>
+<ul class="sectlevel2">
+<li><a href="#_terms_and_concepts">Terms and Concepts</a></li>
+<li><a href="#_instance_groups">Instance Groups</a></li>
+<li><a href="#_software_repositories">Software Repositories</a></li>
+<li><a href="#_process_configuration">Process Configuration</a></li>
+<li><a href="#_system_maintenance">System Maintenance</a></li>
+</ul>
+</li>
+<li><a href="#_command_line_interface">Command Line Interface</a>
+<ul class="sectlevel2">
+<li><a href="#_bdeploy_cli">BDeploy CLI</a></li>
+<li><a href="#_bhive_cli">BHive CLI</a></li>
+<li><a href="#_launcher_cli">Launcher CLI</a></li>
+<li><a href="#_environment_variables">Environment Variables</a></li>
+</ul>
+</li>
+<li><a href="#_advanced">Advanced</a>
+<ul class="sectlevel2">
+<li><a href="#_defining_your_own_product">Defining your own Product</a></li>
+<li><a href="#_dependencies_third_party_software">Dependencies, third party Software</a></li>
+<li><a href="#_building_a_product">Building a Product</a></li>
+<li><a href="#_security">Security</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/logo.svg" alt="Logo" width="200">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BDeploy is a speed and disc-usage optimized deployment solution for (tiny to large scale) applications.</p>
+</div>
+<div class="sect2">
+<h3 id="_deployment_systems_on_the_market">Deployment Systems on the Market</h3>
+<div class="paragraph">
+<p>Existing systems either:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deploy a single (possibly large) application, don&#8217;t update often (e.g. Oracle).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Mostly a single "entry point" (service, manual started application, &#8230;&#8203;).</p>
+</li>
+<li>
+<p>Updates happen only from time to time, so they are "allowed" to be slow and manual.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Deploy many (but small) applications, update frequently</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Using a hosting system like e.g. Kubernetes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There is no solution which allows to install (really) large applications which have a dynamic (configurable) composition of service processes AND are updated frequently with small-ish deltas (potentially only configuration changes).</p>
+</div>
+<div class="paragraph">
+<p>Additionally, most deployment solutions deploy either server or client applications, but not both together, also sharing configuration.</p>
+</div>
+<div class="paragraph">
+<p>Unfortunately this is what "some software" needs: it&#8217;s huge, it should be updated frequently during comissioning with tiny deltas (or configuration changes), processes are composable "freely" (from deployment perspective) and desktop clients need to be configured with values that match the server configuration.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bdeploy_is_different">BDeploy is different</h3>
+<div class="paragraph">
+<p>BDeploy aims at solving some (if not all) of these issues.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provides file-hash based delta updates through the BHive technology (Git-like hash-tree based file content management).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Basically every update (application, configuration, etc.) is a "delta" update. The initial installation just has a relatively huge delta.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Provides flexible configuration of process compositions (both server and client).</p>
+</li>
+<li>
+<p>Provides multi-target-node setup possibilities even for classic on premise deployments (i.e. without support of cluster software).</p>
+</li>
+<li>
+<p>Provides rich configuration possibilities for applications deployed. Each application can define it&#8217;s own set of parameters known to it.</p>
+</li>
+<li>
+<p>Provides mechanisms to synchronize configuration between connected processes (e.g. server and client configuration).</p>
+</li>
+<li>
+<p>Provides a distribution mechanism which extends delta updating down to the client using a dedicated launcher.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All of this make BDeploy suitable for deploying highly dynamic products with extreme performance and flexibility demands.</p>
+</div>
+<div class="sect3">
+<h4 id="_a_thought_on_the_cloud">A thought on the cloud</h4>
+<div class="paragraph">
+<p>The cloud (and clusters) is unquestionably a thing that is not going to go away any time soon. Yet not all applications are read to be deployed in cloud environments. Also, even with current tooling, not every setup (especially in restricted environments) is feasible:</p>
+</div>
+<div class="paragraph">
+<p>Even today, most tools related to "cloud" and "clusters" (e.g. "kubectl", "helm", etc.) are thinking about the cloud as a single thing. Some restricted environments would require to have a "cluster per installation" (e.g. per customer&#8217;s restricted network).</p>
+</div>
+<div class="paragraph">
+<p>In such environments, orchestration and management of the plethora of clusters is giving devops teams headaches. Also preparing and writing configuration for applications which then can be targeted at different cluster setups is everything but easy/simple.</p>
+</div>
+<div class="paragraph">
+<p>BDeploy is built in a way that it can act as bridge to such systems (e.g. Kubernetes) in the future (support pending). It understands most of the concepts behind such cluster solutions and can be used to manage "clusters" instead of physical machines. This not only creates a tooling to manage clusters, but also allows to create hybrid solutions where a single setup is composed of a single configuration spanning physical, virtual, clustered and client nodes.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_user_interface">User Interface</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter will provide a walk-through all UI parts of BDeploy.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Login.png"><img src="images/BDeploy_Login.png" alt="BDeploy Login" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Main_Menu.png"><img src="images/BDeploy_Main_Menu.png" alt="BDeploy Main Menu" width="150"></a>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_terms_and_concepts">Terms and Concepts</h3>
+<div class="paragraph">
+<p>BDeploy has a few very important terms and concepts which should be known before diving into details of the application itself. These terms will be used all over the documentation to cross-reference other parts of the application.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Term</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Manifest</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actually a <strong>BHive</strong> concept (the underlying distributed storage technology of <strong>BDeploy</strong>). Simplified, a <strong>Manifest</strong> is a unique <strong>Key</strong> which identifies a <strong>Tree</strong> of <strong>Files</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Application</strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A <strong>Manifest</strong> with special content:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The actual application binaries.</p>
+</li>
+<li>
+<p>An <a href="#_app_info_yaml">app-info.yaml</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Applications</strong> are not stand-alone. They are always bundled to a <strong>Product</strong>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Product</strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A bundle of <strong>Applications</strong> along with some meta-information required by <strong>BDeploy</strong>. Again, much like an <strong>Application</strong>, this is a special <strong>Manifest</strong> in the underlying storage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Contains <strong>BDeploy</strong> meta-information, see <a href="#_product_info_yaml">product-info.yaml</a></p>
+</li>
+<li>
+<p>References all <strong>Applications</strong> which are part of the <strong>Product</strong></p>
+</li>
+<li>
+<p>Contains default configuration files for all <strong>Applications</strong>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Instance</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An <strong>Instance</strong> is actual configuration of a <strong>Product</strong>. The term <strong>Instance</strong> is used as this compares similarily to a <strong>Product</strong> as an <strong>Object</strong> in programming relates to a <strong>Class</strong>. The <strong>Product</strong> (and it&#8217;s <strong>Applications</strong>) describes the <em>possible</em> configuration values (e.g. configuration files, command line parameters, etc.) - the <strong>Instance</strong> provides <em>actual</em> values for these.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Instance Group</strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>An <strong>Instance Group</strong> is the main top-level element used in <strong>BDeploy</strong>. It provides a grouping of <strong>Instances</strong> (as the name suggests).</p>
+</div>
+<div class="paragraph">
+<p>An <strong>Instance Group</strong> (and a <strong>Software Repository</strong>) is always stored in a separate underlying <strong>BHive</strong>. This provides the means of easily moving an <strong>Instance Group</strong> (or a <strong>Software Repository</strong>) from one <strong>BDeploy</strong> server to another.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Software Repository</strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A <strong>Software Repository</strong> is a named <strong>BHive</strong> which is dedicated to storing <strong>Manifests</strong> which contain arbitrary <em>deliverables</em>. This is not neccessarily a piece of software. It may be <em>any</em> set of files and directories.</p>
+</div>
+<div class="paragraph">
+<p>When building a <strong>Product</strong>, it&#8217;s declared dependencies are resolved by querying <strong>Software Repositories</strong> on the target <strong>BDeploy</strong> server.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_instance_groups">Instance Groups</h3>
+<div class="paragraph">
+<p>The <b class="button">Instance Group</b> top-level page provides the entry point into the central mechanisms (<strong>Instance</strong> configuration). An <strong>Instance Group</strong> is exactly what the name says. It is a group of <strong>Instances</strong> (which define the configuration of a single <em>instance</em> of a <strong>Product</strong>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An <strong>Instance Group</strong> has a 1:1 relationship with an independent <strong>BHive</strong> storage on the <em>master</em>. This means that a single <strong>Instance Group</strong> can be moved to a different storage (or server FWIW) without affecting another <strong>Instance Group</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Use the <b class="button">+</b> button to create a new <strong>Instance Group</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Current, only <em>PNG</em> images are supported as logo format.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <b class="button">Instance Group</b> page shows a list of <em>recently used</em> <strong>Instance Groups</strong> in the first row - which looks a little odd as long as there are not many <strong>Instance Groups</strong>. It will always contain the most recently used <strong>Instance Groups</strong> for the logged in user, which allows a quick return to previously/frequently visited <strong>Instance Groups</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Of course you can also bookmark the location of an <strong>Instance Group</strong> in your browser.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Empty_IG.png"><img src="images/BDeploy_Empty_IG.png" alt="Empty Instance Group Overview" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Create_IG.png"><img src="images/BDeploy_Create_IG.png" alt="Create Instance Group" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Demo_IG.png"><img src="images/BDeploy_Demo_IG.png" alt="Demo Instance Group" width="150"></a>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_instance_management">Instance Management</h4>
+<div class="paragraph">
+<p>When clicking an <strong>Instance Group</strong>, the <strong>Instance Browser</strong> for this group opens. Here you can see all <strong>Instances</strong> grouped by their <em>purpose</em> (can be <code>DEVELOPMENT</code>, <code>TEST</code>, <code>PRODUCTIVE</code>).</p>
+</div>
+<div class="paragraph">
+<p>Click an <strong>Instance</strong> to proceed to the <a href="#_instance_configuration">Instance Configuration</a>.</p>
+</div>
+<div class="paragraph">
+<p>Since an <strong>Instance</strong> requires a <strong>Product</strong> (an <strong>Instance</strong> <em>instantiates</em> a <strong>Product</strong>), an empty <strong>Instance Group</strong> will display a shortcut to the <a href="#_product_management">Product Management</a>. If there is an <strong>Instance</strong> already, there is the <b class="button">Manage Products&#8230;&#8203;</b> in the lower right corner to go there instead.</p>
+</div>
+<div class="paragraph">
+<p>To create a new <strong>Instance</strong>, click the <b class="button">+</b> button at the bottom of the page. You will have to select a <strong>Product</strong> to <em>instantiate</em>. The <em>tag</em> of the <strong>Product</strong> can be changed later (<em>up-</em> and <em>downgrade</em>). You will also have to provide a <em>target master</em>. In the current version of <strong>BDeploy</strong>, this is the official URL of the running <strong>BDeploy</strong> server. You will have to provide a <em>token</em>, which is the <em><a href="#_security">security token</a></em> generated by the <a href="#_bdeploy_cli"><code>bdeploy init</code></a> or the <a href="#_bdeploy_cli"><code>bdeploy token</code></a> commands on the <em>master</em>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When creating additional <strong>Instances</strong>, you can choose to use the same <em>target master</em> as an existing <strong>Instance</strong> within the same <strong>Instance Group</strong>. In this case, you will not have to enter a <em>token</em> again.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Empty_Instances.png"><img src="images/BDeploy_Empty_Instances.png" alt="Empty Instance Browser" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Instance_Create.png"><img src="images/BDeploy_Instance_Create.png" alt="Create a new Instance" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Instance_List.png"><img src="images/BDeploy_Instance_List.png" alt="Instance Browser" width="150"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_product_management">Product Management</h4>
+<div class="paragraph">
+<p><strong>Products</strong> are managed in a very similar fashion to <a href="#_software_repositories"><strong>Software Repositories</strong></a>.</p>
+</div>
+<div class="paragraph">
+<p>Click the <b class="button">+</b> button to upload new <strong>Products</strong>. <strong>Products</strong> can be obtained by <a href="#_building_a_product">building a <strong>Product</strong></a> or by downloading an existing version from another <strong>Instance Group</strong> on the same or another <strong>BDeploy</strong> server, using the <b class="button">Download</b> button on the <strong>Product</strong> details panel.</p>
+</div>
+<div class="paragraph">
+<p>Once a <strong>Product</strong> is available, you can click it to open the <strong>Product</strong> details panel. This panel allows you to <b class="button">Download</b> a <strong>Product</strong> version as <em>ZIP</em>, or <b class="button">Delete</b> individual versions of the <strong>Product</strong> as long as it is not currently required by an <strong>Instance</strong> version. The <b class="button">Info</b> popup provides a list of all tags on that <strong>Product</strong> version.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Empty_Products.png"><img src="images/BDeploy_Empty_Products.png" alt="Empty Products Page" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Product_Upload_Before.png"><img src="images/BDeploy_Product_Upload_Before.png" alt="Upload Product(s)" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Product_Upload_Success.png"><img src="images/BDeploy_Product_Upload_Success.png" alt="Upload Product(s) (success)" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Products.png"><img src="images/BDeploy_Products.png" alt="Products Page" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Products_Details.png"><img src="images/BDeploy_Products_Details.png" alt="Product Details" width="150"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_software_repositories">Software Repositories</h3>
+<div class="paragraph">
+<p>The <b class="button">Software Repositories</b> page allows maintenance of repositories for arbitrary software, also see <a href="#_dependencies_third_party_software">Dependencies</a>.</p>
+</div>
+<div class="paragraph">
+<p>A <strong>Software Repository</strong> shares its namespace with <strong>Instance Groups</strong>, which means that the unique name of a <strong>Software Repository</strong> must not collide with any name of a <strong>Software Repository</strong> or <strong>Instance Group</strong>.</p>
+</div>
+<div class="paragraph">
+<p>A <strong>Software Repository</strong> is nothing more than a <em>named</em> <strong>BHive</strong> dedicated to storing a certain set of <a href="#_terms_and_concepts"><strong>Manifests</strong></a>.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_SWRepos.png"><img src="images/BDeploy_SWRepos.png" alt="Software Repositories" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_SWRepo_Empty.png"><img src="images/BDeploy_SWRepo_Empty.png" alt="Empty Software Repository" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_SWRepo_Ext_Software.png"><img src="images/BDeploy_SWRepo_Ext_Software.png" alt="Software Repository with External Software" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_SWRepo_Ext_Software_Details.png"><img src="images/BDeploy_SWRepo_Ext_Software_Details.png" alt="Software Details" width="150"></a>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="#_building_a_product"><strong>BDeploy</strong> integrations</a> search <em>all</em> available <strong>Software Repositories</strong> on the target <strong>BDeploy</strong> server when looking up dependencies. Additionally, external dependencies are always resolved from the target <strong>Instance Group</strong> first (if one is configured).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_process_configuration">Process Configuration</h3>
+<div class="paragraph">
+<p>The <b class="button">Process Configuration</b> page is the central dialog for configuring and managing instances.</p>
+</div>
+<div class="paragraph">
+<p>To configure an <strong>Instance</strong>, the first step is to select the required applications from the <strong>Configure Applications</strong> panel available in the <strong>Product Version</strong> and distribute them to the <strong>Nodes</strong> in the <strong>Instance</strong> using drag and drop.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>Configure Applications</strong> panel is called up via the pull-down menu of the dialog.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Instance_Config.png"><img src="images/BDeploy_Instance_Config.png" alt="Instance Configuration" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Instance_Menu.png"><img src="images/BDeploy_Instance_Menu.png" alt="Instance Menu" width="150"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>Configure Applications</strong> panel contains all server applications and all client applications of the product. Server applications can be dragged to <strong>Server Nodes</strong> (e.g. <em>master</em>), client applications can only be dragged to the (virtual) <strong>Client Applications Node</strong>. Clients that are available for more than one operating system expand to single cards per operating system on the <strong>Client Node</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <strong>Client Application Node</strong> is not available if the product does not contain any client applications.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_process_settings">Process Settings</h4>
+<div class="paragraph">
+<p>Each <strong>Process</strong> of an <strong>Instance</strong> is configured via its own dialog, which can be accessed via the pull-down menu on the respective <strong>Process Card</strong>.
+Colored markings on the <strong>Process Card</strong> indicate whether a process still lacks mandatory configurations or whether there are still unsaved changes to the <strong>Process Settings</strong>.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_DnD_Applications.png"><img src="images/BDeploy_DnD_Applications.png" alt="Drag &amp; Drop Applications" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Config.png"><img src="images/BDeploy_Process_Config.png" alt="Process Parameter Configuration" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_configured.png"><img src="images/BDeploy_Process_configured.png" alt="Completed Process Configuration" width="150"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>Process Settings</strong> dialog groups the parameters into categories, between which you can jump back and forth via <b class="button">Previous</b> and <b class="button">Next</b>.</p>
+</div>
+<div class="paragraph">
+<p>Behind each parameter there is a small popup that can contain a short description, a <strong>Default Value</strong> and a button for resetting the parameter to the <strong>Default Value</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Validation Issues</strong> are displayed per group in the respective title. Only complete configurations can be accepted.</p>
+</div>
+<div class="sect4">
+<h5 id="_optional_parameters">Optional Parameters</h5>
+<div class="paragraph">
+<p><strong>Optional Parameters</strong> can be selected for each group using the <b class="button">Manage Optional Parameters</b> dialog (available only if <strong>Optional Parameters</strong> are available) and then configured like other parameters.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Optional_parameters.png"><img src="images/BDeploy_Process_Optional_parameters.png" alt="Manage Optional Parameter(s)" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Optional_configured.png"><img src="images/BDeploy_Process_Optional_configured.png" alt="Configuring Optional Parameter(s)" width="150"></a>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_custom_parameters">Custom Parameters</h5>
+<div class="paragraph">
+<p><strong>Custom Parameters</strong> can be maintained in the last parameter group. Because all <strong>Parameters</strong> must have a determined sequence, <strong>Custom Parameters</strong> must define a predecessor parameter after which they are put on the command line.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Custom_Empty.png"><img src="images/BDeploy_Process_Custom_Empty.png" alt="Custom Parameters (empty)" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Custom_Create.png"><img src="images/BDeploy_Process_Custom_Create.png" alt="Create Custom Parameter" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Custom_Value.png"><img src="images/BDeploy_Process_Custom_Value.png" alt="Configure Custom Parameter" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Custom_Preview.png"><img src="images/BDeploy_Process_Custom_Preview.png" alt="Preview Command Line with Custom Parameter" width="150"></a>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_global_parameters">Global Parameters</h5>
+<div class="paragraph">
+<p><strong>Global Parameters</strong> are valid for all <strong>Processes</strong> of an <strong>Instance</strong>. They are also configured in the <strong>Process</strong>, but changes are copied to all other processes that also use this parameter. <strong>Global Parameters</strong> are matched by their parameter UID, and marked with a small globe in the <strong>Process Configuration</strong> dialog.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_variable_expansion">Variable Expansion</h5>
+<div class="paragraph">
+<p><strong>BDeploy</strong> provides a mechanism for variable expansion. There is a set of predefined possibilities. Currently, it is not possible to define your own variables, only the predefined set is available. Variable expansion can happen on the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Launcher path specified in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>.</p>
+</li>
+<li>
+<p>Any parameter value. Either user-set value or the <code>defaultValue</code> specified in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>.</p>
+</li>
+<li>
+<p>Any configuration file content.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Any of the above will be processed <em>as late as possible</em>, i.e. on the target node, right before writing the final content to the target directories.</p>
+</div>
+<div class="paragraph">
+<p>The general syntax for variables is <code>{{TYPE:VARNAME:SUBVAR}}</code>. There are various types, usually denoted by a single character. The following table gives an overview of types, variables, and possible sub-variables.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Pattern</th>
+<th class="tableblock halign-left valign-top">Supported Values</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{V:[APP:]PARAM}}</code></p>
+<p class="tableblock">Examples:<br>
+<code>{{V:MyServer:my.param.uid}}</code><br>
+<code>{{V:my.param.uid}}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>APP</code>: <em>(optional)</em> The name of the application to reference. If not given, the parameter is referenced within the same application as the referencing parameter</p>
+</li>
+<li>
+<p><code>PARAM</code>: The name of the parameter</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expand the value of another parameter inline at this location.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{P:PATH_ID}}</code></p>
+<p class="tableblock">Example:<br>
+<code>{{P:CONFIG}}/myFile.json</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>CONFIG</code>: directory where all configuration files will be placed by deployment</p>
+</li>
+<li>
+<p><code>BIN</code>: directory where all binaries are placed by deployment</p>
+</li>
+<li>
+<p><code>RUNTIME</code>: directory with runtime data (e.d. stdout/stderr capture files)</p>
+</li>
+<li>
+<p><code>DATA</code>: persistent data directory - the only directory shared by multiple deployments of the same instance.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expand one of the special directories (see <code>SpecialDirectory</code>) know by the deployment process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{I:VAR}}</code></p>
+<p class="tableblock">Example:<br>
+<code>{{I:SYSTEM_PURPOSE}}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>SYSTEM_PURPOSE</code>: the purpose of the instance, see <code>InstancePurpose</code></p>
+</li>
+<li>
+<p><code>UUID</code>: UUID of the instance</p>
+</li>
+<li>
+<p><code>NAME</code>: name of the instance</p>
+</li>
+<li>
+<p><code>PRODUCT_ID</code>: name of the <code>MANIFEST</code> key&#8217;s name of the configured product</p>
+</li>
+<li>
+<p><code>PRODUCT_TAG</code>: the tag (i.e. 'version') of the configured product</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expand values related to the instance containing the parameter&#8217;s process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{M:MANIFEST_NAME[:TAG]}}</code></p>
+<p class="tableblock">Example:<br>
+<code>{{M:openjdk/jre8}}/bin/java</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>MANIFEST_NAME</code>: the name of the manifest to reference. The variable will expand to the installation path of that other manifest.</p>
+</li>
+<li>
+<p>TAG: <em>(optional)</em> if given expand to the exact manifest version.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Expand the absolute installation path to another manifest&#8217;s path on the target system.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A tag is not required here, but can be given. In case no tag is given, a single dependency with a matching name must be declared, see <a href="#_app_info_yaml"><code>app-info.yaml</code></a> for details on dependencies.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{OSNAME:VALUE}}</code></p>
+<p class="tableblock">Example:<br>
+<code>&#8230;&#8203;/bin/java{{WINDOWS:.exe}}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>OSNAME</code>: either <code>OperatingSystem</code> value (<code>WINDOWS</code>, <code>LINUX</code>, <code>AIX</code>).</p>
+</li>
+<li>
+<p><code>VALUE</code>: the target value to expand if the target OS matches the <code>OSNAME</code> value.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Insert the given <code>VALUE</code> if and only if the given <code>OSNAME</code> (see <code>OperatingSystem</code>) matches.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{H:HOSTNAME}}</code></p>
+<p class="tableblock">Example:<br>
+<code>{{H:HOSTNAME}}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>HOSTNAME</code>: expands to the hostname of the target minion where the application is deployed.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Expands to target minion properties - currently only <code>HOSTNAME</code> is supported.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Beware that due to the nature of variable expansion (the point in time this happens), <code>HOSTNAME</code> may not be what you expect, <em>especially</em> on global parameters used by multiple processes (it can be a different hostname for each process, if they are configured to different nodes). Even more precaution is required when using <code>HOSTNAME</code> on client applications, as it will expand to the <em>clients</em> hostname.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_files">Configuration Files</h4>
+<div class="paragraph">
+<p>The <strong>Configuration Files</strong> of all <strong>Processes</strong> of an <strong>Instance</strong> are maintained together in one dialog.
+The initial set of <strong>Configuration Files</strong> is derived from the default set delivered with the product, see <a href="#_product_info_yaml"><code>product-info.yaml</code></a>.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_CfgFiles_Browser.png"><img src="images/BDeploy_CfgFiles_Browser.png" alt="Configuration File Browser" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_CfgFile_New.png"><img src="images/BDeploy_CfgFile_New.png" alt="Create New Configuration File" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_CfgFiles_Save.png"><img src="images/BDeploy_CfgFiles_Save.png" alt="Modified Configuration Files" width="150"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The integrated editor provides syntax highlighting and rudimentary syntax checking for some basic file types (yaml, json, xml). Displayed problems are only to be seen as help and never interfere with the process, e.g. by preventing the saving of a file.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_product_configuration">Product Configuration</h4>
+<div class="paragraph">
+<p><strong>Instances</strong> are based on a <strong>Product Version</strong>. While the <strong>Product</strong> of the <strong>Instance</strong> cannot be changed afterwards, the <strong>Version</strong> used can be chosen arbitrarily from the available <strong>Product Versions</strong> (upgrade to a newer version / downgrade to an older version).
+If there&#8217;s a newer <strong>Product Version</strong> available (newer than the one that is configured for the latest <strong>Instance Version</strong>), a notification is shown.</p>
+</div>
+<div class="paragraph">
+<p>The <b class="button">Info</b> Popup provides a list of all Labels on that <strong>Product</strong> version.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Product_Change.png"><img src="images/BDeploy_Product_Change.png" alt="Change Current Product Tag" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Product_Upgrade_Local_Changes.png"><img src="images/BDeploy_Product_Upgrade_Local_Changes.png" alt="Successful Product Tag Change" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Product_Downgrade_Missing_Apps.png"><img src="images/BDeploy_Product_Downgrade_Missing_Apps.png" alt="Validation Issues After Product Tag Change" width="150"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Changing the <strong>Product Version</strong> can result in validation issues and automated adjustment of parameters. <strong>Product Versions</strong> can contain different <strong>Applications</strong>, so that with the change of the <strong>Product Version</strong> e.g. a previously configured <strong>Application</strong> must be deleted. If parameters definitions are changed, validation errors may occur which must be corrected before saving (e.g. new mandatory parameters).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exportimport_of_instance_versions">Export/Import of Instance Versions</h4>
+<div class="paragraph">
+<p><strong>Instance Versions</strong> can be exported and imported. For the export, select the desired <strong>Instance Version</strong> and start the export in the pull-down menu with the action <b class="button">Export&#8230;&#8203;</b>.</p>
+</div>
+<div class="paragraph">
+<p>The action <b class="button">Import Instance Version&#8230;&#8203;</b> in the <strong>Instance Version</strong> pulldown menu imports a new <strong>Instance Version</strong>. The import data is compared with the existing <strong>Instance</strong> data before a new <strong>Instance Version</strong> is created.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Only process configuration is imported to existing instances, the instance configuration (target master URI, name, description, purpose) are left intact.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_install_activate_uninstall">Install, Activate, Uninstall</h4>
+<div class="paragraph">
+<p>All <strong>Instance Versions</strong> can be installed via the action <b class="button">Install</b>, i.e. the configured <strong>Processes</strong> of an <strong>Instance Version</strong> are exported from the <strong>BHive</strong> into a corresponding directory on the file system on the target node.</p>
+</div>
+<div class="paragraph">
+<p>Whether a version is already installed is indicated by an icon on the <strong>Version Card</strong> to the left of the <strong>Product Version</strong>.</p>
+</div>
+<div class="paragraph">
+<p>One of the installed <strong>Instance Versions</strong> can be marked as <em>active</em> with the action <b class="button">Activate</b>. The process control always refers to the activated <strong>Instance Version</strong>.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Instance_Version_Menu.png"><img src="images/BDeploy_Instance_Version_Menu.png" alt="Instance Version Context Menu" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Instance_Version_Installed.png"><img src="images/BDeploy_Instance_Version_Installed.png" alt="Installed Instance Version" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Instance_Version_Activated.png"><img src="images/BDeploy_Instance_Version_Activated.png" alt="Activated Instance Version" width="150"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>In general, any number of <strong>Instance Versions</strong> can be installed (e.g. for fast upgrade / downgrade). Versions that are no longer needed can be uninstalled using the <b class="button">Uninstall</b> action. Uninstalling deletes the files exported to the file system during installation. In <strong>BHive</strong> the version remains available and could be reinstalled at any time.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_client_download">Client Download</h4>
+<div class="paragraph">
+<p><strong>Client Applications</strong> can be installed by downloading the <strong>Installer</strong> or even started directly from the BDeploy UI.
+In both cases the local installation of the <strong>Launcher</strong> Application (see <a href="#_system_software">System Software</a>) is required, as well as the association of the file extension ".bdeploy" with the <strong>Launcher</strong>.</p>
+</div>
+<div class="paragraph">
+<p>A <strong>Client Application</strong> is always started via a .bdeploy file.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>Installer</strong> bundles the installation of the <strong>Launcher</strong>, the registration of the file extension and the download of the .bdeploy file belonging to the client. In addition, the <strong>Installer</strong> creates an icon on the desktop that can be used to start the <strong>Client Application</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, the <strong>Launcher</strong> can be downloaded from the <a href="#_system_software">System Software</a> section and unpacked manually. By starting the file <em>FileAssoc.exe</em> on Windows or <em>file-assoc.sh</em> on Linux contained in the archive, the file extension .bdeploy can be registered.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In case the panel shows a warning about a missing launcher, upload binaries in <a href="#_system_software">System Software</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As soon as the <strong>Installer</strong> and .bdeploy registration have been completed (in one of the ways described above), a <strong>Client Application</strong> can be started directly from the interface at any time using <b class="button">Click &amp; Start</b>. In this case no icon will be created on the desktop.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <strong>Instance Overview</strong> page contains a link to a dedicated <strong>Client Applications</strong> page for each <strong>Instance Group</strong>. This provides a simple mechanism to download any <strong>Client Application</strong> from any <strong>Instance</strong> in this <strong>Instance Group</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Client_Missing_Launcher.png"><img src="images/BDeploy_Client_Missing_Launcher.png" alt="Client Application Download - Missing Launcher" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Client_Download.png"><img src="images/BDeploy_Client_Download.png" alt="Client Application Download" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Client_Download_Page.png"><img src="images/BDeploy_Client_Download_Page.png" alt="Application Download Page" width="150"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>Installer</strong> stores launcher and .bdeploy files under <em>%LOCALAPPDATA%\BDeploy</em> on Windows or <em>$HOME/.bdeploy</em> on Linux. This location can be changed by setting the environment variable <strong>BDEPLOY_HOME</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Each <strong>Installer</strong> run checks whether the <strong>Launcher</strong> is installed in the default directory, installs it there if necessary and associates the file extension .bdeploy with this <strong>Launcher</strong>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_process_control">Process Control</h4>
+<div class="paragraph">
+<p>For the activated <strong>Instance Version</strong>, the <strong>Process Control</strong> of this <strong>Process</strong> can be displayed by clicking on a <strong>Process Card</strong>.
+The upper part of the <strong>Process Control Panel</strong> shows the current process status. Below this, the control elements for <em>starting</em>, <em>stopping</em> or <em>restarting</em> the process can be found.
+In addition to the actions for individual processes, the pull-down menu of the dialog contains the actions for <em>starting</em>, <em>stopping</em> or <em>restarting</em> the entire <strong>Instance</strong>, i.e. all <strong>Processes</strong> configured with start type <code>INSTANCE</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <strong>Process Control Panel</strong> allows to view additional information directly. Both the list of actual operating system processes as well as the <strong>stdout</strong>/<strong>stderr</strong> stream of the started <strong>Process</strong> can be viewed and followed.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Started.png"><img src="images/BDeploy_Process_Started.png" alt="Running Server Process" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Crashed.png"><img src="images/BDeploy_Process_Crashed.png" alt="Crashed Server Process (temporarily)" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Crashed_Repeatedly.png"><img src="images/BDeploy_Process_Crashed_Repeatedly.png" alt="Crashed Server Process (permanently)" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_List.png"><img src="images/BDeploy_Process_List.png" alt="List of Operating System Processes" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Process_Output.png"><img src="images/BDeploy_Process_Output.png" alt="Show and Follow Process Output" width="150"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_data_files">Data Files</h4>
+<div class="paragraph">
+<p>The <strong>Data Files</strong> Browser provides access to the server side data directory. Files can be downloaded or opened in the UI. When opened in place, the <b class="button">Follow</b> toggle allows to grab new output as it is written on the server.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_DataFiles_Browser.png"><img src="images/BDeploy_DataFiles_Browser.png" alt="Data File Browser" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_DataFiles_Show.png"><img src="images/BDeploy_DataFiles_Show.png" alt="Show Data File" width="150"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_system_maintenance">System Maintenance</h3>
+<div class="paragraph">
+<p>There are several components in the Web UI which allow maintenance of <strong>BDeploy</strong>. These are not to be used during <em>normal</em> operation by users. They <em>are</em> required during setup and to maintain current software versions of <strong>BDeploy</strong> itself if not done using the <code><a href="#_bdeploy_cli">bdeploy remote-master</a></code> CLI.</p>
+</div>
+<div class="sect3">
+<h4 id="_system_software">System Software</h4>
+<div class="paragraph">
+<p>The <b class="button">System Software</b> page offers a mechanism to upload new <strong>BDeploy</strong> software versions, deploy these versions (<em>upgrade</em> and <em>downgrade</em> possible) to the running <strong>BDeploy</strong> <em>master</em> and attached <em>slaves</em>.</p>
+</div>
+<div class="paragraph">
+<p>It also offers a way to upload, and more important also to <em>download</em> <strong>BDeploy Launcher</strong> binaries. These binaries are required when <a href="#_app_info_yaml"><code>CLIENT</code> type <strong>Applications</strong></a> are configured.</p>
+</div>
+<div class="paragraph">
+<p>Initially, the <b class="button">System Software</b> page contains only the running <strong>BDeploy</strong> system software version, and no <strong>BDeploy Launcher</strong>. Use the <b class="button">+</b> button to upload either new <strong>BDeploy</strong> or <strong>BDeploy Launcher</strong> versions from their respective binary distributions (<em>ZIP</em>).</p>
+</div>
+<div class="paragraph">
+<p>The page can also be used to download the binaries of <strong>BDeploy</strong> (e.g. to setup additional <em>slaves</em>) and the <strong>BDeploy Launcher</strong> binaries (e.g. for manual setup of the <strong>BDeploy Launcher</strong> on client PCs, see <a href="#_client_download">Client Download</a>).</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_System_No_Launcher.png"><img src="images/BDeploy_System_No_Launcher.png" alt="BDeploy Initial System Software Page" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_System_Launcher_Upload.png"><img src="images/BDeploy_System_Launcher_Upload.png" alt="BDeploy Launcher Version Upload" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_System_With_Launcher.png"><img src="images/BDeploy_System_With_Launcher.png" alt="BDeploy System Software" width="150"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_manual_cleanup">Manual Cleanup</h4>
+<div class="paragraph">
+<p>You can use the <b class="button">Manual Cleanup</b> page from the main menu to perform manual cleanup on a <em>master</em>. This page is only available and useful on <em>master</em> nodes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The dialog allows to manuall execute the exact same cleanup (and reviewing of the actions performed <em>before</em> doing so) as the master <em>cleanup job</em> performs automatically on its <code><a href="#_bdeploy_cli">bdeploy cleanup</a></code> schedule.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Press the <b class="button">Calculate Cleanup Actions</b> button to perform cleanup calculation. The result will be a list of actions to be performed on each connected slave.</p>
+</div>
+<div class="paragraph">
+<p>Press the <b class="button">Execute all Actions</b> button to actually perform the calculated actions.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The dialog automatically resets itself after a certain timeout. This is to prevent execution of too old actions which might no longer be valid.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Cleanup.png"><img src="images/BDeploy_Cleanup.png" alt="BDeploy Cleanup Page" width="150"></a>
+</div>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Cleanup_Actions.png"><img src="images/BDeploy_Cleanup_Actions.png" alt="BDeploy Cleanup Actions" width="150"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bhive_browser">BHive Browser</h4>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+The BHive Browser is an internal tool for administrative purposes. It has the power to destroy <em>everything</em> - use with extreme caution.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_log_level">Log Level</h4>
+<div class="paragraph">
+<p>You can adjust the log level of the Web UI (i.e. logging in the Browser Console) using the drop down at the bottom of the BDeploy main menu. The default value depends on whether the application is started in development (i.e. from VSCode) or production mode.</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/BDeploy_Main_Menu.png"><img src="images/BDeploy_Main_Menu.png" alt="BDeploy Main Menu" width="150"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_command_line_interface">Command Line Interface</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>BDeploy</strong> provides a rich CLI which allows automating most interactions with <strong>BDeploy</strong>, e.g. for use in build pipelines, etc.</p>
+</div>
+<div class="paragraph">
+<p>Each of the binaries provides a set of <em>commands</em> along with available <em>options</em>. This chapter describes the available <em>commands</em>. The <em>options</em> are well-described when calling the according <em>command</em> with the <code>--help</code> <em>option</em>.</p>
+</div>
+<div class="sect2">
+<h3 id="_bdeploy_cli">BDeploy CLI</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 10%;">
+<col style="width: 65%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Remote</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bhive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wraps around to the <a href="#_bhive_cli">BHive CLI</a>. Can be used to access <strong>BHive</strong> CLI commands if ther <strong>BHive</strong> stand-alone binaries are not available. Usage: <code>bdeploy bhive &lt;command&gt;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cleanup</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manage the schedule at which the <em>master</em> performs background cleanup operations on all <em>slaves</em> (including himself).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>init</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initializes a <em>root</em> directory for use with either the <code>slave</code> or <code>master</code> commands.</p>
+<p class="tableblock">The <code>init</code> command also generates the initial <em>security token</em>, see <a href="#_security">Security</a>. It is suggested to use the <code>--tokenFile</code> parameter if the token should be stored for later use.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>instance</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tooling to <strong>export</strong> (to <em>ZIP</em>) and <strong>import</strong> (from <em>ZIP</em>) <strong>Instances</strong> locally.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>master</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Runs the <strong>BDeploy</strong> <em>minion</em> in <em>master</em> mode. Requires a root directory initialized with the <code>init</code> command.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <em>master</em> is always a <em>slave</em> as well. The <em>master</em> just has the additional capability to control other <em>slaves</em>, and provides the configuration Web UI.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>product</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mixed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List or create <strong>Products</strong> locally. Fetches required dependencies from the given remote <strong>BDeploy</strong> server. Has the ability to push the resulting <strong>Product</strong> to the target <strong>BDeploy</strong> server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-deployment</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manage <strong>Instance</strong> deployment (<em>install</em>, <em>activate</em>, <em>uninstall</em>) on a remote <strong>BDeploy</strong> server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-group</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manage <strong>Instance Groups</strong> on a remote <strong>BDeploy</strong> server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-master</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and manage system information on a remote <strong>BDeploy</strong> server. Allows to update both the <strong>BDeploy</strong> system software as well as the <strong>BDeploy</strong> launcher binaries.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-process</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and manage application processes managed by <strong>BDeploy</strong> on a remote <strong>BDeploy</strong> server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-repo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and manage <strong>Software Repositories</strong> on a remote <strong>BDeploy</strong> server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slave</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Runs the <strong>BDeploy</strong> <em>minion</em> in <em>slave</em> mode. Requires a root directory initialized with the <code>init</code> command.</p>
+</div>
+<div class="paragraph">
+<p>Also used to register a <em>slave</em> with the <em>master</em>. For this, the <code>slave</code> command is run on the <em>master</em> with the <code>--add</code> option.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manages available <em>storage locations</em>. A <em>storage location</em> is a folder where the <strong>BDeploy</strong> <em>master</em> puts the <strong>BHives</strong> required to store data for <strong>Instance Groups</strong> and <strong>Software Repositories</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>token</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows generation of new <em>access tokens</em>, see <a href="#_security">Security</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manages local users for a <em>master</em>. These users can be used to authenticate through the Web UI login dialog.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_bhive_cli">BHive CLI</h3>
+<div class="paragraph">
+<p><strong>BHive</strong> is the underlying storage used by <strong>BDeploy</strong>. <strong>BDeploy</strong> serves <strong>BHives</strong> for all minions (<em>master</em> and <em>slave</em>), and has additional <strong>BHives</strong> per <strong>Instance Group</strong> and <strong>Software Repository</strong> on the <em>master</em>.</p>
+</div>
+<div class="paragraph">
+<p><strong>BHive</strong> itself is does not know about <strong>BDeploy</strong>, it is 'just' a dumb storage backend (which is responsible for de-duplicated, distributed, fail-tolerant (failure-recoverable) storage of file contents).</p>
+</div>
+<div class="paragraph">
+<p>Much like Git, <strong>BHive</strong> only knows two commands that actually perform remote communication: <code>fetch</code> and <code>push</code>. All other commands are performing their work locally.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 10%;">
+<col style="width: 65%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Remote</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reads a <strong>Manifest</strong> from the given <strong>BHive</strong> and writes it&#8217;s content to a given target folder.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fetch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fetches the given <strong>Manifests</strong> from a given remote <strong>BHive</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fsck</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Performs a file system check (<em>fsck</em>). This involves resolving all inter-<strong>Manifest</strong> dependencies, as well as re-hashing all objects in the underlying storage to assert that all objects in the storage are valid.</p>
+</div>
+<div class="paragraph">
+<p>Also allows to fix found errors (by deletion). After this, missing <strong>Manifests</strong> must be re-pushed from a <strong>BHive</strong> which still has the required objects.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>import</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Import a given folder into a given <strong>BHive</strong> and associate the given <strong>Manifest</strong> key with it.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>manifest</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manage existing <strong>Manifests</strong> in a given <strong>BHive</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>prune</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remove unreferenced objects from the given <strong>BHive</strong> to free up disc space.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>push</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Push the given <strong>Manifests</strong> to the given remote <strong>BHive</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>serve</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serves one or more given <strong>BHives</strong> over the network. The same thing as <strong>BDeploy</strong> does internally, provided as CLI tool for maintenance reasons.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>token</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows generation of new <em>access tokens</em>, see <a href="#_security">Security</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tree</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read and diff <strong>Manifests</strong> from the given <strong>BHive</strong>. Allows to compare the contents of <strong>Manifests</strong>, view differences and the estimated data transfer required to perform a delta 'update' if a potential remote <strong>BHive</strong> already has one of them.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_launcher_cli">Launcher CLI</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 10%;">
+<col style="width: 65%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Remote</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>launcher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reads a given <code>.bdeploy</code> file, which describes all required information for the launcher to contact a <strong>BDeploy</strong> server and download a <em>client</em> application.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_environment_variables">Environment Variables</h3>
+<div class="paragraph">
+<p><strong>BDeploy</strong> and <strong>BHive</strong> CLIs provide a set of environment variables that allow you to provide environment defaults for certain command line arguments.</p>
+</div>
+<div class="paragraph">
+<p>Each command will include information for the according environment fallback in it&#8217;s help output, for instance:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">$ bhive push --help
+Help:
+
+Usage: PushTool &lt;args...&gt;
+               --token=ARG: Token for the remote access. Can be given alternatively to a keystore.
+                            (Environment variable 'BDEPLOY_TOKEN' is used as fallback if not given)
+              --remote=ARG: URI of remote BHive. Supports file:, jar:file:, bhive:
+                            (Environment variable 'BDEPLOY_REMOTE' is used as fallback if not given)
+              ...</pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.7272%;">
+<col style="width: 77.2728%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Variable</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BDEPLOY_REMOTE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL to the remote <strong>BDeploy</strong> server which commands should connect to, e.g. <code><a href="https://hostname:7701/api" class="bare">https://hostname:7701/api</a></code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BDEPLOY_ROOT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The root directory to use for <code>init</code>, <code>master</code> and <code>slave</code> (primarily).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BDEPLOY_TOKEN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The actual <em>security token</em> used to access the remote <strong>BDeploy</strong> server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BDEPLOY_TOKENFILE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A file containing the <em>security token</em> (as text content) used to access the remote <strong>BDeploy</strong> server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BHIVE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the <strong>BHive</strong> to operate on for local commands (e.g. <code>import</code>, <code>export</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>REMOTE_BHIVE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the remote <strong>BHive</strong>. In case of <strong>BDeploy</strong> this is usually the name of an <strong>Instance Group</strong> or <strong>Software Repository</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced">Advanced</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter is intended for the advanced user. Especially for those who want to build and provide their own <strong>Product</strong> for use with <strong>BDeploy</strong>.</p>
+</div>
+<div class="sect2">
+<h3 id="_defining_your_own_product">Defining your own Product</h3>
+<div class="paragraph">
+<p>To define your own <strong>Product</strong> which can be deployed with <strong>BDeploy</strong>, you will need to provide some information to <strong>BDeploy</strong> about the actual applications and some additional meta-data. This chapter will walk you through the required artifacts and how to define them.</p>
+</div>
+<div class="sect3">
+<h4 id="_app_info_yaml">app-info.yaml</h4>
+<div class="paragraph">
+<p>The <code>app-info.yaml</code> file is one of the most important parts of <strong>BDeploy</strong>. It describes an <strong>Application</strong>. This <strong>Application</strong> may be <em>any</em> application which contains an <em>executable</em> (whatever kind, script, executable, etc.) and which allows 'installation' by copy to a directory. This is important, as <strong>BDeploy</strong> will 'install' an application by ultimately copying the application to an automatically determined internal directory and launch it from there.</p>
+</div>
+<div class="paragraph">
+<p>Basically, <code>app-info.yaml</code> allows you to specify which executable to run, and which parameters could <strong>potentially</strong> be used to configure the <strong>Application</strong>. The <code>app-info.yaml</code> does not specify an actual configuration, but describes all possible parameters for an <strong>Application</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>app-info.yaml</code> file should be placed in the root directory of the <strong>Application</strong> it describes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">name</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Application</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="key">type</span>: <span class="string"><span class="content">CLIENT </span></span><i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="key">supportedOperatingSystems</span>: <i class="conum" data-value="3"></i><b>(3)</b>
+  - <span class="string"><span class="content">LINUX</span></span>
+  - <span class="string"><span class="content">WINDOWS</span></span>
+
+<span class="key">branding</span>: <i class="conum" data-value="4"></i><b>(4)</b>
+  <span class="key">icon</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">branding/my-icon.ico</span><span class="delimiter">&quot;</span></span>
+  <span class="key">splash</span>:
+    <span class="key">image</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">branding/my-splash.bmp</span><span class="delimiter">&quot;</span></span>
+    <span class="key">textRect</span>:
+      <span class="key">x</span>: <span class="string"><span class="content">20</span></span>
+      <span class="key">y</span>: <span class="string"><span class="content">174</span></span>
+      <span class="key">width</span>: <span class="string"><span class="content">400</span></span>
+      <span class="key">height</span>: <span class="string"><span class="content">20</span></span>
+      <span class="key">foreground</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">#000000</span><span class="delimiter">&quot;</span></span>
+    <span class="key">progressRect</span>:
+      <span class="key">x</span>: <span class="string"><span class="content">15</span></span>
+      <span class="key">y</span>: <span class="string"><span class="content">194</span></span>
+      <span class="key">width</span>: <span class="string"><span class="content">450</span></span>
+      <span class="key">height</span>: <span class="string"><span class="content">12</span></span>
+      <span class="key">foreground</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">#333333</span><span class="delimiter">&quot;</span></span>
+
+<span class="key">processControl</span>: <i class="conum" data-value="5"></i><b>(5)</b>
+  <span class="key">gracePeriod</span>: <span class="string"><span class="content">3000</span></span>
+  <span class="key">supportedStartTypes</span>:
+   - <span class="string"><span class="content">INSTANCE</span></span>
+  <span class="key">supportsKeepAlive</span>: <span class="string"><span class="content">true</span></span>
+  <span class="key">noOfRetries</span>: <span class="string"><span class="content">5</span></span>
+
+<span class="key">startCommand</span>: <i class="conum" data-value="6"></i><b>(6)</b>
+  <span class="key">launcherPath</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">{{WINDOWS:launch.bat}}{{LINUX:launch.sh}}</span><span class="delimiter">&quot;</span></span>
+  <span class="key">parameters</span>:
+    - <span class="string"><span class="content">uid: &quot;my.param.1&quot;</span></span>
+      <span class="key">name</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My numeric parameter</span><span class="delimiter">&quot;</span></span>
+      <span class="key">longDescription</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">This is a numeric parameter</span><span class="delimiter">&quot;</span></span>
+      <span class="key">groupName</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Parameters</span><span class="delimiter">&quot;</span></span>
+      <span class="key">parameter</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">--number</span><span class="delimiter">&quot;</span></span>
+      <span class="key">defaultValue</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">5</span><span class="delimiter">&quot;</span></span>
+      <span class="key">type</span>: <span class="string"><span class="content">NUMERIC</span></span>
+    - <span class="string"><span class="content">uid: &quot;my.param.2&quot;</span></span>
+      <span class="key">name</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My textual parameter</span><span class="delimiter">&quot;</span></span>
+      <span class="key">longDescription</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">This is a textual parameter</span><span class="delimiter">&quot;</span></span>
+      <span class="key">groupName</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Parameters</span><span class="delimiter">&quot;</span></span>
+      <span class="key">parameter</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">--text</span><span class="delimiter">&quot;</span></span>
+      <span class="key">mandatory</span>: <span class="string"><span class="content">true</span></span>
+
+<span class="key">stopCommand</span>: <i class="conum" data-value="7"></i><b>(7)</b>
+  <span class="error">...</span>
+
+<span class="key">runtimeDependencies</span>: <i class="conum" data-value="8"></i><b>(8)</b>
+  - <span class="string"><span class="delimiter">&quot;</span><span class="content">adoptopenjdk/jre:1.8.0_202-b08</span><span class="delimiter">&quot;</span></span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A human readable name of the <strong>Application</strong>. Will be displayed in the <strong>Configure Application</strong> pane, and is also used as <em>default</em> name for any process <em>instantiated</em> from this <strong>Application</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The type of the application, may be <code>SERVER</code> or <code>CLIENT</code>. <code>CLIENT</code> applications cannot be deployed on a <strong>BDeploy</strong> node, but are downloadable instead. <code>SERVER</code> applications cannot be downloaded by users, but are only deployable to <strong>BDeploy</strong> nodes.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>List of supported operating systems. This list is solely used to verify during import of the <strong>Product</strong>, that the <strong>Application</strong> actually supports the operating system under which it is listed in the <code>product-version.yaml</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The <code>branding</code> attribute controls the appearance of <code>CLIENT</code> type applications when downloaded by the user. It can be used to specify an <code>icon</code> (used to decorate desktop links created by the <em>client installer</em>), and a <code>splash</code> screen. For the <code>splash</code>, you can fine tune the exact location used to display progress text and a progress bar while the application is downloaded to the client PC by the <a href="#_launcher_cli">Launcher CLI</a>. Paths are interpreted relative to the root folder of the <strong>Application</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Process control parameters allow to fine tune how <code>SERVER</code> type <strong>Applications</strong> are treated by <strong>BDeploy</strong>. For details, see <a href="#_supported_processcontrol_attributes">Supported <code>processControl</code> Attributes</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The start command of the <strong>Application</strong>. Contains the path to the <em>executable</em> to launch, as well as all known and supported parameters. A single parameter is actually the most complex single object in <strong>BDeploy</strong>. For details, see <a href="#_supported_parameters_attributes">Supported <code>parameters</code> Attributes</a>. Both the <code>launcherPath</code> and each parameter&#8217;s <code>defaultValue</code> can use <a href="#_variable_expansion">Variable Expansion</a> just the same as in the Web UI.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>The optional stop command can be specified to provide a mechanism for clean application shutdown once <strong>BDeploy</strong> tries to stop a process. This command may use <a href="#_variable_expansion">Variable Expansion</a> to access parameter values of the <code>startCommand</code> (e.g. configured 'stop port', etc.). It is <strong>not</strong> configurable through the Web UI though. All parameter values will have their (expanded) default values set when the command is run. If no <code>stopCommand</code> is specified, <strong>BDeploy</strong> will try to gracefully quit the process (i.e. <code>SIGTERM</code>). Both with and without <code>stopCommand</code>, <strong>BDeploy</strong> resorts to a <code>SIGKILL</code> after the <code><a href="#_supported_parameters_attributes">gracePeriod</a></code> has expired.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Optional additional dependencies. These dependencies are included in the <strong>Product</strong> when building it. Dependencies are fetched from <strong><a href="#_software_repositories">Software Repositories</a></strong>. <code>launcherPath</code> and parameter <code>defaultValue</code> (and of course the final configuration values) can access paths within each of the dependencies by using the <code>{{M:adoptopenjdk/jre:1.8.0_202-b08}}</code> <a href="#_variable_expansion">Variable Expansion</a>, e.g. <code>launcherPath: {{M:adoptopenjdk/jre:1.8.0_202-b08}}/bin/java</code>. Also note that the declared dependency does not specify an operating system. This will be resolved by <strong>BDeploy</strong> to either an exact match, e.g. <code>adoptopenjdk/jre/linux:1.8.0_202-b08</code> on <code>LINUX</code>.</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_supported_processcontrol_attributes">Supported <code>processControl</code> Attributes</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>supportedStartTypes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can be either <code>MANUAL</code> (<strong>Application</strong> must be started <em>explicitly</em> through the Web UI or CLI), <code>MANUAL_CONFIRM</code> (<strong>Application</strong> must be started <em>explicitly</em> through the Web UI and a confirmation has to be entered by the user), or <code>INSTANCE</code> (the <strong>Application</strong> can be started <em>automatically</em> when the <strong>Start Instance</strong> command is issued, either manually or during server startup - implies <code>MANUAL</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>supportsKeepAlive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether this <strong>Application</strong> may be automatically restarted by <strong>BDeploy</strong> if it exits.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>noOfRetries</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of time <strong>BDeploy</strong> will retry starting the <strong>Application</strong> if it <code>supportsKeepAlive</code>. The counter is reset after the <strong>Application</strong> is running for a certain amount of time without exiting.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gracePeriod</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How long to wait (in milliseconds) for the <strong>Application</strong> to stop after issuing the <code>stopCommand</code>. After this timeout expired, the process will be killed.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_supported_parameters_attributes">Supported <code>parameters</code> Attributes</h5>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Parameters appear on the final command line in <strong>exact</strong> the order as they appear in the <code>app-info.yaml</code> file, regardless of how they are presented in the Web UI, or how they are grouped using the <code>groupName</code> attribute. This allows to build complex command lines with positional parameters through <code>app-info.yaml</code>.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 4.7619%;">
+<col style="width: 4.7619%;">
+<col style="width: 76.1905%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>uid</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A unique ID of the parameter within the whole product which will contain the <strong>Application</strong> described by this <code>app-info.yaml</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A human readable name of the parameter used as label in the configuration UI.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>longDescription</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional human readable description of the paramater, which is displayed in an info popover next to the parameter in the Web UI.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>groupName</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>An optional group name. The configuration UI may use this information to group parameters with the same <code>groupName</code> together.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Although parameters in the UI are grouped together (and thus might change order), the order in which parameters appear on the final command line is exactly the order in which they are defined in the <code>app-info.yaml</code> file.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>parameter</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The actual parameter, e.g. <code>--parameter</code>, <code>-Dmy.system.prop</code>, etc.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The value of the parameter is not part of this definition, nor is any potential value separator (e.g. <code>=</code>).
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hasValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether the parameter has a value or not. If the parameter has no value, it is treated as <code>BOOLEAN</code> type parameter (i.e. it is either there (<code>true</code>) or not (<code>false</code>)).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>valueAsSeparateArg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether the value of the parameter must be placed as a separate argument on the command line. If not, the value (if <code>hasValue</code>) will be concatenated to the <code>parameter</code> using the <code>valueSeparator</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>valueSeparator</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The character (sequence) to use to concatenate the <code>parameter</code> and the actually configured value of it together. Used if not <code>valueAsSeparateArg</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>defaultValue</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A default value for the parameter. The default value may contain variable references according to the <a href="#_variable_expansion">Variable Expansion</a> rules.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>global</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether this parameter is <code>global</code>. This means that inside a single <strong>Instance</strong>, every process requiring this parameter will receive the same value. The configuration UI will provide input fields for the parameter for every <strong>Application</strong> which requires the parameter, and propagate value changes to all other <strong>Applications</strong> requiring it.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mandatory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether the parameter is required. If the parameter is not required, it is by default not put on the command line and must be added manually through a dedicated dialog on the configuration page.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fixed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether the parameter is fixed. This means that the parameter can <strong>not</strong> be changed by the user.</p>
+</div>
+<div class="paragraph">
+<p>Consider a command line like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">/path/to/java/bin/java -Dmy.prop=value -jar application.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case you will want the user to be able to edit the value of <code>-Dmy.prop</code> parameter, but the user may <strong>never</strong> be able to edit the <code>-jar application.jar</code> part. A definition for this command line would look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">startCommand</span>:
+  <span class="key">launcherPath</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">{{M:openjdk/jre:1.8.0_u202-b08}}/bin/java{{WINDOWS:w.exe}}</span><span class="delimiter">&quot;</span></span>
+  <span class="key">parameters</span>:
+    - <span class="string"><span class="content">uid: &quot;my.prop&quot;</span></span>
+      <span class="key">name</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Property</span><span class="delimiter">&quot;</span></span>
+      <span class="key">parameter</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">-Dmy.prop</span><span class="delimiter">&quot;</span></span>
+      <span class="key">mandatory</span>: <span class="string"><span class="content">true</span></span>
+    - <span class="string"><span class="content">uid: &quot;my.jar&quot;</span></span>
+      <span class="key">name</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Application JAR</span><span class="delimiter">&quot;</span></span>
+      <span class="key">parameter</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">-jar</span><span class="delimiter">&quot;</span></span>
+      <span class="key">defaultValue</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">application.jar</span><span class="delimiter">&quot;</span></span>
+      <span class="key">valueAsSeparateArg</span>: <span class="string"><span class="content">true</span></span>
+      <span class="key">mandatory</span>: <span class="string"><span class="content">true</span></span>
+      <span class="key">fixed</span>: <span class="string"><span class="content">true </span></span><i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The fixed flag will cause the parameter to <strong>always</strong> use the defined default value and disable editing in the configuration UI.</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of parameter. This defines the type of input field used to edit the parameter. Available are <code>STRING</code>, <code>NUMERIC</code>, <code>BOOLEAN</code>, <code>PASSWORD</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_product_info_yaml">product-info.yaml</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There is no actual requirement for the file to be named <code>product-info.yaml</code>. This is just the default, but you can specify another name on the command line or in build tool integrations.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>product-info.yaml</code> file describes which <strong>Applications</strong> are part of the final <strong>Product</strong>, as well as some basic <strong>Product</strong> properties.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">name</span>: <span class="string"><span class="content">My Product </span></span><i class="conum" data-value="1"></i><b>(1)</b>
+<span class="key">product</span>: <span class="string"><span class="content">com.example/product </span></span><i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="key">applications</span>:
+  - <span class="string"><span class="content">my-app1 </span></span><i class="conum" data-value="3"></i><b>(3)</b>
+  - <span class="string"><span class="content">my-app2</span></span>
+
+<span class="key">configTemplates</span>: <span class="string"><span class="content">my-config </span></span><i class="conum" data-value="4"></i><b>(4)</b>
+<span class="key">versionFile</span>: <span class="string"><span class="content">my-versions.yaml </span></span><i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A human readable name of the <strong>Product</strong> for display purposes in the Web UI</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A unique ID of the <strong>Product</strong> which is used to base <strong>Instances</strong> of. This should not change, as changing the <strong>Product</strong> ID of an existing <strong>Instance</strong> is not supported.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The actual <strong>Applications</strong> which are part of the <strong>Product</strong>. These IDs can be anything, they just have to match the IDs used in the <code>product-version.yaml</code> referenced below.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>An optional relative path to a directory containing configuration file templates, which will be used as the default set of configuration files when creating an <strong>Instance</strong> from the resulting <strong>Product</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The <code>product-version.yaml</code> which associates the <strong>Application</strong> IDs (used above) with actual paths to <strong>Applications</strong> on the file system.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_product_version_yaml">product-version.yaml</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There is no actual requirement for the file to be named <code>product-version.yaml</code> as it is referenced from the <code>product-info.yaml</code> by relative path anyway. This is just the default name.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>product-version.yaml</code> file associates <strong>Application</strong> IDs used in the <code>product-info.yaml</code> with actual locations on the local disc. This is used to find an import each included <strong>Application</strong> when importing the <strong>Product</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The reason why this file is separate from the <code>product-info.yaml</code> in the first place, is to allow generation of it&#8217;s content by a build system. It may contain build specific data (version, path to application binaries per operating system, etc.).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">version</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2.1.0.201906141135</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="key">appInfo</span>:
+  <span class="key">my-app1</span>: <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="key">WINDOWS</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">build/windows/app-info.yaml</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="key">LINUX</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">build/linux/app-info.yaml</span><span class="delimiter">&quot;</span></span>
+  <span class="key">my-app2</span>:
+    <span class="key">WINDOWS</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">scripts/app2/app-info.yaml</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="key">LINUX</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">scripts/app2/app-info.yaml</span><span class="delimiter">&quot;</span></span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The version is used as <strong>Manifest</strong> <em>tag</em>, which is a more general concept. There is no requirement for any version-like syntax here, it can be basically anything. It should just be unique per <strong>Product</strong> version which can be installed on a <strong>BDeploy</strong> server.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <strong>Application</strong> ID must match the one used in <code>product-info.yaml</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>You may have different binaries for a single application depending on the target operating system. It is not required to provide every application for every operating system. You can just leave out operating systems you don&#8217;t care about.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>You can also use the exact same <strong>Application</strong> directory to satisfy multiple operating system targets.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dependencies_third_party_software">Dependencies, third party Software</h3>
+<div class="paragraph">
+<p>As you saw before (<code><a href="#_app_info_yaml">app-info.yaml</a></code>), <strong>Applications</strong> can declare dependencies to third-party <strong>Manifests</strong>. These <strong>Manifests</strong> are hosted in <strong>Software Repositories</strong> on the <strong>BDeploy</strong> Server.</p>
+</div>
+<div class="paragraph">
+<p>To make them available on the server, you need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <code>bhive import</code> to import the directory containing the third-party software into a local <strong>BHive</strong>.</p>
+</li>
+<li>
+<p>Use <code>bhive push</code> to push the created <strong>Manifest</strong> to the <strong>Software Repository</strong> of your choice.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_manifest_naming">Manifest Naming</h4>
+<div class="paragraph">
+<p>Third party software <strong>Manifests</strong> can have basically any name. If you want to provide different <strong>Manifests</strong> per target operating system though, you will have to follow a simple naming rule: append the operating system name to the <strong>Manifest</strong> name part, e.g.:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>my/external/software/windows:1.0.0</code></p>
+</li>
+<li>
+<p><code>my/external/software/linux:1.0.0</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It can then be referenced by an <code>app-info.yaml</code> using the short-hand syntax <code>my/external/software:1.0.0</code> and <strong>BDeploy</strong> will choose the correct one depending on the target operating system.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_building_a_product">Building a Product</h3>
+<div class="paragraph">
+<p>Now that you have a well-defined <strong>Product</strong> with one or more <strong>Applications</strong>, you will want to build/package that <strong>Product</strong> to be usable with <strong>BDeploy</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_via_cli">Via CLI</h4>
+<div class="paragraph">
+<p>Once you have a <code>product-info.yaml</code> with it&#8217;s <code>product-version.yaml</code> and all the <code>app-info.yaml</code> files in their respective <strong>Application</strong> directories, you can use the CLI to import the product as a single piece.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <code>bdeploy product</code> to import the product by specifying a local <strong>BHive</strong> and the <code>product-info.yaml</code> to import from.</p>
+</li>
+<li>
+<p>Use <code>bhive push</code> to push the resulting <strong>Product Manifest</strong> from the local <strong>BHive</strong> to an <strong>Instance Group</strong> on a remote <strong>BDeploy</strong> server.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_via_eclipse_tea">Via Eclipse TEA</h4>
+<div class="paragraph">
+<p><strong>BDeploy</strong> provides integration into <a href="https://www.eclipse.org/tea/">Eclipse TEA</a>. Using this integration, you can easily export <strong>Eclipse RCP</strong> based products as <strong>Applications</strong> and bundle them into a custom <strong>Product</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Once you have required files, select <span class="menuseq"><b class="menu">TEA</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">TEA Build Library</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Create BDeploy Product</b></span>. You will be prompted which <strong>Product</strong> to build if the configured <code>products.yaml</code> contains more than one <strong>Product</strong>. Otherwise <strong>Eclipse TEA</strong> will start building the <strong>Product</strong> right away.</p>
+</div>
+<div class="sect4">
+<h5 id="_products_yaml"><code>products.yaml</code></h5>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There is no actual requirement for the file to be named <code>product-info.yaml</code>. This is just the default, but you can specify another name on the command line or in build tool integrations.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This file is required an lists the <code><a href="#_product_build_yaml">product-build.yaml</a></code> files which are available to the integration.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">products</span>:
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">Product One</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">prod-1-build.yaml</span><span class="delimiter">&quot;</span></span>
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">Product Two</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">prod-2-build.yaml</span><span class="delimiter">&quot;</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The path to the <code>products.yaml</code> has to be configured in the <strong>Eclipse TEA</strong> preferences</p>
+</div>
+<div class="imageblock thumb">
+<div class="content">
+<a class="image" href="images/TEA_preferences_products.png"><img src="images/TEA_preferences_products.png" alt="TEA Integration Products Preference" width="150"></a>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_product_build_yaml"><code>product-build.yaml</code></h5>
+<div class="paragraph">
+<p>This file references a <code><a href="#_product_info_yaml">product-info.yaml</a></code> file and describes how to build the actual applications referenced in the <code>product-info.yaml</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">productInfoYaml</span>: <span class="string"><span class="content">my-prod-info.yaml</span></span>
+
+<span class="key">applications</span>:
+  - <span class="string"><span class="content">name: my-app1</span></span>
+    <span class="key">type</span>: <span class="string"><span class="content">RCP_PRODUCT</span></span>
+    <span class="key">includeOs</span>: <span class="string"><span class="content">[WINDOWS, LINUX]</span></span>
+    <span class="key">application</span>:
+      <span class="key">product</span>: <span class="string"><span class="content">App1ProdBuild</span></span>
+
+  - <span class="string"><span class="content">name: my-app2</span></span>
+    <span class="key">type</span>: <span class="string"><span class="content">RCP_PRODUCT</span></span>
+    <span class="key">includeOs</span>: <span class="string"><span class="content">[WINDOWS, LINUX]</span></span>
+    <span class="key">application</span>:
+      <span class="key">product</span>: <span class="string"><span class="content">App2ProdBuild</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value for <code>applications.application.product</code> is <strong>Eclipse TEA</strong> specific and references the <strong>Eclipse TEA</strong> product <em>alias</em> property.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_security">Security</h3>
+<div class="paragraph">
+<p><strong>BDeploy</strong> uses HTTPS everywhere along with advanced <em>security tokens</em> which allow mutual authentication for every request. Think of it as a combination of <em>JWT</em> and mutual certificate based authentication.</p>
+</div>
+<div class="paragraph">
+<p>This mechanism is used for <em>every</em> remote communication, especially for every remote communication which would cause a state change in <strong>BDeploy</strong>. There are some endpoints in the Web UI backend which must be unsecured by design (e.g. the one performing authentication and issuing the <em>security token</em> for all following remote communication).</p>
+</div>
+<div class="paragraph">
+<p>As a consequence, a <em>security token</em> is required for all CLI commands that communicate with a remote <strong>BDeploy</strong> server, when registering a <em>slave</em> with a <em>master</em> minion (as they communicate), and for all toolings which communicate otherwise with <strong>BDeploy</strong> (e.g. build integrations which fetch dependencies and push <strong>Products</strong> to <strong>BDeploy</strong>).</p>
+</div>
+<div class="sect3">
+<h4 id="_certificates">Certificates</h4>
+<div class="paragraph">
+<p><strong>BDeploy</strong> by default generates a self-signed certificate which is used to secure both the internal communication and the Web UI (HTTPS).</p>
+</div>
+<div class="paragraph">
+<p>It is possible to exchange this certificate with a proper one if the security warning in the Web UI is undesirable.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Exchanging the certificate will currently invalidate all issued <em>security tokens</em>. The ones issued to authenticated users, as well as the ones used to register <strong>BDeploy</strong> minions with other <strong>BDeploy</strong> servers.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Current swapping is possible only manually, proper CLI support pending.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.0.0<br>
+Last updated 2019-06-14 15:26:53 +0200
+</div>
+</div>
+</body>
+</html>
