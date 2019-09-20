@@ -28,7 +28,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 1.1.0</span>
+<span id="revnumber">version 1.2.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -221,6 +221,18 @@
 <p>This chapter guides you through the installation of BDeploy. At the end you will have the backend and the frontend up and running
 so that you can start deploying your applications.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The source distribution of BDeploy contains a demo server that can be started with <em>./gradlew runDemoServer</em>. The example data is reinitialized with each server start.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="_download">Download</h3>
 <div class="paragraph">
@@ -228,11 +240,8 @@ so that you can start deploying your applications.</p>
 </div>
 <div class="paragraph">
 <p>Extract the BDeploy binaries from the distribution ZIP. There is no requirement regarding the location of the binaries.
-The target of the unpack will contain a 'bin/bdeploy' or 'bin/bdeploy.bat' depending on whether the distribution is
-built for linux (e.g. 'bdeploy-linux64-x.x.x.zip') or windows (e.g. 'bdeploy-win64-x.x.x.zip').</p>
-</div>
-<div class="paragraph">
-<p>Keep the source .zip file around, so you can use it during initialization of the bdeploy master/slave.</p>
+The target of the unpack will contain a <em>bin/bdeploy</em> or <em>bin/bdeploy.bat</em> depending on whether the distribution is
+built for linux (e.g. <em>bdeploy-linux64-x.x.x.zip</em>) or windows (e.g. <em>bdeploy-win64-x.x.x.zip</em>).</p>
 </div>
 <div class="paragraph">
 <p>For easier handling, make sure the unzipped 'bin' folder is on the PATH. The rest of the manual assumes you have done
@@ -244,37 +253,21 @@ this, otherwise simply prefix all commands with the correct path to the binaries
 <div class="sect3">
 <h4 id="_initialization">Initialization</h4>
 <div class="paragraph">
-<p>To start using BDeploy you will at least need a single master. The master needs to be initialized before it can be started.
-The root directory contains all runtime data. Make sure there is some room available:</p>
+<p>To start using BDeploy you will at least need a single <strong>master</strong>. The <strong>master</strong> needs to be initialized before it can be started.
+The <strong>root directory</strong> contains all runtime data. Make sure there is some room available:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy init --root=/path/to/storage --dist=bdeploy-x.x.x.zip --hostname=$(hostname) # --tokenFile=token.txt</pre>
+<pre class="nowrap">bdeploy init --root=/path/to/storage --hostname=&lt;hostname&gt; # --tokenFile=token.txt</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The --dist argument receives the binaries .zip you used to unpack the binaries from. This argument can explicitly be
-set using '--dist=ignore' if you don&#8217;t have this zip file. The effect is that this bdeploy will receive a larger (full)
-update package once it is updated to another version.</p>
-</div>
-<div class="paragraph">
-<p>The init command will print a token (you can capture the token in a file by giving '--tokenFile=token.txt' instead).
+<p>The <code>init</code> command will print a token (you can capture the token in a file by giving <code>--tokenFile=token.txt</code> instead).
 You need to copy this token - you will need this to be able to access this master from a remote server, e.g. a central
-remote BDeploy master.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_launch">Launch</h4>
-<div class="paragraph">
-<p>After the initialization - which needs to be done only once - the master can be started with the following command:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre class="nowrap">bdeploy master --root=/path/to/storage</pre>
-</div>
+remote <strong>BDeploy master</strong>.</p>
 </div>
 <div class="paragraph">
-<p>This will start the master server which also hosts the web UI: <a href="https://localhost:7701" class="bare">https://localhost:7701</a></p>
+<p>The result of the <code>init</code> command is a <strong>root directory</strong> which can be used by the <strong>master</strong> or <strong>slave</strong> commands.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -283,7 +276,35 @@ remote BDeploy master.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The server is using a self-signed certificate. Thus you need to instruct your browser to accept it.
+Before <strong>BDeploy 1.2.0</strong> it was necessary to specify a <code>--dist</code> argument. This is no longer required, but still supported. Also,
+the <strong>BDeploy Launcher</strong> used to be a separate binary distribution. It is now included in the main <strong>BDeploy</strong> distribution, and
+will be set up for you by the <code>init</code> command
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_launch">Launch</h4>
+<div class="paragraph">
+<p>After the initialization - which needs to be done only once - the <strong>master</strong> can be started with the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">bdeploy master --root=/path/to/storage</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will start the <strong>master</strong> server which also hosts the web UI: <a href="https://localhost:7701" class="bare">https://localhost:7701</a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The server is using a self-signed certificate by default. Thus you need to instruct your browser to accept it.
 </td>
 </tr>
 </table>
@@ -586,6 +607,18 @@ Of course you can also bookmark the location of an <strong>Instance Group</stron
 <h4 id="_manage_products">Manage Products</h4>
 <div class="paragraph">
 <p>Click the <b class="button">+</b> button to upload new <strong>Products</strong>. <strong>Products</strong> can be obtained by <a href="#_building_a_product">building a <strong>Product</strong></a> or by downloading an existing version from another <strong>Instance Group</strong> on the same or another <strong>BDeploy</strong> server, using the <b class="button">Download</b> button on the <strong>Product</strong> details panel.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On the BDeploy Releases page you will find some sample products for each release, see <a href="https://github.com/bdeployteam/bdeploy/releases" class="bare">https://github.com/bdeployteam/bdeploy/releases</a>
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1130,10 +1163,22 @@ The <strong>Installer</strong> stores the <strong>Launcher</strong> and all <str
 <div class="sect3">
 <h4 id="_click_start">Click &amp; Start</h4>
 <div class="paragraph">
-<p><strong>Click &amp; Start</strong> enables the launching of <strong>Client Application</strong> by simply clicking a link in the web browser. A prerequisite is that the <strong>.bdeploy</strong> file extension is associated with the launcher. This task is done by the <strong>Installer</strong> but can also be done manually by starting the file <em>FileAssoc.exe</em> on Windows or <em>file-assoc.sh</em> on Linux contained in the launcher.</p>
+<p><strong>Click &amp; Start</strong> enables the launching of <strong>Client Application</strong> by simply clicking a link in the web browser. In this case the applications are not integrated into the operating system (Start Menu, Desktop Shortcut). A prerequisite is that the <strong>Click &amp; Start Launcher</strong> is deployed on the client computer. This can be done by using the <strong>Click &amp; Start Installer</strong> available in the top-right corner of the <strong>Client Applications</strong> page. The installer will download the <strong>Click &amp; Start Launcher</strong> and associate it with <strong>.bdeploy</strong> files.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <strong>Launcher</strong> can also be manually deployed using the provided ZIP file. After downloading and unpacking the <strong>Launcher</strong> must be associated with <strong>.bdeploy</strong> files using the FileAssoc.exe on Windows or file-assoc.sh on Linux contained in the launcher.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>The <strong>Browser</strong> will either download a <strong>.bdeploy</strong> file that can be directly executed. A more elegant way is to configure the <strong>Browser</strong> to directly open the <strong>.bdeploy</strong> file type. Firefox as well as Chrome allows to configure this after the file has been downloaded.</p>
+<p>Clicking on a <em>Click &amp; Start</em> link in the <strong>Browser</strong> will download a <strong>.bdeploy</strong> file that can be directly executed. A more elegant way is to configure the <strong>Browser</strong> to directly open the <strong>.bdeploy</strong> file type. Firefox as well as Chrome allows to configure this after the file has been downloaded.</p>
 </div>
 </div>
 </div>
@@ -1420,6 +1465,18 @@ The <strong>Installer</strong> stores the <strong>Launcher</strong> and all <str
 </div>
 <div class="paragraph">
 <p>This chapter will walk you through these artifacs, what they are for and how to define them.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On the BDeploy Releases page you will find some zipped sample products for each release, see <a href="https://github.com/bdeployteam/bdeploy/releases" class="bare">https://github.com/bdeployteam/bdeploy/releases</a>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_app_info_yaml">app-info.yaml</h4>
@@ -1845,6 +1902,28 @@ There is no actual requirement for the file to be named <code>product-version.ya
 <h3 id="_building_a_product">Building a Product</h3>
 <div class="paragraph">
 <p>Now that you have a well-defined <strong>Product</strong> with one or more <strong>Applications</strong>, you will want to build/package that <strong>Product</strong> to be usable with <strong>BDeploy</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_via_zip_file_and_web_ui">Via ZIP File and Web UI</h4>
+<div class="paragraph">
+<p>The well-defined <strong>Product</strong> directory including <strong>Applications</strong> can be zipped and imported directly from the web interface.</p>
+</div>
+<div class="paragraph">
+<p>The following conditions must be fulfilled for a successful import:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ZIP files must be self-contained, e.g. only relative paths are allowed and no leaving of the zipped structure via ".." paths.</p>
+</li>
+<li>
+<p>YAML files must follow standard naming (product-info.yaml).</p>
+</li>
+<li>
+<p>External dependencies must either be included in the ZIP or already be available in the <strong>Instance Group</strong>. <strong>Software Repositories</strong> are not (yet) supported.</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_via_cli">Via CLI</h4>
@@ -2293,7 +2372,19 @@ this variable allows the usage of different arguments for different operating sy
 </div>
 </div>
 <div class="paragraph">
-<p>Initially, the <strong>System Software</strong> page contains only the running <strong>BDeploy</strong> system software version, and no <strong>BDeploy Launcher</strong>. Use the <b class="button">+</b> button to upload either new <strong>BDeploy</strong> or <strong>BDeploy Launcher</strong> versions from their respective binary distributions (<em>ZIP</em>).</p>
+<p>Use the <b class="button">+</b> button to upload either new <strong>BDeploy</strong> or <strong>BDeploy Launcher</strong> versions from their respective binary distributions (<em>ZIP</em>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <strong>BDeploy</strong> binary distribution also contains the <strong>BDeploy Launcher</strong> binary distributions as of <strong>BDeploy 1.2.0</strong>.
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2442,7 +2533,21 @@ A <em>master</em> is always a <em>slave</em> as well. The <em>master</em> just h
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-deployment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manage <strong>Instance</strong> deployment (<em>install</em>, <em>activate</em>, <em>uninstall</em>) on a remote <strong>BDeploy</strong> server.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Manage <strong>Instance</strong> deployment (<em>install</em>, <em>activate</em>, <em>uninstall</em>, <em>updateTo</em> (product version)) on a remote <strong>BDeploy</strong> server.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>--updateTo</code> command will only work if the new product version can be updated to without manual changes. If for example a mandatory parameter is added, or a configured application is removed from the product, the update will fail.
+</td>
+</tr>
+</table>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-group</code></p></td>
@@ -2710,7 +2815,7 @@ Current swapping is possible only manually, proper CLI support pending.
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.1.0<br>
+Version 1.2.0<br>
 Last updated 2019-08-23 12:33:23 +0200
 </div>
 </div>
