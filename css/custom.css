@@ -38,3 +38,7 @@
 .single-service .icon {
     min-width: 45px;
 }
+
+.row {
+    margin-bottom: 5px;
+}
