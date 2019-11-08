@@ -28,7 +28,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 1.3.0</span>
+<span id="revnumber">version 1.3.1</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -253,8 +253,12 @@ this, otherwise simply prefix all commands with the correct path to the binaries
 <div class="sect3">
 <h4 id="_initialization">Initialization</h4>
 <div class="paragraph">
-<p>To start using BDeploy you will at least need a single <strong>master</strong>. The <strong>master</strong> needs to be initialized before it can be started.
-The <strong>root directory</strong> contains all runtime data. Make sure there is some room available:</p>
+<p>To start using BDeploy you will at least need a single <strong>master</strong>. The <strong>master</strong> needs to be initialized before it can be started.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>root directory</strong> contains all the runtime data. Best to select an empty directory in the data area of your system
+(e.g. /var/bdeploy on Unix) that is intended exclusively for this purpose. Keep the root directory separate from the BDeploy
+binary installation. Make sure that there is enough space available.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -553,8 +557,7 @@ Clicking on the hamburger menu in the top-left corner provides access to the var
 </div>
 </div>
 <div class="paragraph">
-<p>Use the <b class="button">+</b> button to create a new <strong>Instance Group</strong>.
-The <strong>Instance Group</strong> determines whether it is considered by the automatic cleanup job. If <em>Auto Delete</em> is enabled, the cleanup job will delete all <strong>Product Versions</strong> that are older than the oldest <strong>Product Version</strong> in use</p>
+<p>Use the <b class="button">+</b> button to create a new <strong>Instance Group</strong>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -573,13 +576,16 @@ The name of an instance group cannot be changed. Be carful when choosing the nam
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>The <em>Automatic Cleanup</em> option helps to reduce the amount of consumed hard disk space. During the lifetime of an <strong>Instance Group</strong>, probably many new versions of a <strong>Product</strong> are deployed. To avoid that the hard disk is filled up with <strong>Product Versions</strong> that are not used anymore, there is an option to activate an automatic cleanup job. If the option <em>Automatic Cleanup</em> is enabled, old <strong>Product Versions</strong> that are no longer in use by <strong>Instances</strong> of this <strong>Instance Group</strong> are deleted automatically. To avoid that a <strong>Product</strong> vanishes completely, the very latest <strong>Product Version</strong> always remains.</p>
+</div>
+<div class="paragraph">
+<p>All the configured <strong>Instance Groups</strong> are shown in the <strong>Instance Groups</strong> dialog. This page shows a list of <em>recently used</em> <strong>Instance Groups</strong> in the first row. It will always contain the most recently used <strong>Instance Groups</strong> for the logged in user. This allows allows a quick return to previously/frequently visited <strong>Instance Groups</strong>.</p>
+</div>
 <div class="imageblock text-center">
 <div class="content">
 <a class="image" href="images/BDeploy_Demo_IG.png"><img src="images/BDeploy_Demo_IG.png" alt="Demo Instance Group" width="480"></a>
 </div>
-</div>
-<div class="paragraph">
-<p>The page shows a list of <em>recently used</em> <strong>Instance Groups</strong> in the first row. It will always contain the most recently used <strong>Instance Groups</strong> for the logged in user. This allows allows a quick return to previously/frequently visited <strong>Instance Groups</strong>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -651,37 +657,28 @@ On the BDeploy Releases page you will find some sample products for each release
 </div>
 </div>
 <div class="sect3">
-<h4 id="_create_new_instance">Create New Instance</h4>
+<h4 id="_create_new_instances">Create New Instances</h4>
 <div class="paragraph">
-<p>To create a new <strong>Instance</strong>, click the <b class="button">+</b> button at the bottom of the page. After giving the new <strong>Instance</strong> a name, purpose and description, the most important thing is to select the <strong>Product</strong> you want to deploy. The <em>tag</em> of the <strong>Product</strong> has to be chosen to determine the initial product version. It can be changed later at anytime (<em>up-</em> and <em>downgrade</em>). You will also have to provide a <em>target master</em>, which is the URL of the REST API provided by the <strong>BDeploy</strong> <strong>Minion</strong> that runs as <strong>Master</strong> on one of the target <strong>Nodes</strong>. In the current version of <strong>BDeploy</strong>, this is the official URL of the running <strong>BDeploy</strong> server. You will have to provide a <em>token</em>, which is the <em><a href="#_security">security token</a></em> generated by the <a href="#_bdeploy_cli"><code>bdeploy init</code></a> or the <a href="#_bdeploy_cli"><code>bdeploy token</code></a> commands on the <em>master</em>.</p>
+<p>To create a new <strong>Instance</strong>, click the <b class="button">+</b> button at the bottom of the page. After giving the new <strong>Instance</strong> a name, purpose and description, the most important thing is to select the <strong>Product</strong> you want to deploy. Additionally, The initial <strong>Product Version</strong> has to be chosen. It can be changed later at anytime (<em>up-</em> and <em>downgrade</em>).</p>
 </div>
 <div class="paragraph">
-<p>The <strong>Instance</strong> determines whether it is considered by the automatic cleanup job. If <em>Auto Uninstall</em> is enabled, the cleanup job will uninstall all <strong>Instance Versions</strong> that are older than the activated and the previously activated <strong>Instance Version</strong>.</p>
+<p>It is a common requirement that certain <strong>Processes</strong> of an <strong>Instance</strong> should be automatically started whenever the <strong>BDeploy</strong> server itself is started. To accomplish that, the <em>Automatic Startup</em> flag of the <strong>Instance</strong> must be set.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>Instance</strong> determines whether it is included in the automatic cleanup job. If the option <em>Automatic Uninstallation</em> is enabled, the cleanup job will uninstall all <strong>Instance Versions</strong> that are older than the activated and the previously activated <strong>Instance Version</strong>. Due to this automatic uninstallation some of the old <strong>Product Versions</strong> might become unused. If the option <em>Automatic Cleanup</em> is activated on the instance group, these unused <strong>Product Versions</strong> are deleted too (see <a href="#_instance_group">Instance Group</a>).</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <a class="image" href="images/BDeploy_Instance_Create.png"><img src="images/BDeploy_Instance_Create.png" alt="Create a new Instance" width="480"></a>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When creating additional <strong>Instances</strong>, you can choose to use the same <em>target master</em> as an existing <strong>Instance</strong> within the same <strong>Instance Group</strong>. In this case, you will not have to enter a <em>token</em> again.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Click an <strong>Instance</strong> to proceed to the <a href="#_instance_configuration">Instance Configuration</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <a class="image" href="images/BDeploy_Instance_List.png"><img src="images/BDeploy_Instance_List.png" alt="Instance Browser" width="480"></a>
 </div>
-</div>
-<div class="paragraph">
-<p>Click an <strong>Instance</strong> to proceed to the <a href="#_instance_configuration">Instance Configuration</a>.</p>
 </div>
 </div>
 </div>
@@ -756,12 +753,12 @@ The <strong>Application</strong> defines in which order the parameters are passe
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<a class="image" href="images/BDeploy_Process_Optional_parameters.png"><img src="images/BDeploy_Process_Optional_parameters.png" alt="Manage Optional Parameter(s)" width="480"></a>
+<a class="image" href="images/BDeploy_Process_Optional_Parameters.png"><img src="images/BDeploy_Process_Optional_Parameters.png" alt="Manage Optional Parameter(s)" width="480"></a>
 </div>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<a class="image" href="images/BDeploy_Process_Optional_configured.png"><img src="images/BDeploy_Process_Optional_configured.png" alt="Configuring Optional Parameter(s)" width="480"></a>
+<a class="image" href="images/BDeploy_Process_Optional_Configured.png"><img src="images/BDeploy_Process_Optional_Configured.png" alt="Configuring Optional Parameter(s)" width="480"></a>
 </div>
 </div>
 </div>
@@ -1108,12 +1105,12 @@ All <strong>Applications</strong> are marked as modified as they are now based o
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">INSTANCE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Process will be started automatically <strong>if</strong> the <strong>Auto-Start</strong> flag of the <strong>Instance</strong> is set.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Process will be started automatically <strong>if</strong> the <em>Automatic Startup</em> flag of the <strong>Instance</strong> is set.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>It is a common requirement that certain <strong>Processes</strong> should be automatically started whenever the <strong>BDeploy</strong> server itself is started. To accomplish that the <strong>Auto-Start</strong> flag of the <strong>Instance</strong> must be set. This can be done in the <strong>Instance Configuration</strong> dialog. Additionally the <strong>Start Type</strong> of the <strong>Process</strong> must set to <strong>Instance</strong>. This can be done in the <strong>Process Configuration</strong> dialog.</p>
+<p>It is a common requirement that certain <strong>Processes</strong> of an <strong>Instance</strong> should be automatically started whenever the <strong>BDeploy</strong> server itself is started. To accomplish that, the <em>Automatic Startup</em> flag of the <strong>Instance</strong> must be set. This can be done in the <strong>Instance Configuration</strong> dialog. Additionally the <strong>Start Type</strong> of the <strong>Process</strong> must set to <strong>Instance</strong>. This can be done in the <strong>Process Configuration</strong> dialog.</p>
 </div>
 <div class="paragraph">
 <p><strong>Processes</strong> that are executing actions that cannot be reverted or that are potentially dangerous in productive environments (dropping a database, deleting files) should be configured with the start type <strong>MANUAL CONFIRM</strong>. Doing that results in an additional popup dialog that enforces the user to enter the name of the <strong>Process</strong> before it is started. The idea is, that the user takes an additional moment to ensure that he is really starting the desired <strong>Process</strong>.</p>
@@ -2435,32 +2432,7 @@ this variable allows the usage of different arguments for different operating sy
 </div>
 </div>
 <div class="paragraph">
-<p>It also offers a way to upload, and more important also to <em>download</em> <strong>BDeploy Launcher</strong> binaries. These binaries are required when <a href="#_app_info_yaml"><code>CLIENT</code> <strong>Applications</strong></a> are configured.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<a class="image" href="images/BDeploy_System_Launcher_Upload.png"><img src="images/BDeploy_System_Launcher_Upload.png" alt="BDeploy Launcher Version Upload" width="480"></a>
-</div>
-</div>
-<div class="paragraph">
-<p>Use the <b class="button">+</b> button to upload either new <strong>BDeploy</strong> or <strong>BDeploy Launcher</strong> versions from their respective binary distributions (<em>ZIP</em>).</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The <strong>BDeploy</strong> binary distribution also contains the <strong>BDeploy Launcher</strong> binary distributions as of <strong>BDeploy 1.2.0</strong>.
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<a class="image" href="images/BDeploy_System_No_Launcher.png"><img src="images/BDeploy_System_No_Launcher.png" alt="BDeploy Initial System Software Page" width="480"></a>
-</div>
+<p>It also offers a way to <em>upload</em> and also to <em>download</em> <strong>BDeploy Launcher</strong> binaries. These binaries are required when <a href="#_app_info_yaml"><code>CLIENT</code> <strong>Applications</strong></a> are configured. Use the <b class="button">+</b> button to upload either new <strong>BDeploy</strong> or <strong>BDeploy Launcher</strong> versions from their respective binary distributions (<em>ZIP</em>).</p>
 </div>
 <div class="paragraph">
 <p>The page can also be used to download the binaries of <strong>BDeploy</strong> (e.g. to setup additional <em>slaves</em>) and the <strong>BDeploy Launcher</strong> binaries (e.g. for manual setup of the <strong>BDeploy Launcher</strong> on client PCs, see <a href="#_client_applications">Client Applications</a>).</p>
@@ -2484,12 +2456,12 @@ The <strong>BDeploy</strong> binary distribution also contains the <strong>BDepl
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Instances</strong> with <em>Auto Uninstall</em> enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Uninstall <strong>Instance Versions</strong> that are older than the activated and the previously activated <strong>Instance Version</strong>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Instances</strong> with <em>Auto Uninstallation</em> enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the option <em>Automatic Uninstallation</em> is enabled on an <strong>Instance</strong>, <strong>Instance Versions</strong> that are older than the activated and the previously activated <strong>Instance Version</strong> are uninstalled automatically.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Instance Groups</strong> with <em>Auto Delete</em> enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Delete <strong>Product Versions</strong> that are older than the oldest <strong>Product Version</strong> in use by an installed <strong>Instance Version</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Instance Groups</strong> with <em>Automatic Cleanup</em> enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the option <em>Auto Cleanup</em> is enabled on an <strong>Instance Group</strong>, old <strong>Product Versions</strong> that are no longer in use by <strong>Instances</strong> of this <strong>Instance Group</strong> are deleted automatically. To avoid that a <strong>Product</strong> vanishes completely, the very latest <strong>Product Version</strong> always remains.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Slave</p></td>
@@ -2923,8 +2895,8 @@ Current swapping is possible only manually, proper CLI support pending.
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.3.0<br>
-Last updated 2019-10-22 10:31:11 +0200
+Version 1.3.1<br>
+Last updated 2019-08-23 12:33:23 +0200
 </div>
 </div>
 </body>
