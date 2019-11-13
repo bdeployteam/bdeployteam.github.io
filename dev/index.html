@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.8">
+<link rel="icon" type="image/x-icon" href="images/logo.ico">
+<title>BDeploy Developer Documentation</title>
+<link rel="stylesheet" href="./plain.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/lightgallery-all.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#content").lightGallery({
+            mode: 'lg-fade',
+            share: false,
+            thumbnail: false,
+            hideBarsDelay: 1000,
+            selector: '.image'
+        });
+    });
+</script>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>BDeploy Developer Documentation</h1>
+<div class="details">
+<span id="revnumber">version 1.4.0-SNAPSHOT</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_bhive">BHive</a>
+<ul class="sectlevel2">
+<li><a href="#_bhive_tour">BHive Tour</a></li>
+<li><a href="#_treesnapshot_co">TreeSnapshot &amp; Co.</a></li>
+</ul>
+</li>
+<li><a href="#_pcu_process_control_unit">PCU (Process Control Unit)</a></li>
+<li><a href="#_dcu_deployment_control_unit">DCU (Deployment Control Unit)</a>
+<ul class="sectlevel2">
+<li><a href="#_backends">Backends</a></li>
+</ul>
+</li>
+<li><a href="#_common">Common</a>
+<ul class="sectlevel2">
+<li><a href="#_securityhelper">SecurityHelper</a></li>
+<li><a href="#_configuration">Configuration</a></li>
+<li><a href="#_activityreporter">ActivityReporter</a></li>
+<li><a href="#_metrics">Metrics</a></li>
+<li><a href="#_troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li><a href="#_minion_masterslave_server">Minion (master/slave) Server</a></li>
+<li><a href="#_client_launcher">Client Launcher</a></li>
+<li><a href="#_interfaces">Interfaces</a>
+<ul class="sectlevel2">
+<li><a href="#_model_class_naming">Model Class Naming</a></li>
+<li><a href="#_variable_expansion">Variable Expansion</a></li>
+</ul>
+</li>
+<li><a href="#_manifests">Manifests</a>
+<ul class="sectlevel2">
+<li><a href="#_metamanifests">MetaManifests</a></li>
+</ul>
+</li>
+<li><a href="#_ui_front_and_backend">UI Front- and Backend</a>
+<ul class="sectlevel2">
+<li><a href="#_theming">Theming</a></li>
+</ul>
+</li>
+<li><a href="#_development_setup">Development Setup</a>
+<ul class="sectlevel2">
+<li><a href="#_environment_setup">Environment Setup</a></li>
+<li><a href="#_repository_and_gradle_build">Repository and Gradle Build</a></li>
+<li><a href="#_eclipse_workspace">Eclipse Workspace</a></li>
+<li><a href="#_running_bdeploys_web_ui_from_vscode">Running BDeploy&#8217;s Web UI from VSCode</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/logo.svg" alt="Logo" width="200">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This documentation aims at developers that want to get more information about the underlying concepts and how to build and run BDeploy locally.</p>
+</div>
+<div class="paragraph">
+<p>For people wanting to <em>use</em> BDeploy please refer to the end user documentation that is provided on our homepage <a href="https://bdeploy.io" class="bare">https://bdeploy.io</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bhive">BHive</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The BHive (short: hive) provides a mechanism to store and transfer files over the network. It decouples storage of file content and hierarchical filesystem layout descriptions (trees). The mechanism is similar to how GIT stores files. File content is stored and identified by using the content&#8217;s checksum.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/merkle.png"><img src="images/merkle.png" alt="Merkle Hash Tree" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Here some properties of BHive:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The BHive uses a <a href="https://en.wikipedia.org/wiki/Merkle_tree">Merkle Hash Tree</a> to store data much like GIT does (similar technology is also used for implementing blockchains).</p>
+</li>
+<li>
+<p>Consistency of objects can be verified by calculating the checksum of the content and comparing it with the name of the file storing that content.</p>
+</li>
+<li>
+<p>BHive knows four different types of objects: <code>BLOB</code> (any file content), <code>TREE</code> (a list of <code>BLOB</code>, <code>TREE</code>, <code>MREF</code> entries), <code>MREF</code> (a reference to a to-be-nested <code>MANIFEST</code>), <code>MANIFEST</code> (associates some meta-data with a root <code>TREE</code>).</p>
+</li>
+<li>
+<p>All known object types (except <code>MANIFEST</code>) are stored using the exact same mechanism (<code>ObjectDatabase</code>). This means verifying the consistency of whole trees is as simple as verifying consistency of individual files.</p>
+</li>
+<li>
+<p><code>MANIFEST</code> are stored in a separate <code>ManifestDatabase</code>, this is to allow named storage and reference to <code>MANIFEST</code>, since they are the top-level entry point into the BHive. Most high level operations will require <code>Manifest.Key</code> objects as parameters.</p>
+</li>
+<li>
+<p>BHive has a command line tooling to allow direct manipulation of local and remote hives: <code>io.bdeploy.bhive.cli.BHiveCli</code></p>
+</li>
+<li>
+<p>BHive has a standalone server (using the above cli) which allows serving BHives without BDeploy.</p>
+</li>
+<li>
+<p>A <code>io.bdeploy.bhive.BHive</code> does not expose API, use <code>Hive.Operation</code> defined in the <code>io.bdeploy.bhive.op</code> package to programmatically interact with a hive.</p>
+</li>
+<li>
+<p><code>Hive.Operation</code> can be implemented externally, to provide new functionality operating on a BHive from the outside.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_bhive_tour">BHive Tour</h3>
+<div class="paragraph">
+<p>This chapter, along with the launch configuration available in the bhive project, will give a short tour around most
+of the functionality that bhive provides.</p>
+</div>
+<div class="paragraph">
+<p>All launch configurations used will use a BHive target in a runtime workspace in the containing workspace (<code>${workspace_loc}/runtime-hive</code>) in case you want to have a look at it.</p>
+</div>
+<div class="sect3">
+<h4 id="_import">Import</h4>
+<div class="paragraph">
+<p><em>Import</em> is the act of digesting a folder recursively into a BHive storage. There are two important parameters: the source folder and the destination BHive. Since BHive creates an empty hive automatically in the destination, the target BHive directory is allowed to be non-existant. The source folder is not required to follow <em>any</em> rules at this low-level stage. BHive will simply digest any file found recursively. While doing so, it separates each files content from it&#8217;s name. They are stored in separate locations (content as 'blob', name is stored in a 'tree' as 'pointer' to the 'blob' for this file&#8217;s content).</p>
+</div>
+<div class="paragraph">
+<p>Use the <strong>Hive-Import</strong> launch configuration to import a directory into the BHive. The launch will prompt for two things:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The folder to import. You can choose any folder to import. The target hive is created automatically if it does not exists.</p>
+</li>
+<li>
+<p>The name (manifest key) of the imported tree. This name can be used to reference the imported tree later on. Note that a name:tag combination must be unique. Import will fail if the manifest key is already used.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Note that all BHive objects are immutable, meaning that there are never changes to any existing file. This is analogous to GIT. Manifests are <strong>not</strong> BHive objects but more special (they just <strong>reference</strong> a root tree BHive object). They are mutable in that labels can be added and removed from the manifest.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_list">List</h4>
+<div class="paragraph">
+<p>You can list the content of the BHive after importing by running the <strong>Hive-Manifest-List</strong> launch configuration. It will simply list all available manifests in the BHive.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_export">Export</h4>
+<div class="paragraph">
+<p>The inverse operation of an <em>Import</em> is (surprise) an <em>Export</em>, which means restoring a file/folder tree exactly as it was imported. The export will scan a manifest for 'tree' objects and write all 'blob' objects to the locations described there.</p>
+</div>
+<div class="paragraph">
+<p>Run the <strong>Hive-Export</strong> launch configuration and specify a target folder (which may not yet exist). Next specify a manifest to export, use the key you specified during <a href="#_import">Import</a>.</p>
+</div>
+<div class="paragraph">
+<p>Check the directory, you will notice that all files have been written back on disc, and the folder content is equal to the one imported.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remote_serve">Remote Serve</h4>
+<div class="paragraph">
+<p>BHive provides a small embedded server which allows serving any number of local hives through HTTPS.</p>
+</div>
+<div class="paragraph">
+<p>Run the <strong>Hive-Remote-Serve</strong> launch configuration to run the server, serving the BHive created with the <strong>Hive-Import</strong> application.</p>
+</div>
+<div class="paragraph">
+<p>Note: the sample launch configurations use the test-only pre-built certificates from the <em>jersey</em> project.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remote_list">Remote List</h4>
+<div class="paragraph">
+<p>The same list operation as before (<strong>Hive-Manifest-List</strong>) can be performed on the remote server as well, as long as <strong>Hive-Remote-Serve</strong> is still running.</p>
+</div>
+<div class="paragraph">
+<p>Run <strong>Hive-Remote-List</strong> to try it - this will go through the HTTPS stack and perform the manifest listing remotely.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remote_fetch_push">Remote Fetch &amp; Push</h4>
+<div class="paragraph">
+<p>The two tools <em>fetch</em> and <em>push</em> allow to fetch and push manifests along with all required objects from and to a remote hive.</p>
+</div>
+<div class="paragraph">
+<p>Both operations are practically identical, just reversed. To demonstrate fetch, run <strong>Hive-Remote-Fetch</strong> and specify the manifest key you imported before. This will create a new (empty) hive (on first run) next to the one created by import (<code>${workspace_loc}/runtime-hive-fetched</code>) and fetch this manifest into that hive. Make sure that <strong>Hive-Remote-Serve</strong> is still running for this to work.</p>
+</div>
+<div class="paragraph">
+<p>If you are interested, you can try to <em>import</em> another folder which shares some parts with the first one you imported. Due to the separation of content and location, each common file will be stored only once, regardless of it&#8217;s location (name) in the tree. This will also enable fetch/push to transfer only missing objects.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fsck">FSCK</h4>
+<div class="paragraph">
+<p>The <em>FSCK</em> (short for 'filesystem check') will check consistency of all objects and manifests in e BHive. Run <strong>Hive-FSCK</strong> to execute a <em>FSCK</em> on the sample BHive.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_delete">Delete</h4>
+<div class="paragraph">
+<p>Manifests can be deleted from a BHive as well. Run <strong>Hive-Manifest-Delete</strong> to delete a manifest. Be sure to give the same manifest key as with <strong>Hive-Import</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Note that this operation only deletes the manifest, but <strong>not</strong> automatically all now-unreferenced objects from the object database. This is done by <a href="#_prune">Prune</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_prune">Prune</h4>
+<div class="paragraph">
+<p><em>Pruning</em> is a cleanup operation which removes unreferenced objects from the storage. It is comparable to a <em>git gc</em>.</p>
+</div>
+<div class="paragraph">
+<p>Run <strong>Hive-Prune</strong> after running <strong>Hive-Manifest-Delete</strong> to see the effects of pruning remaining objects. If you had only one manifest and deleted that, the result should be that the <em>objects</em> directory in the hive contains no files anymore (only empty directories).</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_treesnapshot_co">TreeSnapshot &amp; Co.</h3>
+<div class="paragraph">
+<p>The <code>ScanOperation</code> allows to fetch a <code>TreeSnapshot</code> of a <code>MANIFEST</code> root tree. This allows to recursively retrieve all available/relevant information about a <code>MANIFEST</code>. This includes a listing of <code>TREE</code>, <code>BLOB</code>, <code>MREF</code>, missing/damaged objects, etc.</p>
+</div>
+<div class="paragraph">
+<p>The <code>TreeDiff</code> allows to compare two <code>TreeSnapshot</code> objects. It will produce a <code>TreeElementDiff</code> for each element which is different in the two snapshots. This diff is based on the type and checksum of the according path entries in the snapshots. There is no actual content diff, but it is 'ease' to build one based on the available information.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pcu_process_control_unit">PCU (Process Control Unit)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The PCU consumes a pre-rendered (meaning all parameter value variables are resolved, all paths are absolute, etc.) configuration to control and run locally.</p>
+</div>
+<div class="paragraph">
+<p>The PCU does not make any assumptions about locations, etc. It relies completely on external sources to prepare a <code>ProcessGroupConfiguration</code> and the according <code>ProcessConfiguration</code> per configured application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dcu_deployment_control_unit">DCU (Deployment Control Unit)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The DCU&#8217;s <code>InstanceNodeController</code> is responsible for consuming an <code>InstanceNodeManifest</code>. An <code>InstanceNodeManifest</code> is an artificial BHive manifest created by a configuration application, typically the web UI.</p>
+</div>
+<div class="paragraph">
+<p>The DCU assumes that any referenced BHive <code>MANIFEST</code> is locally available, i.e. has been pushed to the BHive associated with the DCU before passing a reference to it to the DCU.</p>
+</div>
+<div class="paragraph">
+<p>Note that the DCU does not know about multiple nodes in a system. It assumes that everything is local, and so do all data structures in the DCU. The minion controlling the local DCU may have additional higher level structures to allow multiple DCUs distributed among nodes deploying for a single <code>InstanceManifest</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_backends">Backends</h3>
+<div class="paragraph">
+<p>Right now, there is only a single DCU, which has the nodes physical disc as manifestation target.</p>
+</div>
+<div class="paragraph">
+<p>The architecture is designed in a way to be able to later on have plug-able DCUs, which assume responsibility for a certain node type. This allows to implement specific DCUs later and mix and match them on a node level. For instance a special "Kubernetes" node could allow to drop applications into a cluster, having the cluster side-by-side with classic local application installation (but sharing configuration data, &#8230;&#8203;).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_common">Common</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This bundle contains things shared by all components (BHive, DCU, PCU, Minion, &#8230;&#8203;).</p>
+</div>
+<div class="sect2">
+<h3 id="_securityhelper">SecurityHelper</h3>
+<div class="paragraph">
+<p>The <code>io.bdeploy.common.security</code> package contains the <code>SecurityHelper</code> which can be used to generate and verify keystores and access tokens for remote APIs (over HTTP).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration">Configuration</h3>
+<div class="paragraph">
+<p>The <code>io.bdeploy.common.cfg</code> package contains the <code>Configuration</code> class which can be used to create command line tools and map their parameters to annotation proxies.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_activityreporter">ActivityReporter</h3>
+<div class="paragraph">
+<p>The <code>ActivityReporter</code> implementations (<code>Stream</code> and <code>Null</code>) can be used to track activities/operations.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metrics">Metrics</h3>
+<div class="paragraph">
+<p>The <code>io.bdeploy.common.metrics</code> package contains an entry point to allow measurement of various metrics.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_troubleshooting">Troubleshooting</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The JUnit5 <code>@RegisterExtension</code> annotation allows to register <strong>instances</strong> of extensions (as opposed to <code>@ExtendWith</code>, which registers a class and manages it&#8217;s lifecycle as apropriate). This means that the <strong>instance</strong> does not changed. This on the other hand means that the instance <strong>fields</strong> of this extension will keep their state throughout test methods. This is not dramatic, just something you need to be aware of. This is the reason why <code>TestMinion</code> calls <code>resetRegistrations()</code> in it&#8217;s <code>beforeEach</code> method. Not doing so led to duplicate registrations of singleton services, where the server picked up the services for another test later on&#8230;&#8203;</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_minion_masterslave_server">Minion (master/slave) Server</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The minion is the main BDeploy deliverable. It contains all the command tools as well as the server for remote services and the configuration web UI.</p>
+</div>
+<div class="paragraph">
+<p>Use <code>bdeploy init &#8230;&#8203;</code> to initalize a minion root, then use either <code>bdeploy master &#8230;&#8203;</code> or <code>bdeploy slave&#8230;&#8203;</code> to launch a master (including web UI) or a slave (controlled by a master) from that root</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_client_launcher">Client Launcher</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The client launcher picks up <strong>.bdeploy</strong> files passed on the command line and handles application download/synchronization with the origin server, as well as installation in a cache directory and launching of the installed application(s).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interfaces">Interfaces</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_model_class_naming">Model Class Naming</h3>
+<div class="paragraph">
+<p>The classes in this project follow a strict naming scheme.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Class Name Suffix</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*Descriptor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Things which are provided by the 'outside' world to describe artifacts processed by us.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*Configuration</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Holds data generated by us, based on *Descriptors, user input, or even thin air.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*Manifest</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wraps and manages storage of *Configurations in the underlying BHives. Also handles enumeration/scanning for according objects in the BHive(s).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*Dto</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(not actually in the interfaces project, but ui specific). Holds/groups data which is required in this form for user display/interaction in the UI.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*Resource</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interfaces for remote (JAX-RS) resources.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*Provider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Providers for variable expansion in configurations on the target system.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_variable_expansion">Variable Expansion</h3>
+<div class="paragraph">
+<p>This project contains the logic for resolving variables when deploying to a minion. The following schemes are supported.</p>
+</div>
+<div class="paragraph">
+<p>Expansion of variables happens for launcher paths and parameter values. Additionally, all configuration files are post-processed on the target to perform the exact same expansion.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Provider</th>
+<th class="tableblock halign-left valign-top">Variable Pattern</th>
+<th class="tableblock halign-left valign-top">Supported Values</th>
+<th class="tableblock halign-left valign-top">Example</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ApplicationParameterProvider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{V:[APP:]PARAM}}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>APP</code>: <em>(optional)</em> The name of the application to reference. If not given, the parameter is referenced within the same application as the referencing parameter</p>
+</li>
+<li>
+<p><code>PARAM</code>: The name of the parameter</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{V:MyServer:my.param.uid}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expand the value of another parameter inline into the value of this parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DeploymentPathProvider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{P:PATH_ID}}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>CONFIG</code>: directory where all configuration files will be placed by deployment</p>
+</li>
+<li>
+<p><code>BIN</code>: directory where all binaries are placed by deployment</p>
+</li>
+<li>
+<p><code>RUNTIME</code>: directory with runtime data (e.d. stdout/stderr capture files)</p>
+</li>
+<li>
+<p><code>DATA</code>: persistent data directory - the only directory shared by multiple deployments of the same instance.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{P:CONFIG}}/myFile.json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expand one of the special directories (see <code>SpecialDirectory</code>) know by the deployment process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstanceVariableResolver</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{I:VAR}}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>SYSTEM_PURPOSE</code>: the purpose of the instance, see <code>InstancePurpose</code></p>
+</li>
+<li>
+<p><code>UUID</code>: UUID of the instance</p>
+</li>
+<li>
+<p><code>NAME</code>: name of the instance</p>
+</li>
+<li>
+<p><code>PRODUCT_ID</code>: name of the <code>MANIFEST</code> key&#8217;s name of the configured product</p>
+</li>
+<li>
+<p><code>PRODUCT_TAG</code>: the tag (i.e. 'version') of the configured product</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{I:SYSTEM_PURPOSE}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expand values related to the instance containing the parameter&#8217;s process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManifestRefPathProvider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{M:MANIFEST_NAME[:TAG]}}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>MANIFEST_NAME</code>: the name of the manifest to reference. The variable will expand to the installation path of that other manifest.</p>
+</li>
+<li>
+<p>TAG: <em>(optional)</em> if given expand to the exact manifest version.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{M:openjdk/jre8}}/bin/java</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expand the absolute installation path to another manifest&#8217;s path on the target system.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>OsConditionalProvider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{OSNAME:VALUE}}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>OSNAME</code>: either <code>OperatingSystem</code> value (<code>WINDOWS</code>, <code>LINUX</code>, <code>AIX</code>).</p>
+</li>
+<li>
+<p><code>VALUE</code>: the target value to expand if the target OS matches the <code>OSNAME</code> value.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&#8230;&#8203;/bin/java{{WINDOWS:.exe}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Insert the given <code>VALUE</code> if and only if the given <code>OSNAME</code> (see <code>OperatingSystem</code>) matches.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MinionConfigVariableResolver</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{H:HOSTNAME}}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p><code>HOSTNAME</code>: expands to the hostname of the target minion where the application is deployed.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{{H:HOSTNAME}}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expands to target minion properties - currently only <code>HOSTNAME</code> is supported.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_manifests">Manifests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Almost all of <strong>BDeploy</strong>'s storage is encapsulated in <strong>Manifests</strong> in a <strong>BHive</strong>. This holds true not only for actual application/product data, but for any configuration data as well. These have a few advantages over traditional storage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Contents is immutable</p>
+</li>
+<li>
+<p>Contents is validatable (through checksums)</p>
+</li>
+<li>
+<p>Contents is automatically versioned</p>
+</li>
+<li>
+<p>Contents history is available</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are a bunch of <strong>Manifests</strong> for several purposes.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/ManifestOverview.png"><img src="images/ManifestOverview.png" alt="Merkle Hash Tree" width="480"></a>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Manifest Name</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstanceGroupManifest</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stores information (name, description, logo) related to an <strong>Instance Group</strong>. There is exactly one <code>InstanceGroupManifest</code> per <strong>Instance Group</strong> <strong>BHive</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SoftwareRepositoryManifest</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stores information (name, description) related to a <strong>Software Repository</strong>. There is exactly one <code>SoftwareRepositoryManifest</code> per <strong>Software Repository</strong> <strong>BHive</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstanceManifest</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>InstanceManifest</code> holds information about an instance and keeps track of the all <code>InstanceNodeManifest</code> for the <strong>Instance</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstanceNodeManifest</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keeps track of the <strong>Applications</strong> and their configuration per configured <strong>Node</strong> in the <strong>Instance</strong>. A <strong>Node</strong> always corresponds to a registered <strong>Slave</strong> on the target <strong>Master</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ProductManifest</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Holds information about a product and keeps track of all the <code>ApplicationManifest</code> for the <strong>Product</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ApplicationManifest</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Holds information about a single application, includes the <code>app-info.yaml</code> for the application which holds information about all supported parameters, etc.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MinionManifest</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Holds information about available slaves on a <strong>master</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UserDatabase</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manages special per-user <strong>Manifests</strong> which hold information about each user.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_metamanifests">MetaManifests</h3>
+<div class="paragraph">
+<p>In addition to traditional <strong>Manifest</strong> there are <strong>MetaManifest</strong>. These allow to <em>attach</em> certain information to other <strong>Manifests</strong>. This allows to update the attached <strong>MetaManifest</strong> independently of the <em>immutable</em> <strong>Manifest</strong>, whilst keeping all benefits of a <strong>Manifest</strong> for the <strong>MetaManifest</strong> as well (versioning, history, &#8230;&#8203;).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">MetaManifest Name</th>
+<th class="tableblock halign-left valign-top">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstanceState</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keeps track of <strong>Instance</strong> state related information (installed <strong>Instance</strong> versions, activated <strong>Instance</strong> version, etc.).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstanceManifestHistory</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keeps track of the history of an <strong>Instance</strong> version, storing timestamps at which certain actions happened (creation, installation, activation, etc.).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ManagedMasters</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keeps track of attached managed masters on a central master.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ControllingMaster</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keeps track of the responsible controlling master for a single <strong>Instance</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ui_front_and_backend">UI Front- and Backend</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Contains the angular configuration frontend as well as the matching backend.</p>
+</div>
+<div class="sect2">
+<h3 id="_theming">Theming</h3>
+<div class="paragraph">
+<p>The <code>app-theme.scss</code> currently supports a dark and a light theme. Components can contribute their own themes using SCSS mixins. This has the advantage that the component theme can access theme colors without knowing their exact definition. Whether the theme is dark or light (generally speaking) can be queried, so defining new (own) colors can be made dependent on that.</p>
+</div>
+<div class="paragraph">
+<p>To create a theme mixin for any component:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a new .scss file in the component&#8217;s folder, e.g. <code>my-component.scss</code>.</p>
+</li>
+<li>
+<p>Import angular material theming support</p>
+</li>
+<li>
+<p>Define a mixin with your theme selectors (attention, those are application global, so be careful with naming them).</p>
+</li>
+<li>
+<p>Import and include the new mixin in the global <code>app-theme.scss</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A very simple custom component&#8217;s scss file could look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="sass"><span class="directive">@import</span> <span class="string"><span class="delimiter">'</span><span class="content">~@angular/material/theming</span><span class="delimiter">'</span></span><span class="include">;</span>
+
+<span class="function">@mixin my-component-theme</span>(<span class="variable">$theme</span>) {
+  .<span class="key">my-component-class</span> {
+          <span class="key">background-color</span>: <span class="predefined">mat-color</span>(<span class="predefined">map-get</span>(<span class="variable">$theme</span>, <span class="value">warn</span>));
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a CSS class using the current themes 'warn' color as background.</p>
+</div>
+<div class="paragraph">
+<p>Now you need to include and import the theme in the global <code>app-theme.scss</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="sass"><span class="directive">@import</span> <span class="string"><span class="delimiter">'</span><span class="content">~@angular/material/theming</span><span class="delimiter">'</span></span><span class="include">;</span>
+<span class="directive">@include</span> <span class="predefined">mat-core</span>();
+
+<span class="comment"><span class="delimiter">/*</span><span class="content"> Custom component theme collection */</span></span>
+<span class="directive">@import</span> <span class="string"><span class="delimiter">'</span><span class="content">app/my-component/my-component-theme.scss</span><span class="delimiter">'</span></span><span class="include">;</span>
+<span class="directive">@import</span> <span class="include">...</span> <span class="include">(other</span> <span class="include">component</span> <span class="include">themes)</span>
+
+<span class="function">@mixin all-themes</span>(<span class="variable">$theme</span>) {
+  <span class="comment"><span class="delimiter">//</span><span class="content"> general angular material theme</span></span>
+  <span class="directive">@include</span> <span class="predefined">angular-material-theme</span>(<span class="variable">$theme</span>);
+
+  <span class="comment"><span class="delimiter">//</span><span class="content"> application themes</span></span>
+  <span class="directive">@include</span> <span class="predefined">my-component-theme</span>(<span class="variable">$theme</span>);
+  <span class="directive">@include</span> ... (<span class="value">other</span> <span class="value">component</span> <span class="value">themes</span>)
+}
+
+... (<span class="tag">rest</span> <span class="tag">of</span> <span class="tag">file</span>)</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_accessing_theme_properties_in_a_mixin">Accessing theme properties in a mixin</h4>
+<div class="paragraph">
+<p>Angular material defines a few properties. Those can be accessed from within a mixin easily. Basically a SCSS selector/mixin is just a map, so <code>map-get</code> can be used to access the actual values.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="sass"><span class="directive">@import</span> <span class="string"><span class="delimiter">'</span><span class="content">~@angular/material/theming</span><span class="delimiter">'</span></span><span class="include">;</span>
+
+<span class="function">@mixin my-component-theme</span>(<span class="variable">$theme</span>) {
+  <span class="variable">$dark</span>: <span class="predefined">map-get</span>(<span class="variable">$theme</span>, <span class="value">is-dark</span>);
+
+  <span class="variable">$color-light</span>: <span class="predefined">rgb</span>(<span class="float">230</span>, <span class="float">255</span>, <span class="float">230</span>);
+  <span class="variable">$color-dark</span>: <span class="predefined">rgb</span>(<span class="float">42</span>, <span class="float">56</span>, <span class="float">42</span>);
+
+  .<span class="key">my-component-class</span> {
+    <span class="key">background-color</span>: <span class="predefined">if</span>(<span class="variable">$dark</span>, <span class="variable">$color-dark</span>, <span class="variable">$color-light</span>);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see the <code>is-dark</code> property of the theme is queried here. If the value is true, <code>$color-dark</code> is used, otherwise <code>$color-light</code> is used.</p>
+</div>
+<div class="paragraph">
+<p>Available attributes are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>primary</code> - the primary palette, can be used with <code>mat-color</code></p>
+</li>
+<li>
+<p><code>accent</code> - the secondary palette, can be used with <code>mat-color</code></p>
+</li>
+<li>
+<p><code>warn</code> - the warn palette, can be used with <code>mat-color</code></p>
+</li>
+<li>
+<p><code>is-dark</code> - boolean determining whether the theme is dark or light.</p>
+</li>
+<li>
+<p><code>foreground</code> - complex map containing various foreground colors.</p>
+</li>
+<li>
+<p><code>background</code> - complex map containing various background colors.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_palettes">Palettes</h4>
+<div class="paragraph">
+<p>Every theme has a <code>primary</code>, <code>accent</code> and <code>warn</code> palette. You can access those colors using <code>mat-color</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="sass"><span class="function">@mixin my-component-theme</span>(<span class="variable">$theme</span>) {
+  <span class="variable">$accent-palette</span>: <span class="predefined">map-get</span>(<span class="variable">$theme</span>, <span class="value">accent</span>);
+
+  <span class="variable">$bg-color-lighter</span>: <span class="predefined">mat-color</span>(<span class="variable">$accent-palette</span>, <span class="value">lighter</span>);
+  <span class="variable">$bg-color-normal</span>: <span class="predefined">mat-color</span>(<span class="variable">$accent-palette</span>);
+  <span class="variable">$bg-color-darker</span>: <span class="predefined">mat-color</span>(<span class="variable">$accent-palette</span>, <span class="value">darker</span>);
+
+  .<span class="key">my-component-class</span> {
+          <span class="key">background-color</span>: <span class="variable">$bg-color-lighter</span>;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>mat-color</code> accepts a palette as argument. This can be either of the theme palettes. An optional second argument can be either <code>lighter</code>, <code>darker</code> or a dedicated index into the palette to choose a certain color intensity explicitly.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_foreground_colors">Foreground Colors</h4>
+<div class="paragraph">
+<p>The complex foreground map has the following named color definitions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>base</code></p>
+</li>
+<li>
+<p><code>divider</code></p>
+</li>
+<li>
+<p><code>dividers</code></p>
+</li>
+<li>
+<p><code>disabled</code></p>
+</li>
+<li>
+<p><code>disabled-button</code></p>
+</li>
+<li>
+<p><code>disabled-text</code></p>
+</li>
+<li>
+<p><code>elevation</code></p>
+</li>
+<li>
+<p><code>hint-text</code></p>
+</li>
+<li>
+<p><code>secondary-text</code></p>
+</li>
+<li>
+<p><code>icon</code></p>
+</li>
+<li>
+<p><code>icons</code></p>
+</li>
+<li>
+<p><code>text</code></p>
+</li>
+<li>
+<p><code>slider-min</code></p>
+</li>
+<li>
+<p><code>slider-off</code></p>
+</li>
+<li>
+<p><code>slider-off-active</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each of those can be accessed by <code>map-get</code>-ting them:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="sass"><span class="function">@mixin my-component-theme</span>(<span class="variable">$theme</span>) {
+  <span class="variable">$background-colors</span>: <span class="predefined">map-get</span>(<span class="variable">$theme</span>, <span class="value">background</span>);
+
+  .<span class="key">my-component-class</span> {
+          <span class="key">background-color</span>: <span class="predefined">map-get</span>(<span class="variable">$background-colors</span>, <span class="value">app-bar</span>);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example will use the <code>app-bar</code> map key in the complex <code>background</code> map entry of the current theme.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_background_colors">Background Colors</h4>
+<div class="paragraph">
+<p>Analogous to foreground colors, these background colors are defined.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>status-bar</code></p>
+</li>
+<li>
+<p><code>app-bar</code></p>
+</li>
+<li>
+<p><code>background</code></p>
+</li>
+<li>
+<p><code>hover</code></p>
+</li>
+<li>
+<p><code>card</code></p>
+</li>
+<li>
+<p><code>dialog</code></p>
+</li>
+<li>
+<p><code>disabled-button</code></p>
+</li>
+<li>
+<p><code>raised-button</code></p>
+</li>
+<li>
+<p><code>focused-button</code></p>
+</li>
+<li>
+<p><code>selected-button</code></p>
+</li>
+<li>
+<p><code>selected-disabled-button</code></p>
+</li>
+<li>
+<p><code>disabled-button-toggle</code></p>
+</li>
+<li>
+<p><code>unselected-chip</code></p>
+</li>
+<li>
+<p><code>disabled-list-option</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Using these foreground colors works exactly the same as background colors do.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_development_setup">Development Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BDeploy uses the <strong>Eclipse IDE</strong> for backend- and <strong>VSCode</strong> for frontend-development. You will need:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://adoptopenjdk.net/?variant=openjdk11&amp;jvmVariant=hotspot">OpenJDK 11</a></p>
+</li>
+<li>
+<p><a href="https://www.eclipse.org/downloads/">Eclipse IDE</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>You need to have the <a href="https://marketplace.eclipse.org/content/launch-configuration-dsl">Launch Configuration DSL (LcDsl)</a> extension installed.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://code.visualstudio.com/download">VSCode</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>You need to have the <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials">Angular Essentials</a> extension installed.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://www.npmjs.com/get-npm">NPM</a></p>
+</li>
+<li>
+<p><a href="https://git-scm.com/downloads">GIT</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_environment_setup">Environment Setup</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>You will want to set the <code>JAVA_HOME</code> environment variable to point to the path where you extracted the <strong>OpenJDK 11</strong> package to assure that the build picks up the correct Java.</p>
+</li>
+<li>
+<p>Make sure that the <code>npm</code> command works from the command line where you will run <code>gradle</code> builds (<code>cmd.exe</code> on Windows, <code>bash</code> on Linux).</p>
+</li>
+<li>
+<p>Install the <strong>Angular CLI</strong> globally for easier working by running <code>npm install -g @angular/cli</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_repository_and_gradle_build">Repository and Gradle Build</h3>
+<div class="paragraph">
+<p>This documentation will assume the path <code>/work/bdeploy</code> to be available, if not substitute it with any other path that works for you.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Clone the repository: <code>cd /work/bdeploy &amp;&amp; git clone <a href="https://github.com/bdeployteam/bdeploy.git" class="bare">https://github.com/bdeployteam/bdeploy.git</a></code></p>
+</li>
+<li>
+<p>Change to the repository directory: <code>cd bdeploy</code></p>
+</li>
+<li>
+<p>Start the <code>gradle</code> build</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>./gradlew build</code> on Linux (<code>bash</code>)</p>
+</li>
+<li>
+<p><code>.\gradlew.bat build</code> on Windows (<code>cmd.exe</code>)</p>
+</li>
+<li>
+<p>The build should conclude with a <code>BUILD SUCCESSFUL</code> message</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>gradle</code> build will build test and package BDeploy. You can find build artifacts after the build here:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>./launcher/build/distributions</code> - Distributable packages of the launcher application which is used to start client applications.</p>
+</li>
+<li>
+<p><code>./minion/build/distributions</code> - Distributable packages of the main BDeploy binaries. They contains the <strong>master</strong> and <strong>slave</strong> server commands as well as all CLI commands available to BDeploy Administrators. The distribution also contains all supported launcher packages as nested ZIP files.</p>
+</li>
+<li>
+<p><code>./interfaces/build/libs/bdeploy-api-*-all.jar</code> - The distributable API bundle including all external dependencies. This can be used to create additional integrations for BDeploy.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additionally, documentation deliverables can be found in the <code>./doc/build/docs/dev</code> and <code>./doc/build/docs/user</code> directories (developer and end-user documentation respectively).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_eclipse_workspace">Eclipse Workspace</h3>
+<div class="paragraph">
+<p>To be able to build, start and debug BDeploy backend applications from the Eclipse IDE, you need to perform some extra setup steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the command line (see <a href="#_repository_and_gradle_build">Repository and Gradle Build</a>) generate the <strong>Eclipse IDE</strong> project files by running <code>./gradlew eclipse</code>.</p>
+</li>
+<li>
+<p>Start the <strong>Eclipse IDE</strong> - choose a workspace, e.g. <code>/work/bdeploy/workspace</code>.</p>
+</li>
+<li>
+<p>Open the <strong>Git Repositories</strong> view.</p>
+</li>
+<li>
+<p>Click <strong>Add existing local repository</strong>, browse to the repository location (e.g. <code>/work/bdeploy/bdeploy</code>) and add it.</p>
+</li>
+<li>
+<p>Right click the repository in the <strong>Git Repositories</strong> view and select <strong>Import Projects&#8230;&#8203;</strong>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Select all projects with type <strong>Eclipse project</strong> (and only those) and proceed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This results in a complete BDeploy workspace setup which compiles automatically.</p>
+</div>
+<div class="sect3">
+<h4 id="_running_bdeploy_from_eclipse">Running BDeploy from Eclipse</h4>
+<div class="paragraph">
+<p>BDeploy uses <strong>LcDsl</strong> launch configurations to run binaries. You can find launch configurations in the <strong>Launch Configurations</strong> view.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Find and run (hint: right clik) the <code>Master-Init</code> launch configuration.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This will initialize a BDeploy <strong>master root</strong> inside the chosen workspace directory, e.g. <code>/work/bdeploy/workspace/runtime/master</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Find and run the <code>Master-AddUser</code> launch configuration to add a user to the BDeploy <strong>master root</strong> (so you can authenticate through the Web UI later).</p>
+</li>
+<li>
+<p>Finally find and run the <code>Master</code> launch configuration to spin up a BDeploy <strong>master</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The BDeploy master will host the Web UI also when started from the <strong>Eclipse IDE</strong>, but it will not work due to slightly different setup. You must use <strong>VSCode</strong> to host a matching Web UI for the backend run from <strong>Eclipse</strong>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_bdeploys_web_ui_from_vscode">Running BDeploy&#8217;s Web UI from VSCode</h3>
+<div class="paragraph">
+<p>To spin up a matching frontend for the master started in <a href="#_running_bdeploy_from_eclipse">Running BDeploy from Eclipse</a> you need to start the <strong>Angular</strong> application from within <strong>VSCode</strong>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the command line, navigate the the <code>./ui/webapp</code> directory in the repository (e.g. <code>/work/bdeploy/bdeploy/ui/webapp</code>) and run <strong>VSCode</strong> in the current directory using <code>code .</code></p>
+</li>
+<li>
+<p>Open a terminal in <strong>VSCode</strong> (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>`</kbd></span>) and run `ng serve` to start the <strong>Angular</strong> development server. This will take a while to compile the Web UI.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The application will be started at <a href="http://localhost:4200" class="bare">http://localhost:4200</a> by default.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>BDeploy&#8217;s backend is HTTPS <strong>only</strong>. It uses a self-signed certificate by default. This will require to accept the certificate in the browser before <strong>any</strong> communication (especially from within the Web UI) can happen.</p>
+</div>
+<div class="paragraph">
+<p>This makes it necessary to open a second tab in the browser and navigate to <a href="https://localhost:7701" class="bare">https://localhost:7701</a> to accept the security exception before the Web UI can communicate with the backend properly. Note that this URL will also load the Web UI once the security exception is in place, but will fail to start (see note above).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.4.0-SNAPSHOT<br>
+Last updated 2019-11-13 08:45:23 +0100
+</div>
+</div>
+</body>
+</html>
