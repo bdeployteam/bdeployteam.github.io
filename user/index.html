@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.8">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <link rel="icon" type="image/x-icon" href="images/logo.ico">
 <title>BDeploy End User Documentation</title>
 <link rel="stylesheet" href="./plain.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="./coderay-asciidoctor.css">
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/lightgallery-all.min.js"></script>
 <script type="text/javascript">
@@ -28,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 1.3.1</span>
+<span id="revnumber">version 1.4.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -42,7 +41,9 @@
 <li><a href="#_installation">Installation</a>
 <ul class="sectlevel2">
 <li><a href="#_download">Download</a></li>
+<li><a href="#_update_of_existing_installations">Update of existing Installations</a></li>
 <li><a href="#_master">Master</a></li>
+<li><a href="#_custom_certificate">Custom Certificate</a></li>
 <li><a href="#_slave">Slave</a></li>
 <li><a href="#_service">Service</a></li>
 <li><a href="#_verify_setup">Verify Setup</a></li>
@@ -72,12 +73,13 @@
 <li><a href="#_building_a_product">Building a Product</a></li>
 <li><a href="#_variable_expansion">Variable Expansion</a></li>
 <li><a href="#_runtime_dependencies">Runtime Dependencies</a></li>
+<li><a href="#_runtime_dependency_packaging">Runtime Dependency Packaging</a></li>
 <li><a href="#_software_repositories">Software Repositories</a></li>
 </ul>
 </li>
 <li><a href="#_experts">Experts</a>
 <ul class="sectlevel2">
-<li><a href="#_system_maintenance">System Maintenance</a></li>
+<li><a href="#_administration">Administration</a></li>
 <li><a href="#_command_line_interface">Command Line Interface</a></li>
 <li><a href="#_security">Security</a></li>
 </ul>
@@ -151,10 +153,6 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Application</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A part of a <strong>Product</strong> that can be started and stopped separately. Applications either run as <strong>Process</strong> on a server machine or as <strong>Client Application</strong> on a desktop computer.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Process</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An server <strong>Application</strong> that is configured to be started on one of the server <strong>Nodes</strong> of an <strong>Instance</strong>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Client Application</strong></p></td>
@@ -249,6 +247,38 @@ this, otherwise simply prefix all commands with the correct path to the binaries
 </div>
 </div>
 <div class="sect2">
+<h3 id="_update_of_existing_installations">Update of existing Installations</h3>
+<div class="paragraph">
+<p>In case you already have an existing installation of <strong>BDeploy</strong>, you can easily update this installation. An update can be performed in two different ways: through the command line (even remotely) or through the Web UI.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the Web UI, please see <a href="#_bdeploy_update">BDeploy Update</a>.</p>
+</div>
+<div class="paragraph">
+<p>To remotely update an existing server, use a command similar to the following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">bdeploy remote-master --update=&lt;path-to-update.zip&gt; --remote=https://host:port/api --tokenFile=&lt;path-to-token.txt&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Updating a local server is through the command line is done in the same way.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Existing slaves don&#8217;t need a separate update. They need to be online when applying the update to the master. The update is applied to all online slaves as well when applying it to the master.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_master">Master</h3>
 <div class="sect3">
 <h4 id="_initialization">Initialization</h4>
@@ -262,30 +292,18 @@ binary installation. Make sure that there is enough space available.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy init --root=/path/to/storage --hostname=&lt;hostname&gt; # --tokenFile=token.txt</pre>
+<pre class="nowrap">bdeploy init --root=/path/to/storage --hostname=&lt;hostname&gt; --mode=STANDALONE --tokenFile=token.txt</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>init</code> command will print a token (you can capture the token in a file by giving <code>--tokenFile=token.txt</code> instead).
-You need to copy this token - you will need this to be able to access this master from a remote server, e.g. a central
-remote <strong>BDeploy master</strong>.</p>
+<p>The <code>init</code> command will print a token. The token is written to a file when providing the <code>--tokenFile=token.txt</code> parameter.
+This token can be used to access this server remotely through the command line, so make sure to store it in a safe place.</p>
+</div>
+<div class="paragraph">
+<p>The <code>--mode</code> parameter of the <code>init</code> command is used to determine the future purpose of the <strong>BDeploy</strong> root. The mode must for now be set to <strong>STANDALONE</strong>, all other modes are reserved for a future release.</p>
 </div>
 <div class="paragraph">
 <p>The result of the <code>init</code> command is a <strong>root directory</strong> which can be used by the <strong>master</strong> or <strong>slave</strong> commands.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Before <strong>BDeploy 1.2.0</strong> it was necessary to specify a <code>--dist</code> argument. This is no longer required, but still supported. Also,
-the <strong>BDeploy Launcher</strong> used to be a separate binary distribution. It is now included in the main <strong>BDeploy</strong> distribution, and
-will be set up for you by the <code>init</code> command
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect3">
@@ -308,7 +326,7 @@ will be set up for you by the <code>init</code> command
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The server is using a self-signed certificate by default. Thus you need to instruct your browser to accept it.
+The server is using a self-signed certificate by default. Thus you need to instruct your browser to accept it. See <a href="#_custom_certificate">Custom Certificate</a> for instructions on how to provide a better certificate.
 </td>
 </tr>
 </table>
@@ -321,31 +339,84 @@ The server is using a self-signed certificate by default. Thus you need to instr
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy user --root=/path/to/storage --add=admin --password=admin</pre>
+<pre class="nowrap">bdeploy user --root=/path/to/storage --add=admin --password=admin --admin</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>All created users are administrators that have full access to the system. Permissions to restrict what a certain user can
-do will be added in a future release.</p>
+<p>The created user will be a global administrator, meaning that the user has permission to fully control the server. With the <code>--admin</code> flag, the user will have no permissions per default. You have to create at least one administrator user to be able to set up the server (e.g. to configure LDAP authentication) and grant rights to other users.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Don&#8217;t use the depicted user and password, these are just samples.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_custom_certificate">Custom Certificate</h3>
+<div class="paragraph">
+<p>By default <strong>BDeploy</strong> uses a self signed certificate for both TLS (HTTPS) traffic encryption as well as token issuing. Tokens can be issued on the command line and from the User menu in the Web UI. These tokens are used to authenticate and authorize any actions performed remotely (command line, third party software, Web UI, etc.).</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+By changing the certificate <strong>BDeploy</strong> uses, all existing tokens will lose their validity.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can use the <code>certificate</code> tool to switch to another ceritificate:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">bdeploy certificate --update=&lt;path-to-pem&gt; --root=&lt;path-to-root&gt; --tokenFile=&lt;token.txt&gt;</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_slave">Slave</h3>
 <div class="paragraph">
-<p>Slaves are optional an only required in case that the application that you want to deploy should run on different servers.</p>
+<p>Slaves are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a certain master. By default a master is itself a slave as well where applications can be deployed to.</p>
 </div>
 <div class="sect3">
 <h4 id="_initializing">Initializing</h4>
 <div class="paragraph">
 <p>Slaves must be initialized on the according machines (or on the same machine using non-default ports; the default port is 7701).
-The command is the same as the one used to initialize the master. Pass (for example) '--port=7702' to change the
+The command is the same as the one used to initialize the master. Pass (for example) <code>--port=7702</code> to change the
 default port to some other value to avoid conflicts. Running multiple bdeploy minions on the same machine is
-supported for testing, but not recommended for productive setups (as the master can be deployed to directly).</p>
+supported for testing, but not recommended for productive setups (as the master can be deployed to directly anyway - no need for an explicit slave).</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">bdeploy init --root=/path/to/slave/storage --hostname=&lt;hostname&gt; --tokenFile=token.txt --port=7702</pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Again, the init command will output the root access token for this slave. You need it to register the slave with the
-master, so keep it around or use '--tokenFile=slave.txt' to store the token into a file.</p>
+master, so keep it around or use <code>--tokenFile=slave.txt</code> to store the token into a file.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_launch_2">Launch</h4>
+<div class="paragraph">
+<p>After the initialization - which needs to be done only once - the slave can be started with the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">bdeploy slave --root=/path/to/storage</pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -355,8 +426,7 @@ master, so keep it around or use '--tokenFile=slave.txt' to store the token into
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy slave --add=slave-name --root=/path/to/storage --remote=https://slave-host:7702/api
-   --tokenFile=slave.txt # or --token=&lt;PASTED-TOKEN&gt;</pre>
+<pre class="nowrap">bdeploy slave --add=slave-name --root=/path/to/master/storage --remote=https://slave-host:7702/api --tokenFile=slave.txt</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -366,7 +436,7 @@ master, so keep it around or use '--tokenFile=slave.txt' to store the token into
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Both the 'https' (beware the 's') and the '/api' suffix are important!
+Both the <code>https</code> (beware the <code>s</code>) and the <code>/api</code> suffix are required!
 </td>
 </tr>
 </table>
@@ -376,25 +446,14 @@ Both the 'https' (beware the 's') and the '/api' suffix are important!
 This is also the name displayed when configuring applications to run on certain nodes later on.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_launch_2">Launch</h4>
-<div class="paragraph">
-<p>After the initialization and registration - which needs to be done only once - the slave can be started with the following command:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre class="nowrap">bdeploy slave --root=/path/to/storage</pre>
-</div>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_service">Service</h3>
 <div class="sect3">
 <h4 id="_linux_service_systemd">Linux Service (SYSTEMD)</h4>
 <div class="paragraph">
-<p>The bdeploy-linux64-x.x.x.zip package contains a template file from which a systemd service can be created. It is
-located in the 'etc' directory and named 'bdeploy-minion.service'.</p>
+<p>The <code>bdeploy-linux64-x.x.x.zip</code> package contains a template file from which a systemd service can be created. It is
+located in the <code>etc</code> directory and named <code>bdeploy-minion.service</code>.</p>
 </div>
 <div class="paragraph">
 <p>The template itself contains instructions on how to create a valid service from it.</p>
@@ -411,8 +470,8 @@ machine.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To get systemd to recognize the service(s) after copying the .service file(s) use the 'systemctl daemon-reload' command (as root).
-Once installed, you can start the service using 'systemctl'.
+To get systemd to recognize the service(s) after copying the service file(s) use the <code>systemctl daemon-reload</code> command (as root).
+Once installed, you can control the service using <code>systemctl</code>.
 </td>
 </tr>
 </table>
@@ -421,8 +480,8 @@ Once installed, you can start the service using 'systemctl'.
 <div class="sect3">
 <h4 id="_windows_service">Windows Service</h4>
 <div class="paragraph">
-<p>The bdeploy-win64-x.x.x.zip package contains a batch script to create a new Windows service. The script is located in
-the etc directory and is named bdeploy-service-install.bat</p>
+<p>The <code>bdeploy-win64-x.x.x.zip</code> package contains a batch script to create a new Windows service. The script is located in
+the <code>etc</code> directory and is named <code>bdeploy-service-install.bat</code></p>
 </div>
 <div class="paragraph">
 <p>The script must be called with administrative privileges and it expects the following arguments:</p>
@@ -435,11 +494,11 @@ the etc directory and is named bdeploy-service-install.bat</p>
 </div>
 </div>
 <div class="paragraph">
-<p>By default the service runs as 'Local System' but you can and should change that afterwards by using the services.msc
-application. Simply configure the desired account in the 'Log On' tab of the services management console.</p>
+<p>By default the service runs as <em>Local System</em> but you can and should change that afterwards by using the services.msc
+application. Simply configure the desired account in the <em>Log On</em> tab of the services management console.</p>
 </div>
 <div class="paragraph">
-<p>Once installed, you can start the service using services.msc or by calling 'net start BDeployMaster | BDeploySlave'.</p>
+<p>Once installed, you can start the service using services.msc or by calling <code>net start BDeployMaster | BDeploySlave</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -448,7 +507,7 @@ application. Simply configure the desired account in the 'Log On' tab of the ser
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Use the 'Event Viewer' (Windows Logs&#8594;System) to get more information when the service fails to start.
+Use the <em>Event Viewer</em> (Windows Logs&#8594;System) to get more information when the service fails to start.
 </td>
 </tr>
 </table>
@@ -460,7 +519,7 @@ Use the 'Event Viewer' (Windows Logs&#8594;System) to get more information when 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Application logs (stdout, stderror) are written to a log file that is stored in &lt;path-to-store-files&gt;\log\service.log
+Application logs (stdout, stderror) are written to a log file that is stored in <code>&lt;path-to-store-files&gt;\log\service.log</code>
 </td>
 </tr>
 </table>
@@ -472,7 +531,7 @@ Application logs (stdout, stderror) are written to a log file that is stored in 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The service parameters are stored in the Windows registry: HKLM\SYSTEM\CurrentControlSet\Services\BDeployMaster
+The service parameters are stored in the Windows registry: <code>HKLM\SYSTEM\CurrentControlSet\Services\BDeployMaster</code>
 </td>
 </tr>
 </table>
@@ -485,7 +544,7 @@ The service parameters are stored in the Windows registry: HKLM\SYSTEM\CurrentCo
 </td>
 <td class="content">
 You need to adopt the batch script when you want to create multiple services on the same machine. Simply adopt the
-MINION_SERVICE_PREFIX to use another prefix for the service.
+<code>MINION_SERVICE_PREFIX</code> to use another prefix for the service.
 </td>
 </tr>
 </table>
@@ -500,8 +559,7 @@ To verify that the setup is OK, run on the master:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy remote-master --minions --remote=https://localhost:7701/api
-   --tokenFile=token.txt # or --token=&lt;MASTER-TOKEN&gt;</pre>
+<pre class="nowrap">bdeploy remote-master --minions --remote=https://localhost:7701/api --tokenFile=token.txt</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -515,7 +573,7 @@ slave                OFFLINE</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If any of the nodes is offline, the according minion on the respective node is not reachable from the master node.</p>
+<p>If any of the nodes is marked offline, the according minion on the respective node is not reachable from the master node.</p>
 </div>
 </div>
 </div>
@@ -537,13 +595,35 @@ slave                OFFLINE</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>After an successful login the main page is shown which list all available <strong>Instance Groups</strong>
-Clicking on the hamburger menu in the top-left corner provides access to the various other parts of the system.</p>
+<p>After a successful login the main page is shown with all <strong>Instance Groups</strong> that the user is permitted to see.</p>
+</div>
+<div class="paragraph">
+<p>Clicking on the hamburger menu in the top-left corner provides access to the various other parts of the system.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <a class="image" href="images/BDeploy_Main_Menu.png"><img src="images/BDeploy_Main_Menu.png" alt="BDeploy Main Menu" width="480"></a>
 </div>
+</div>
+<div class="paragraph">
+<p>Clicking on the user menu in the top-right corner provides access to various user related actions and information.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_User_Menu.png"><img src="images/BDeploy_User_Menu.png" alt="BDeploy User Menu" width="480"></a>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Users which are authenticated against an external system (e.g. LDAP) are not able to edit their user information (including password) through the user menu. Updates have to be performed on the controlling system (e.g. LDAP server) in this case.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -579,8 +659,40 @@ The name of an instance group cannot be changed. Be carful when choosing the nam
 <div class="paragraph">
 <p>The <em>Automatic Cleanup</em> option helps to reduce the amount of consumed hard disk space. During the lifetime of an <strong>Instance Group</strong>, probably many new versions of a <strong>Product</strong> are deployed. To avoid that the hard disk is filled up with <strong>Product Versions</strong> that are not used anymore, there is an option to activate an automatic cleanup job. If the option <em>Automatic Cleanup</em> is enabled, old <strong>Product Versions</strong> that are no longer in use by <strong>Instances</strong> of this <strong>Instance Group</strong> are deleted automatically. To avoid that a <strong>Product</strong> vanishes completely, the very latest <strong>Product Version</strong> always remains.</p>
 </div>
+<div class="sect3">
+<h4 id="_instance_group_access">Instance Group Access</h4>
 <div class="paragraph">
-<p>All the configured <strong>Instance Groups</strong> are shown in the <strong>Instance Groups</strong> dialog. This page shows a list of <em>recently used</em> <strong>Instance Groups</strong> in the first row. It will always contain the most recently used <strong>Instance Groups</strong> for the logged in user. This allows allows a quick return to previously/frequently visited <strong>Instance Groups</strong>.</p>
+<p>A new <strong>Instance Group</strong> is initially only visible to users with global read permission (or higher).</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Demo_Permissions_Global.png"><img src="images/BDeploy_Demo_Permissions_Global.png" alt="Global Instance Group Permissions" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Use the <b class="button">+</b> button to add a user to the list. The input field suggests matching users from the list of all users.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Demo_Permissions_AddUser1.png"><img src="images/BDeploy_Demo_Permissions_AddUser1.png" alt="Grant Read Access to an Instance Group" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Adding a user grants read access to the <strong>Instance Group</strong>. The bin icon in the last column removes the user from the list. Users with global read permission cannot be removed.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Demo_Permissions_AddUser2.png"><img src="images/BDeploy_Demo_Permissions_AddUser2.png" alt="Grant Read Access to an Instance Group" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Write access and administration permissions for an <strong>Instance Group</strong> can be granted and revoked using the checkbox in the respective column.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_instance_group_dialog">Instance Group Dialog</h4>
+<div class="paragraph">
+<p>All <strong>Instance Groups</strong> that are visible to the user are shown in the <strong>Instance Groups</strong> dialog. This page shows a list of <em>recently used</em> <strong>Instance Groups</strong> in the first row. It will always contain the most recently used <strong>Instance Groups</strong> for the logged in user. This allows allows a quick return to previously/frequently visited <strong>Instance Groups</strong>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -599,6 +711,9 @@ Of course you can also bookmark the location of an <strong>Instance Group</stron
 </tr>
 </table>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_initial_steps">Initial Steps</h4>
 <div class="paragraph">
 <p>Click on an <strong>Instance Group</strong> to open the <strong>Instance Browser</strong> of this group. Here you can see all <strong>Instances</strong> grouped by their <em>purpose</em> (can be <code>DEVELOPMENT</code>, <code>TEST</code>, <code>PRODUCTIVE</code>)</p>
 </div>
@@ -608,7 +723,8 @@ Of course you can also bookmark the location of an <strong>Instance Group</stron
 </div>
 </div>
 <div class="paragraph">
-<p>Since an <strong>Instance</strong> requires a <strong>Product</strong>, an empty <strong>Instance Group</strong> will display a shortcut to the <a href="#_product_management">Product Management</a> dialog. If there is at least one <strong>Instance</strong> already, the shortcut disappears. The <b class="button">Manage Products&#8230;&#8203;</b> button in the lower right corner opens the <a href="#_product_management">Product Management</a> dialog, too.</p>
+<p>Since an <strong>Instance</strong> requires a <strong>Product</strong>, an empty <strong>Instance Group</strong> will display a shortcut to the <a href="#_manage_products">Manage Products</a> dialog. If there is at least one <strong>Instance</strong> already, the shortcut disappears. The <b class="button">Manage Products&#8230;&#8203;</b> button in the lower right corner opens the <a href="#_manage_products">Manage Products</a> dialog, too.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_manage_products">Manage Products</h4>
@@ -673,7 +789,7 @@ On the BDeploy Releases page you will find some sample products for each release
 </div>
 </div>
 <div class="paragraph">
-<p>Click an <strong>Instance</strong> to proceed to the <a href="#_instance_configuration">Instance Configuration</a>.</p>
+<p>Click an <strong>Instance</strong> to proceed to the <a href="#_instance_overview">Instance Overview</a>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -905,11 +1021,19 @@ Changes done in configuration files must be <strong>Saved</strong> and they resu
 <p><strong>Instances</strong> are based on a <strong>Product Version</strong>. While the <strong>Product</strong> of the <strong>Instance</strong> cannot be changed afterwards, the <strong>Version</strong> can be chosen from the available <strong>Product Versions</strong> (upgrade to a newer version / downgrade to an older version).</p>
 </div>
 <div class="paragraph">
-<p>If there&#8217;s a newer <strong>Product Version</strong> available (newer than the one that is configured for the latest <strong>Instance Version</strong>), a notification is shown. Clicking on the notification opens the <strong>Product Version</strong> sidebar. The same sidebar can also be opened opened by clicking on the <b class="button">Change Product Version</b> button in the pull-down menu of the <strong>Instance</strong>. If the menu entry is disabled verify that the latest <strong>Instance Version</strong> is selected.</p>
+<p>If there&#8217;s a newer <strong>Product Version</strong> available (newer than the one that is configured for the latest <strong>Instance Version</strong>), a notification is shown in the notification area.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<a class="image" href="images/BDeploy_Product_Change.png"><img src="images/BDeploy_Product_Change.png" alt="Change Current Product Tag" width="480"></a>
+<a class="image" href="images/BDeploy_Product_Notification.png"><img src="images/BDeploy_Product_Notification.png" alt="Notification about new Product Version" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Clicking on the notification opens the <strong>Product Version</strong> sidebar. The same sidebar can also be opened opened by clicking on the <b class="button">Change Product Version</b> button in the pull-down menu of the <strong>Instance</strong>. If the menu entry is disabled verify that the latest <strong>Instance Version</strong> is selected.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Product_Change.png"><img src="images/BDeploy_Product_Change.png" alt="Change Current Product Version" width="480"></a>
 </div>
 </div>
 <div class="paragraph">
@@ -936,11 +1060,11 @@ All <strong>Applications</strong> are marked as modified as they are now based o
 </table>
 </div>
 <div class="paragraph">
-<p>Changing the <strong>Product Version</strong> can result in validation issues and automated adjustment of parameters. <strong>Product Versions</strong> can contain different <strong>Applications</strong>, so that with the change of the <strong>Product Version</strong> e.g. a previously configured <strong>Application</strong> must be deleted because it has been removed from the product. If parameters definitions are changed, validation errors may occur which must be corrected before saving (e.g. new mandatory parameters).</p>
+<p>Changing the <strong>Product Version</strong> can result in validation issues and automated adjustment of parameters. <strong>Product Versions</strong> can contain different <strong>Applications</strong>, so that with the change of the <strong>Product Version</strong> e.g. a previously configured <strong>Application</strong> must be deleted because it has been removed from the product. If parameters definitions are changed, validation errors may occur which must be corrected before saving (e.g. new mandatory parameters, parameters no longer supported, etc.). These errors will cause a visual indicator on affected applications, as well as a textual description of the problem in the notifications area.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
-<a class="image" href="images/BDeploy_Product_Downgrade_Missing_Apps.png"><img src="images/BDeploy_Product_Downgrade_Missing_Apps.png" alt="Validation Issues After Product Tag Change" width="480"></a>
+<a class="image" href="images/BDeploy_Product_Downgrade_Validation.png"><img src="images/BDeploy_Product_Downgrade_Validation.png" alt="Validation Issues After Product Version Change" width="480"></a>
 </div>
 </div>
 </div>
@@ -1065,9 +1189,9 @@ All <strong>Applications</strong> are marked as modified as they are now based o
 </div>
 </div>
 <div class="sect3">
-<h4 id="_process_out_of_sync">Process Out-Of-Sync</h4>
+<h4 id="_process_outdated">Process Outdated</h4>
 <div class="paragraph">
-<p>An warning message - <strong>Out-Of-Sync</strong> - is displayed whenever one or more <strong>Processes</strong> are running in a version that is currently not <strong>Activated</strong>. This happens when <strong>Deploying</strong> a new version while <strong>Processes</strong> are still running.</p>
+<p>An warning message - <strong>Outdated</strong> - is displayed whenever one or more <strong>Processes</strong> are running in a version that is currently not <strong>Activated</strong>. This happens when <strong>Deploying</strong> a new version while <strong>Processes</strong> are still running.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1096,15 +1220,15 @@ All <strong>Applications</strong> are marked as modified as they are now based o
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MANUAL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MANUAL</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Process must be started manually. No automatic startup will be done.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MANUAL_CONFIRM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MANUAL_CONFIRM</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Process must be started manually and an additional confirmation is required.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INSTANCE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INSTANCE</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Process will be started automatically <strong>if</strong> the <em>Automatic Startup</em> flag of the <strong>Instance</strong> is set.</p></td>
 </tr>
 </tbody>
@@ -1113,7 +1237,7 @@ All <strong>Applications</strong> are marked as modified as they are now based o
 <p>It is a common requirement that certain <strong>Processes</strong> of an <strong>Instance</strong> should be automatically started whenever the <strong>BDeploy</strong> server itself is started. To accomplish that, the <em>Automatic Startup</em> flag of the <strong>Instance</strong> must be set. This can be done in the <strong>Instance Configuration</strong> dialog. Additionally the <strong>Start Type</strong> of the <strong>Process</strong> must set to <strong>Instance</strong>. This can be done in the <strong>Process Configuration</strong> dialog.</p>
 </div>
 <div class="paragraph">
-<p><strong>Processes</strong> that are executing actions that cannot be reverted or that are potentially dangerous in productive environments (dropping a database, deleting files) should be configured with the start type <strong>MANUAL CONFIRM</strong>. Doing that results in an additional popup dialog that enforces the user to enter the name of the <strong>Process</strong> before it is started. The idea is, that the user takes an additional moment to ensure that he is really starting the desired <strong>Process</strong>.</p>
+<p><strong>Processes</strong> that are executing actions that cannot be reverted or that are potentially dangerous in productive environments (dropping a database, deleting files) should be configured with the start type <code>MANUAL_CONFIRM</code>. Doing that results in an additional popup dialog that enforces the user to enter the name of the <strong>Process</strong> before it is started. The idea is, that the user takes an additional moment to ensure that he is really starting the desired <strong>Process</strong>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1306,7 +1430,7 @@ The <strong>Launcher</strong> can also be manually deployed using the provided Z
 <p>Click on <strong>Activate</strong></p>
 </li>
 <li>
-<p>A hint (Out-Of-Sync) will be displayed if a <strong>Process</strong> is running in an older version.</p>
+<p>A hint (<code>Outdated</code>) will be displayed if a <strong>Process</strong> is running in an older version.</p>
 </li>
 <li>
 <p>Stop the process by clicking on the <strong>Process Card</strong>. Click on the <b class="button">Stop</b> button.</p>
@@ -1318,7 +1442,7 @@ The <strong>Launcher</strong> can also be manually deployed using the provided Z
 <p>Repeat the steps 5-6 with each process that should be running</p>
 </li>
 <li>
-<p>The hint (Out-Of-Sync) disappears once all processes are running in the active version.</p>
+<p>The hint (<code>Outdated</code>) disappears once all processes are running in the active version.</p>
 </li>
 </ol>
 </div>
@@ -1517,15 +1641,15 @@ The <strong>Launcher</strong> can also be manually deployed using the provided Z
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a href="#_app-info.yaml">app-info.yaml</a></dt>
+<dt class="hdlist1"><a href="#_app_info_yaml">app-info.yaml</a></dt>
 <dd>
 <p>YAML file to describe one single <strong>Application</strong>. It is required once for every client and server <strong>Application</strong> of the product.</p>
 </dd>
-<dt class="hdlist1"><a href="#_product-info.yaml">product-info.yaml</a></dt>
+<dt class="hdlist1"><a href="#_product_info_yaml">product-info.yaml</a></dt>
 <dd>
 <p>YAML file with meta-data for the whole product.</p>
 </dd>
-<dt class="hdlist1"><a href="#_product-version.yaml">product-version.yaml</a></dt>
+<dt class="hdlist1"><a href="#_product_version_yaml">product-version.yaml</a></dt>
 <dd>
 <p>YAML file required for every <strong>Product Version</strong>.</p>
 </dd>
@@ -1610,7 +1734,14 @@ On the BDeploy Releases page you will find some zipped sample products for each 
 <span class="key">stopCommand</span>: <i class="conum" data-value="7"></i><b>(7)</b>
   <span class="error">...</span>
 
-<span class="key">runtimeDependencies</span>: <i class="conum" data-value="8"></i><b>(8)</b>
+<span class="key">endpoints</span>: <i class="conum" data-value="8"></i><b>(8)</b>
+  <span class="key">http</span>:
+    - <span class="string"><span class="content">id: &quot;my-endpoint&quot; </span></span><i class="conum" data-value="9"></i><b>(9)</b>
+      <span class="key">path</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">path/to/the/endpoint</span><span class="delimiter">&quot;</span></span>
+      <span class="key">port</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">{{V:port-param}}</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="10"></i><b>(10)</b>
+      <span class="key">secure</span>: <span class="string"><span class="content">false</span></span>
+
+<span class="key">runtimeDependencies</span>: <i class="conum" data-value="11"></i><b>(11)</b>
   - <span class="string"><span class="delimiter">&quot;</span><span class="content">adoptopenjdk/jre:1.8.0_202-b08</span><span class="delimiter">&quot;</span></span></code></pre>
 </div>
 </div>
@@ -1646,6 +1777,18 @@ On the BDeploy Releases page you will find some zipped sample products for each 
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Optional definition of provided endpoints. Currently only HTTP endpoints are supported. These endpoints can be configured on the application later, including additional information like authentication, certificates, etc. <strong>BDeploy</strong> can later on call these endpoints when instructed to do so by a third-party application.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>The ID of the endpoint can be used to call the endpoint remotely by tunneling through potentially multiple levels of <strong>BDeploy</strong> servers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td><a href="#_variable_expansion">Variable Expansion</a> can be used on most of the endpoint properties.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
 <td>Optional runtime dependencies. These dependencies are included in the <strong>Product</strong> when building it. Dependencies are fetched from <strong><a href="#_software_repositories">Software Repositories</a></strong>. <code>launcherPath</code> and parameter <code>defaultValue</code> (and of course the final configuration values) can access paths within each of the dependencies by using the <code>{{M:adoptopenjdk/jre:1.8.0_202-b08}}</code> <a href="#_variable_expansion">Variable Expansion</a>, e.g. <code>launcherPath: {{M:adoptopenjdk/jre:1.8.0_202-b08}}/bin/java</code>. Also note that the declared dependency does not specify an operating system. This will be resolved by <strong>BDeploy</strong> to either an exact match, e.g. <code>adoptopenjdk/jre/linux:1.8.0_202-b08</code> on <code>LINUX</code>.</td>
 </tr>
 </table>
@@ -1856,6 +1999,75 @@ The value of the parameter is not part of this definition, nor is any potential 
 </tbody>
 </table>
 </div>
+<div class="sect4">
+<h5 id="_supported_endpoints_http_attributes">Supported <code>endpoints.http</code> attributes</h5>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Endpoints definitions are templates which can later on be configured by the user. The only values not editable by the user are <code>id</code> and <code>path</code>.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 15.7894%;">
+<col style="width: 84.2106%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unique ID of the endpoint. This ID can be used by an authorized third-pary application to instruct <strong>BDeploy</strong> to call this endpoint and return the result.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path of the endpoint on the target process. <strong>BDeploy</strong> uses this and other parameters (<code>port</code>) to construct an URI to the local server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The port this endpoint is hosted on. <a href="#_variable_expansion">Variable Expansion</a> can be used, for instance to reference a parameter of the application (using <code>{{V:port-param}}</code> where <code>port-param</code> is the ID of a parameter on the <code>startCommand</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>secure</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether HTTPS should be used when calling the endpoint</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>trustAll</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to trust any certificate when using HTTPS to call the endpoint. Otherwise a custom <code>trustStore</code> must be set if a self-signed certificate is used by the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>trustStore</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to a KeyStore in the <code>JKS</code> format, containing certificates to trust. <a href="#_variable_expansion">Variable Expansion</a> can be used.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>trustStorePass</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The passphrase used to load the <code>trustStore</code>. <a href="#_variable_expansion">Variable Expansion</a> can be used.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authType</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of authentication used by <strong>BDeploy</strong> when calling the endpoint. Can be <code>NONE</code>, <code>BASIC</code> or <code>DIGEST</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authUser</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username to use for <code>BASIC</code> or <code>DIGEST</code> <code>authType</code>. <a href="#_variable_expansion">Variable Expansion</a> can be used.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authPass</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password to use for <code>BASIC</code> or <code>DIGEST</code> <code>authType</code>. <a href="#_variable_expansion">Variable Expansion</a> can be used.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_product_info_yaml">product-info.yaml</h4>
@@ -1878,13 +2090,14 @@ There is no actual requirement for the file to be named <code>product-info.yaml<
 <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">name</span>: <span class="string"><span class="content">My Product </span></span><i class="conum" data-value="1"></i><b>(1)</b>
 <span class="key">product</span>: <span class="string"><span class="content">com.example/product </span></span><i class="conum" data-value="2"></i><b>(2)</b>
+<span class="key">vendor</span>: <span class="string"><span class="content">My Company </span></span><i class="conum" data-value="3"></i><b>(3)</b>
 
 <span class="key">applications</span>:
-  - <span class="string"><span class="content">my-app1 </span></span><i class="conum" data-value="3"></i><b>(3)</b>
+  - <span class="string"><span class="content">my-app1 </span></span><i class="conum" data-value="4"></i><b>(4)</b>
   - <span class="string"><span class="content">my-app2</span></span>
 
-<span class="key">configTemplates</span>: <span class="string"><span class="content">my-config </span></span><i class="conum" data-value="4"></i><b>(4)</b>
-<span class="key">versionFile</span>: <span class="string"><span class="content">my-versions.yaml </span></span><i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+<span class="key">configTemplates</span>: <span class="string"><span class="content">my-config </span></span><i class="conum" data-value="5"></i><b>(5)</b>
+<span class="key">versionFile</span>: <span class="string"><span class="content">my-versions.yaml </span></span><i class="conum" data-value="6"></i><b>(6)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1899,14 +2112,18 @@ There is no actual requirement for the file to be named <code>product-info.yaml<
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The list of <strong>Applications</strong> which are part of the <strong>Product</strong>. These IDs can be anything, they just have to match the IDs used in the <code>product-version.yaml</code> referenced below.</td>
+<td>The vendor of the product. Displayed in the Web UI and used when installing client applications.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Optional: An relative path to a directory containing configuration file templates, which will be used as the default set of configuration files when creating an <strong>Instance</strong> from the resulting <strong>Product</strong>.</td>
+<td>The list of <strong>Applications</strong> which are part of the <strong>Product</strong>. These IDs can be anything, they just have to match the IDs used in the <code>product-version.yaml</code> referenced below.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Optional: An relative path to a directory containing configuration file templates, which will be used as the default set of configuration files when creating an <strong>Instance</strong> from the resulting <strong>Product</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>The <code>product-version.yaml</code> which associates the <strong>Application</strong> IDs (used above) with actual paths to <strong>Applications</strong> on the file system.</td>
 </tr>
 </table>
@@ -2015,7 +2232,20 @@ There is no actual requirement for the file to be named <code>product-version.ya
 <p><strong>BDeploy</strong> provides integration into <a href="https://www.eclipse.org/tea/">Eclipse TEA</a>. Using this integration, you can easily export <strong>Eclipse RCP</strong> based products as <strong>Applications</strong> and bundle them into a custom <strong>Product</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Once you have required files, select <span class="menuseq"><b class="menu">TEA</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">TEA Build Library</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Create BDeploy Product</b></span>. You will be prompted which <strong>Product</strong> to build if the configured <code>products.yaml</code> contains more than one <strong>Product</strong>. Otherwise <strong>Eclipse TEA</strong> will start building the <strong>Product</strong> right away.</p>
+<p>Once you have required files, select <span class="menuseq"><b class="menu">TEA</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">TEA Build Library</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Create BDeploy Product&#8230;&#8203;</b></span>. You will be prompted which <strong>Product</strong> to build and where to put the resulting product. You can choose to create a self-contained ZIP, or to push deltas to a selected server.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/TEA_build_product.png"><img src="images/TEA_build_product.png" alt="TEA Integration Product Build" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Since product builds are stored in the workspace, you can choose to re-push a previous build of the product (to the same or another server). Select <span class="menuseq"><b class="menu">TEA</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">TEA Build Library</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Push BDeploy Product&#8230;&#8203;</b></span> to do so. You will be presented a list of available local product versions and the configured <strong>BDeploy</strong> servers.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/TEA_push_product.png"><img src="images/TEA_push_product.png" alt="TEA Integration Product Push" width="480"></a>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_products_yaml"><code>products.yaml</code></h5>
@@ -2026,13 +2256,13 @@ There is no actual requirement for the file to be named <code>product-version.ya
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-There is no actual requirement for the file to be named <code>product-info.yaml</code>. This is just the default, but you can specify another name on the command line or in build tool integrations.
+There is no actual requirement for the file to be named <code>products.yaml</code>. This is just the default, but you can specify another name in the Eclipse TEA preferences.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>This file is required an lists the <code><a href="#_product_build_yaml">product-build.yaml</a></code> files which are available to the integration.</p>
+<p>This file is required and lists the <code><a href="#_product_build_yaml">product-build.yaml</a></code> files which are available to the integration.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2048,6 +2278,9 @@ There is no actual requirement for the file to be named <code>product-info.yaml<
 <div class="content">
 <a class="image" href="images/TEA_preferences_products.png"><img src="images/TEA_preferences_products.png" alt="TEA Integration Products Preference" width="480"></a>
 </div>
+</div>
+<div class="paragraph">
+<p>The preferences also allow to configure a <strong>BDeploy</strong> server whos <a href="#_software_repositories">Software Repositories</a> are used during resolution of <a href="#_runtime_dependencies">Runtime Dependencies</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -2095,6 +2328,9 @@ There is no actual requirement for the file to be named <code>product-info.yaml<
 <li>
 <p>Any configuration file content.</p>
 </li>
+<li>
+<p>Most of the <a href="#_supported_endpoints_http_attributes">HTTP Endpoints</a> attributes.</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -2128,6 +2364,10 @@ There is no actual requirement for the file to be named <code>product-info.yaml<
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{{M:openjdk/jre8}}</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Expands to the absolute path where the OpenJDK manifest is installed on the server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{{M:SELF}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expands to the absolute path where the manifest is installed on the server which contains the <code>app-info.yaml</code> for this application. This substitution shortcut is only supported in <code>app-info.yaml</code> files.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2213,7 +2453,7 @@ There is no actual requirement for the file to be named <code>product-info.yaml<
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Beware that changing the name of an application will break the parameter reference mechanism. There is no mechanism that automatically adopts the configuration of applications which refer to values of other applications. This must be done manually if required.
+Beware that changing the name of an application will break the parameter reference mechanism. There is no mechanism that automatically adapts the configuration of applications which refer to values of other applications. This must be done manually if required.
 </td>
 </tr>
 </table>
@@ -2262,6 +2502,39 @@ Beware that changing the name of an application will break the parameter referen
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{{I:PRODUCT_TAG}}</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The tag (i.e. 'version') of the configured product</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_a_application_value">A: Application Value</h4>
+<div class="paragraph">
+<p>Used to expand to values related to the application containing the parameter&#8217;s.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">{{A:&lt;VAR&gt;}}</pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 85.7143%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Variable</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{{A:UUID}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UUID of the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{{A:NAME}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the application</p></td>
 </tr>
 </tbody>
 </table>
@@ -2345,6 +2618,46 @@ this variable allows the usage of different arguments for different operating sy
 </tbody>
 </table>
 </div>
+<div class="sect3">
+<h4 id="_environmental_values">Environmental Values</h4>
+<div class="paragraph">
+<p>Enables access to environmental variables defined in the operating system. The name of the variable refers to the name of the environmental variable.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">{{ENV:NAME}}
+{{DELAYED:ENV:NAME}}</pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 85.7143%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Variable</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{{ENV:MY_VARIABLE}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expands to the value of the environmental variable when the application is <strong>installed</strong> on the node or client.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{{DELAYED:ENV:MY_VARIABLE}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expands to the value of the environmental variable when the application is <strong>launched</strong> on the node or client.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Variables are replaced with their actual values when the process is installed on the target minion node. This might not always be desired.
+Especially for client applications it can be useful to do the actual replacing when the process is launched. This is can be achieved by prefixing
+the actual variable with the <strong>DELAYED</strong> prefix. This enables that different users of the client application are getting different parameter values
+depending on the value of the environmental variable.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_runtime_dependencies">Runtime Dependencies</h3>
@@ -2385,6 +2698,24 @@ this variable allows the usage of different arguments for different operating sy
 </div>
 </div>
 <div class="sect2">
+<h3 id="_runtime_dependency_packaging">Runtime Dependency Packaging</h3>
+<div class="paragraph">
+<p><strong>BDeploy</strong> will always make sure that your products are self contained. This means that <a href="#_runtime_dependencies">Runtime Dependencies</a> are packaged with the product data at build time. The result is a product which contains all dependencies. This also means that pushing a product to a target server does not require <strong>any</strong> prerequisites on that target server.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Included runtime dependencies will not show up on the target server&#8217;s Web UI anywhere. Especially there is no <a href="#_software_repositories">Software Repository</a> created automatically for any third-party software. It is simply included in the product.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_software_repositories">Software Repositories</h3>
 <div class="paragraph">
 <p>The <strong>Software Repositories</strong> page allows maintenance of external software that a specific product requires. A <strong>Software Repository</strong> shares its namespace with <strong>Instance Groups</strong>, which means that the unique name of a <strong>Software Repository</strong> must not collide with any name of a <strong>Software Repository</strong> or <strong>Instance Group</strong>.</p>
@@ -2417,14 +2748,177 @@ this variable allows the usage of different arguments for different operating sy
 <p>This chapter contains additional information for expert users, administrators of the system as well as those that want to use the CLI for features that the UI does not provide.</p>
 </div>
 <div class="sect2">
-<h3 id="_system_maintenance">System Maintenance</h3>
+<h3 id="_administration">Administration</h3>
 <div class="paragraph">
 <p>There are several components in the Web UI which allow maintenance of <strong>BDeploy</strong>. These are not to be used during <em>normal</em> operation by users. They <em>are</em> required during setup and to maintain current software versions of <strong>BDeploy</strong> itself if not done using the <code><a href="#_bdeploy_cli">bdeploy remote-master</a></code> CLI.</p>
 </div>
 <div class="sect3">
-<h4 id="_system_software">System Software</h4>
+<h4 id="_general_settings">General Settings</h4>
 <div class="paragraph">
-<p>The <strong>System Software</strong> page offers a mechanism to upload new <strong>BDeploy</strong> software versions, deploy these versions (<em>upgrade</em> and <em>downgrade</em> possible) to the running <strong>BDeploy</strong> <em>master</em> and attached <em>slaves</em>.</p>
+<p><em>Gravatar</em> support can be enabled in the general <em>Look &amp; Feel</em> settings.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_General_Look_And_Feel.png"><img src="images/BDeploy_General_Look_And_Feel.png" alt="BDeploy Look &amp; Feel Settings" width="480"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_authentication">Authentication</h4>
+<div class="paragraph">
+<p><strong>BDeploy</strong> supports both built-in and external authentication mechanims. The built-in user authentication can be disabled completely in the settings.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Authentication_Local.png"><img src="images/BDeploy_Authentication_Local.png" alt="BDeploy Authentication Settings" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>On the <strong>LDAP</strong> tab, you can configure a list of LDAP servers which should also be queried when authenticating a user.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_LDAP_Servers.png"><img src="images/BDeploy_LDAP_Servers.png" alt="BDeploy LDAP Servers" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>You can use the up and down arrows to control the order in which LDAP servers are queried for users that log on.</p>
+</div>
+<div class="paragraph">
+<p><strong>BDeploy</strong> uses simple bind to authenticate users. First, a simple bind is made with a configured <em>Server User</em>. This user must have permissions to list other users that should be able to log into <strong>BDeploy</strong>. This bind is used to query for a user where the <code>Result User Field</code> matches the given (at login) user name. This can be any field like <code>user</code>, <code>sAMAccountName</code>, or even <code>mail</code> if you want users to log on using their E-Mail Address. Once the user to log on is found, it&#8217;s distinguished name is used to perform another simple bind using the login-provided password. Once this succeeds the user is authenticated and an according record is created in <strong>BDeploy</strong>. From that point on, permissions can be granted to this user.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_LDAP_Server_Config.png"><img src="images/BDeploy_LDAP_Server_Config.png" alt="BDeploy LDAP Server Configuration" width="480"></a>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ldap_server_properties">LDAP Server Properties</h5>
+<div class="paragraph">
+<p>The following properties can be configured for each LDAP Server:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Server URL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The URL of the LDAP server. Both <code>ldaps://</code> (with a proper certificate on the server) and <code>ldap://</code> are supported. <code>ldaps://</code> should be preferred where possible. Self-signed certificates are currently not configurable inside <strong>BDeploy</strong> (although they can be configure on the operating system).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Server User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user which is used to query other users on the LDAP server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Server Password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password for the <em>Server User</em> which is used to query other users on the LDAP server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Account Base</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Root of the LDAP tree containing all user accounts to query. Typically in the form of <code>dc=domain,dc=com</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Account Pattern</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A partial LDAP query expression. Multiple filters can be written one after another. The final LDAP query is built by prepending <code>(&amp;</code>, and appending a filter which queries the configures <em>Result User Field</em> for the given user. Thie means that a pattern <code>(field1=value1)(field2=value2)</code> will result in a query like <code>(&amp;(field1=value1)(field2=value2)(sAMAccountName=&lt;GIVEN USER&gt;))</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result User Field</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the field which must match the given username when querying for the user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result Full Name Field</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The field which should be used as source for the <em>Full Name</em> of the user, which is used as a display name in <a href="#_user_accounts">User Accounts</a> management.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result E-Mail Field</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The field which should be used as source for the users <em>E-Mail Address</em>. This is used for instance to query <em>Gravatar</em> if <em>Gravatar</em> support has been enabled in the <a href="#_general_settings">General Settings</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_user_accounts">User Accounts</h4>
+<div class="paragraph">
+<p>The <strong>User Accounts</strong> dialog lists all users known in the system, regardless of whether they are local users or LDAP users.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_UserAccounts.png"><img src="images/BDeploy_UserAccounts.png" alt="BDeploy User Accounts" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Use the <b class="button">+</b> button to create a local user.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_UserAccounts_Add.png"><img src="images/BDeploy_UserAccounts_Add.png" alt="BDeploy User Accounts" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The pull-down menu at the end of each table entry contains actions for modifying a user. The <b class="button">Edit</b> button opens a popup for editing the display name and the email address of a user.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_UserAccounts_Edit.png"><img src="images/BDeploy_UserAccounts_Edit.png" alt="BDeploy User Accounts" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The global capabilities can be changed using the <b class="button">Global Capabilities</b> button in the pull-down menu.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_UserAccounts_SetGlobalCapabilities.png"><img src="images/BDeploy_UserAccounts_SetGlobalCapabilities.png" alt="BDeploy User Accounts" width="480"></a>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Capability</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>READ</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only those <strong>Instance Groups</strong> for which a user has <strong>READ</strong> capability are displayed. Users with global <strong>READ</strong> capability can see all <strong>Instance Groups</strong>.
+<strong>READ</strong> capability allows the user to read the <strong>Instance Group</strong> without making any modifications.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>WRITE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <strong>WRITE</strong> capability allows a user to maintain the contents of an <strong>Instance Group</strong> without modifying the <strong>Instance Group</strong> itself. The <strong>WRITE</strong> capability contains the <strong>READ</strong> capability. Users with global <strong>WRITE</strong> capability can maintain all <strong>Instance Groups</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ADMIN</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <strong>ADMIN</strong> capability contains the <strong>WRITE</strong> and <strong>READ</strong> capability and allows full access to an <strong>Instance Group</strong>. Users with global <strong>ADMIN</strong> capability have full access to all <strong>Instance Groups</strong> and additionally to the <strong>BDeploy</strong> system configuration.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The <b class="button">Set Active</b> and <b class="button">Set Inactive</b> actions are used to disable an account without deleting it i.e. to activate it again.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_UserAccounts_Inactive.png"><img src="images/BDeploy_UserAccounts_Inactive.png" alt="BDeploy User Accounts" width="480"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bdeploy_update">BDeploy Update</h4>
+<div class="paragraph">
+<p>The <strong>BDeploy Update</strong> page from the <strong>Administration</strong> menu offers a mechanism to upload new <strong>BDeploy</strong> software versions, deploy these versions (<em>upgrade</em> and <em>downgrade</em> possible) to the running <strong>BDeploy</strong> <em>master</em> and attached <em>slaves</em>.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -2432,7 +2926,7 @@ this variable allows the usage of different arguments for different operating sy
 </div>
 </div>
 <div class="paragraph">
-<p>It also offers a way to <em>upload</em> and also to <em>download</em> <strong>BDeploy Launcher</strong> binaries. These binaries are required when <a href="#_app_info_yaml"><code>CLIENT</code> <strong>Applications</strong></a> are configured. Use the <b class="button">+</b> button to upload either new <strong>BDeploy</strong> or <strong>BDeploy Launcher</strong> versions from their respective binary distributions (<em>ZIP</em>).</p>
+<p>It also offers a way to <em>upload</em> and also to <em>download</em> <strong>BDeploy Launcher</strong> binaries. These binaries are required when <a href="#_app_info_yaml"><code>CLIENT</code> <strong>Applications</strong></a> are configured. Use the <b class="button">Upload</b> button to upload new <strong>BDeploy</strong> versions from the binary distributions (<em>ZIP</em>).</p>
 </div>
 <div class="paragraph">
 <p>The page can also be used to download the binaries of <strong>BDeploy</strong> (e.g. to setup additional <em>slaves</em>) and the <strong>BDeploy Launcher</strong> binaries (e.g. for manual setup of the <strong>BDeploy Launcher</strong> on client PCs, see <a href="#_client_applications">Client Applications</a>).</p>
@@ -2441,7 +2935,7 @@ this variable allows the usage of different arguments for different operating sy
 <div class="sect3">
 <h4 id="_manual_cleanup">Manual Cleanup</h4>
 <div class="paragraph">
-<p>You can use the <strong>Manual Cleanup</strong> page from the main menu to trigger a manual cleanup of stuff that is not needed any more. There is no need to trigger this manually as a job is scheduled that performs the exact same operation every night:</p>
+<p>You can use the <strong>Manual Cleanup</strong> page from the <strong>Administration</strong> menu to trigger a manual cleanup of stuff that is not needed any more. There is no need to trigger this manually as a job is scheduled that performs the exact same operation every night:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2512,7 +3006,7 @@ The dialog automatically resets itself after a certain timeout. This is to preve
 <div class="sect3">
 <h4 id="_bhive_browser">BHive Browser</h4>
 <div class="paragraph">
-<p>The BHive Browser is an internal tool for administrative purposes. It allows viewing and browsing the internals of the <strong>BDeploy</strong> storage. The drop-down at the top of the dialog is used to switch between the available hives. The <em>default</em> hive is the internal storage where metadata about users and outer hives are stored. The actual data is stored in the individual hives itself.</p>
+<p>The <strong>BHive Browser</strong> from the <strong>Administration</strong> menu is an internal tool for administrative purposes. It allows viewing and browsing the internals of the <strong>BDeploy</strong> storage. The drop-down at the top of the dialog is used to switch between the available hives. The <em>default</em> hive is the internal storage where metadata about users and outer hives are stored. The actual data is stored in the individual hives itself.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -2525,6 +3019,12 @@ It has the power to destroy <em>everything</em> - use with extreme caution.
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_metrics">Metrics</h4>
+<div class="paragraph">
+<p>This dialog provides a quick way to investigate potential performance issues in the server itself by providing access to the in-memory metrics kept track by the server for all actions and requests performed.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2668,6 +3168,11 @@ The <code>--updateTo</code> command will only work if the new product version ca
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>token</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows generation of new <em>access tokens</em>, see <a href="#_security">Security</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>certificate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to change the certificate used by the <strong>BDeploy</strong> server for token signing and HTTPS traffic encryption.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>user</code></p></td>
@@ -2895,9 +3400,10 @@ Current swapping is possible only manually, proper CLI support pending.
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.3.1<br>
-Last updated 2019-08-23 12:33:23 +0200
+Version 1.4.0<br>
+Last updated 2019-11-27 09:18:32 +0100
 </div>
 </div>
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
 </body>
 </html>
