@@ -292,7 +292,7 @@ binary installation. Make sure that there is enough space available.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy init --root=/path/to/storage --hostname=&lt;hostname&gt; --mode=STANDALONE --tokenFile=token.txt</pre>
+<pre class="nowrap">bdeploy init --root=/path/to/storage --hostname=&lt;hostname&gt; --mode=STANDALONE --tokenFile=token.txt --port=7701</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -343,7 +343,7 @@ The server is using a self-signed certificate by default. Thus you need to instr
 </div>
 </div>
 <div class="paragraph">
-<p>The created user will be a global administrator, meaning that the user has permission to fully control the server. With the <code>--admin</code> flag, the user will have no permissions per default. You have to create at least one administrator user to be able to set up the server (e.g. to configure LDAP authentication) and grant rights to other users.</p>
+<p>The created user will be a global administrator, meaning that the user has permission to fully control the server. Without the <code>--admin</code> flag, the user will have no permissions per default. You have to create at least one administrator user to be able to set up the server (e.g. to configure LDAP authentication) and grant rights to other users.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1365,6 +1365,72 @@ The <strong>Launcher</strong> can also be manually deployed using the provided Z
 </div>
 <div class="paragraph">
 <p>Clicking on a <em>Click &amp; Start</em> link in the <strong>Browser</strong> will download a <strong>.bdeploy</strong> file that can be directly executed. A more elegant way is to configure the <strong>Browser</strong> to directly open the <strong>.bdeploy</strong> file type. Firefox as well as Chrome allows to configure this after the file has been downloaded.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_multi_user_installations">Multi-User Installations</h4>
+<div class="paragraph">
+<p>Larger organizations typically do not want to deploy client applications on each client computer. They prefer to install the client software on a central server and publish the software via Citrix or similar technologies so that all users have access to one shared instance. This has the advantage that the administrators are in control of the installation and can centralize the update handling. BDeploy supports such an installation szenario.</p>
+</div>
+<div class="paragraph">
+<p>There are two different locations that are important in the context of deploying applications in a multi-user setup:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Installation Area</strong> - The location where the launcher as well as all applications are installed. This location is typically protected by file system privileges so that an <strong>Administrator</strong> has full permissions and all other users have read permissions. This location is defined by the environment variable <strong>BDEPLOY_HOME</strong>.</p>
+</li>
+<li>
+<p><strong>User Area</strong> - The per-user are where the launcher as well as each launched application is permitted to write files. This location is mandatory in case that the <strong>Installation Area</strong> is read-only. This location is defined by the environment variable <strong>BDEPLOY_USER_AREA</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="_configuration">Configuration</h5>
+<div class="paragraph">
+<p>When the <strong>Installation Area</strong> is read-only the environment variable <strong>BDEPLOY_USER_AREA</strong> must be set for each user and must point to a directory that is writable for the user that wants to launch an application.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_installing_new_software">Installing new software</h5>
+<div class="paragraph">
+<p>New software is typically installed by the <strong>Administrator</strong> that has full permissions in the <strong>Installation Area</strong>. The administrator is either using the provided <strong>Installer</strong> or a <strong>Click &amp; Start</strong> file in order to install the new application. After that step the application is available and can be launched by each new user by using the <strong>CLick &amp; Start</strong> file.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_updating_software">Updating software</h5>
+<div class="paragraph">
+<p>Whenever a new <strong>Product version</strong> is <strong>Activated</strong> on the server the administrator <strong>needs</strong> to launch the application <strong>once</strong> to deploy the new update. Not doing that will lead to an error that each user receives when trying to launch the application. The <strong>Launcher</strong> always checks for updates and tries to install them. Using an outdated application is not permitted and thus users will not be able to launch the application any more.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Client_Launcher_Update_Required.png"><img src="images/BDeploy_Client_Launcher_Update_Required.png" alt="Required Software Update" width="480"></a>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Configuration changes in a client application - like adding, removing or changing a parameter - <strong>do not</strong> require <strong>Administrator</strong> attention since the installation itself is not affected. The change is automatically applied on the next start of the application.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Changing the product version or changing the launcher version on the server require a manual interaction of the <strong>Administrator</strong> otherwise <strong>NO</strong> user can use the client application anymore.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
