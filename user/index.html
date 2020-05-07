@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 2.0.0</span>
+<span id="revnumber">version 2.2.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -947,6 +947,14 @@ The <strong>Application</strong> defines in which order the parameters are passe
 <div class="paragraph">
 <p><strong>Validation Issues</strong> are displayed per group in the respective title. Only complete configurations can be accepted.</p>
 </div>
+<div class="paragraph">
+<p>The context menu on an application card allows you to copy an application definition. This can be pasted on any node of the correct type using the context menu on the according node when in <strong>Configure Applications</strong> mode.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Paste_Application.png"><img src="images/BDeploy_Paste_Application.png" alt="Paste Application" width="480"></a>
+</div>
+</div>
 <div class="sect4">
 <h5 id="_optional_parameters">Optional Parameters</h5>
 <div class="paragraph">
@@ -1151,6 +1159,27 @@ All <strong>Applications</strong> are marked as modified as they are now based o
 <div class="content">
 <a class="image" href="images/BDeploy_Product_Downgrade_Validation.png"><img src="images/BDeploy_Product_Downgrade_Validation.png" alt="Validation Issues After Product Version Change" width="480"></a>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_importexport">Import/Export</h4>
+<div class="paragraph">
+<p>Instance versions can be exported and downloaded from the <strong>Instance Version</strong> card&#8217;s context menu. This will download this specific instance version&#8217;s raw data as a <em>ZIP</em>. This <em>ZIP</em> will contain the complete instance configuration as well as all configuration files currently stored with the instance.</p>
+</div>
+<div class="paragraph">
+<p>The content of the <em>ZIP</em> can be edited offline, and re-imported using the <strong>Instance</strong>'s (not <strong>Instance Version</strong>) context menu to create a new <strong>Instance Version</strong>. The file structure inside the <em>ZIP</em> must be exactly the same as when exporting.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This mechanism allows access to the most internal data structures of <strong>BDeploy</strong>. Great care has to be taken to not damage any of the data on import.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2177,6 +2206,9 @@ On the BDeploy Releases page you will find some zipped sample products for each 
       <span class="key">groupName</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Parameters</span><span class="delimiter">&quot;</span></span>
       <span class="key">parameter</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">--text</span><span class="delimiter">&quot;</span></span>
       <span class="key">mandatory</span>: <span class="string"><span class="content">true</span></span>
+      <span class="key">suggestedValues</span>:
+        - <span class="string"><span class="delimiter">&quot;</span><span class="content">Value 1</span><span class="delimiter">&quot;</span></span>
+        - <span class="string"><span class="delimiter">&quot;</span><span class="content">Value 2</span><span class="delimiter">&quot;</span></span>
 
 <span class="key">stopCommand</span>: <i class="conum" data-value="7"></i><b>(7)</b>
   <span class="error">...</span>
@@ -2327,19 +2359,15 @@ Parameters appear on the final command line in <strong>exact</strong> the order 
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>An optional group name. The configuration UI may use this information to group parameters with the same <code>groupName</code> together.</p>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-Although parameters in the UI are grouped together (and thus might change order), the order in which parameters appear on the final command line is exactly the order in which they are defined in the <code>app-info.yaml</code> file.
-</td>
-</tr>
-</table>
 </div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>suggestedValues</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional list of suggested values for paremters of type <code>STRING</code> (the default). The Web UI will present this list when editing the parameter value.</p>
+<p class="tableblock">[CAUTION]
+Although parameters in the UI are grouped together (and thus might change order), the order in which parameters appear on the final command line is exactly the order in which they are defined in the <code>app-info.yaml</code> file.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>parameter</code></p></td>
@@ -3473,9 +3501,9 @@ The dialog automatically resets itself after a certain timeout. This is to preve
 </div>
 </div>
 <div class="sect3">
-<h4 id="_bhive_browser">BHive Browser</h4>
+<h4 id="_hive_browser">Hive Browser</h4>
 <div class="paragraph">
-<p>The <strong>BHive Browser</strong> from the <strong>Administration</strong> menu is an internal tool for administrative purposes. It allows viewing and browsing the internals of the <strong>BDeploy</strong> storage. The drop-down at the top of the dialog is used to switch between the available hives. The <em>default</em> hive is the internal storage where metadata about users and outer hives are stored. The actual data is stored in the individual hives itself.</p>
+<p>The <strong>Hive Browser</strong> from the <strong>Administration</strong> menu is an internal tool for administrative purposes. It allows viewing and browsing the internals of the <strong>BDeploy</strong> storage. The drop-down at the top of the dialog is used to switch between the available hives. The <em>default</em> hive is the internal storage where metadata about users and outer hives are stored. The actual data is stored in the individual hives itself.</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -3491,9 +3519,24 @@ It has the power to destroy <em>everything</em> - use with extreme caution.
 </div>
 </div>
 <div class="sect3">
+<h4 id="_hive_audit_logs">Hive Audit Logs</h4>
+<div class="paragraph">
+<p>The Hive Audit Log browser allows to view all audit logs on any of the <strong>BHive</strong> managed by the server.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_audit_log">Audit Log</h4>
+<div class="paragraph">
+<p>The system Audit Log browser allows to view the master servers main audit log, which includes information about tools run on the root directory, as well as every request made to the APIs.</p>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_metrics">Metrics</h4>
 <div class="paragraph">
 <p>This dialog provides a quick way to investigate potential performance issues in the server itself by providing access to the in-memory metrics kept track by the server for all actions and requests performed.</p>
+</div>
+<div class="paragraph">
+<p>The <code>SERVER</code> metrics will show various system information about the Java Virtual Machine of the master hosting the Web UI.</p>
 </div>
 </div>
 <div class="sect3">
@@ -4034,7 +4077,7 @@ curl -k -H &quot;Accept: application/json&quot; \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.0.0<br>
+Version 2.2.0<br>
 Last updated 2020-03-16 14:02:05 +0100
 </div>
 </div>

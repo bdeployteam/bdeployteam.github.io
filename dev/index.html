@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy Developer Documentation</h1>
 <div class="details">
-<span id="revnumber">version 2.0.0</span>
+<span id="revnumber">version 2.2.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1070,7 +1070,7 @@ You need root permissions on Linux if you installed NodeJS (and NPM) through you
 <div class="ulist">
 <ul>
 <li>
-<p>On the command line (see <a href="#_repository_and_gradle_build">Repository and Gradle Build</a>) generate the <strong>Eclipse IDE</strong> project files by running <code>./gradlew eclipse</code>.</p>
+<p>On the command line (see <a href="#_repository_and_gradle_build">Repository and Gradle Build</a>) generate the <strong>Eclipse IDE</strong> project files by running <code>./gradlew eclipse</code> (<code>gradlew eclipse</code> on windows).</p>
 </li>
 <li>
 <p>Start the <strong>Eclipse IDE</strong> - choose a workspace, e.g. <code>/work/bdeploy/workspace</code>.</p>
@@ -1110,17 +1110,17 @@ You need root permissions on Linux if you installed NodeJS (and NPM) through you
 <div class="ulist">
 <ul>
 <li>
-<p>Find and run (hint: right clik) the <code>Master-Init</code> launch configuration.</p>
+<p>Find and run (hint: right click) the <code>Master-Init</code> launch configuration.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>This will initialize a BDeploy <strong>master root</strong> inside the chosen workspace directory, e.g. <code>/work/bdeploy/workspace/runtime/master</code>.</p>
 </li>
+<li>
+<p>A default user will be created: username = admin, password = admin.</p>
+</li>
 </ul>
 </div>
-</li>
-<li>
-<p>Find and run the <code>Master-AddUser</code> launch configuration to add a user to the BDeploy <strong>master root</strong> (so you can authenticate through the Web UI later).</p>
 </li>
 <li>
 <p>Finally find and run the <code>Master</code> launch configuration to spin up a BDeploy <strong>master</strong>.</p>
@@ -1152,9 +1152,12 @@ The BDeploy master will host the Web UI also when started from the <strong>Eclip
 <p>On the command line, navigate the the <code>./ui/webapp</code> directory in the repository (e.g. <code>/work/bdeploy/bdeploy/ui/webapp</code>) and run <strong>VSCode</strong> in the current directory using <code>code .</code></p>
 </li>
 <li>
-<p>Open a terminal in <strong>VSCode</strong> (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>`</kbd></span>) and run `ng serve` to start the <strong>Angular</strong> development server. This will take a while to compile the Web UI.</p>
+<p>Open a terminal in <strong>VSCode</strong> and run <code>ng serve</code> to start the <strong>Angular</strong> development server. This will take a while to compile the Web UI.</p>
 <div class="ulist">
 <ul>
+<li>
+<p>The terminal can be opened using <span class="menuseq"><b class="menu">Terminal</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">New Terminal</b></span>.</p>
+</li>
 <li>
 <p>The application will be started at <a href="http://localhost:4200" class="bare">http://localhost:4200</a> by default.</p>
 </li>
@@ -1186,7 +1189,7 @@ The BDeploy master will host the Web UI also when started from the <strong>Eclip
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.0.0<br>
+Version 2.2.0<br>
 Last updated 2019-11-18 18:27:36 +0100
 </div>
 </div>
