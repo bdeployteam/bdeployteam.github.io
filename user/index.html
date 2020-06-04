@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 2.2.0</span>
+<span id="revnumber">version 2.4.0-SNAPSHOT</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1765,7 +1765,7 @@ It is not required to synchronize the other way (<code>CENTRAL</code> to <code>M
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="bash">bdeploy set-mode --root=&lt;root-directory&gt; --mode=MANAGED</code></pre>
+<pre class="prettyprint highlight nowrap"><code data-lang="bash">bdeploy set-mode --root=&lt;root-directory&gt; --mode=MANAGED</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2159,69 +2159,69 @@ On the BDeploy Releases page you will find some zipped sample products for each 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">name</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Application</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="key">type</span>: <span class="string"><span class="content">CLIENT </span></span><i class="conum" data-value="2"></i><b>(2)</b>
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">name: "My Application" <i class="conum" data-value="1"></i><b>(1)</b>
+type: CLIENT <i class="conum" data-value="2"></i><b>(2)</b>
 
-<span class="key">supportedOperatingSystems</span>: <i class="conum" data-value="3"></i><b>(3)</b>
-  - <span class="string"><span class="content">LINUX</span></span>
-  - <span class="string"><span class="content">WINDOWS</span></span>
+supportedOperatingSystems: <i class="conum" data-value="3"></i><b>(3)</b>
+  - LINUX
+  - WINDOWS
 
-<span class="key">branding</span>: <i class="conum" data-value="4"></i><b>(4)</b>
-  <span class="key">icon</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">branding/my-icon.ico</span><span class="delimiter">&quot;</span></span>
-  <span class="key">splash</span>:
-    <span class="key">image</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">branding/my-splash.bmp</span><span class="delimiter">&quot;</span></span>
-    <span class="key">textRect</span>:
-      <span class="key">x</span>: <span class="string"><span class="content">20</span></span>
-      <span class="key">y</span>: <span class="string"><span class="content">174</span></span>
-      <span class="key">width</span>: <span class="string"><span class="content">400</span></span>
-      <span class="key">height</span>: <span class="string"><span class="content">20</span></span>
-      <span class="key">foreground</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">#000000</span><span class="delimiter">&quot;</span></span>
-    <span class="key">progressRect</span>:
-      <span class="key">x</span>: <span class="string"><span class="content">15</span></span>
-      <span class="key">y</span>: <span class="string"><span class="content">194</span></span>
-      <span class="key">width</span>: <span class="string"><span class="content">450</span></span>
-      <span class="key">height</span>: <span class="string"><span class="content">12</span></span>
-      <span class="key">foreground</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">#333333</span><span class="delimiter">&quot;</span></span>
+branding: <i class="conum" data-value="4"></i><b>(4)</b>
+  icon: "branding/my-icon.ico"
+  splash:
+    image: "branding/my-splash.bmp"
+    textRect:
+      x: 20
+      y: 174
+      width: 400
+      height: 20
+      foreground: "#000000"
+    progressRect:
+      x: 15
+      y: 194
+      width: 450
+      height: 12
+      foreground: "#333333"
 
-<span class="key">processControl</span>: <i class="conum" data-value="5"></i><b>(5)</b>
-  <span class="key">gracePeriod</span>: <span class="string"><span class="content">3000</span></span>
-  <span class="key">supportedStartTypes</span>:
-   - <span class="string"><span class="content">INSTANCE</span></span>
-  <span class="key">supportsKeepAlive</span>: <span class="string"><span class="content">true</span></span>
-  <span class="key">noOfRetries</span>: <span class="string"><span class="content">5</span></span>
+processControl: <i class="conum" data-value="5"></i><b>(5)</b>
+  gracePeriod: 3000
+  supportedStartTypes:
+   - INSTANCE
+  supportsKeepAlive: true
+  noOfRetries: 5
 
-<span class="key">startCommand</span>: <i class="conum" data-value="6"></i><b>(6)</b>
-  <span class="key">launcherPath</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">{{WINDOWS:launch.bat}}{{LINUX:launch.sh}}</span><span class="delimiter">&quot;</span></span>
-  <span class="key">parameters</span>:
-    - <span class="string"><span class="content">uid: &quot;my.param.1&quot;</span></span>
-      <span class="key">name</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My numeric parameter</span><span class="delimiter">&quot;</span></span>
-      <span class="key">longDescription</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">This is a numeric parameter</span><span class="delimiter">&quot;</span></span>
-      <span class="key">groupName</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Parameters</span><span class="delimiter">&quot;</span></span>
-      <span class="key">parameter</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">--number</span><span class="delimiter">&quot;</span></span>
-      <span class="key">defaultValue</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">5</span><span class="delimiter">&quot;</span></span>
-      <span class="key">type</span>: <span class="string"><span class="content">NUMERIC</span></span>
-    - <span class="string"><span class="content">uid: &quot;my.param.2&quot;</span></span>
-      <span class="key">name</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My textual parameter</span><span class="delimiter">&quot;</span></span>
-      <span class="key">longDescription</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">This is a textual parameter</span><span class="delimiter">&quot;</span></span>
-      <span class="key">groupName</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Parameters</span><span class="delimiter">&quot;</span></span>
-      <span class="key">parameter</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">--text</span><span class="delimiter">&quot;</span></span>
-      <span class="key">mandatory</span>: <span class="string"><span class="content">true</span></span>
-      <span class="key">suggestedValues</span>:
-        - <span class="string"><span class="delimiter">&quot;</span><span class="content">Value 1</span><span class="delimiter">&quot;</span></span>
-        - <span class="string"><span class="delimiter">&quot;</span><span class="content">Value 2</span><span class="delimiter">&quot;</span></span>
+startCommand: <i class="conum" data-value="6"></i><b>(6)</b>
+  launcherPath: "{{WINDOWS:launch.bat}}{{LINUX:launch.sh}}"
+  parameters:
+    - uid: "my.param.1"
+      name: "My numeric parameter"
+      longDescription: "This is a numeric parameter"
+      groupName: "My Parameters"
+      parameter: "--number"
+      defaultValue: "5"
+      type: NUMERIC
+    - uid: "my.param.2"
+      name: "My textual parameter"
+      longDescription: "This is a textual parameter"
+      groupName: "My Parameters"
+      parameter: "--text"
+      mandatory: true
+      suggestedValues:
+        - "Value 1"
+        - "Value 2"
 
-<span class="key">stopCommand</span>: <i class="conum" data-value="7"></i><b>(7)</b>
-  <span class="error">...</span>
+stopCommand: <i class="conum" data-value="7"></i><b>(7)</b>
+  ...
 
-<span class="key">endpoints</span>: <i class="conum" data-value="8"></i><b>(8)</b>
-  <span class="key">http</span>:
-    - <span class="string"><span class="content">id: &quot;my-endpoint&quot; </span></span><i class="conum" data-value="9"></i><b>(9)</b>
-      <span class="key">path</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">path/to/the/endpoint</span><span class="delimiter">&quot;</span></span>
-      <span class="key">port</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">{{V:port-param}}</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="10"></i><b>(10)</b>
-      <span class="key">secure</span>: <span class="string"><span class="content">false</span></span>
+endpoints: <i class="conum" data-value="8"></i><b>(8)</b>
+  http:
+    - id: "my-endpoint" <i class="conum" data-value="9"></i><b>(9)</b>
+      path: "path/to/the/endpoint"
+      port: "{{V:port-param}}" <i class="conum" data-value="10"></i><b>(10)</b>
+      secure: false
 
-<span class="key">runtimeDependencies</span>: <i class="conum" data-value="11"></i><b>(11)</b>
-  - <span class="string"><span class="delimiter">&quot;</span><span class="content">adoptopenjdk/jre:1.8.0_202-b08</span><span class="delimiter">&quot;</span></span></code></pre>
+runtimeDependencies: <i class="conum" data-value="11"></i><b>(11)</b>
+  - "adoptopenjdk/jre:1.8.0_202-b08"</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2437,7 +2437,7 @@ The value of the parameter is not part of this definition, nor is any potential 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">/path/to/java/bin/java -Dmy.prop=value -jar application.jar</code></pre>
+<pre class="prettyprint highlight"><code data-lang="bash">/path/to/java/bin/java -Dmy.prop=value -jar application.jar</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2445,20 +2445,20 @@ The value of the parameter is not part of this definition, nor is any potential 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">startCommand</span>:
-  <span class="key">launcherPath</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">{{M:openjdk/jre:1.8.0_u202-b08}}/bin/java{{WINDOWS:w.exe}}</span><span class="delimiter">&quot;</span></span>
-  <span class="key">parameters</span>:
-    - <span class="string"><span class="content">uid: &quot;my.prop&quot;</span></span>
-      <span class="key">name</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">My Property</span><span class="delimiter">&quot;</span></span>
-      <span class="key">parameter</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">-Dmy.prop</span><span class="delimiter">&quot;</span></span>
-      <span class="key">mandatory</span>: <span class="string"><span class="content">true</span></span>
-    - <span class="string"><span class="content">uid: &quot;my.jar&quot;</span></span>
-      <span class="key">name</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Application JAR</span><span class="delimiter">&quot;</span></span>
-      <span class="key">parameter</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">-jar</span><span class="delimiter">&quot;</span></span>
-      <span class="key">defaultValue</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">application.jar</span><span class="delimiter">&quot;</span></span>
-      <span class="key">valueAsSeparateArg</span>: <span class="string"><span class="content">true</span></span>
-      <span class="key">mandatory</span>: <span class="string"><span class="content">true</span></span>
-      <span class="key">fixed</span>: <span class="string"><span class="content">true </span></span><i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="prettyprint highlight"><code data-lang="yaml">startCommand:
+  launcherPath: "{{M:openjdk/jre:1.8.0_u202-b08}}/bin/java{{WINDOWS:w.exe}}"
+  parameters:
+    - uid: "my.prop"
+      name: "My Property"
+      parameter: "-Dmy.prop"
+      mandatory: true
+    - uid: "my.jar"
+      name: "Application JAR"
+      parameter: "-jar"
+      defaultValue: "application.jar"
+      valueAsSeparateArg: true
+      mandatory: true
+      fixed: true <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2563,16 +2563,17 @@ There is no actual requirement for the file to be named <code>product-info.yaml<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">name</span>: <span class="string"><span class="content">My Product </span></span><i class="conum" data-value="1"></i><b>(1)</b>
-<span class="key">product</span>: <span class="string"><span class="content">com.example/product </span></span><i class="conum" data-value="2"></i><b>(2)</b>
-<span class="key">vendor</span>: <span class="string"><span class="content">My Company </span></span><i class="conum" data-value="3"></i><b>(3)</b>
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">name: My Product <i class="conum" data-value="1"></i><b>(1)</b>
+product: com.example/product <i class="conum" data-value="2"></i><b>(2)</b>
+vendor: My Company <i class="conum" data-value="3"></i><b>(3)</b>
 
-<span class="key">applications</span>:
-  - <span class="string"><span class="content">my-app1 </span></span><i class="conum" data-value="4"></i><b>(4)</b>
-  - <span class="string"><span class="content">my-app2</span></span>
+applications:
+  - my-app1 <i class="conum" data-value="4"></i><b>(4)</b>
+  - my-app2
 
-<span class="key">configTemplates</span>: <span class="string"><span class="content">my-config </span></span><i class="conum" data-value="5"></i><b>(5)</b>
-<span class="key">versionFile</span>: <span class="string"><span class="content">my-versions.yaml </span></span><i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+configTemplates: my-config <i class="conum" data-value="5"></i><b>(5)</b>
+pluginFolder: my-plugins <i class="conum" data-value="6"></i><b>(6)</b>
+versionFile: my-versions.yaml <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2595,10 +2596,14 @@ There is no actual requirement for the file to be named <code>product-info.yaml<
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Optional: An relative path to a directory containing configuration file templates, which will be used as the default set of configuration files when creating an <strong>Instance</strong> from the resulting <strong>Product</strong>.</td>
+<td>Optional: A relative path to a directory containing configuration file templates, which will be used as the default set of configuration files when creating an <strong>Instance</strong> from the resulting <strong>Product</strong>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Optioanl: A relative path to a directory containing one or more plugin JAR files. These plugins are loaded by the server on demand and provided for use when configuring applications which use this very product version.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
 <td>The <code>product-version.yaml</code> which associates the <strong>Application</strong> IDs (used above) with actual paths to <strong>Applications</strong> on the file system.</td>
 </tr>
 </table>
@@ -2626,14 +2631,14 @@ There is no actual requirement for the file to be named <code>product-version.ya
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">version</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2.1.0.201906141135</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="key">appInfo</span>:
-  <span class="key">my-app1</span>: <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="key">WINDOWS</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">build/windows/app-info.yaml</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="3"></i><b>(3)</b>
-    <span class="key">LINUX</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">build/linux/app-info.yaml</span><span class="delimiter">&quot;</span></span>
-  <span class="key">my-app2</span>:
-    <span class="key">WINDOWS</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">scripts/app2/app-info.yaml</span><span class="delimiter">&quot;</span></span> <i class="conum" data-value="4"></i><b>(4)</b>
-    <span class="key">LINUX</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">scripts/app2/app-info.yaml</span><span class="delimiter">&quot;</span></span></code></pre>
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">version: "2.1.0.201906141135" <i class="conum" data-value="1"></i><b>(1)</b>
+appInfo:
+  my-app1: <i class="conum" data-value="2"></i><b>(2)</b>
+    WINDOWS: "build/windows/app-info.yaml" <i class="conum" data-value="3"></i><b>(3)</b>
+    LINUX: "build/linux/app-info.yaml"
+  my-app2:
+    WINDOWS: "scripts/app2/app-info.yaml" <i class="conum" data-value="4"></i><b>(4)</b>
+    LINUX: "scripts/app2/app-info.yaml"</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2763,9 +2768,9 @@ There is no actual requirement for the file to be named <code>products.yaml</cod
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">products</span>:
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">Product One</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">prod-1-build.yaml</span><span class="delimiter">&quot;</span></span>
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">Product Two</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">prod-2-build.yaml</span><span class="delimiter">&quot;</span></span></code></pre>
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">products:
+  "Product One": "prod-1-build.yaml"
+  "Product Two": "prod-2-build.yaml"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2787,20 +2792,20 @@ There is no actual requirement for the file to be named <code>products.yaml</cod
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="yaml"><span class="key">productInfoYaml</span>: <span class="string"><span class="content">my-prod-info.yaml</span></span>
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">productInfoYaml: my-prod-info.yaml
 
-<span class="key">applications</span>:
-  - <span class="string"><span class="content">name: my-app1</span></span>
-    <span class="key">type</span>: <span class="string"><span class="content">RCP_PRODUCT</span></span>
-    <span class="key">includeOs</span>: <span class="string"><span class="content">[WINDOWS, LINUX]</span></span>
-    <span class="key">application</span>:
-      <span class="key">product</span>: <span class="string"><span class="content">App1ProdBuild</span></span>
+applications:
+  - name: my-app1
+    type: RCP_PRODUCT
+    includeOs: [WINDOWS, LINUX]
+    application:
+      product: App1ProdBuild
 
-  - <span class="string"><span class="content">name: my-app2</span></span>
-    <span class="key">type</span>: <span class="string"><span class="content">RCP_PRODUCT</span></span>
-    <span class="key">includeOs</span>: <span class="string"><span class="content">[WINDOWS, LINUX]</span></span>
-    <span class="key">application</span>:
-      <span class="key">product</span>: <span class="string"><span class="content">App2ProdBuild</span></span></code></pre>
+  - name: my-app2
+    type: RCP_PRODUCT
+    includeOs: [WINDOWS, LINUX]
+    application:
+      product: App2ProdBuild</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3956,9 +3961,9 @@ Current swapping is possible only manually, proper CLI support pending.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="bash">curl -k -H &quot;Accept: */*&quot; \
-    -H &quot;X-BDeploy-Authorization: Bearer &lt;X&gt;&quot; \ <i class="conum" data-value="1"></i><b>(1)</b>
-    &quot;https://server/api/public/v1/common/proxy/myEndpoint?BDeploy_group=MyGroup&amp;BDeploy_instance=xxxx-111-xxxx&amp;BDeploy_application=yyyy-111-yyyy&quot;     <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b> <i class="conum" data-value="5"></i><b>(5)</b> <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+<pre class="prettyprint highlight nowrap"><code data-lang="bash">curl -k -H "Accept: */*" \
+    -H "X-BDeploy-Authorization: Bearer &lt;X&gt;" \ <i class="conum" data-value="1"></i><b>(1)</b>
+    "https://server/api/public/v1/common/proxy/myEndpoint?BDeploy_group=MyGroup&amp;BDeploy_instance=xxxx-111-xxxx&amp;BDeploy_application=yyyy-111-yyyy" <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b> <i class="conum" data-value="5"></i><b>(5)</b> <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -4023,20 +4028,20 @@ Current swapping is possible only manually, proper CLI support pending.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="bash"># will list instance groups
-curl -k -H &quot;Accept: application/json&quot; \
-    -H &quot;X-BDeploy-Authorization: Bearer &lt;X&gt;&quot; \ <i class="conum" data-value="1"></i><b>(1)</b>
-    &quot;https://server/api/public/v1/instanceGroups&quot;
+<pre class="prettyprint highlight nowrap"><code data-lang="bash"># will list instance groups
+curl -k -H "Accept: application/json" \
+    -H "X-BDeploy-Authorization: Bearer &lt;X&gt;" \ <i class="conum" data-value="1"></i><b>(1)</b>
+    "https://server/api/public/v1/instanceGroups"
 
 # will fetch the latest configuration of all instances in an instance group
-curl -k -H &quot;Accept: application/json&quot; \
-    -H &quot;X-BDeploy-Authorization: Bearer &lt;X&gt;&quot; \
-    &quot;https://server/api/public/v1/common/instances?BDeploy_group=MyGroup&amp;latest=true&quot; <i class="conum" data-value="2"></i><b>(2)</b>
+curl -k -H "Accept: application/json" \
+    -H "X-BDeploy-Authorization: Bearer &lt;X&gt;" \
+    "https://server/api/public/v1/common/instances?BDeploy_group=MyGroup&amp;latest=true" <i class="conum" data-value="2"></i><b>(2)</b>
 
 # will fetch all endpoints exposed by a certain instance along with the uuids of the applications hosting them.
-curl -k -H &quot;Accept: application/json&quot; \
-    -H &quot;X-BDeploy-Authorization: Bearer &lt;X&gt;&quot; \
-    &quot;https://server/api/public/v1/common/endpoints?BDeploy_group=MyGroup&amp;BDeploy_instance=xxxx-111-xxxx&quot;  <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+curl -k -H "Accept: application/json" \
+    -H "X-BDeploy-Authorization: Bearer &lt;X&gt;" \
+    "https://server/api/public/v1/common/endpoints?BDeploy_group=MyGroup&amp;BDeploy_instance=xxxx-111-xxxx" <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -4077,10 +4082,11 @@ curl -k -H &quot;Accept: application/json&quot; \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.2.0<br>
-Last updated 2020-03-16 14:02:05 +0100
+Version 2.4.0-SNAPSHOT<br>
+Last updated 2020-05-26 15:15:52 +0200
 </div>
 </div>
-<link rel="stylesheet" href="./coderay-asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
 </body>
 </html>

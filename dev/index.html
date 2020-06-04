@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy Developer Documentation</h1>
 <div class="details">
-<span id="revnumber">version 2.2.0</span>
+<span id="revnumber">version 2.4.0-SNAPSHOT</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -78,6 +78,13 @@
 <li><a href="#_repository_and_gradle_build">Repository and Gradle Build</a></li>
 <li><a href="#_eclipse_workspace">Eclipse Workspace</a></li>
 <li><a href="#_running_bdeploys_web_ui_from_vscode">Running BDeploy&#8217;s Web UI from VSCode</a></li>
+</ul>
+</li>
+<li><a href="#_plugins">Plugins</a>
+<ul class="sectlevel2">
+<li><a href="#_plugin_distribution">Plugin Distribution</a></li>
+<li><a href="#_how_to_create_a_plugin">How to create a plugin</a></li>
+<li><a href="#_the_javascript_plugin_api">The JavaScript Plugin API</a></li>
 </ul>
 </li>
 </ul>
@@ -697,11 +704,11 @@ of the functionality that bhive provides.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="sass"><span class="directive">@import</span> <span class="string"><span class="delimiter">'</span><span class="content">~@angular/material/theming</span><span class="delimiter">'</span></span><span class="include">;</span>
+<pre class="prettyprint highlight nowrap"><code data-lang="sass">@import '~@angular/material/theming';
 
-<span class="function">@mixin my-component-theme</span>(<span class="variable">$theme</span>) {
-  .<span class="key">my-component-class</span> {
-          <span class="key">background-color</span>: <span class="predefined">mat-color</span>(<span class="predefined">map-get</span>(<span class="variable">$theme</span>, <span class="value">warn</span>));
+@mixin my-component-theme($theme) {
+  .my-component-class {
+  	background-color: mat-color(map-get($theme, warn));
   }
 }</code></pre>
 </div>
@@ -714,23 +721,23 @@ of the functionality that bhive provides.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="sass"><span class="directive">@import</span> <span class="string"><span class="delimiter">'</span><span class="content">~@angular/material/theming</span><span class="delimiter">'</span></span><span class="include">;</span>
-<span class="directive">@include</span> <span class="predefined">mat-core</span>();
+<pre class="prettyprint highlight nowrap"><code data-lang="sass">@import '~@angular/material/theming';
+@include mat-core();
 
-<span class="comment"><span class="delimiter">/*</span><span class="content"> Custom component theme collection */</span></span>
-<span class="directive">@import</span> <span class="string"><span class="delimiter">'</span><span class="content">app/my-component/my-component-theme.scss</span><span class="delimiter">'</span></span><span class="include">;</span>
-<span class="directive">@import</span> <span class="include">...</span> <span class="include">(other</span> <span class="include">component</span> <span class="include">themes)</span>
+/* Custom component theme collection */
+@import 'app/my-component/my-component-theme.scss';
+@import ... (other component themes)
 
-<span class="function">@mixin all-themes</span>(<span class="variable">$theme</span>) {
-  <span class="comment"><span class="delimiter">//</span><span class="content"> general angular material theme</span></span>
-  <span class="directive">@include</span> <span class="predefined">angular-material-theme</span>(<span class="variable">$theme</span>);
+@mixin all-themes($theme) {
+  // general angular material theme
+  @include angular-material-theme($theme);
 
-  <span class="comment"><span class="delimiter">//</span><span class="content"> application themes</span></span>
-  <span class="directive">@include</span> <span class="predefined">my-component-theme</span>(<span class="variable">$theme</span>);
-  <span class="directive">@include</span> ... (<span class="value">other</span> <span class="value">component</span> <span class="value">themes</span>)
+  // application themes
+  @include my-component-theme($theme);
+  @include ... (other component themes)
 }
 
-... (<span class="tag">rest</span> <span class="tag">of</span> <span class="tag">file</span>)</code></pre>
+... (rest of file)</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -740,16 +747,16 @@ of the functionality that bhive provides.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="sass"><span class="directive">@import</span> <span class="string"><span class="delimiter">'</span><span class="content">~@angular/material/theming</span><span class="delimiter">'</span></span><span class="include">;</span>
+<pre class="prettyprint highlight nowrap"><code data-lang="sass">@import '~@angular/material/theming';
 
-<span class="function">@mixin my-component-theme</span>(<span class="variable">$theme</span>) {
-  <span class="variable">$dark</span>: <span class="predefined">map-get</span>(<span class="variable">$theme</span>, <span class="value">is-dark</span>);
+@mixin my-component-theme($theme) {
+  $dark: map-get($theme, is-dark);
 
-  <span class="variable">$color-light</span>: <span class="predefined">rgb</span>(<span class="float">230</span>, <span class="float">255</span>, <span class="float">230</span>);
-  <span class="variable">$color-dark</span>: <span class="predefined">rgb</span>(<span class="float">42</span>, <span class="float">56</span>, <span class="float">42</span>);
+  $color-light: rgb(230, 255, 230);
+  $color-dark: rgb(42, 56, 42);
 
-  .<span class="key">my-component-class</span> {
-    <span class="key">background-color</span>: <span class="predefined">if</span>(<span class="variable">$dark</span>, <span class="variable">$color-dark</span>, <span class="variable">$color-light</span>);
+  .my-component-class {
+    background-color: if($dark, $color-dark, $color-light);
   }
 }</code></pre>
 </div>
@@ -790,15 +797,15 @@ of the functionality that bhive provides.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="sass"><span class="function">@mixin my-component-theme</span>(<span class="variable">$theme</span>) {
-  <span class="variable">$accent-palette</span>: <span class="predefined">map-get</span>(<span class="variable">$theme</span>, <span class="value">accent</span>);
+<pre class="prettyprint highlight nowrap"><code data-lang="sass">@mixin my-component-theme($theme) {
+  $accent-palette: map-get($theme, accent);
 
-  <span class="variable">$bg-color-lighter</span>: <span class="predefined">mat-color</span>(<span class="variable">$accent-palette</span>, <span class="value">lighter</span>);
-  <span class="variable">$bg-color-normal</span>: <span class="predefined">mat-color</span>(<span class="variable">$accent-palette</span>);
-  <span class="variable">$bg-color-darker</span>: <span class="predefined">mat-color</span>(<span class="variable">$accent-palette</span>, <span class="value">darker</span>);
+  $bg-color-lighter: mat-color($accent-palette, lighter);
+  $bg-color-normal: mat-color($accent-palette);
+  $bg-color-darker: mat-color($accent-palette, darker);
 
-  .<span class="key">my-component-class</span> {
-          <span class="key">background-color</span>: <span class="variable">$bg-color-lighter</span>;
+  .my-component-class {
+  	background-color: $bg-color-lighter;
   }
 }</code></pre>
 </div>
@@ -866,11 +873,11 @@ of the functionality that bhive provides.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight nowrap"><code data-lang="sass"><span class="function">@mixin my-component-theme</span>(<span class="variable">$theme</span>) {
-  <span class="variable">$background-colors</span>: <span class="predefined">map-get</span>(<span class="variable">$theme</span>, <span class="value">background</span>);
+<pre class="prettyprint highlight nowrap"><code data-lang="sass">@mixin my-component-theme($theme) {
+  $background-colors: map-get($theme, background);
 
-  .<span class="key">my-component-class</span> {
-          <span class="key">background-color</span>: <span class="predefined">map-get</span>(<span class="variable">$background-colors</span>, <span class="value">app-bar</span>);
+  .my-component-class {
+  	background-color: map-get($background-colors, app-bar);
   }
 }</code></pre>
 </div>
@@ -1186,13 +1193,196 @@ The BDeploy master will host the Web UI also when started from the <strong>Eclip
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_plugins">Plugins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>BDeploy</strong> has plugin support, for now mainly to contribute custom parameter editors, for example to contribute an encryption algorithm to a password input field, etc.</p>
+</div>
+<div class="paragraph">
+<p>From a low level viewpoint, plugins (as of now) may:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Contribute JAX-RS endpoints to the server side. These endpoints are provided in a dedicated JAX-RS application on the server, so basically all kinds of Providers, Features, Filters and Resources can be registered on the plugins behalf.</p>
+</li>
+<li>
+<p>Contribute static assets. Those are served from a dedicated location per-plugin, and can host all kinds of static resources, including the required ES6 JavaScript modules used to provide custom editor UI.</p>
+</li>
+<li>
+<p>Define custom editors and provide the matching ES6 module through the static resources mentioned above.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/plugins.svg"><img src="images/plugins.svg" alt="Plugins" width="480"></a>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The server will first load any global plugins that are installed. When loading a plugin, it is internally registered and a dedicated namespace is assigned where resources are served. The server will register the plugins JAX-RS endpoints and all static assets provided by the plugin under this context path. They are then directly accessible from the outside.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The Web UI will query for available custom editors once a parameter specifies it requires one (see <code>app-info.yaml</code> &#8594; <code>customEditor</code> in the end user documentation).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The Web UI&#8217;s plugin service will query the backend for plugins which can provide the requested editor(s). This will also demand-load plugins which are provided by the product backing the instance currently being edited. This works the same as for global plugins above.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Assuming the backend returned a plugin providing a suitable custom editor, the custom editor metadata includes the path to the JavaScript (ES6) module to load. The module is loaded into the Web application.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Then it is instantiated and passed an API object which can be used to transparently access the plugins exposed resources (JAX-RS API, static assets).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The custom editor is bound to the Web UI on demand and can now perform edit operations on parametes, using its backend resources as required.</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_plugin_distribution">Plugin Distribution</h3>
+<div class="paragraph">
+<p>Plugins are distributed and loaded in two ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A global plugin is a JAR file which is added to the server either through the command line or its UI. Global plugins provide functionality to be used by everything on the server globally on demand.</p>
+</li>
+<li>
+<p>A product-bound (local) plugin is delivered through the product by configuring it in the <code>product-info.yaml</code>. See the user documentation for details.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_create_a_plugin">How to create a plugin</h3>
+<div class="paragraph">
+<p>A template to begin from is provided <a href="https://github.com/bdeployteam/bdeploy/tree/master/plugins">in the GitHub repository</a>. It contains all the bits required:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A plugin project must compile against the BDelpoy API JAR. This can be found either <a href="https://github.com/bdeployteam/bdeploy/packages/234722">in the GitHub packages Maven repository</a>, or on the <a href="https://github.com/bdeployteam/bdeploy/releases">releases page as plain JAR</a>.</p>
+</li>
+<li>
+<p>A plugin must extend <code>io.bdeploy.api.plugin.v1.Plugin</code> class. It may override methods to provide its resources to <strong>BDeploy</strong>.</p>
+</li>
+<li>
+<p>A plugin must specify some important MANIFEST.MF headers which help the <strong>BDeploy</strong> plugin system with identifying plugins:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BDeploy-Plugin</code>: This header should contain the fully qualified class name of the class extending the <code>io.bdeploy.api.plugin.v1.Plugin</code> class.</p>
+</li>
+<li>
+<p><code>BDeploy-PluginName</code>: A human readable name for the plugin helping administrators identifying the plugin.</p>
+</li>
+<li>
+<p><code>BDeploy-PluginVersion</code>: A version string, helping administrators identifying the plugins version.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>A plugin can contain JAX-RS resource for the backend</p>
+</li>
+<li>
+<p>A plugin can contain ES6 JavaScript modules which provide custom editor UI for the user. In theory, you can use whatever you like, as long as it has a single JavaScript entrypoint file which can be loaded from the UI (e.g. Stencil WebComponents have been tested - you still need to provide the single entrypoint class though).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The ES6 module must contain a default exported class, so <strong>BDeploy</strong> can instantiate the plugin withough knowing its class names.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_javascript_plugin_api">The JavaScript Plugin API</h3>
+<div class="paragraph">
+<p>The <strong>Java</strong> API is pretty straight forward, and can be seen immediately when looking at the <code>io.bdeploy.api.plugin.v1.Plugin</code> class. It is a little bit different for the JavaScript API, as there are no interfaces you can look at. Internally, <strong>BDeploy</strong> uses TypeScript and thus it <em>has</em> an interface definition.</p>
+</div>
+<div class="sect3">
+<h4 id="_the_custom_editor_api">The Custom Editor API</h4>
+<div class="paragraph">
+<p>The interface for a custom editor looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="typescript">export interface EditorPlugin {
+  new(api: Api); <i class="conum" data-value="1"></i><b>(1)</b>
+  bind(onRead: () =&gt; string, onUpdate: (value: string) =&gt; void, onValidStateChange: (valid: boolean) =&gt; void): HTMLElement; <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A custom editor definiton in the plugins main class points to an ES6 module, whos default class must implement this interface.</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The constructor accepts an <a href="#_the_api_object">API object</a>, which can be used to interface with the JAX-RS resources of the plugin.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The bind method receives callbacks for communication with the configuration web UI, and returns an HTMLElement which has to be created by the plugin.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_api_object">The API Object</h4>
+<div class="paragraph">
+<p>The API Object is passed to the plugins constructor. It allows communication with the plugins backend, without the need for the plugin to know where exactly this API is hosted on the server.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="typescript">export interface Api {
+  get(path: string, params?: {[key: string]: string}): Promise&lt;any&gt<i class="conum" data-value="1"></i><b>(1)</b>
+  put(path: string, body: any, params?: {[key: string]: string}): Promise&lt;any&gt;;
+  post(path: string, body: any, params?: {[key: string]: string}): Promise&lt;any&gt;;
+  delete(path: string, params?: {[key: string]: string}): Promise&lt;any&gt;;
+  getResourceUrl(): string; <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>get</code>, <code>put</code>, <code>post</code> and <code>delete</code> methods can be used to issue according requests to the plugins JAX-RS resources.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The resource URL can be used to load static resources. The URL will be the base URL where static and JAX-RS resources are registered.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.2.0<br>
-Last updated 2019-11-18 18:27:36 +0100
+Version 2.4.0-SNAPSHOT<br>
+Last updated 2020-05-26 15:15:52 +0200
 </div>
 </div>
-<link rel="stylesheet" href="./coderay-asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
 </body>
 </html>
