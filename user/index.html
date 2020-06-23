@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 2.4.0</span>
+<span id="revnumber">version 2.5.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1183,9 +1183,51 @@ This mechanism allows access to the most internal data structures of <strong>BDe
 </div>
 </div>
 <div class="sect3">
+<h4 id="_application_templates">Application Templates</h4>
+<div class="paragraph">
+<p>A product may contain <strong>Application Templates</strong>. These are pre-defined configurations for applications, resulting in a more complete process configuration when dragged to the target node. If an application has an attached <strong>Application Template</strong>, it&#8217;s application card will contain a drop down (<em>Choose Application Template</em>), which - when clicked - will show all available templates to choose from.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Application_Template_Choose.png"><img src="images/BDeploy_Application_Template_Choose.png" alt="Application Template Drop Down" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>After choosing a template, dragging the card to the target node as usual will create the process configuration from this template instead of starting from scratch. In case the template requires user input (i.e. it defines mandatory template variables), the user is prompted to fill them out before the process is created.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Application_Template_Variables.png"><img src="images/BDeploy_Application_Template_Variables.png" alt="Application Template Variables" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, the process configuration is created from the application template using the given variable values.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You will notice that the name of the process now matches the name of the template, not the name of the underlying application.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Application_Template_Process.png"><img src="images/BDeploy_Application_Template_Process.png" alt="Application Template Process" width="480"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_instance_templates">Instance Templates</h4>
 <div class="paragraph">
-<p>A product can define and include <strong>Instance Templates</strong>. These templates can be applied on an empty instance (e.g. after creating one).</p>
+<p>A product can define and include <strong>Instance Templates</strong>. These templates can be applied on an empty instance (e.g. after creating one). They can define processes just like <strong>Application Templates</strong>, in fact they can even include existing <strong>Application Templates</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The advantage of an <strong>Instance Template</strong> is that it can contain more knowledge of how processes need to be set up to work together, wheras <strong>Application Templates</strong> define configuration for a single application.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1202,6 +1244,12 @@ This mechanism allows access to the most internal data structures of <strong>BDe
 </div>
 <div class="paragraph">
 <p>Selecting a template (here: <em>Default Configuration</em>) will show a list of <em>groups</em> defined in the template. These <em>groups</em> can be assigned to compatible nodes - groups containing server applications to server nodes, and groups containing client applications to the special <em>Client Applications</em> node. Selecting <em>None</em> as target node will skip the processes in this group. Click the (i) info icon to display details about a group, including all processes configured in the template group.</p>
+</div>
+<div class="paragraph">
+<p>When creating configurations on a <code>SERVER</code> node, applications will be added matching the nodes OS. If a server application is included in a group which is not available for the target OS, it is ignored.</p>
+</div>
+<div class="paragraph">
+<p>When creating configurations for a <code>CLIENT</code> group, applications are added to the <em>Client Applications</em> virtual node, one for each OS supported by the application.</p>
 </div>
 <div class="paragraph">
 <p>Clicking <b class="button">Next</b> will show a list of template variables to fill out. Template variables can be used by templates to query required user input, so all template variables are mandatory.</p>
@@ -2167,9 +2215,13 @@ If both <em>source</em> and <em>target</em> are <code>MANAGED</code> servers, th
 <dd>
 <p>YAML file required for every <strong>Product Version</strong>.</p>
 </dd>
+<dt class="hdlist1"><a href="#_application_template_yaml">application-template.yaml</a></dt>
+<dd>
+<p>optional YAML file(s) which can be used to define <strong>Application Templates</strong></p>
+</dd>
 <dt class="hdlist1"><a href="#_instance_template_yaml">instance-template.yaml</a></dt>
 <dd>
-<p>optional YAML file which can be used to define <strong>Instance Templates</strong></p>
+<p>optional YAML file(s) which can be used to define <strong>Instance Templates</strong></p>
 </dd>
 </dl>
 </div>
@@ -2615,9 +2667,11 @@ applications:
 
 configTemplates: my-config <i class="conum" data-value="5"></i><b>(5)</b>
 pluginFolder: my-plugins <i class="conum" data-value="6"></i><b>(6)</b>
-templates:
-  - 'my-templates/template.yaml' <i class="conum" data-value="7"></i><b>(7)</b>
-versionFile: my-versions.yaml <i class="conum" data-value="8"></i><b>(8)</b></code></pre>
+applicationTemplates:
+  - 'my-templates/app-template.yaml' <i class="conum" data-value="7"></i><b>(7)</b>
+instanceTemplates:
+  - 'my-templates/template.yaml' <i class="conum" data-value="8"></i><b>(8)</b>
+versionFile: my-versions.yaml <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2648,10 +2702,14 @@ versionFile: my-versions.yaml <i class="conum" data-value="8"></i><b>(8)</b></co
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>A reference to a template YAML file which defines an <a href="#_instance_template_yaml"><code>instance-template.yaml</code></a></td>
+<td>A reference to an application template YAML file which defines an <a href="#_application_template_yaml"><code>application-template.yaml</code></a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>A reference to an instance template YAML file which defines an <a href="#_instance_template_yaml"><code>instance-template.yaml</code></a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
 <td>The <code>product-version.yaml</code> which associates the <strong>Application</strong> IDs (used above) with actual paths to <strong>Applications</strong> on the file system.</td>
 </tr>
 </table>
@@ -2711,6 +2769,72 @@ appInfo:
 </div>
 </div>
 <div class="sect3">
+<h4 id="_application_template_yaml">application-template.yaml</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There is no actual requirement for the file to be named <code>application-template.yaml</code> as it is referenced from the <code>product-info.yaml</code> by relative path anyway. Multiple <strong>Application Template</strong> YAML files can exist and be referenced by <code>product-info.yaml</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This file defines a single <strong>Application Template</strong>. A <a href="#_product_info_yaml"><code>product-info.yaml</code></a> can reference multiple templates, from which the user can choose.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">id: server-with-sleep <i class="conum" data-value="1"></i><b>(1)</b>
+application: server-app
+name: "Server With Sleep"
+description: "Server application which sleeps before exiting"
+
+variables: <i class="conum" data-value="2"></i><b>(2)</b>
+  - uid: sleep-timeout
+    name: "Sleep Timeout"
+    description: "The amount of time the server application should sleep"
+    defaultValue: 60
+    suggestedValues:
+    - '60'
+    - '120'
+
+processControl: <i class="conum" data-value="3"></i><b>(3)</b>
+  startType: MANUAL_CONFIRM
+  keepAlive: false
+  noOfRetries: 3
+  gracePeriod: 30000
+  attachStdin: true
+
+startParameters: <i class="conum" data-value="4"></i><b>(4)</b>
+- uid: param.sleep
+  value: "{{T:sleep-timeout}}"</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>An <strong>Application Template</strong> must have an ID. This can be used to reference it from an <strong>Instance Template</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A template can define (and use) template variables which are mandatory input by the user when using the template. A template variable can be referenced in parameter value definitions using the <code>{{T:varname}}</code> syntax. If the parameter value is numeric, you can also use simple arithmetic operations on the template variable like <code>{{T:varname:+10}}</code> which will add 10 to the numeric value of the template variable.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A template can define arbitrary process control parameters to further control the default process control settings.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Start command parameters are referenced by their UID, defined in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_instance_template_yaml">instance-template.yaml</h4>
 <div class="admonitionblock note">
 <table>
@@ -2746,16 +2870,17 @@ groups: <i class="conum" data-value="3"></i><b>(3)</b>
   - application: server-app
     name: "Server No Sleep"
     description: "Server application which immediately exits"
-  - application: server-app <i class="conum" data-value="4"></i><b>(4)</b>
+  - template: server-with-sleep <i class="conum" data-value="4"></i><b>(4)</b>
+  - application: server-app <i class="conum" data-value="5"></i><b>(5)</b>
     name: "Server With Sleep"
     description: "Server application which sleeps before exiting"
     processControl:
       startType: MANUAL_CONFIRM
-    startParameters: <i class="conum" data-value="5"></i><b>(5)</b>
+    startParameters: <i class="conum" data-value="6"></i><b>(6)</b>
     - uid: param.sleep
       value: "{{T:sleep-timeout}}"
 - name: "Client Apps"
-  type: CLIENT <i class="conum" data-value="6"></i><b>(6)</b>
+  type: CLIENT <i class="conum" data-value="7"></i><b>(7)</b>
   description: "All client applications"
 
   applications:
@@ -2771,23 +2896,27 @@ groups: <i class="conum" data-value="3"></i><b>(3)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>A template can define (and use, see further down in the example) variables which are mandatory input by the user when using the template.</td>
+<td>A template can define (and use) template variables which are mandatory input by the user when using the template. A template variable can be referenced in parameter value definitions using the <code>{{T:varname}}</code> syntax. If the parameter value is numeric, you can also use simple arithmetic operations on the template variable like <code>{{T:varname:+10}}</code> which will add 10 to the numeric value of the template variable.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>A template defines one or more groups. Each group can be assigned to a physical node available on the target system. Groups can be skipped by not assigning them to a node, so they provide a mechanism to provide logical groups of processes that belong together and might be optional. It is up to the user whether a group is mapped to a node, or not. Multiple groups can be mapped to the same phsysical node.</td>
+<td>A template defines one or more groups of applications to configure. Each group can be assigned to a physical node available on the target system. Groups can be skipped by not assigning them to a node, so they provide a mechanism to provide logical groups of processes (as result of configuring the applications) that belong together and might be optional. It is up to the user whether a group is mapped to a node, or not. Multiple groups can be mapped to the same phsysical node.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>A template group contains one or more application configurations, which can consist of process control configuration and parameter definitions for the start command of that application.</td>
+<td><strong>Instance Templates</strong> can reference <strong>Application Templates</strong> by their <code>id</code>. The <strong>Instance Templates</strong> can further refine an <strong>Application Template</strong> by setting any of the valid application fields in addition to the template reference.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Start command parameters are referenced by their UID, defined in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</td>
+<td>A template group contains one or more applications to configure, which each can consist of process control configuration and parameter definitions for the start command of the resulting process - exactly the same fields are valid as for <strong>Application Tempaltes</strong> - except for the <code>id</code> which is not required.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>A template group can have either type <code>SERVER</code> (default) or <code>CLIENT</code>. A group may only contain applications of a compatible type, i.e. only <code>SERVER</code> applications in <code>SERVER</code> type group.</td>
+<td>Start command parameters are referenced by their UID, defined in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>A template group can have either type <code>SERVER</code> (default) or <code>CLIENT</code>. A group may only contain applications of a compatible type, i.e. only <code>SERVER</code> applications in <code>SERVER</code> type group. When applying the group to a node, applications will be instantiated to processes according to their supported OS and the nodes physical OS. If a <code>SERVER</code> application does not support the target nodes OS, it is ignored.</td>
 </tr>
 </table>
 </div>
@@ -4215,8 +4344,8 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.4.0<br>
-Last updated 2020-05-26 15:15:52 +0200
+Version 2.5.0<br>
+Last updated 2020-06-19 10:24:07 +0200
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
