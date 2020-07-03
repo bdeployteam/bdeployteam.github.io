@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 2.5.0</span>
+<span id="revnumber">version 2.5.1</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -3502,6 +3502,33 @@ Included runtime dependencies will not show up on the target server&#8217;s Web 
 <a class="image" href="images/BDeploy_SWRepo_Ext_Software_Details.png"><img src="images/BDeploy_SWRepo_Ext_Software_Details.png" alt="Software Details" width="480"></a>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_software_repositories_access">Software Repositories Access</h4>
+<div class="paragraph">
+<p><strong>Software Repositories</strong> are created and managed by global administrators. A <strong>Software Repository</strong> is always visible and readable for all users. Write permissions are required to manage the software packages in the repository. To be able to upload software, a user therefore requires global administration or write permissions or must have write permissions assigned directly to the repository.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Demo-Repository_Permissions_Global.png"><img src="images/BDeploy_Demo-Repository_Permissions_Global.png" alt="Global Software Repository Permissions" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Use the <b class="button">+</b> button to add a user to the list. The input field suggests matching users from the list of all users.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Demo-Repository_Permissions_AddUser1.png"><img src="images/BDeploy_Demo-Repository_Permissions_AddUser1.png" alt="Grant Write Access to the Software Repository" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Adding a user grants write access to the <strong>Software Repository</strong>. The bin icon in the last column removes the user from the list. Users with global administration or write permission cannot be removed.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Demo-Repository_Permissions_AddUser2.png"><img src="images/BDeploy_Demo-Repository_Permissions_AddUser2.png" alt="Grant Write Access to the Software Repository" width="480"></a>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -4344,7 +4371,7 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.5.0<br>
+Version 2.5.1<br>
 Last updated 2020-06-19 10:24:07 +0200
 </div>
 </div>
