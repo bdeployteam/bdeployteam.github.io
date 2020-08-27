@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 2.5.2</span>
+<span id="revnumber">version 3.0.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -56,6 +56,7 @@
 <li><a href="#_instance_overview">Instance Overview</a></li>
 <li><a href="#_deployment">Deployment</a></li>
 <li><a href="#_process_control">Process Control</a></li>
+<li><a href="#_instance_history">Instance History</a></li>
 <li><a href="#_client_applications">Client Applications</a></li>
 <li><a href="#_centralmanaged_specific_configuration">Central/Managed Specific Configuration</a></li>
 </ul>
@@ -947,6 +948,18 @@ The <strong>Application</strong> defines in which order the parameters are passe
 <div class="paragraph">
 <p><strong>Validation Issues</strong> are displayed per group in the respective title. Only complete configurations can be accepted.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use the <em>Search Bar</em> in the <em>Parameter Settings</em> header to search for and filter parameters. When searching only matching parameters are shown, groups without matches are hidden, and the <em>Manage Optional Parameters</em> button will receive a badge indicating the number of matching <em>unconfigured</em> parameters.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The context menu on an application card allows you to copy an application definition. This can be pasted on any node of the correct type using the context menu on the according node when in <strong>Configure Applications</strong> mode.</p>
 </div>
@@ -1510,6 +1523,18 @@ You will notice that the name of the process now matches the name of the templat
 <a class="image" href="images/BDeploy_DataFiles_Browser.png"><img src="images/BDeploy_DataFiles_Browser.png" alt="Data File Browser" width="480"></a>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <b class="button">delete</b> button can be used to delete a file. This requires administrative permissions on the server or the instance group.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>When opened in place, the <b class="button">Follow</b> toggle allows to grab new output as it is written on the server.</p>
 </div>
@@ -1517,6 +1542,152 @@ You will notice that the name of the process now matches the name of the templat
 <div class="content">
 <a class="image" href="images/BDeploy_DataFiles_Show.png"><img src="images/BDeploy_DataFiles_Show.png" alt="Show Data File" width="480"></a>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_instance_history">Instance History</h3>
+<div class="paragraph">
+<p>After a while, you will probably end up with a lot of changes and new versions.<br>
+You can <strong>view</strong> all those changes, <strong>who</strong> made them and <strong>when</strong> they were made on the <strong>instance history page</strong>.</p>
+</div>
+<div class="paragraph">
+<p>To open the history, go to the <strong>instance overview</strong>, click on the <strong>menu</strong> on the right and click on <strong>instance history</strong>.</p>
+</div>
+<div class="paragraph">
+<p>You will be greeted with <em>New version</em> <strong>cards</strong> on each side of a timeline.
+Each <strong>card</strong> consists of a title containing the <strong>event</strong> and the corresponding <strong>version</strong>, as well as the <strong>time</strong> the event happened.</p>
+</div>
+<div class="paragraph">
+<p>There are three types of events. <em>New versions</em> (configurations), <em>Deployments</em> and <em>Runtime</em> events.<br>
+<em>Deployments</em> and <em>Runtime</em> events are disabled by default.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you haven&#8217;t made any changes, only one card will be shown: <em>New version: 1</em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you <strong>scroll</strong> to the bottom, a loading spinner will show up and more events get <strong>loaded</strong>.<br>
+You can scroll on until you reach the first event.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_User_History_Overview.png"><img src="images/BDeploy_User_History_Overview.png" alt="Instance history" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>To see the <strong>user</strong> responsible for a <em>New version</em>, open a card by clicking on it.<br>
+<em>New version</em> cards also list <strong>all changes</strong> of the corresponding version to the previous version.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_User_History_OpenedCard.png"><img src="images/BDeploy_User_History_OpenedCard.png" alt="Open card" width="480"></a>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To <strong>close all</strong> opened cards, click on the rightmost button of the toolbar on the top.<br>
+If you want <strong>only one</strong> card open at once, click on the button to the left of it. With that on, once you open a new card, all other cards will be closed.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_comparing_two_versions">Comparing two versions</h5>
+<div class="paragraph">
+<p>You can <strong>compare</strong> any two versions to view all changes made between those versions.<br>
+Select two versions by clicking on the button with <strong>two arrows</strong> in both <em>New version</em> cards.<br>
+The versions will show up under <strong><em>Compare Versions</em></strong> in the toolbar on the top.
+To compare them now, click on the <strong>arrow</strong> inbetween.</p>
+</div>
+<div class="paragraph">
+<p>A <strong>dialog</strong> listing all changes will show up.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_User_History_ComparisonDialog.png"><img src="images/BDeploy_User_History_ComparisonDialog.png" alt="Compare versions" width="480"></a>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_filtering_events">Filtering events</h5>
+<div class="paragraph">
+<p>To <strong>select</strong> which events are shown, click on the <strong>filter button</strong> on the left of <em>Compare Versions</em> in the toolbar on top and enable/disable the shown events.<br></p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_User_History_ShowMenu.png"><img src="images/BDeploy_User_History_ShowMenu.png" alt="Filter events" width="480"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_deployments">Deployments</h4>
+<div class="paragraph">
+<p><em>Deployments</em> are: <code>INSTALL</code>,<code>ACTIVATE</code>,<code>DEACTIVATE</code>,<code>UNINSTALL</code>.</p>
+</div>
+<div class="paragraph">
+<p><em>Deployments</em> will show up once you <strong>enabled</strong> them.<br>
+Each card consists of a title containing the <strong>deployment type</strong> and the corresponding <strong>version</strong>, as well as the <strong>time</strong> the event happened.</p>
+</div>
+<div class="paragraph">
+<p>The body of a <em>Deployment</em> card shows the <strong>user</strong> responsible for the <strong>deployment</strong>.</p>
+</div>
+<div class="sect4">
+<h5 id="_runtime_events">Runtime events</h5>
+<div class="paragraph">
+<p><em>Runtime</em> events are: <code>START</code>, <code>STOP</code>, <code>CRASH</code>, <code>RESTART</code>, <code>PERMANENT CRASH</code>, <code>STOP PLANNED</code>.</p>
+</div>
+<div class="paragraph">
+<p><em>Runtime</em> events will show up once you <strong>enabled</strong> them.<br>
+Each card consists of a title containing the <strong>event</strong> and the corresponding <strong>application</strong>, as well as the <strong>time</strong> the event happened.</p>
+</div>
+<div class="paragraph">
+<p>The body of a <em>Runtime</em> card lists the <strong>User</strong> responsible for the event as well as the <strong>node</strong> and <strong>version</strong> of the application.<br>
+If the not the user but the <strong>process</strong> or <strong>bdeploy</strong> triggered the <em>Runtime</em> event, <strong><em>BDeploy System</em></strong> is shown as user.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <strong>process ID</strong> will also show up given that it was present at the <strong>moment</strong> the event happened.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_User_History_RuntimeHistory.png"><img src="images/BDeploy_User_History_RuntimeHistory.png" alt="Runtime events" width="480"></a>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_searching">Searching</h4>
+<div class="paragraph">
+<p>You can <strong>search</strong> for specific events with the <strong>search-bar</strong> on the top.</p>
+</div>
+<div class="paragraph">
+<p>After you entered your <strong>search term</strong> and hit <strong>enter</strong> or pressed the search <strong>button</strong> on the right, <br>
+all cards of which the <strong>title</strong>, <strong>user</strong> or <strong>PID</strong> contain your term, will show up.</p>
+</div>
+<div class="paragraph">
+<p>To show everything again, <strong>empty</strong> the search bar first and then hit enter or press the search button.</p>
 </div>
 </div>
 </div>
@@ -3489,17 +3660,36 @@ Included runtime dependencies will not show up on the target server&#8217;s Web 
 <a class="image" href="images/BDeploy_SWRepos.png"><img src="images/BDeploy_SWRepos.png" alt="Software Repositories" width="480"></a>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_upload_software">Upload software</h4>
 <div class="paragraph">
-<p>The available software packages can be viewed and downloaded if required. Please note that uploading a new software package requires a special data structure. Simply uploading an arbitrary ZIP file is not working as the required <strong>Metadata</strong> is missing.</p>
+<p>To upload external software, open a software repository and click on the upload button on the bottom right.<br>
+Then click on <strong>browse</strong> or <strong>drop files</strong>. You can only upload zip packages.</p>
+</div>
+<div class="paragraph">
+<p>After selecting files, specify the shown <strong>name</strong> of the software, the <strong>version</strong> and the supported <strong>operating systems</strong>.<br>
+If you already have a package in a hive structure containing all of this metadata, enable <strong><em>hive</em></strong>.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_SWRepo_Upload.png"><img src="images/BDeploy_SWRepo_Upload.png" alt="External Software Upload" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>If the upload was succesful, you can <strong>close</strong> the upload dialog and the software for each operating system will show up.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
 <a class="image" href="images/BDeploy_SWRepo_Ext_Software.png"><img src="images/BDeploy_SWRepo_Ext_Software.png" alt="Software Repository with External Software" width="480"></a>
 </div>
 </div>
+<div class="paragraph">
+<p>The available software packages can be viewed and <strong>downloaded</strong> if required.</p>
+</div>
 <div class="imageblock text-center">
 <div class="content">
 <a class="image" href="images/BDeploy_SWRepo_Ext_Software_Details.png"><img src="images/BDeploy_SWRepo_Ext_Software_Details.png" alt="Software Details" width="480"></a>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -4371,8 +4561,8 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 2.5.2<br>
-Last updated 2020-06-02 07:57:04 +0200
+Version 3.0.0<br>
+Last updated 2020-06-19 10:24:07 +0200
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
