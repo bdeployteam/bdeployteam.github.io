@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 3.0.0</span>
+<span id="revnumber">version 3.1.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1007,6 +1007,12 @@ You can use the <em>Search Bar</em> in the <em>Parameter Settings</em> header to
 </div>
 </div>
 <div class="sect4">
+<h5 id="_conditional_parameters">Conditional Parameters</h5>
+<div class="paragraph">
+<p><strong>Conditional Parameters</strong> are parameters which are only configurable if a specific dependent parameter has a certain value. These parameters are hidden until the dependent parameter meets the conditions requirements.</p>
+</div>
+</div>
+<div class="sect4">
 <h5 id="_variables">Variables</h5>
 <div class="paragraph">
 <p><strong>BDeploy</strong> provides a mechanism for defining that a parameter should hold a dynamically computed value instead of a fixed one. The general syntax for variables is <code>{{TYPE:VARNAME:SUBVAR}}</code>. With that mechanism it is possible to define that a certain parameter holds different values for different operating systems or to refer to parameters defined in a different process. See <a href="#_variable_expansion">Variable Expansion</a> for more details.</p>
@@ -1172,6 +1178,13 @@ All <strong>Applications</strong> are marked as modified as they are now based o
 <div class="content">
 <a class="image" href="images/BDeploy_Product_Downgrade_Validation.png"><img src="images/BDeploy_Product_Downgrade_Validation.png" alt="Validation Issues After Product Version Change" width="480"></a>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_banner_message">Banner Message</h4>
+<div class="paragraph">
+<p>A banner message can be created for an <strong>Instance</strong>, which is displayed very clearly at the top of the overview dialog. The foreground and background colors are freely definable, so that depending on the urgency or content of the message a suitable color, possibly a clear signal color, can be selected.
+Banner messages are maintained on instance level and are not versioned, i.e. they are independent of instance versions. Therefore they outlast configuration changes of an instance.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1555,11 +1568,11 @@ You can <strong>view</strong> all those changes, <strong>who</strong> made them 
 <p>To open the history, go to the <strong>instance overview</strong>, click on the <strong>menu</strong> on the right and click on <strong>instance history</strong>.</p>
 </div>
 <div class="paragraph">
-<p>You will be greeted with <em>New version</em> <strong>cards</strong> on each side of a timeline.
+<p>You will be greeted with <em>Creation</em> <strong>cards</strong> on each side of a timeline.
 Each <strong>card</strong> consists of a title containing the <strong>event</strong> and the corresponding <strong>version</strong>, as well as the <strong>time</strong> the event happened.</p>
 </div>
 <div class="paragraph">
-<p>There are three types of events. <em>New versions</em> (configurations), <em>Deployments</em> and <em>Runtime</em> events.<br>
+<p>There are three types of events. <em>Version creations</em> (configurations), <em>Deployments</em> and <em>Runtime</em> events.<br>
 <em>Deployments</em> and <em>Runtime</em> events are disabled by default.</p>
 </div>
 <div class="admonitionblock note">
@@ -1569,7 +1582,7 @@ Each <strong>card</strong> consists of a title containing the <strong>event</str
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you haven&#8217;t made any changes, only one card will be shown: <em>New version: 1</em>.
+If you haven&#8217;t made any changes, only one card will be shown: <em>Version 1: Created</em>.
 </td>
 </tr>
 </table>
@@ -1584,8 +1597,8 @@ You can scroll on until you reach the first event.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>To see the <strong>user</strong> responsible for a <em>New version</em>, open a card by clicking on it.<br>
-<em>New version</em> cards also list <strong>all changes</strong> of the corresponding version to the previous version.</p>
+<p>To see the <strong>user</strong> responsible for a <em>Creation</em>, open a card by clicking on it.<br>
+<em>Creation</em> cards also list <strong>all changes</strong> of the corresponding version to the previous version.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1609,7 +1622,7 @@ If you want <strong>only one</strong> card open at once, click on the button to 
 <h5 id="_comparing_two_versions">Comparing two versions</h5>
 <div class="paragraph">
 <p>You can <strong>compare</strong> any two versions to view all changes made between those versions.<br>
-Select two versions by clicking on the button with <strong>two arrows</strong> in both <em>New version</em> cards.<br>
+Select two versions by clicking on the button with <strong>two arrows</strong> in both <em>Creation</em> cards.<br>
 The versions will show up under <strong><em>Compare Versions</em></strong> in the toolbar on the top.
 To compare them now, click on the <strong>arrow</strong> inbetween.</p>
 </div>
@@ -2474,18 +2487,27 @@ startCommand: <i class="conum" data-value="6"></i><b>(6)</b>
       suggestedValues:
         - "Value 1"
         - "Value 2"
+    - uid: "my.param.3"
+      name: "My conditional parameter"
+      longDescription: "This is only visible and configurable if my.param.2 has value 'Value 1'"
+      parameter: "--conditional"
+      mandatory: true
+      condition: <i class="conum" data-value="7"></i><b>(7)</b>
+        parameter: "my.param.2"
+        must: EQUAL
+        value: "Value 1"
 
-stopCommand: <i class="conum" data-value="7"></i><b>(7)</b>
+stopCommand: <i class="conum" data-value="8"></i><b>(8)</b>
   ...
 
-endpoints: <i class="conum" data-value="8"></i><b>(8)</b>
+endpoints: <i class="conum" data-value="9"></i><b>(9)</b>
   http:
-    - id: "my-endpoint" <i class="conum" data-value="9"></i><b>(9)</b>
+    - id: "my-endpoint" <i class="conum" data-value="10"></i><b>(10)</b>
       path: "path/to/the/endpoint"
-      port: "{{V:port-param}}" <i class="conum" data-value="10"></i><b>(10)</b>
+      port: "{{V:port-param}}" <i class="conum" data-value="11"></i><b>(11)</b>
       secure: false
 
-runtimeDependencies: <i class="conum" data-value="11"></i><b>(11)</b>
+runtimeDependencies: <i class="conum" data-value="12"></i><b>(12)</b>
   - "adoptopenjdk/jre:1.8.0_202-b08"</code></pre>
 </div>
 </div>
@@ -2517,22 +2539,26 @@ runtimeDependencies: <i class="conum" data-value="11"></i><b>(11)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>The optional stop command can be specified to provide a mechanism for clean application shutdown once <strong>BDeploy</strong> tries to stop a process. This command may use <a href="#_variable_expansion">Variable Expansion</a> to access parameter values of the <code>startCommand</code> (e.g. configured 'stop port', etc.). It is <strong>not</strong> configurable through the Web UI though. All parameter values will have their (expanded) default values set when the command is run. If no <code>stopCommand</code> is specified, <strong>BDeploy</strong> will try to gracefully quit the process (i.e. <code>SIGTERM</code>). Both with and without <code>stopCommand</code>, <strong>BDeploy</strong> resorts to a <code>SIGKILL</code> after the <code><a href="#_supported_parameters_attributes">gracePeriod</a></code> has expired.</td>
+<td>A conditional parameter is a parameter with a condition on it. The condition always refers to another parameter on the same application. The parameter with the condition set will only be visible and configurable if the condition on the referenced parameter is met.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
-<td>Optional definition of provided endpoints. Currently only HTTP endpoints are supported. These endpoints can be configured on the application later, including additional information like authentication, certificates, etc. <strong>BDeploy</strong> can later on call these endpoints when instructed to do so by a third-party application.</td>
+<td>The optional stop command can be specified to provide a mechanism for clean application shutdown once <strong>BDeploy</strong> tries to stop a process. This command may use <a href="#_variable_expansion">Variable Expansion</a> to access parameter values of the <code>startCommand</code> (e.g. configured 'stop port', etc.). It is <strong>not</strong> configurable through the Web UI though. All parameter values will have their (expanded) default values set when the command is run. If no <code>stopCommand</code> is specified, <strong>BDeploy</strong> will try to gracefully quit the process (i.e. <code>SIGTERM</code>). Both with and without <code>stopCommand</code>, <strong>BDeploy</strong> resorts to a <code>SIGKILL</code> after the <code><a href="#_supported_parameters_attributes">gracePeriod</a></code> has expired.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
-<td>The ID of the endpoint can be used to call the endpoint remotely by tunneling through potentially multiple levels of <strong>BDeploy</strong> servers.</td>
+<td>Optional definition of provided endpoints. Currently only HTTP endpoints are supported. These endpoints can be configured on the application later, including additional information like authentication, certificates, etc. <strong>BDeploy</strong> can later on call these endpoints when instructed to do so by a third-party application.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="10"></i><b>10</b></td>
-<td><a href="#_variable_expansion">Variable Expansion</a> can be used on most of the endpoint properties.</td>
+<td>The ID of the endpoint can be used to call the endpoint remotely by tunneling through potentially multiple levels of <strong>BDeploy</strong> servers.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="11"></i><b>11</b></td>
+<td><a href="#_variable_expansion">Variable Expansion</a> can be used on most of the endpoint properties.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
 <td>Optional runtime dependencies. These dependencies are included in the <strong>Product</strong> when building it. Dependencies are fetched from <strong><a href="#_software_repositories">Software Repositories</a></strong>. <code>launcherPath</code> and parameter <code>defaultValue</code> (and of course the final configuration values) can access paths within each of the dependencies by using the <code>{{M:adoptopenjdk/jre:1.8.0_202-b08}}</code> <a href="#_variable_expansion">Variable Expansion</a>, e.g. <code>launcherPath: {{M:adoptopenjdk/jre:1.8.0_202-b08}}/bin/java</code>. Also note that the declared dependency does not specify an operating system. This will be resolved by <strong>BDeploy</strong> to either an exact match, e.g. <code>adoptopenjdk/jre/linux:1.8.0_202-b08</code> on <code>LINUX</code>.</td>
 </tr>
 </table>
@@ -2736,6 +2762,147 @@ The value of the parameter is not part of this definition, nor is any potential 
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Type of parameter. This defines the type of input field used to edit the parameter. Available are <code>STRING</code>, <code>NUMERIC</code>, <code>BOOLEAN</code>, <code>PASSWORD</code>.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>condition</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A conditional parameter is a parameter with a condition on it. The condition always refers to another parameter on the same application. The parameter with the condition set will only be visible and configurable if the condition on the referenced parameter is met.</p>
+</div>
+<div class="paragraph">
+<p>A condition expression (isolated) looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="yaml">condition:
+  parameter: "my.param.2"
+  must: EQUAL
+  value: "Value 1"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The condition block understands the following fields:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>parameter</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the referenced parameters UID.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>must</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of condition.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value to match against if required by the condition type.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The <code>must</code> field understands the following condition types:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>EQUAL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The referenced parameters value must equal the given condition value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CONTAIN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The referenced parameters value must contain the given condition value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>START_WITH</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The referenced parameters value must start with the given condition value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>END_WITH</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The referenced parameters value must end with the given condition value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BE_EMPTY</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The referenced parameters value must be empty. In case of <code>BOOLEAN</code> parameters the value must be <code>false</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Leading and trailing whitespaces are ignored for this check.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BE_NON_EMPTY</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The referenced parameters value must be any non-empty value. In case of <code>BOOLEAN</code> parameters the value must be <code>true</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Leading and trailing whitespaces are ignored for this check.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Be aware that the condition on a parameter has a higher precedence than <code>mandatory</code>. A <code>mandatory</code> parameter whos condition is not met is still not configurable. As soon as the condition is met, it is automatically added to the configuration using its default value.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If possible, a parameter with a condition should be defined <strong>after</strong> the parameter referenced in the condition if the referenced parameter is mandatory. This will make a difference when an application configuration is initially created by drag &amp; drop.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2755,8 +2922,8 @@ Endpoints definitions are templates which can later on be configured by the user
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 15.7894%;">
-<col style="width: 84.2106%;">
+<col style="width: 15%;">
+<col style="width: 85%;">
 </colgroup>
 <thead>
 <tr>
@@ -4041,83 +4208,178 @@ It has the power to destroy <em>everything</em> - use with extreme caution.
 <p><strong>BDeploy</strong> provides a rich CLI which allows automating most interactions with <strong>BDeploy</strong>, e.g. for use in build pipelines, etc.</p>
 </div>
 <div class="paragraph">
-<p>Each of the binaries provides a set of <em>commands</em> along with available <em>options</em>. This chapter describes the available <em>commands</em>. The <em>options</em> are well-described when calling the according <em>command</em> with the <code>--help</code> <em>option</em>.</p>
+<p>The same binaries used to run a <strong>BDeploy</strong> server provide a set of <em>commands</em> along with available <em>options</em>. This chapter describes the available <em>commands</em>. The <em>options</em> are well-described when calling the according <em>command</em> with the <code>--help</code> <em>option</em>.</p>
 </div>
 <div class="sect3">
-<h4 id="_bdeploy_cli">BDeploy CLI</h4>
+<h4 id="_common_options">Common Options</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
-<col style="width: 10%;">
-<col style="width: 65%;">
+<col style="width: 75%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Command</th>
-<th class="tableblock halign-left valign-top">Remote</th>
+<th class="tableblock halign-left valign-top">Option</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bhive</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Wraps around to the <a href="#_bhive_cli">BHive CLI</a>. Can be used to access <strong>BHive</strong> CLI commands if ther <strong>BHive</strong> stand-alone binaries are not available. Usage: <code>bdeploy bhive &lt;command&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-q</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quiet - no progess reporting on long running operations.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>login</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manages login sessions on remote servers. This command eliminates the need to manage tokens yourself. Login sessions are managed per user, can be created, switched and removed. Validity of the login session is the same as for the Web UI. Subsequent commands will use the configured remote login session to perform remote communication.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-v</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verbose - some tools may include additional information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-vv</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Very verbose - enable progress reporting for every tool, show timing summary at the end.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-o FILE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Redirect output to the given <code>FILE</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-op FILE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Redirect progress reporting output to the given <code>FILE</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--csv</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output any data in CSV format.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--json</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output any data in JSON format.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_bdeploy_cli">BDeploy CLI</h4>
+<div class="sect4">
+<h5 id="_initialization_and_local_configuration_management_commands">Initialization and local configuration management commands</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>certificate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manage the server certificate (export the existing, import a new). This is mainly used to import a properly signed certificate to the <em>master</em>, which serves the Web UI using this certificate over HTTPS. <strong>BDeploy</strong> itself does not require a properly signed certificate for internal operation to guarantee <a href="#_security">Security</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cleanup</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manage the schedule at which the <em>master</em> performs background cleanup operations on all <em>slaves</em> (including himself).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manage the schedule at which the <em>master</em> performs background cleanup operations on all <em>nodes</em> (including himself).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hostname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows 'renaming' of the minion. The <code>init</code> command stores the given hostname, used later on for connections to self and also for variable expansion. If the hostname changed or is no longer valid, the <code>hostname</code> tool can update all relevant data.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><code>init</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Initializes a <em>root</em> directory for use with either the <code>slave</code> or <code>master</code> commands.</p>
-<p class="tableblock">The <code>init</code> command also generates the initial <em>security token</em>, see <a href="#_security">Security</a>. It is suggested to use the <code>--tokenFile</code> parameter if the token should be stored for later use.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initializes a <em>root</em> directory for running a server with either the <code>slave</code> or <code>master</code> commands.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hostname</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows 'renaming' of the minion. The <code>init</code> command stores the given hostname, used later on for connections to self and also for variable expansion. If the hostname changed or is no longer valid, the <code>hostname</code> tool can update all relevant data.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>instance</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set-mode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes the intended purpose of a <strong>BDeploy</strong> root directory, see <a href="#_migrating_between_modes">Migrating between Modes</a>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tooling to <strong>export</strong> (to <em>ZIP</em>) and <strong>import</strong> (from <em>ZIP</em>) <strong>Instances</strong> locally.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>master</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manages available <em>storage locations</em>. A <em>storage location</em> is a folder where the <strong>BDeploy</strong> <em>master</em> puts the <strong>BHives</strong> required to store data for <strong>Instance Groups</strong> and <strong>Software Repositories</strong>.</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Runs the <strong>BDeploy</strong> <em>minion</em> in <em>master</em> mode. Requires a root directory initialized with the <code>init</code> command.</p>
+</tbody>
+</table>
 </div>
-<div class="admonitionblock note">
+<div class="sect4">
+<h5 id="_local_session_and_scripting_commands">Local session and scripting commands</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>login</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Manages local login sessions to remote servers. This command eliminates the need to manage URIs and tokens yourself. Login sessions are managed per user, can be created, switched and removed. Validity of the login session is the same as for the Web UI. Subsequent commands will use the configured remote login session to perform remote communication.</p>
+</div>
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-A <em>master</em> is always a <em>slave</em> as well. The <em>master</em> just has the additional capability to control other <em>slaves</em>, and provides the configuration Web UI.
+Since login sessions are persistent, it can be easy to confuse which session/server is currently worked with. Always verify that the correct session is actively used by commands when performing modifications on the server, e.g. deleting an <strong>Instance</strong>.
 </td>
 </tr>
 </table>
 </div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shell</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides an interactive shell which can execute tools. The shell can also be fed with a script file which contains a series of commands.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_product_management_commands">Product management commands</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>product</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mixed</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List or create <strong>Products</strong> locally. Fetches required dependencies from the given remote <strong>BDeploy</strong> server. Has the ability to push the resulting <strong>Product</strong> to the target <strong>BDeploy</strong> server.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-deployment</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_remote_server_management_commands">Remote server management commands</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-central</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manage remote configuration related to <em>managed</em> servers on a <em>central</em> server. Also allows to attach <em>managed</em> servers to a <em>central</em> server.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-deployment</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Manage <strong>Instance</strong> deployment (<em>install</em>, <em>activate</em>, <em>uninstall</em>, <em>updateTo</em> (product version)) on a remote <strong>BDeploy</strong> server.</p>
 </div>
@@ -4133,60 +4395,107 @@ The <code>--updateTo</code> command will only work if the new product version ca
 </tr>
 </table>
 </div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-group</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manage <strong>Instance Groups</strong> on a remote <strong>BDeploy</strong> server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-instance</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and manage <strong>Instances</strong> on the remote <strong>BDeploy</strong> server. Can be used to <strong>export</strong> (to <em>ZIP</em>) and <strong>import</strong> (from <em>ZIP</em>) <strong>Instances</strong> locally.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-master</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Query and manage system information on a remote <strong>BDeploy</strong> server. Allows to update both the <strong>BDeploy</strong> system software as well as the <strong>BDeploy</strong> launcher binaries.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-plugin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manage plugins available on the remote <strong>BDeploy</strong> server or install new ones from local <code>jar</code> files.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-process</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Query and manage application processes managed by <strong>BDeploy</strong> on a remote <strong>BDeploy</strong> server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-product</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query and manage products available on the given <strong>Instance Group</strong> on a remote <strong>BDeploy</strong> server.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-repo</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Query and manage <strong>Software Repositories</strong> on a remote <strong>BDeploy</strong> server.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slave</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remote-user</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manages users on a remote <strong>BDeploy</strong> server.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_server_commands">Server commands</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>master</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Runs the <strong>BDeploy</strong> <em>minion</em> in <em>master</em> mode. Requires a root directory initialized with the <code>init</code> command.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <em>master</em> is always a <em>slave</em> as well. The <em>master</em> just has the additional capability to control other <em>slaves</em>, and provides the configuration Web UI.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>slave</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Runs the <strong>BDeploy</strong> <em>minion</em> in <em>slave</em> mode. Requires a root directory initialized with the <code>init</code> command.</p>
 </div>
 <div class="paragraph">
 <p>Also used to register a <em>slave</em> with the <em>master</em>. For this, the <code>slave</code> command is run on the <em>master</em> with the <code>--add</code> option.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manages available <em>storage locations</em>. A <em>storage location</em> is a folder where the <strong>BDeploy</strong> <em>master</em> puts the <strong>BHives</strong> required to store data for <strong>Instance Groups</strong> and <strong>Software Repositories</strong>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>token</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows generation of new <em>access tokens</em>, see <a href="#_security">Security</a>.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>certificate</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows to change the certificate used by the <strong>BDeploy</strong> server for token signing and HTTPS traffic encryption.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>user</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Manages local users for a <em>master</em>. These users can be used to authenticate through the Web UI login dialog.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set-mode</code></p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect4">
+<h5 id="_utility_commands">Utility commands</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bhive</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wraps around to the <a href="#_bhive_cli">BHive CLI</a>. Can be used to access <strong>BHive</strong> CLI commands if the <strong>BHive</strong> stand-alone binaries are not available. Usage: <code>bdeploy bhive &lt;command&gt;</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_bhive_cli">BHive CLI</h4>
@@ -4199,33 +4508,22 @@ The <code>--updateTo</code> command will only work if the new product version ca
 <div class="paragraph">
 <p>Much like Git, <strong>BHive</strong> only knows two commands that actually perform remote communication: <code>fetch</code> and <code>push</code>. All other commands are performing their work locally.</p>
 </div>
+<div class="sect4">
+<h5 id="_analysis_and_maintenance_commands">Analysis and maintenance commands</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
-<col style="width: 10%;">
-<col style="width: 65%;">
+<col style="width: 75%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Command</th>
-<th class="tableblock halign-left valign-top">Remote</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reads a <strong>Manifest</strong> from the given <strong>BHive</strong> and writes it&#8217;s content to a given target folder.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fetch</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fetches the given <strong>Manifests</strong> from a given remote <strong>BHive</strong>.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>fsck</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Performs a file system check (<em>fsck</em>). This involves resolving all inter-<strong>Manifest</strong> dependencies, as well as re-hashing all objects in the underlying storage to assert that all objects in the storage are valid.</p>
 </div>
@@ -4234,63 +4532,117 @@ The <code>--updateTo</code> command will only work if the new product version ca
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>import</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Import a given folder into a given <strong>BHive</strong> and associate the given <strong>Manifest</strong> key with it.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>manifest</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manage existing <strong>Manifests</strong> in a given <strong>BHive</strong>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>prune</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Remove unreferenced objects from the given <strong>BHive</strong> to free up disc space.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>push</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Push the given <strong>Manifests</strong> to the given remote <strong>BHive</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>serve</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Serves one or more given <strong>BHives</strong> over the network. The same thing as <strong>BDeploy</strong> does internally, provided as CLI tool for maintenance reasons.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>token</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows generation of new <em>access tokens</em>, see <a href="#_security">Security</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>tree</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Read and diff <strong>Manifests</strong> from the given <strong>BHive</strong>. Allows to compare the contents of <strong>Manifests</strong>, view differences and the estimated data transfer required to perform a delta 'update' if a potential remote <strong>BHive</strong> already has one of them.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect4">
+<h5 id="_filesystem_interaction_commands">Filesystem interaction commands</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>export</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reads a <strong>Manifest</strong> from the given <strong>BHive</strong> and writes it&#8217;s content to a given target folder.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>import</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Import a given folder into a given <strong>BHive</strong> and associate the given <strong>Manifest</strong> key with it.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_remote_server_interaction_commands">Remote server interaction commands</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fetch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fetches the given <strong>Manifests</strong> from a given remote <strong>BHive</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>push</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Push the given <strong>Manifests</strong> to the given remote <strong>BHive</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_server_commands_2">Server commands</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>serve</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serves one or more given <strong>BHives</strong> over the network. The same thing as <strong>BDeploy</strong> does internally, provided as CLI tool for maintenance reasons.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_launcher_cli">Launcher CLI</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
-<col style="width: 10%;">
-<col style="width: 65%;">
+<col style="width: 75%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Command</th>
-<th class="tableblock halign-left valign-top">Remote</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>launcher</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reads a given <code>.bdeploy</code> file, which describes all required information for the launcher to contact a <strong>BDeploy</strong> server and download a <em>client</em> application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>uninstaller</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uninstalls a given application and cleans up in the local storage.</p></td>
 </tr>
 </tbody>
 </table>
@@ -4561,7 +4913,7 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 3.0.0<br>
+Version 3.1.0<br>
 Last updated 2020-06-19 10:24:07 +0200
 </div>
 </div>
