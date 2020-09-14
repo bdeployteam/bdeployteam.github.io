@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 3.1.0</span>
+<span id="revnumber">version 3.1.1</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1294,6 +1294,18 @@ You will notice that the name of the process now matches the name of the templat
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_configure_ports">Configure Ports</h4>
+<div class="paragraph">
+<p>The <strong>Configure Ports</strong> page can be reached from the <strong>Instance</strong> context menu. This page provides a concise overview of all ports (<code>CLIENT_PORT</code> and <code>SERVER_PORT</code> parameters) used in the <strong>Instance</strong>.</p>
+</div>
+<div class="paragraph">
+<p>You can edit port assignments directly from this dialog. The <strong>Shift Ports</strong> action allows to bulk edit port parameters and shift them upwards or downwards by a given offset.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>Export CSV</strong> action allows to export a CSV list of all ports configured in the system. This can be used to pass on information to external partners, for instance for further firewall configuration, etc.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_deployment">Deployment</h3>
@@ -1512,6 +1524,18 @@ You will notice that the name of the process now matches the name of the templat
 <div class="imageblock text-center">
 <div class="content">
 <a class="image" href="images/BDeploy_Process_Output.png"><img src="images/BDeploy_Process_Output.png" alt="Show and Follow Process Output" width="480"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_server_ports">Server Ports</h4>
+<div class="paragraph">
+<p>The applications server ports (if any are defined) and their state on the target minion can be viewed by clicking on the plug icon below the process controls. Each parameter of type <code>SERVER_PORT</code> is displayed here, with its description and configured value. The state is either a warning icon (port not open) or a green check ico (port is open). "Open" just means that the port is used on the target system currently. <strong>BDeploy</strong> cannot check whether the port was opened by the correct application.</p>
+</div>
+<div class="sect4">
+<h5 id="_server_ports_per_node">Server Ports per Node</h5>
+<div class="paragraph">
+<p>The same list of <code>SERVER_PORT</code> parameters can be found on a node as well. This will allow to view all port states for all applications configured to that node.</p>
 </div>
 </div>
 </div>
@@ -2760,7 +2784,12 @@ The value of the parameter is not part of this definition, nor is any potential 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Type of parameter. This defines the type of input field used to edit the parameter. Available are <code>STRING</code>, <code>NUMERIC</code>, <code>BOOLEAN</code>, <code>PASSWORD</code>.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Type of parameter. This defines the type of input field used to edit the parameter. Available are <code>STRING</code>, <code>NUMERIC</code>, <code>BOOLEAN</code>, <code>PASSWORD</code>, <code>CLIENT_PORT</code>, <code>SERVER_PORT</code></p>
+</div>
+<div class="paragraph">
+<p>The <code>CLIENT_PORT</code> and <code>SERVER_PORT</code> types are treated like <code>NUMERIC</code> parameters throughout the whole application, with the exception of the dialogs that deal with ports specifically.</p>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>condition</code></p></td>
@@ -4913,7 +4942,7 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 3.1.0<br>
+Version 3.1.1<br>
 Last updated 2020-06-19 10:24:07 +0200
 </div>
 </div>
