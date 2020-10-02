@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 3.1.1</span>
+<span id="revnumber">version 3.2.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1585,19 +1585,22 @@ The <b class="button">delete</b> button can be used to delete a file. This requi
 <div class="sect2">
 <h3 id="_instance_history">Instance History</h3>
 <div class="paragraph">
-<p>After a while, you will probably end up with a lot of changes and new versions.<br>
-You can <strong>view</strong> all those changes, <strong>who</strong> made them and <strong>when</strong> they were made on the <strong>instance history page</strong>.</p>
+<p>After a while, you will probably end up with a lot of changes and new versions. You can <strong>view</strong> all those changes, <strong>who</strong> made them and <strong>when</strong> they were made on the <strong>Instance History Page</strong>. To open the history, go to the <strong>Instance overview</strong>, click on the <strong>menu</strong> on the right and click on <strong>Instance History</strong>.</p>
 </div>
 <div class="paragraph">
-<p>To open the history, go to the <strong>instance overview</strong>, click on the <strong>menu</strong> on the right and click on <strong>instance history</strong>.</p>
+<p>A timeline with events on each side is shown. There are three types of events <em>Configuration</em>, <em>Deployments</em> and <em>Runtime</em> events. Each event has a title the corresponding <strong>version</strong>, as well as the <strong>time</strong> the event happened.</p>
 </div>
-<div class="paragraph">
-<p>You will be greeted with <em>Creation</em> <strong>cards</strong> on each side of a timeline.
-Each <strong>card</strong> consists of a title containing the <strong>event</strong> and the corresponding <strong>version</strong>, as well as the <strong>time</strong> the event happened.</p>
-</div>
-<div class="paragraph">
-<p>There are three types of events. <em>Version creations</em> (configurations), <em>Deployments</em> and <em>Runtime</em> events.<br>
-<em>Deployments</em> and <em>Runtime</em> events are disabled by default.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<em>Deployments</em> and <em>Runtime</em> events are not displayed by default.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1612,8 +1615,7 @@ If you haven&#8217;t made any changes, only one card will be shown: <em>Version 
 </table>
 </div>
 <div class="paragraph">
-<p>Once you <strong>scroll</strong> to the bottom, a loading spinner will show up and more events get <strong>loaded</strong>.<br>
-You can scroll on until you reach the first event.</p>
+<p>Once you <strong>scroll</strong> to the bottom, a loading spinner will show up and more events get <strong>loaded</strong>. You can scroll on until you reach the first event.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1621,8 +1623,7 @@ You can scroll on until you reach the first event.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>To see the <strong>user</strong> responsible for a <em>Creation</em>, open a card by clicking on it.<br>
-<em>Creation</em> cards also list <strong>all changes</strong> of the corresponding version to the previous version.</p>
+<p>To see the <strong>user</strong> responsible for change, open a card by clicking on it.</p>
 </div>
 <div class="imageblock text-center">
 <div class="content">
@@ -1636,64 +1637,42 @@ You can scroll on until you reach the first event.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To <strong>close all</strong> opened cards, click on the rightmost button of the toolbar on the top.<br>
-If you want <strong>only one</strong> card open at once, click on the button to the left of it. With that on, once you open a new card, all other cards will be closed.
+To <strong>close all</strong> opened cards, click on the rightmost button of the toolbar on the top.  If you want <strong>only one</strong> card open at once, click on the button to the left of it. With that on, once you open a new card, all other cards will be closed.
 </td>
 </tr>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_comparing_two_versions">Comparing two versions</h5>
+<div class="sect3">
+<h4 id="_configuration_events">Configuration Events</h4>
 <div class="paragraph">
-<p>You can <strong>compare</strong> any two versions to view all changes made between those versions.<br>
-Select two versions by clicking on the button with <strong>two arrows</strong> in both <em>Creation</em> cards.<br>
-The versions will show up under <strong><em>Compare Versions</em></strong> in the toolbar on the top.
-To compare them now, click on the <strong>arrow</strong> inbetween.</p>
+<p>Each change that leads to a new <strong>Instance Version</strong> is a deployment event. Samples: Adding a new application, chaning the value of a parameter or changing the product version &#8230;&#8203;</p>
 </div>
 <div class="paragraph">
-<p>A <strong>dialog</strong> listing all changes will show up.</p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<a class="image" href="images/BDeploy_User_History_ComparisonDialog.png"><img src="images/BDeploy_User_History_ComparisonDialog.png" alt="Compare versions" width="480"></a>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_filtering_events">Filtering events</h5>
-<div class="paragraph">
-<p>To <strong>select</strong> which events are shown, click on the <strong>filter button</strong> on the left of <em>Compare Versions</em> in the toolbar on top and enable/disable the shown events.<br></p>
-</div>
-<div class="imageblock text-center">
-<div class="content">
-<a class="image" href="images/BDeploy_User_History_ShowMenu.png"><img src="images/BDeploy_User_History_ShowMenu.png" alt="Filter events" width="480"></a>
-</div>
+<p>The body of the card list <strong>all changes</strong> of the corresponding version to the previous version.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_deployments">Deployments</h4>
+<h4 id="_deployment_events">Deployment Events</h4>
 <div class="paragraph">
-<p><em>Deployments</em> are: <code>INSTALL</code>,<code>ACTIVATE</code>,<code>DEACTIVATE</code>,<code>UNINSTALL</code>.</p>
+<p><em>Deployments</em> events are: <code>INSTALL</code>,<code>ACTIVATE</code>,<code>DEACTIVATE</code>,<code>UNINSTALL</code>.</p>
 </div>
 <div class="paragraph">
-<p><em>Deployments</em> will show up once you <strong>enabled</strong> them.<br>
-Each card consists of a title containing the <strong>deployment type</strong> and the corresponding <strong>version</strong>, as well as the <strong>time</strong> the event happened.</p>
+<p><em>Deployments</em> will show up once you <strong>enabled</strong> them. Each card consists of a title containing the <strong>deployment type</strong> and the corresponding <strong>version</strong>, as well as the <strong>time</strong> the event happened.</p>
 </div>
 <div class="paragraph">
 <p>The body of a <em>Deployment</em> card shows the <strong>user</strong> responsible for the <strong>deployment</strong>.</p>
 </div>
-<div class="sect4">
-<h5 id="_runtime_events">Runtime events</h5>
+</div>
+<div class="sect3">
+<h4 id="_runtime_events">Runtime Events</h4>
 <div class="paragraph">
-<p><em>Runtime</em> events are: <code>START</code>, <code>STOP</code>, <code>CRASH</code>, <code>RESTART</code>, <code>PERMANENT CRASH</code>, <code>STOP PLANNED</code>.</p>
+<p><em>Runtime</em> events are: <code>START</code>, <code>STOP</code>, <code>CRASH</code>, <code>RESTART</code>, <code>PERMANENT CRASH</code>.</p>
 </div>
 <div class="paragraph">
-<p><em>Runtime</em> events will show up once you <strong>enabled</strong> them.<br>
-Each card consists of a title containing the <strong>event</strong> and the corresponding <strong>application</strong>, as well as the <strong>time</strong> the event happened.</p>
+<p><em>Runtime</em> events will show up once you <strong>enabled</strong> them. Each card consists of a title containing the <strong>runtime event</strong> and the corresponding <strong>application</strong>, as well as the <strong>time</strong> the event happened.</p>
 </div>
 <div class="paragraph">
-<p>The body of a <em>Runtime</em> card lists the <strong>User</strong> responsible for the event as well as the <strong>node</strong> and <strong>version</strong> of the application.<br>
-If the not the user but the <strong>process</strong> or <strong>bdeploy</strong> triggered the <em>Runtime</em> event, <strong><em>BDeploy System</em></strong> is shown as user.</p>
+<p>The body of a <em>Runtime</em> card lists the <strong>User</strong> responsible for the event as well as the <strong>node</strong> and <strong>version</strong> of the application. If the not the user but the <strong>process</strong> or <strong>BDeploy</strong> triggered the <em>Runtime</em> event, <strong><em>BDeploy System</em></strong> is shown as user.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1702,7 +1681,7 @@ If the not the user but the <strong>process</strong> or <strong>bdeploy</strong>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <strong>process ID</strong> will also show up given that it was present at the <strong>moment</strong> the event happened.
+The <strong>Process ID</strong> will also show up given that it was present at the <strong>moment</strong> the event happened.
 </td>
 </tr>
 </table>
@@ -1713,18 +1692,41 @@ The <strong>process ID</strong> will also show up given that it was present at t
 </div>
 </div>
 </div>
-</div>
 <div class="sect3">
 <h4 id="_searching">Searching</h4>
 <div class="paragraph">
 <p>You can <strong>search</strong> for specific events with the <strong>search-bar</strong> on the top.</p>
 </div>
 <div class="paragraph">
-<p>After you entered your <strong>search term</strong> and hit <strong>enter</strong> or pressed the search <strong>button</strong> on the right, <br>
-all cards of which the <strong>title</strong>, <strong>user</strong> or <strong>PID</strong> contain your term, will show up.</p>
+<p>After you entered your <strong>search term</strong> and hit <strong>enter</strong> or pressed the search <strong>button</strong> on the right, all cards of which the <strong>title</strong>, <strong>user</strong> or <strong>PID</strong> contain your term, will show up.</p>
 </div>
 <div class="paragraph">
 <p>To show everything again, <strong>empty</strong> the search bar first and then hit enter or press the search button.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_comparing_two_versions">Comparing two versions</h4>
+<div class="paragraph">
+<p>You can <strong>compare</strong> any two versions to view all changes made between those versions. Select two versions by clicking on the button with <strong>two arrows</strong>. The versions will show up under <strong><em>Compare Versions</em></strong> in the toolbar on the top. To compare them now, click on the <strong>arrow</strong> inbetween.</p>
+</div>
+<div class="paragraph">
+<p>A <strong>dialog</strong> listing all changes will show up.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_User_History_ComparisonDialog.png"><img src="images/BDeploy_User_History_ComparisonDialog.png" alt="Compare versions" width="480"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_filtering_events">Filtering events</h4>
+<div class="paragraph">
+<p>To <strong>select</strong> which events are shown, click on the <strong>filter button</strong> on the left of <em>Compare Versions</em> in the toolbar on top and enable/disable the shown events.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_User_History_ShowMenu.png"><img src="images/BDeploy_User_History_ShowMenu.png" alt="Filter events" width="480"></a>
+</div>
 </div>
 </div>
 </div>
@@ -1750,10 +1752,23 @@ all cards of which the <strong>title</strong>, <strong>user</strong> or <strong>
 <div class="sect3">
 <h4 id="_installer">Installer</h4>
 <div class="paragraph">
-<p>An <strong>Installer</strong> is provided for each <strong>Client Application</strong> to make the installation as easy as possible. The installer does not have any prerequisites and can be downloaded and executed by any user. No administrative privileges are required.</p>
+<p>An <strong>Installer</strong> is provided for each <strong>Client Application</strong> to make the installation as easy as possible. The installer does not have any prerequisites and can be downloaded and executed by any user.</p>
 </div>
 <div class="paragraph">
-<p>The <strong>Installer</strong> will check if the latest version of the <strong>Launcher</strong> is already installed. If not then the <strong>Launcher</strong> is downloaded and stored on the client computer. The user can then start a <strong>Client Application</strong> with the branded <strong>Link</strong> that is stored on the <strong>Desktop</strong> or in the <strong>Start Menu</strong>.</p>
+<p>The <strong>Installer</strong> checks if the latest version of the <strong>Launcher</strong> is already installed. If not then the <strong>Launcher</strong> is downloaded and stored on the client computer. The user can then start a <strong>Client Application</strong> with the branded <strong>Link</strong> that is stored on the <strong>Desktop</strong> or in the <strong>Start Menu</strong>.</p>
+</div>
+<div class="sect4">
+<h5 id="_windows">Windows</h5>
+<div class="paragraph">
+<p>By default the <strong>Launcher</strong> is installed for the <strong>Current User</strong> in the <em>%LOCALAPPDATA%\BDeploy</em> folder (<em>C:/Users/&lt;user&gt;/AppData/Local/BDeploy</em>). The location can be adopted by setting the <strong>BDEPLOY_HOME</strong> environment variable before launching the installer. No administrative privileges are required for this installation type.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>Launcher</strong> can also be installed for <strong>All</strong> users by starting the installer with the <strong>/ForAllUsers</strong> flag. The default location in that case is <em>%ProgramFiles%/BDeploy</em> (<em>C:/Program Files/BDeploy</em>). The location can be adopted by setting the <strong>BDEPLOY_HOME</strong> environment variable before launching the installer. Ensure that all users have access to the customized location. Otherwise they cannot launch the application.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">./Installer.exe /ForAllUsers</pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1762,10 +1777,29 @@ all cards of which the <strong>title</strong>, <strong>user</strong> or <strong>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <strong>Installer</strong> stores the <strong>Launcher</strong> and all <strong>Client Applications</strong> under <em>%LOCALAPPDATA%\BDeploy</em> on Windows or <em>$HOME/.bdeploy</em> on Linux. This location can be changed by setting the environment variable <strong>BDEPLOY_HOME</strong>.
+Installation for <strong>All</strong> users requires administrative privileges. Additional configuration might be required depending on the installation location. See <a href="#_multi_user_installations">Multi-User Installations</a> for more information.
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_unattended_mode">Unattended Mode</h5>
+<div class="paragraph">
+<p>The <strong>Installer</strong> can also be started in an unattended mode with the <strong>/Unattended</strong> flag so that no UI is shown.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">./Installer.exe /Unattended
+./Installer.exe /Unattended /ForAllUsers</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_linux">Linux</h4>
+<div class="paragraph">
+<p>The <strong>Installer</strong> stores the <strong>Launcher</strong> and all <strong>Client Applications</strong> in <em>$HOME/.bdeploy</em>. This location can be changed by setting the environment variable <strong>BDEPLOY_HOME</strong>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -3333,6 +3367,244 @@ groups: <i class="conum" data-value="3"></i><b>(3)</b>
 <p>Use <code>bhive push</code> to push the resulting <strong>Product Manifest</strong> from the local <strong>BHive</strong> to an <strong>Instance Group</strong> on a remote <strong>BDeploy</strong> server.</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_via_gradle">Via Gradle</h4>
+<div class="paragraph">
+<p><strong>BDeploy</strong> provides a <a href="https://plugins.gradle.org/plugin/io.bdeploy.gradle.plugin"><strong>Gradle</strong> plugin</a>. This plugin can be used to build a product out of your application.</p>
+</div>
+<div class="paragraph">
+<p>Given a sample Java application which has been created from the default gradle template using <code>gradle init</code>, these are the changes you need to build a <strong>BDeploy</strong> product for this single application. For this demo, the application is named <code>test</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Add the below code to your existing <code>build.gradle</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>build.gradle</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="groovy">plugins {
+  ...
+  id 'io.bdeploy.gradle.plugin' version '3.1.1-1' <i class="conum" data-value="1"></i><b>(1)</b>
+}
+
+version = "1.0.0-SNAPSHOT" <i class="conum" data-value="2"></i><b>(2)</b>
+
+ext { <i class="conum" data-value="3"></i><b>(3)</b>
+  buildDate = new Date().format('yyyyMMddHHmm')
+  buildVersion = project.version.replaceAll('SNAPSHOT', buildDate)
+}
+
+task buildProduct(type: io.bdeploy.gradle.BDeployProductTask, dependsOn: installDist) { <i class="conum" data-value="4"></i><b>(4)</b>
+  product {
+    version = project.ext.buildVersion
+    productInfo = file('bdeploy/product-info.yaml')
+
+    applications {
+      test {
+        yaml = new File(installDist.destinationDir, 'app-info.yaml')
+      }
+    }
+
+    labels.put('buildDate', project.ext.buildDate)
+  }
+}
+
+task zipProduct(type: io.bdeploy.gradle.BDeployZipTask, dependsOn: buildProduct) { <i class="conum" data-value="5"></i><b>(5)</b>
+  of buildProduct
+  output = new File(buildDir, "product-" + project.ext.buildVersion + ".zip");
+}
+
+
+task pushProduct(type: io.bdeploy.gradle.BDeployPushTask, dependsOn: buildProduct) { <i class="conum" data-value="6"></i><b>(6)</b>
+  of buildProduct
+
+  target.servers {
+    if(project.hasProperty('server')) {
+      myServer { <i class="conum" data-value="7"></i><b>(7)</b>
+        uri = project.getProperty('server')
+        token = project.getProperty('token')
+        instanceGroup = project.getProperty('group')
+      }
+    }
+  }
+}
+
+...</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Applies the plugin <strong>BDeploy</strong> gradle plugin.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Sets the project version. <strong>Gradle</strong> does not strictly require a version, and uses 'unspecified' as default. <strong>BDeploy</strong> requires <em>some</em> sort of version, and setting it for the whole project is good practice.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Calculate a build date, which will be substituted instead of the <code>SNAPSHOT</code> in the version. This is optional, you could just plain use the version set. The actual <code>buildVersion</code> used later when building the product is derived from the project version and the <code>buildDate</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This task will actually build the product with the configured version. The actual data about the product is loaded from <code>bdeploy/product-info.yaml</code>, which we will create in a second. Note that this task depends on <code>installDist</code>, which will unpack the binary distribution of the application in this project into a folder, so <strong>BDeploy</strong> can import the individual files. Depending on the type of application and the way it is built, there might be different ways to achieve this.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>If <code>buildProduct</code> built a product, this task will package it as a ZIP file. Note that a ZIP will always contain <em>all of</em> the product, whereas <code>pushProduct</code> can push only required deltas which are not present on the target server.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>The <code>pushProduct</code> task can push required deltas to one or more configured target servers. When calling this task, you need to set according project properties, e.g. using <code>-Pserver=https://server:7701/api</code> or in <code>~/.gradle/gradle.properties</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Multiple target servers can be specified in the <code>target.servers</code> section. The plugin will push to each of them.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next we need the required descriptors for the product and the application. For this sample, the information will be the bare minimum, please see <code><a href="#_app_info_yaml">app-info.yaml</a></code> and <code><a href="#_product_info_yaml">product-info.yaml</a></code> for all supported content.</p>
+</div>
+<div class="paragraph">
+<p>Lets start off with the <code><a href="#_app_info_yaml">app-info.yaml</a></code>, which describes the <code>test</code> application.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This file <strong>must</strong> be part of the binary distribution of an application and reside in its root directory. To achieve this, the most simple way (using the gradle <code>application</code> plugin) is to put the file in the subdirectory <code>src/main/dist</code> in the project folder.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>src/main/dist/app-inf.yaml</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">name: Test Application
+
+supportedOperatingSystems: <i class="conum" data-value="1"></i><b>(1)</b>
+  - LINUX
+  - WINDOWS
+
+startCommand:
+  launcherPath: "{{M:SELF}}/bin/test{{WINDOWS:.bat}}" <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>By default, the <strong>BDeploy</strong> plugin will make this application available for <strong>all</strong> the supported platforms. You can configure a <em>different</em> set of Operating Systems to build for in the <code>test</code> application configuration in <code>build.gradle</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This demo <code>app-info.yaml</code> only defines the path to the launcher, which for this demo project (named <code>test</code>) is <code>bin/test</code> on <code>LINUX</code>, and <code>bin/test.bat</code> on <code>WINDOWS</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Finally, we need a <code><a href="#_product_info_yaml">product-info.yaml</a></code> describing the product itself. We&#8217;ll put this file into a <code>bdeploy</code> subfolder. This is not required, it can reside anywhere in the project. You just need to adapt the path to it in the <code>build.gradle</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The reason why you want to put this file into a separate folder is because it allows to reference various other files by relative path. Those files (and folders) must the reside next to the <code><a href="#_product_info_yaml">product-info.yaml</a></code>. Over time this can grow, and may clutter your source folders if you do not separate it.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>bdeploy/product-info.yaml</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">name: Test Product
+product: io.bdeploy/test <i class="conum" data-value="1"></i><b>(1)</b>
+vendor: BDeploy Team
+
+applications:
+  - test <i class="conum" data-value="2"></i><b>(2)</b>
+
+versionFile: product-version.yaml <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This is the unique ID of the product. This is basically a 'primary key' and should not change over time.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code><a href="#_product_info_yaml">product-info.yaml</a></code> needs to list included applications. These applications also need to be available from the <code>product-version.yaml</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>versionFile</code> parameter <strong>must</strong> be set. If the relative path given here does <strong>not</strong> exist, the <strong>BDeploy</strong> <strong>Gradle</strong> plugin will generate this file for you, using the given version and applications. Otherwise you can provide this file and have more manual control over applications. In case the plugin generates the file for you, it will be deleted right after the build.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>That&#8217;s all that is required to build a product. You can now run <code>./gradlew zipProduct</code> on the CLI to try it out. The result will be a <code>build/product-1.0.0-XXX.zip</code> where <code>XXX</code> is the <code>buildDate</code> we set previously. The content of the ZIP file is a <strong>BHive</strong>, which is the internal data format used by <strong>BDeploy</strong>. You can upload this product to any <strong>BDeploy</strong> server using its Web UI.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>build</code> folder also contains the <strong>BHive</strong> in unzipped form in the <code>build/productBHive</code> folder. This folder is temporary but will hold all product versions built since the last <code>./gradlew clean</code>. You can use this <strong>BHive</strong> for manual pushing.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>pushProduct</code> task will do the same thing (build the product) but then push it to a target server. For this, you need to specify the <code>server</code>, <code>token</code> and <code>instanceGroup</code> project properties to match your setup.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Using <code>./gradlew clean buildProduct</code> you can build the <strong>same</strong> product version over and over again. However once pushed to a remote server, the same product version <strong>must not</strong> be reused. If you try to build and push the <strong>same</strong> version more than once, the server will silently ignore your attempt to push, as it assumes that it already has all the content (it has a product with this version already, and all artifacts are assumed to be immutable in <strong>BDeploy</strong>).
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -4942,8 +5214,8 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 3.1.1<br>
-Last updated 2020-06-19 10:24:07 +0200
+Version 3.2.0<br>
+Last updated 2020-09-18 09:21:50 +0200
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
