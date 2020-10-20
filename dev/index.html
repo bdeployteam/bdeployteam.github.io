@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy Developer Documentation</h1>
 <div class="details">
-<span id="revnumber">version 3.1.1</span>
+<span id="revnumber">version 3.2.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -78,6 +78,7 @@
 <li><a href="#_repository_and_gradle_build">Repository and Gradle Build</a></li>
 <li><a href="#_eclipse_workspace">Eclipse Workspace</a></li>
 <li><a href="#_running_bdeploys_web_ui_from_vscode">Running BDeploy&#8217;s Web UI from VSCode</a></li>
+<li><a href="#_building_for_other_platforms">Building for other platforms</a></li>
 </ul>
 </li>
 <li><a href="#_plugins">Plugins</a>
@@ -1191,6 +1192,31 @@ The BDeploy master will host the Web UI also when started from the <strong>Eclip
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_building_for_other_platforms">Building for other platforms</h3>
+<div class="paragraph">
+<p>You can build distribution packages for other platforms by installing their respective JDKs. You need to specify those JDKs as properties during the build. To simplify the process, you can create these entries in <code>~/.gradle/gradle.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="properties">systemProp.win64jdk=/home/mduft/work/jdks/windows/jdk-11.0.8+10
+systemProp.linux64jdk=/home/mduft/work/jdks/linux/jdk-11.0.8+10
+#systemProp.mac64jdk=/home/mduft/work/jdks/mac/jdk-11.0.8+10/Contents/Home</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Of course you need to download those JDKs and adapt the paths to your environment.
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1378,8 +1404,8 @@ The BDeploy master will host the Web UI also when started from the <strong>Eclip
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 3.1.1<br>
-Last updated 2020-05-26 15:15:52 +0200
+Version 3.2.0<br>
+Last updated 2020-09-18 09:21:50 +0200
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
