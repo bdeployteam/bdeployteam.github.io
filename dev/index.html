@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy Developer Documentation</h1>
 <div class="details">
-<span id="revnumber">version 3.2.0</span>
+<span id="revnumber">version 3.3.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -54,7 +54,7 @@
 <li><a href="#_troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
-<li><a href="#_minion_masterslave_server">Minion (master/slave) Server</a></li>
+<li><a href="#_minion_masternode_server">Minion (master/node) Server</a></li>
 <li><a href="#_client_launcher">Client Launcher</a></li>
 <li><a href="#_interfaces">Interfaces</a>
 <ul class="sectlevel2">
@@ -352,13 +352,13 @@ of the functionality that bhive provides.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_minion_masterslave_server">Minion (master/slave) Server</h2>
+<h2 id="_minion_masternode_server">Minion (master/node) Server</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The minion is the main BDeploy deliverable. It contains all the command tools as well as the server for remote services and the configuration web UI.</p>
 </div>
 <div class="paragraph">
-<p>Use <code>bdeploy init &#8230;&#8203;</code> to initalize a minion root, then use either <code>bdeploy master &#8230;&#8203;</code> or <code>bdeploy slave&#8230;&#8203;</code> to launch a master (including web UI) or a slave (controlled by a master) from that root</p>
+<p>Use <code>bdeploy init &#8230;&#8203;</code> to initalize a minion root, then use <code>bdeploy start &#8230;&#8203;</code> to launch a master (including web UI) or a headless node (controlled by a master) from that root, depending on the mode given during <code>init</code>.</p>
 </div>
 </div>
 </div>
@@ -612,7 +612,7 @@ of the functionality that bhive provides.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>InstanceNodeManifest</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Keeps track of the <strong>Applications</strong> and their configuration per configured <strong>Node</strong> in the <strong>Instance</strong>. A <strong>Node</strong> always corresponds to a registered <strong>Slave</strong> on the target <strong>Master</strong>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keeps track of the <strong>Applications</strong> and their configuration per configured <strong>Node</strong> in the <strong>Instance</strong>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ProductManifest</code></p></td>
@@ -624,7 +624,7 @@ of the functionality that bhive provides.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>MinionManifest</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Holds information about available slaves on a <strong>master</strong>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Holds information about available nodes on a <strong>master</strong>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>UserDatabase</code></p></td>
@@ -1059,7 +1059,7 @@ You need root permissions on Linux if you installed NodeJS (and NPM) through you
 <p><code>./launcher/build/distributions</code> - Distributable packages of the launcher application which is used to start client applications.</p>
 </li>
 <li>
-<p><code>./minion/build/distributions</code> - Distributable packages of the main BDeploy binaries. They contains the <strong>master</strong> and <strong>slave</strong> server commands as well as all CLI commands available to BDeploy Administrators. The distribution also contains all supported launcher packages as nested ZIP files.</p>
+<p><code>./minion/build/distributions</code> - Distributable packages of the main BDeploy binaries. They contains the <strong>start</strong> (which runs <strong>BDeploy</strong> <strong>master</strong> and <strong>node</strong> servers) command as well as all CLI commands available to BDeploy Administrators. The distribution also contains all supported launcher packages as nested ZIP files.</p>
 </li>
 <li>
 <p><code>./interfaces/build/libs/bdeploy-api-*-all.jar</code> - The distributable API bundle including all external dependencies. This can be used to create additional integrations for BDeploy.</p>
@@ -1199,9 +1199,9 @@ The BDeploy master will host the Web UI also when started from the <strong>Eclip
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="properties">systemProp.win64jdk=/home/mduft/work/jdks/windows/jdk-11.0.8+10
-systemProp.linux64jdk=/home/mduft/work/jdks/linux/jdk-11.0.8+10
-#systemProp.mac64jdk=/home/mduft/work/jdks/mac/jdk-11.0.8+10/Contents/Home</code></pre>
+<pre class="prettyprint highlight nowrap"><code data-lang="properties">systemProp.win64jdk=/path/to/jdks/windows/jdk-11.0.8+10
+systemProp.linux64jdk=/path/to/jdks/linux/jdk-11.0.8+10
+#systemProp.mac64jdk=/path/to/jdks/mac/jdk-11.0.8+10/Contents/Home</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1404,8 +1404,8 @@ Of course you need to download those JDKs and adapt the paths to your environmen
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 3.2.0<br>
-Last updated 2020-09-18 09:21:50 +0200
+Version 3.3.0<br>
+Last updated 2020-05-26 15:15:52 +0200
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
