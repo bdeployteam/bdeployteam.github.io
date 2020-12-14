@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 3.4.0</span>
+<span id="revnumber">version 3.5.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1057,6 +1057,9 @@ You can use the <em>Search Bar</em> in the <em>Parameter Settings</em> header to
 </div>
 </div>
 <div class="paragraph">
+<p>The <strong>Configuration Files</strong> of an <strong>Instance</strong> can be compared with the original <strong>Configuration Files</strong> of the <strong>Product</strong> at any time. The <b class="button">Synchronize with Product</b> button starts the comparison, whereupon the files in the table are marked as new, original, changed or unknown. Changed files have to be synchronized via the edit dialog. There the original product file or the changed file can be adopted. After all changed files are processed, the <b class="button">Finish Synchronization</b> button finishes the synchronization.</p>
+</div>
+<div class="paragraph">
 <p>New configuration files can be be created using the <b class="button">+</b> button. This will open the integrated editor.
 Additionally to that existing files can be uploaded using the provided <b class="button">Upload</b> button.</p>
 </div>
@@ -1194,6 +1197,18 @@ All <strong>Applications</strong> are marked as modified as they are now based o
 <div class="content">
 <a class="image" href="images/BDeploy_Product_Downgrade_Validation.png"><img src="images/BDeploy_Product_Downgrade_Validation.png" alt="Validation Issues After Product Version Change" width="480"></a>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Changing the <strong>Product Version</strong> will never change the <strong>Configuration Files</strong> of the <strong>Instance</strong>. It just opens a popup dialog to tell the user if there are changes between the source and target product version configuration files. In order to align the <strong>Instance</strong> configuration with the shipped <strong>Product</strong> configuration files, the configuration files dialog can assist, see chapter <a href="#_configuration_files">Configuration Files</a>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -5275,7 +5290,7 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 3.4.0<br>
+Version 3.5.0<br>
 Last updated 2020-06-19 10:24:07 +0200
 </div>
 </div>
