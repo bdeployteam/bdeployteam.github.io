@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 3.5.0</span>
+<span id="revnumber">version 3.6.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -263,7 +263,7 @@ this, otherwise simply prefix all commands with the correct path to the binaries
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy login --login --name=MyServer --remote=https://host:port/api
+<pre class="nowrap">bdeploy login --add=MyServer --remote=https://host:port/api
 bdeploy remote-master --update=&lt;path-to-update.zip&gt; --useLogin=MyServer</pre>
 </div>
 </div>
@@ -2120,11 +2120,11 @@ It is not required to synchronize the other way (<code>CENTRAL</code> to <code>M
 <div class="sect3">
 <h4 id="_migrating_between_modes">Migrating between Modes</h4>
 <div class="paragraph">
-<p>There is a limited possibility to change the <em>purpose</em> of an already intialized <strong>BDeploy</strong> server root directory. It is only possible to migrate from <code>STANDALONE</code> to <code>MANAGED</code> and vice versa, as data is <em>mostly</em> compatible. A command line tooling exists for this purpose.</p>
+<p>There is a limited possibility to change the <em>purpose</em> of an already intialized <strong>BDeploy</strong> server root directory. It is only possible to migrate from <code>STANDALONE</code> to <code>MANAGED</code> and vice versa, as data is <em>mostly</em> compatible. A command line tooling exists for this purpose:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="bash">bdeploy set-mode --root=&lt;root-directory&gt; --mode=MANAGED</code></pre>
+<pre class="prettyprint highlight nowrap"><code data-lang="bash">bdeploy config --root=&lt;root-directory&gt; --mode=MANAGED</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4660,18 +4660,12 @@ It has the power to destroy <em>everything</em> - use with extreme caution.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manage the schedule at which the <em>master</em> performs background cleanup operations on all <em>nodes</em> (including himself).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hostname</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows 'renaming' of the minion. The <code>init</code> command stores the given hostname, used later on for connections to self and also for variable expansion. If the hostname changed or is no longer valid, the <code>hostname</code> tool can update all relevant data.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>init</code></p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>init</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Initializes a <em>root</em> directory for running a server with the <code>start</code> command. The init command can be instructed to initialize the directory to run a <strong>master</strong> or a headless <strong>node</strong> when running the <code>start</code> command.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set-mode</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Changes the intended purpose of a <strong>BDeploy</strong> root directory, see <a href="#_migrating_between_modes">Migrating between Modes</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows changes to the basic configuration like hostname, port or mode. The <code>init</code> command stores the given hostname, used later on for connections to self and also for variable expansion. If the hostname changed or is no longer valid, this tool can update it. Please refer to <a href="#_migrating_between_modes">Migrating between Modes</a> in case you need to change the minion mode.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage</code></p></td>
@@ -5290,7 +5284,7 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 3.5.0<br>
+Version 3.6.0<br>
 Last updated 2020-06-19 10:24:07 +0200
 </div>
 </div>
