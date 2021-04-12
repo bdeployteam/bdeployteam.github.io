@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy Developer Documentation</h1>
 <div class="details">
-<span id="revnumber">version 3.6.1</span>
+<span id="revnumber">version 3.6.3</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -86,6 +86,16 @@
 <li><a href="#_plugin_distribution">Plugin Distribution</a></li>
 <li><a href="#_how_to_create_a_plugin">How to create a plugin</a></li>
 <li><a href="#_the_javascript_plugin_api">The JavaScript Plugin API</a></li>
+</ul>
+</li>
+<li><a href="#_release_procedure">Release Procedure</a>
+<ul class="sectlevel2">
+<li><a href="#_preparation">Preparation</a></li>
+<li><a href="#_branches_tags_github_release">Branches, Tags &amp; GitHub Release</a></li>
+<li><a href="#_release_notes">Release notes</a></li>
+<li><a href="#_mavencentral_release">MavenCentral release</a></li>
+<li><a href="#_documentation_update">Documentation Update</a></li>
+<li><a href="#_build_tool_integration_plugin_update">Build Tool Integration Plugin Update</a></li>
 </ul>
 </li>
 </ul>
@@ -1401,11 +1411,325 @@ Of course you need to download those JDKs and adapt the paths to your environmen
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_release_procedure">Release Procedure</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_preparation">Preparation</h3>
+<div class="paragraph">
+<p>Make sure to run a manual test and check at least this before releasing:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setup a fresh server.</p>
+</li>
+<li>
+<p>Create an instance with a client application.</p>
+</li>
+<li>
+<p>Download the installer for the client and check if it is working as intended.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The rest is covered pretty well by automated tests already.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_branches_tags_github_release">Branches, Tags &amp; GitHub Release</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The steps outlined in this chapter are usually encapsuled in a single automated release job (Jenkins, &#8230;&#8203;).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Prerequisites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Know the version you want to release (i.e. <code>RELEASE_VERSION</code>)</p>
+</li>
+<li>
+<p>Know the "next" version, which will be the one set as active version <strong>after</strong> the release (i.e. <code>NEXT_VERSION</code>).</p>
+</li>
+<li>
+<p>A GitHub account (i.e. <code>GH_USER</code>) and a token (i.e. <code>GH_TOKEN</code>) with the permission to create and update a release on the <strong>BDeploy</strong> GitHub repository.</p>
+</li>
+<li>
+<p>A SonaType account (i.e. <code>SONATYPE_USER</code>) and a token (i.e. <code>SONATYPE_TOKEN</code>) with the permission to upload and release artifacts to <code>oss.sonatype.org</code> targeting maven central.</p>
+</li>
+<li>
+<p>A GPG Key which is registered with sonatype which can be used to sign the application JAR files for upload to maven. You need the key file (i.e. <code>GPG_FILE</code>), the ID of the key (i.e. <code>GPG_ID</code>) and the password to the key file (i.e. <code>GPG_PASS</code>).</p>
+</li>
+<li>
+<p>A clone of the repository - since right now a internal repository is used as well as the GitHub repository, you need a clone of the internal repository</p>
+</li>
+<li>
+<p>An empty directory where JDKs can be downloaded to. Set the path in the environment variable <code>JDK_DL_ROOT</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set the environment variable with the according data prepared in the prerequisites: <code>GH_USER</code>, <code>GH_TOKEN</code>, <code>SONATYPE_USER</code>, <code>SONATYPE_TOKEN</code>, <code>GPG_FILE</code>, <code>GPG_ID</code> and <code>GPG_PASS</code>. Also set <code>RELEASE_VERSION</code> and <code>NEXT_VERSION</code>, or pass the values directly to the command.</p>
+</li>
+<li>
+<p>Execute <code>./release.sh ${RELEASE_VERSION} ${NEXT_VERSION}</code> in the repository. Make sure that the repository has the current master branch checked out and that it is ready to be released.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Download the most current version of the JDK to be used.</p>
+</li>
+<li>
+<p>Set the release version in the source repository.</p>
+</li>
+<li>
+<p>Run the build with all tests but not the binary release tests.</p>
+</li>
+<li>
+<p>Updates documentation screenshots from the UI tests.</p>
+</li>
+<li>
+<p>Publish artifacts to the <code>oss.sonatyp.org</code> server.</p>
+</li>
+<li>
+<p>Note: A separate release step has to be performed manually later, see below.</p>
+</li>
+<li>
+<p>Commit changed files (version, screenshots, test-data) locally (i.e. 'Release ${RELEASE_VERSION}').</p>
+</li>
+<li>
+<p>Push the commit to the GitHub repositories master branch.</p>
+</li>
+<li>
+<p>Publish the built artifacts to a newly created GitHub release.</p>
+</li>
+<li>
+<p>Set the next version in the source repository.</p>
+</li>
+<li>
+<p>Add the just-published version to the versions to be tested in binary release tests.</p>
+</li>
+<li>
+<p>Run the build using the new version without any tests but the binary release test - which will now verify that updating to the "next" version is possible from the just-released release.</p>
+</li>
+<li>
+<p>Commit changed file (version, test-data) locally (i.e. 'Update to ${NEXT_VERSION}').</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<code>release.sh</code> will push the release commit to GitHub, but will <strong>not</strong> push any commit to the origin of the repository. If the internal repository is used, you need to push there manually. Also the update to <code>NEXT_VERSION</code> is not pushed at all, and needs to be pushed separately.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Before pushing to the internal repository, make sure to execute a <code>git fetch --all --tags</code>, since GitHub will create the release tag for us in the GitHub repository automatically.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_notes">Release notes</h3>
+<div class="paragraph">
+<p>While <code>release.sh</code> is running, you can gather release notes by looking at the individual commits that happened since the last release. This is most easily done by looking at the output of:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">git log --no-merges v3.5.0..</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>assuming that <code>3.5.0</code> was the last release. Scroll to the bottom of the output and work your way upwards commit after commit. Not <strong>every</strong> commit needs mentioning in the release notes, but quite often nearly every commit ends up in some or another way in the release notes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mavencentral_release">MavenCentral release</h3>
+<div class="paragraph">
+<p>After running <code>release.sh</code> and pushing all the commits to their respective targets, <code>oss.sonatype.org</code> will contain a new staging repositories for the maven artifacts published by the build.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/staging-repo.png"><img src="images/staging-repo.png" alt="Staging Repository" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>You need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Log in to see anything useful.</p>
+</li>
+<li>
+<p>Navigate to <strong>Staging Repositories</strong>.</p>
+</li>
+<li>
+<p>Select the <code>iobdeploy-XXXX</code> repository where XXXX is any number.</p>
+</li>
+<li>
+<p>In the lower part of the screen, go to <strong>Content</strong> and check whether the content of the repository looks complete and OK.</p>
+</li>
+<li>
+<p>Select the repository in the upper part of the screen and click <strong>Close</strong>.</p>
+</li>
+<li>
+<p>Wait a few minutes and refresh the view using the <strong>Refresh</strong> button.</p>
+</li>
+<li>
+<p>Once enabled, click the <strong>Release</strong> button which having the repository selected. You can leave the "Drop automatically" checked, this way nothing has to be done after clicking OK anymore.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This will release the new version to maven central. This can take a few minutes, up to half an hour. Also the maven central index can take up to 24 hours to refresh - this is what is used to display data on the maven central homepage. Thus it may be that you cannot find the new version on the homepage, but can already download it using Maven/Gradle.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_documentation_update">Documentation Update</h3>
+<div class="paragraph">
+<p>After the release has been made, we need to update the documentation on the official homepage.</p>
+</div>
+<div class="paragraph">
+<p>Prerequisites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <strong>BDeploy</strong> main repository, having the <code>Release X.X.X</code> release commit/tag checked out (!).</p>
+</li>
+<li>
+<p>A clone of the official <strong>BDeploy</strong> homepage repository.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the <strong>BDeploy</strong> source repository, change into the <code>doc</code> directory and run</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">../gradlew build</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create the documentation artifacts in the <code>build/docs/</code> subdirectory, <code>dev</code> and <code>user</code> for the developer and user documentation respectively.</p>
+</div>
+<div class="paragraph">
+<p>Change in each directory, open <code>index.html</code> and verify that the correct release version number can be seen on the documentation index.</p>
+</div>
+<div class="paragraph">
+<p>Change to the <strong>BDeploy</strong> homepage repository and delete the <code>dev</code> and <code>user</code> directories completely.</p>
+</div>
+<div class="paragraph">
+<p>Copy the <code>dev</code> and <code>user</code> directories from the <strong>BDeploy</strong> source repositories <code>doc/build/docs/</code> directory to the homepage repository. Commit the change and push it to the origin repository. The rest is done automatically by GitHub.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_tool_integration_plugin_update">Build Tool Integration Plugin Update</h3>
+<div class="paragraph">
+<p>The <strong>BDeploy</strong> source repository also hosts various build tool integrations as well as test projects for some features (plugins, build tools). After the release they need to be updated as well.</p>
+</div>
+<div class="paragraph">
+<p>Since they need to maven artifacts published earlier, you need to make sure that those are already available from maven central.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>plugins/build-tool-gradle</code> - the Gradle integration.</p>
+</li>
+<li>
+<p><code>plugins/gradle-plugin-test-project</code> - a test project for the Gradle integration.</p>
+</li>
+<li>
+<p><code>plugins/bdeploy-demo-plugin</code> a simple demo <strong>BDeploy</strong> plugin using the public API.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Last but not least, there is also <code>plugins/build-tool-tea</code> - the Eclipse TEA integration. This needs to be updated separately in an Eclipse TEA enabled workspace.</p>
+</div>
+<div class="paragraph">
+<p>For all the others, updating is done using <code>gradle-upgrade-interactive</code>. You need to have that installed globally using npm:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">npm install -g gradle-upgrade-interactive</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once this is available, <code>cd</code> into each of the directories and run <code>gradle-upgrade-interactive</code>. You will be presented a list of things to update in the given plugin. Select all of them and confirm.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In <code>gradle-plugin-test-project</code> you will not see a <strong>BDeploy</strong> API jar update, as this project uses <strong>BDeploy</strong> only indirectly through the <code>build-tool-gradle</code> project - this is OK.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now build each of the projects, and confirm that everything is OK with the new <strong>BDeploy</strong> release. Finally commit the changes, and you&#8217;re done.</p>
+</div>
+<div class="sect3">
+<h4 id="_publish_gradle_plugin">Publish Gradle Plugin</h4>
+<div class="paragraph">
+<p>You will need to have a gradle account and the permission to publish in the <code>io.bdeploy</code> namespace.</p>
+</div>
+<div class="paragraph">
+<p>Make sure to setup gradle.properties in your home directory according to the instructions on the gradle manuals (i.e. set the <code>gradle.publish.key</code> and <code>gradle.publish.secret</code> properties).</p>
+</div>
+<div class="paragraph">
+<p>Execute <code>./gradlew publishPlugins</code> in the <code>plugins/build-tool-gradle</code> folder.</p>
+</div>
+<div class="paragraph">
+<p>Make sure to check on the plugin portal if the new version was published.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 3.6.1<br>
-Last updated 2021-02-04 13:34:03 +0100
+Version 3.6.3<br>
+Last updated 2021-02-05 10:27:46 +0100
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
