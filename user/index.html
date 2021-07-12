@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 3.6.4</span>
+<span id="revnumber">version 3.6.5</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1799,14 +1799,39 @@ The <strong>Process ID</strong> will also show up given that it was present at t
 <div class="sect4">
 <h5 id="_windows">Windows</h5>
 <div class="paragraph">
-<p>By default the <strong>Launcher</strong> is installed for the <strong>Current User</strong> in the <em>%LOCALAPPDATA%\BDeploy</em> folder (<em>C:/Users/&lt;user&gt;/AppData/Local/BDeploy</em>). The location can be adopted by setting the <strong>BDEPLOY_HOME</strong> environment variable before launching the installer. No administrative privileges are required for this installation type.</p>
+<p>The <strong>Launcher</strong> is installed for the <strong>Current User</strong> in the <em>%LOCALAPPDATA%\BDeploy</em> folder (<em>C:/Users/&lt;user&gt;/AppData/Local/BDeploy</em>). The location can be adopted by setting the <strong>BDEPLOY_HOME</strong> environment variable before launching the installer. No administrative privileges are required for this installation type.</p>
 </div>
+<div class="sect5">
+<h6 id="_unattended_mode">Unattended Mode</h6>
 <div class="paragraph">
-<p>The <strong>Launcher</strong> can also be installed for <strong>All</strong> users by starting the installer with the <strong>/ForAllUsers</strong> flag. The default location in that case is <em>%ProgramFiles%/BDeploy</em> (<em>C:/Program Files/BDeploy</em>). The location can be adopted by setting the <strong>BDEPLOY_HOME</strong> environment variable before launching the installer. Ensure that all users have access to the customized location. Otherwise they cannot launch the application.</p>
+<p>The <strong>Installer</strong> can also be started in an unattended mode with the <strong>/Unattended</strong> flag so that no UI is shown.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">./Installer.exe /ForAllUsers</pre>
+<pre class="nowrap">./Installer.exe /Unattended</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When automating the installation it might be required to wait until the actual installation is finished. To do that the <em>Start-Process</em> cmdlet can be used:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">Start -FilePath "./Installer.exe" -ArgumentList "/Unattended" -Wait</pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_for_all_users">For All Users</h6>
+<div class="paragraph">
+<p>The <strong>Launcher</strong> can also be installed for <strong>All</strong> users by starting the installer with the <strong>/ForAllUsers</strong> flag. The default location in that case is <em>%ProgramFiles%/BDeploy</em> (<em>C:/Program Files/BDeploy</em>). The location can be adopted by setting the <strong>BDEPLOY_HOME</strong> environment variable before launching the installer. Ensure that all users have access to the customized location. Otherwise they cannot launch the application.</p>
+</div>
+<div class="paragraph">
+<p>Installation for <strong>All</strong> users requires a terminal with elevated privileges (<em>Run as Administrator</em>). Just running the command as local administrator is not sufficient.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">Start -FilePath "./Installer.exe" -ArgumentList "/ForAllUsers" -Verb RunAs
+Start -FilePath "./Installer.exe" -ArgumentList "/Unattended","/ForAllUsers" -Wait -Verb RunAs</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1816,21 +1841,22 @@ The <strong>Process ID</strong> will also show up given that it was present at t
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Installation for <strong>All</strong> users requires administrative privileges. Additional configuration might be required depending on the installation location. See <a href="#_multi_user_installations">Multi-User Installations</a> for more information.
+The <em>Start</em> cmdlet with the <em>-Verb RunAs</em> switch triggers a UAC prompt so that the installer is running with elevated privileges.
 </td>
 </tr>
 </table>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_unattended_mode">Unattended Mode</h5>
-<div class="paragraph">
-<p>The <strong>Installer</strong> can also be started in an unattended mode with the <strong>/Unattended</strong> flag so that no UI is shown.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre class="nowrap">./Installer.exe /Unattended
-./Installer.exe /Unattended /ForAllUsers</pre>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Additional configuration might be required depending on the installation location. See <a href="#_multi_user_installations">Multi-User Installations</a> for more information.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1860,6 +1886,49 @@ The <strong>Launcher</strong> can also be manually deployed using the provided Z
 </div>
 <div class="paragraph">
 <p>Clicking on a <em>Click &amp; Start</em> link in the <strong>Browser</strong> will download a <strong>.bdeploy</strong> file that can be directly executed. A more elegant way is to configure the <strong>Browser</strong> to directly open the <strong>.bdeploy</strong> file type. Firefox as well as Chrome allows to configure this after the file has been downloaded.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_application_browser">Application Browser</h4>
+<div class="paragraph">
+<p>The <strong>Launcher</strong> (<em>BDeploy.exe</em>) can also be launched directly without any arguments. In this case a dialog is shown that lists all locally installed applications.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/BDeploy_Client_Browser_App.png"><img src="images/BDeploy_Client_Browser_App.png" alt="Client Application Browser" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong>Customize &amp; Launch</strong> context menu entry allows the user to to modify the command line argumements that is used to start the application. A new dialog is opened that lists the existing command line arguments as currently defined by the <strong>Active Instance version</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Additional arguments can be added or existing ones can be modified or deleted as desired. This option is especially useful for testing. Arguments can be modified locally without the need to change the global <strong>Instance Configuration</strong>. The modified arguments are not saved and they need to be re-done the next time the application is launched.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_additional_command_line_arguments">Additional Command Line Arguments</h4>
+<div class="paragraph">
+<p>When launching an application using a <strong>.bdeploy</strong> file then additional command line arguments can be defined which are passed to the target application.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">./myApp.bdeploy -- "arg1=value1" "arg2=value2"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All arguments after the <strong>--</strong> switch are passed to the launched application. They are added <em>AFTER</em> all existing arguments that are currently defined in the <strong>Active Instance Configuration</strong>. Individual arguments need to be separated using a single space. Quotation marks are required when the argument or its value contains spaces.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A shortcut can be saved that includes the customized parameters. Doing that it is possible to save the customized arguments so that they do not need to be entered all the time. Executing the shortcut then launches the application with the customized arguments.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -5292,7 +5361,7 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 3.6.4<br>
+Version 3.6.5<br>
 Last updated 2020-06-19 10:24:07 +0200
 </div>
 </div>
