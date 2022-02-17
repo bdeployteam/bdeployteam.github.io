@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 4.0.5</span>
+<span id="revnumber">version 4.1.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1450,6 +1450,57 @@ The advantage of an <strong>Instance Template</strong> is that it can contain mo
 <p>The <b class="button">Export CSV</b> action allows to export a CSV list of all ports configured in the system. This can be used to pass on information to external partners, for instance for further firewall configuration, etc.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_process_control_groups">Process Control Groups</h4>
+<div class="paragraph">
+<p><strong>Processes</strong> can be grouped into <strong>Process Control Groups</strong>. Those groups dictate the order in which processes are started and stopped, as well as whether process startup is awaited - or not.</p>
+</div>
+<div class="paragraph">
+<p>Each <strong>Process Control Group</strong> has configurable behavior for contained processes regarding starting and stopping. Groups are processed in the configured order when starting, and the reverse configured order when stopping. Processes <strong>within</strong> each group are processed according to the groups configuration. Each group can have configuration for startup and stop behaviour.</p>
+</div>
+<div class="paragraph">
+<p>Possible values for the <strong>Start Type</strong> and <strong>Stop Type</strong> handling configuration are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SEQUENTIAL</code>: Each <strong>Process</strong> in the group is handled (started/stopped) sequentially. Any potential waiting (for startup and or shutdown, depending on the capabilities of the process) is done before proceeding to the next <strong>Process</strong> or <strong>Process Control Group</strong>.</p>
+</li>
+<li>
+<p><code>PARALLEL</code>: Each <strong>Process</strong> in the group is handled (started/stopped) in parallel. Only once all <strong>Process</strong> operations within the group have finished, the group is considered finished and processing continues with the next <strong>Process Control Group</strong>. Be aware that in conjunction with <code>CONTINUE</code> wait mode for process startup, this will make a group complete immediately and continue on to the next group immediately as well.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additionally, each <strong>Process Control Group</strong> can be configured to wait for process startup, i.e. startup probes. Each <strong>Process Control Group</strong> has a <strong>Start Wait</strong> con:figure-caption:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>WAIT</code>: When starting a <strong>Process</strong> in the group, wait for its startup to be complete. This is either once the <strong>Startup Probe</strong> signals process startup if available and configured, or once the process has been created if no probe is available.</p>
+</li>
+<li>
+<p><code>CONTINUE</code>: When starting a <strong>Process</strong> in the group, do not wait for its startup to be complete, instead move on to the next process immediately. This makes the startup handling types (<code>SEQUENTIAL</code>, <code>PARALLEL</code>) essentially irrelevant, as processes are typically created so fast that it does not make any difference anymore.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_InstanceConfigAddProcessControlGroup.png"><img src="images/Doc_InstanceConfigAddProcessControlGroup.png" alt="Edit Process Control Groups" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Each <code>SERVER</code> node automatically uses <strong>Process Control Groups</strong> and is initialized with a 'Default' group. Adding a new <strong>Process</strong> to a <strong>Node</strong> will always add that <strong>Process</strong> to the last <strong>Process Control Group</strong>. It can then be moved by drag and drop to another <strong>Process Control Group</strong> if required.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_InstanceConfigEditProcessControlGroup.png"><img src="images/Doc_InstanceConfigEditProcessControlGroup.png" alt="Edit Process Control Groups" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Process Control Groups</strong> themselves can be re-ordered using the <b class="button">Move Up</b> and <b class="button">Move Down</b> buttons.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_deployment">Deployment</h3>
@@ -1522,10 +1573,18 @@ The advantage of an <strong>Instance Template</strong> is that it can contain mo
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock text-center">
 <div class="content">
+<img src="images/ManualDoc_ProcessStarting.png" alt="ManualDoc ProcessStarting" width="32">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Process is <strong>starting</strong>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock text-center">
+<div class="content">
 <img src="images/ManualDoc_ProcessRunning.png" alt="ManualDoc ProcessRunning" width="32">
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Process is <strong>running</strong>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Process is <strong>running</strong>.  If the process defined a <em>startup probe</em> (see <code><a href="#_app_info_yaml">app-info.yaml</a></code>), this status is reached as soon as the startup probe indicates a successful startup of the application. Otherwise - without probe - the process immediatly reaches the <strong>running</strong> state automatically.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock text-center">
@@ -1534,6 +1593,14 @@ The advantage of an <strong>Instance Template</strong> is that it can contain mo
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Process is <strong>running</strong> but <strong>stopping</strong> has been <strong>requested</strong> by the user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock text-center">
+<div class="content">
+<img src="images/ManualDoc_ProcessLifenessFailed.png" alt="ManualDoc ProcessLifenessFailed" width="32">
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Process is <strong>running</strong>, but a defined <em>lifeness probe</em> (see <code><a href="#_app_info_yaml">app-info.yaml</a></code>) indicates that the process has a problem.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock text-center">
@@ -1622,7 +1689,10 @@ The advantage of an <strong>Instance Template</strong> is that it can contain mo
 <div class="sect3">
 <h4 id="_startup_and_shutdown_order">Startup and Shutdown Order</h4>
 <div class="paragraph">
-<p>The <strong>process control</strong> starts the processes in the order as they are defined in the <strong>process configuration</strong> dialog. That means the order can be influenced by dragging applications around. When <b class="button">Start Instance</b> is invoked then all processes with startup type <code>INSTANCE</code> are started in the defined order but without waiting for any condition after launching the command. When <b class="button">Stop Instance</b> is invoked then all running processes are stopped sequentially. The order is reversed during the stop operation. That means the last process is stopped first and the first process is stopped at last. The next process is stopped only when the previous is terminated.</p>
+<p>The <strong>process control</strong> starts the processes in the order as they are defined in the <strong>process configuration</strong> dialog. <strong>Processes</strong> can be grouped in <strong>Process Control Groups</strong>, which dictate the exact behavior for a group of <strong>Processes</strong>. When <b class="button">Start Instance</b> is invoked then all processes with startup type <code>INSTANCE</code> are started in the defined order - potentially waiting for a <strong>startup probe</strong> after launching the command. When <b class="button">Stop Instance</b> is invoked then all running processes are stopped according to the group strategies. The order is reversed during the stop operation. That means the last process is stopped first and the first process is stopped at last (in <code>SEQUENTIAL</code> mode). The next process is stopped only when the previous is terminated. The same holds for <strong>Process Control Groups</strong>; groups are processed one after another when starting, and in reverse order when stopping.</p>
+</div>
+<div class="paragraph">
+<p>The exact meanings of the different configuration options is described in the <a href="#_process_control_groups">Process Control Groups</a> section.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2697,8 +2767,14 @@ processControl: <i class="conum" data-value="6"></i><b>(6)</b>
    - INSTANCE
   supportsKeepAlive: true
   noOfRetries: 5
+  startupProbe: <i class="conum" data-value="7"></i><b>(7)</b>
+     endpoint: "Startup Endpoint"
+  lifenessProbe: <i class="conum" data-value="8"></i><b>(8)</b>
+     endpoint: "Lifeness Endpoint"
+     initialDelaySeconds: 5
+     periodSeconds: 10
 
-startCommand: <i class="conum" data-value="7"></i><b>(7)</b>
+startCommand: <i class="conum" data-value="9"></i><b>(9)</b>
   launcherPath: "{{WINDOWS:launch.bat}}{{LINUX:launch.sh}}"
   parameters:
     - uid: "my.param.1"
@@ -2722,22 +2798,32 @@ startCommand: <i class="conum" data-value="7"></i><b>(7)</b>
       longDescription: "This is only visible and configurable if my.param.2 has value 'Value 1'"
       parameter: "--conditional"
       mandatory: true
-      condition: <i class="conum" data-value="8"></i><b>(8)</b>
+      condition: <i class="conum" data-value="10"></i><b>(10)</b>
         parameter: "my.param.2"
         must: EQUAL
         value: "Value 1"
 
-stopCommand: <i class="conum" data-value="9"></i><b>(9)</b>
+stopCommand: <i class="conum" data-value="11"></i><b>(11)</b>
   ...
 
-endpoints: <i class="conum" data-value="10"></i><b>(10)</b>
+endpoints: <i class="conum" data-value="12"></i><b>(12)</b>
   http:
-    - id: "my-endpoint" <i class="conum" data-value="11"></i><b>(11)</b>
+    - id: "my-endpoint" <i class="conum" data-value="13"></i><b>(13)</b>
       path: "path/to/the/endpoint"
-      port: "{{V:port-param}}" <i class="conum" data-value="12"></i><b>(12)</b>
+      port: "{{V:port-param}}" <i class="conum" data-value="14"></i><b>(14)</b>
+      secure: false
+    - id: "Startup Endpoint"
+      type: PROBE_STARTUP <i class="conum" data-value="15"></i><b>(15)</b>
+      path: "startup/endpoint"
+      port: "{{V:port-param}}"
+      secure: false
+    - id: "Lifeness Endpoint"
+      type: PROBE_STARTUP <i class="conum" data-value="15"></i><b>(15)</b>
+      path: "lifeness/endpoint"
+      port: "{{V:port-param}}"
       secure: false
 
-runtimeDependencies: <i class="conum" data-value="13"></i><b>(13)</b>
+runtimeDependencies: <i class="conum" data-value="16"></i><b>(16)</b>
   - "adoptium/jre:1.8.0_202-b08"</code></pre>
 </div>
 </div>
@@ -2769,36 +2855,60 @@ runtimeDependencies: <i class="conum" data-value="13"></i><b>(13)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>The start command of the <strong>Application</strong>. Contains the path to the <em>executable</em> to launch, as well as all known and supported parameters. For details, see the full list of <a href="#_supported_parameters_attributes">parameter</a> attributes. To apply e.g. instance-specific values, <a href="#_variable_expansion">Variable Expansion</a> is a powerful tool. It can be used for the <code>launcherPath</code> and each parameter&#8217;s <code>defaultValue</code>. In the Web UI it can be used for the parameter values.</td>
+<td>A <em>startup probe</em> can specify an HTTP Endpoint of type <code>PROBE_STARTUP</code> which is queried by <strong>BDeploy</strong> if specified until the endpoint returns a status code &gt;= 200 and &lt; 400. Once this happens, the <em>startup probe</em> is considered to be successful and the <strong>Process</strong> state advances from <em>starting</em> to <em>running</em>. The exact response reported by the <strong>Process</strong> is available from the <strong>Process</strong> details panels <strong>Process Probes</strong> section.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
-<td>A conditional parameter is a parameter with a condition on it. The condition always refers to another parameter on the same application. The parameter with the condition set will only be visible and configurable if the condition on the referenced parameter is met.</td>
+<td>A <em>lifeness probe</em> can specify an HTTP Endpoint of type <code>PROBE_ALIVE</code> along with an initial delay in seconds and an interval in which the probe is queried. <strong>BDeploy</strong> starts querying <em>lifeness probes</em> only after the application entered <em>running</em> state. This happens either automatically when the process is started (if no <em>startup probe</em> is configured), or once the existing <em>startup probe</em> succeeded. The <em>lifeness probe</em> is queried every <code>periodSeconds</code> seconds, and the application is considered to be alive if the endpoint returns a status code &gt;= 200 and &lt; 400. If the probe fails, the <strong>Process</strong> status is updated to indicate the problem. The exact response reported by the <strong>Process</strong> is available from the <strong>Process</strong> details panels <strong>Process Probes</strong> section.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
-<td>The optional stop command can be specified to provide a mechanism for clean application shutdown once <strong>BDeploy</strong> tries to stop a process. This command may use <a href="#_variable_expansion">Variable Expansion</a> to access parameter values of the <code>startCommand</code> (e.g. configured 'stop port', etc.). It is <strong>not</strong> configurable through the Web UI though. All parameter values will have their (expanded) default values set when the command is run. If no <code>stopCommand</code> is specified, <strong>BDeploy</strong> will try to gracefully quit the process (i.e. <code>SIGTERM</code>). Both with and without <code>stopCommand</code>, <strong>BDeploy</strong> resorts to a <code>SIGKILL</code> after the <code><a href="#_supported_parameters_attributes">gracePeriod</a></code> has expired.</td>
+<td>The start command of the <strong>Application</strong>. Contains the path to the <em>executable</em> to launch, as well as all known and supported parameters. For details, see the full list of <a href="#_supported_parameters_attributes">parameter</a> attributes. To apply e.g. instance-specific values, <a href="#_variable_expansion">Variable Expansion</a> is a powerful tool. It can be used for the <code>launcherPath</code> and each parameter&#8217;s <code>defaultValue</code>. In the Web UI it can be used for the parameter values.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="10"></i><b>10</b></td>
-<td>Optional definition of provided endpoints. Currently only HTTP endpoints are supported. These endpoints can be configured on the application later, including additional information like authentication, certificates, etc. <strong>BDeploy</strong> can later on call these endpoints when instructed to do so by a third-party application.</td>
+<td>A conditional parameter is a parameter with a condition on it. The condition always refers to another parameter on the same application. The parameter with the condition set will only be visible and configurable if the condition on the referenced parameter is met.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="11"></i><b>11</b></td>
-<td>The ID of the endpoint can be used to call the endpoint remotely by tunneling through potentially multiple levels of <strong>BDeploy</strong> servers.</td>
+<td>The optional stop command can be specified to provide a mechanism for clean application shutdown once <strong>BDeploy</strong> tries to stop a process. This command may use <a href="#_variable_expansion">Variable Expansion</a> to access parameter values of the <code>startCommand</code> (e.g. configured 'stop port', etc.). It is <strong>not</strong> configurable through the Web UI though. All parameter values will have their (expanded) default values set when the command is run. If no <code>stopCommand</code> is specified, <strong>BDeploy</strong> will try to gracefully quit the process (i.e. <code>SIGTERM</code>). Both with and without <code>stopCommand</code>, <strong>BDeploy</strong> resorts to a <code>SIGKILL</code> after the <code><a href="#_supported_parameters_attributes">gracePeriod</a></code> has expired.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="12"></i><b>12</b></td>
-<td><a href="#_variable_expansion">Variable Expansion</a> can be used on most of the endpoint properties.</td>
+<td>Optional definition of provided endpoints. Currently only HTTP endpoints are supported. These endpoints can be configured on the application later, including additional information like authentication, certificates, etc. <strong>BDeploy</strong> can later on call these endpoints when instructed to do so by a third-party application.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="13"></i><b>13</b></td>
+<td>The ID of the endpoint can be used to call the endpoint remotely by tunneling through potentially multiple levels of <strong>BDeploy</strong> servers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="14"></i><b>14</b></td>
+<td><a href="#_variable_expansion">Variable Expansion</a> can be used on most of the endpoint properties.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="15"></i><b>15</b></td>
+<td>The type of the endpoint can be used to control how the endpoint is handled by <strong>BDeploy</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="16"></i><b>16</b></td>
 <td>Optional runtime dependencies. These dependencies are included in the <strong>Product</strong> when building it. Dependencies are fetched from <strong><a href="#_software_repositories">Software Repositories</a></strong>. <code>launcherPath</code> and parameter <code>defaultValue</code> (and of course the final configuration values) can access paths within each of the dependencies by using the <code>{{M:adoptium/jre}}</code> <a href="#_variable_expansion">Variable Expansion</a>, e.g. <code>launcherPath: {{M:adoptium/jre}}/bin/java</code>. Note that the declared <em>dependency</em> does not need to specify an operating system, but <strong>must</strong> specify a <em>version</em>. This will be resolved by <strong>BDeploy</strong> to either an exact match if available, or a operating system specific match, e.g. <code>adoptium/jre/linux:1.8.0_202-b08</code> on <code>LINUX</code>. When <em>referencing</em> the dependency in a <a href="#_variable_expansion">Variable Expansion</a>, neither an operating system nor a version is required - in fact it must not be specified.</td>
 </tr>
 </table>
 </div>
 <div class="sect4">
 <h5 id="_supported_processcontrol_attributes">Supported <code>processControl</code> attributes</h5>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>processControl</code> is not supported for <code>CLIENT</code> applications.
+</td>
+</tr>
+</table>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -2826,6 +2936,14 @@ runtimeDependencies: <i class="conum" data-value="13"></i><b>(13)</b>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>gracePeriod</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">How long to wait (in milliseconds) for the <strong>Application</strong> to stop after issuing the <code>stopCommand</code>. After this timeout expired, the process will be killed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>startupProbe</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a probe which can indicate to <strong>BDeploy</strong> that the application has completed startup.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lifenessProbe</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a probe which can indicate to <strong>BDeploy</strong> whether the application is <em>alive</em>. <em>Alive</em> means whether the application is currently performing as it should. <strong>BDeploy</strong> does not take immediate action on its own if a lifeness probe fails. It will only report the failure to the user.</p></td>
 </tr>
 </tbody>
 </table>
@@ -3176,6 +3294,10 @@ Endpoints definitions are templates which can later on be configured by the user
 <td class="tableblock halign-left valign-top"><p class="tableblock">The unique ID of the endpoint. This ID can be used by an authorized third-pary application to instruct <strong>BDeploy</strong> to call this endpoint and return the result.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Currently <code>DEFAULT</code>, <code>PROBE_STARTUP</code> and <code>PROBE_ALIVE</code> are supported. Endpoints referenced by <em>startup</em> or <em>lifeness probes</em> in the <code>processControl</code> section of a server process need to have the according type. If not specified, the <code>DEFAULT</code> type is assumed.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>path</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The path of the endpoint on the target process. <strong>BDeploy</strong> uses this and other parameters (<code>port</code>) to construct an URI to the local server.</p></td>
 </tr>
@@ -3368,8 +3490,9 @@ There is no actual requirement for the file to be named <code>application-templa
 application: server-app
 name: "Server With Sleep"
 description: "Server application which sleeps before exiting"
+preferredProcessControlGroup: "First Group" <i class="conum" data-value="2"></i><b>(2)</b>
 
-variables: <i class="conum" data-value="2"></i><b>(2)</b>
+variables: <i class="conum" data-value="3"></i><b>(3)</b>
   - uid: sleep-timeout
     name: "Sleep Timeout"
     description: "The amount of time the server application should sleep"
@@ -3378,14 +3501,14 @@ variables: <i class="conum" data-value="2"></i><b>(2)</b>
     - '60'
     - '120'
 
-processControl: <i class="conum" data-value="3"></i><b>(3)</b>
+processControl: <i class="conum" data-value="4"></i><b>(4)</b>
   startType: MANUAL_CONFIRM
   keepAlive: false
   noOfRetries: 3
   gracePeriod: 30000
   attachStdin: true
 
-startParameters: <i class="conum" data-value="4"></i><b>(4)</b>
+startParameters: <i class="conum" data-value="5"></i><b>(5)</b>
 - uid: param.sleep
   value: "{{T:sleep-timeout}}"</code></pre>
 </div>
@@ -3398,14 +3521,18 @@ startParameters: <i class="conum" data-value="4"></i><b>(4)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>A template can define (and use) template variables which are mandatory input by the user when using the template. A template variable can be referenced in parameter value definitions using the <code>{{T:varname}}</code> syntax. If the parameter value is numeric, you can also use simple arithmetic operations on the template variable like <code>{{T:varname:+10}}</code> which will add 10 to the numeric value of the template variable.</td>
+<td>The preferred process control group is used to determine which process control group to use when applying the application template. This is only used if a <strong>Process Control Group</strong> with this name exists in the instance configuration. <strong>Process Control Groups</strong> can be pre-configured in an <a href="#_instance_template_yaml"><code>instance-template.yaml</code></a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>A template can define arbitrary process control parameters to further control the default process control settings.</td>
+<td>A template can define (and use) template variables which are mandatory input by the user when using the template. A template variable can be referenced in parameter value definitions using the <code>{{T:varname}}</code> syntax. If the parameter value is numeric, you can also use simple arithmetic operations on the template variable like <code>{{T:varname:+10}}</code> which will add 10 to the numeric value of the template variable.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>A template can define arbitrary process control parameters to further control the default process control settings.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
 <td>Start command parameters are referenced by their UID, defined in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</td>
 </tr>
 </table>
@@ -3439,7 +3566,13 @@ variables: <i class="conum" data-value="2"></i><b>(2)</b>
     description: "The amount of time the server application should sleep"
     defaultValue: 60
 
-groups: <i class="conum" data-value="3"></i><b>(3)</b>
+processControlGroups: <i class="conum" data-value="3"></i><b>(3)</b>
+  - name: "First Group"
+    startType: "PARALLEL"
+    startWait: "WAIT"
+    stopType: "SEQUENTIAL"
+
+groups: <i class="conum" data-value="4"></i><b>(4)</b>
 - name: "Server Apps"
   description: "All server applications"
 
@@ -3447,17 +3580,17 @@ groups: <i class="conum" data-value="3"></i><b>(3)</b>
   - application: server-app
     name: "Server No Sleep"
     description: "Server application which immediately exits"
-  - template: server-with-sleep <i class="conum" data-value="4"></i><b>(4)</b>
-  - application: server-app <i class="conum" data-value="5"></i><b>(5)</b>
+  - template: server-with-sleep <i class="conum" data-value="5"></i><b>(5)</b>
+  - application: server-app <i class="conum" data-value="6"></i><b>(6)</b>
     name: "Server With Sleep"
     description: "Server application which sleeps before exiting"
     processControl:
       startType: MANUAL_CONFIRM
-    startParameters: <i class="conum" data-value="6"></i><b>(6)</b>
+    startParameters: <i class="conum" data-value="7"></i><b>(7)</b>
     - uid: param.sleep
       value: "{{T:sleep-timeout}}"
 - name: "Client Apps"
-  type: CLIENT <i class="conum" data-value="7"></i><b>(7)</b>
+  type: CLIENT <i class="conum" data-value="8"></i><b>(8)</b>
   description: "All client applications"
 
   applications:
@@ -3477,22 +3610,26 @@ groups: <i class="conum" data-value="3"></i><b>(3)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>A template defines one or more groups of applications to configure. Each group can be assigned to a physical node available on the target system. Groups can be skipped by not assigning them to a node, so they provide a mechanism to provide logical groups of processes (as result of configuring the applications) that belong together and might be optional. It is up to the user whether a group is mapped to a node, or not. Multiple groups can be mapped to the same phsysical node.</td>
+<td><strong>Process Control Groups</strong> can be pre-configured for an instance template. If an application template later on wishes to be put into a certain <strong>Process Control Group</strong>, the group is created based on the template provided in the instance template. Note that the defaults for a <strong>Process Control Group</strong> in a template are slightly different from the implicit 'Default' <strong>Process Control Group</strong> in <strong>BDeploy</strong>. The defaults are: <code>startType</code>: <code>PARALLEL</code>, <code>startWait</code>: <code>WAIT</code>, <code>stopType</code>: <code>PARALLEL</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><strong>Instance Templates</strong> can reference <strong>Application Templates</strong> by their <code>id</code>. The <strong>Instance Templates</strong> can further refine an <strong>Application Template</strong> by setting any of the valid application fields in addition to the template reference.</td>
+<td>A template defines one or more groups of applications to configure. Each group can be assigned to a physical node available on the target system. Groups can be skipped by not assigning them to a node, so they provide a mechanism to provide logical groups of processes (as result of configuring the applications) that belong together and might be optional. It is up to the user whether a group is mapped to a node, or not. Multiple groups can be mapped to the same phsysical node.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>A template group contains one or more applications to configure, which each can consist of process control configuration and parameter definitions for the start command of the resulting process - exactly the same fields are valid as for <strong>Application Tempaltes</strong> - except for the <code>id</code> which is not required.</td>
+<td><strong>Instance Templates</strong> can reference <strong>Application Templates</strong> by their <code>id</code>. The <strong>Instance Templates</strong> can further refine an <strong>Application Template</strong> by setting any of the valid application fields in addition to the template reference.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Start command parameters are referenced by their UID, defined in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</td>
+<td>A template group contains one or more applications to configure, which each can consist of process control configuration and parameter definitions for the start command of the resulting process - exactly the same fields are valid as for <strong>Application Tempaltes</strong> - except for the <code>id</code> which is not required.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Start command parameters are referenced by their UID, defined in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
 <td>A template group can have either type <code>SERVER</code> (default) or <code>CLIENT</code>. A group may only contain applications of a compatible type, i.e. only <code>SERVER</code> applications in <code>SERVER</code> type group. When applying the group to a node, applications will be instantiated to processes according to their supported OS and the nodes physical OS. If a <code>SERVER</code> application does not support the target nodes OS, it is ignored.</td>
 </tr>
 </table>
@@ -5421,7 +5558,7 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.0.5<br>
+Version 4.1.0<br>
 Last updated 2021-11-05 08:12:52 +0100
 </div>
 </div>
