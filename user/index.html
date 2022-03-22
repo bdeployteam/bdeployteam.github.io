@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 4.1.2</span>
+<span id="revnumber">version 4.2.2</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -44,7 +44,7 @@
 <li><a href="#_update_of_existing_installations">Update of existing Installations</a></li>
 <li><a href="#_master">Master</a></li>
 <li><a href="#_custom_certificate">Custom Certificate</a></li>
-<li><a href="#_node">Node</a></li>
+<li><a href="#_nodes">Nodes</a></li>
 <li><a href="#_service">Service</a></li>
 <li><a href="#_verify_setup">Verify Setup</a></li>
 </ul>
@@ -83,8 +83,8 @@
 </li>
 <li><a href="#_experts">Experts</a>
 <ul class="sectlevel2">
-<li><a href="#_administration">Administration</a></li>
-<li><a href="#_command_line_interface">Command Line Interface</a></li>
+<li><a href="#_administration_2">Administration</a></li>
+<li><a href="#_command_line_interface_2">Command Line Interface</a></li>
 <li><a href="#_security">Security</a></li>
 <li><a href="#_endpoint_proxying">Endpoint Proxying</a></li>
 </ul>
@@ -382,7 +382,7 @@ Don&#8217;t use the depicted user and password, these are just samples.
 <p>The <code>init</code> command will write an access token to a file if given with <code>--tokenFile</code>. This tokens main purpose is automation (scripting) and testing. The token is a <em>system</em> token which is not associated with any actual user. This token is important when initializing a root for a <code>NODE</code>, as it will be required when attaching the <code>NODE</code> to a <code>STANDALONE</code> or <code>MANAGED</code> master. On the master you can generate a token for any user from the <strong>BDeploy</strong> UI anytime later on.</p>
 </div>
 <div class="paragraph">
-<p>The <code>--mode</code> parameter of the <code>init</code> command is used to determine the future purpose of the <strong>BDeploy</strong> root. The mode can be <code>STANDALONE</code>, <code>MANAGED</code>, <code>CENTRAL</code> (or <code>NODE</code> - see <a href="#_node">Node</a>).</p>
+<p>The <code>--mode</code> parameter of the <code>init</code> command is used to determine the future purpose of the <strong>BDeploy</strong> root. The mode can be <code>STANDALONE</code>, <code>MANAGED</code>, <code>CENTRAL</code> (or <code>NODE</code> - see <a href="#Node">[Node]</a>).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -472,7 +472,7 @@ By changing the certificate <strong>BDeploy</strong> uses, all existing tokens w
 </div>
 </div>
 <div class="sect2">
-<h3 id="_node">Node</h3>
+<h3 id="_nodes">Nodes</h3>
 <div class="paragraph">
 <p><strong>Nodes</strong> are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a certain master. By default a master is itself a node as well where applications can be deployed to.</p>
 </div>
@@ -480,17 +480,17 @@ By changing the certificate <strong>BDeploy</strong> uses, all existing tokens w
 <h4 id="_initializing">Initializing</h4>
 <div class="paragraph">
 <p><strong>Nodes</strong> must be initialized on the according machines (or on the same machine using non-default ports; the default port is 7701).
-The command is the same as the one used to initialize the <strong>master</strong>. Pass (for example) <code>--port=7702</code> to change the
-default port to some other value to avoid conflicts. Running multiple <strong>BDeploy</strong> minions on the same machine is
+The command is similar to the one used to initialize the <strong>master</strong>. Pass (for example) <code>--port=7702</code> to change the
+default port to some other value to avoid conflicts. Running multiple <strong>BDeploy</strong> nodes on the same machine is
 supported for testing, but not recommended for productive setups (as the <strong>master</strong> can be deployed to directly anyway - no need for an explicit <strong>node</strong>).</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy init --root=/path/to/node/storage --hostname=&lt;hostname&gt; --tokenFile=node-token.txt --port=7702</pre>
+<pre class="nowrap">bdeploy init --root=/path/to/node/storage --hostname=&lt;hostname&gt; --nodeIdentFile=node-ident.txt --port=7702 --mode=node</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Again, the <code>init</code> command will output the <em>system</em> access token for this <strong>node</strong> (if <code>--tokenFile</code> is not used). You need it to register the <strong>node</strong> with the <strong>master</strong>, so keep it around or use <code>--tokenFile=node-token.txt</code> to store the token into a file.</p>
+<p>Note the <code>--nodeIdentFile</code> parameter given to the <code>init</code> command. It will contain the required access information for this <strong>node</strong>. You need it to register the <strong>node</strong> with the <strong>master</strong>, so make sure you will have it available when doing so.</p>
 </div>
 </div>
 <div class="sect3">
@@ -505,13 +505,18 @@ supported for testing, but not recommended for productive setups (as the <strong
 </div>
 </div>
 <div class="sect3">
-<h4 id="_registration">Registration</h4>
+<h4 id="_administration">Administration</h4>
 <div class="paragraph">
-<p>To register a <strong>node</strong> with the <strong>master</strong> use this command on the <strong>master</strong> root:</p>
+<p>To register, remove or manage a <strong>node</strong> on the <strong>master</strong> you can either use the command line interface or the administrative Web UI on the <strong>master</strong>.</p>
+</div>
+<div class="sect4">
+<h5 id="_command_line_interface">Command line interface</h5>
+<div class="paragraph">
+<p>Use the CLI to register, remove or manage a <strong>node</strong> on the <strong>master</strong> (see the <code>bdeploy remote-node --help</code> command for more information).</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy node --add=node-name --root=/path/to/master/storage --remote=https://node-host:7702/api --tokenFile=node-token.txt</pre>
+<pre class="nowrap">bdeploy remote-node --remote=https://master-host:7701/api --tokenFile=master-token.txt --add=node-name --nodeIdentFile=node-ident.txt</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -521,7 +526,7 @@ supported for testing, but not recommended for productive setups (as the <strong
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Both the <code>https</code> (beware the <code>s</code>) prefix and the <code>/api</code> suffix are required!
+Both the <code>https</code> (beware the <code>s</code>) prefix and the <code>/api</code> suffix are required in all <strong>BDeploy</strong> URIs.
 </td>
 </tr>
 </table>
@@ -529,6 +534,41 @@ Both the <code>https</code> (beware the <code>s</code>) prefix and the <code>/ap
 <div class="paragraph">
 <p>The <strong>node</strong> is now registered as 'node-name'. This is the name which is reported when querying <strong>nodes</strong> from the <strong>master</strong>.
 This is also the name displayed when configuring applications to run on certain <strong>nodes</strong> later on.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_administrative_web_ui">Administrative Web UI</h5>
+<div class="paragraph">
+<p>The administrative Web UI provides the ability to add, remove, repair, and otherwise manage <strong>nodes</strong>.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_Admin_Nodes_Details.png"><img src="images/Doc_Admin_Nodes_Details.png" alt="Node Administration" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>To add a new node, click the <code>Add Node&#8230;&#8203;</code> button. In the resulting panel you can drag and drop the <code>node-ident.txt</code> file created during the initialization step. This will prefill the panel with the required information. You can change node-name and URI according to your needs before saving.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_Admin_Nodes_Add.png"><img src="images/Doc_Admin_Nodes_Add.png" alt="Add Node" width="480"></a>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In case you do not have the <code>node-ident.txt</code> file to drop to the drop zone, you can also drag the <em>content</em> of the file as plain text to the drop zone - this has the same effect.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When editing an existing node by selecting it in the list, you can also drop the same <code>node-ident.txt</code> file to update the information. This way you can create nodes before they actually exist - using a dummy URI and authentication - and later on update the node administration with the actual configuration. This allows to configure instances to their future nodes without them existing yet.</p>
+</div>
 </div>
 </div>
 </div>
@@ -996,6 +1036,34 @@ On the BDeploy Releases page you will find some sample products to experiment wi
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_global_attributes_on_instance_groups">Global Attributes on Instance Groups</h4>
+<div class="paragraph">
+<p><a href="#_global_attributes">Global Attributes</a> can be configured - as the name suggests - globally in the system administration. Each Instance Group <strong>may</strong> then associate a <strong>value</strong> with each of these global attributes.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_SetGlobalAttributeValue.png"><img src="images/Doc_SetGlobalAttributeValue.png" alt="Set Global Attribute Values" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The value can then be used in grouping instance groups through the grouping panel.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_GroupingPanel.png"><img src="images/Doc_GroupingPanel.png" alt="Group by Global Attribute" width="480"></a>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_instance_group_attributes">Instance Group Attributes</h4>
+<div class="paragraph">
+<p>Very similarly to the global attributes, each <strong>Instance Group</strong> may have its own <strong>attributes</strong>. These attributes are not global, but are only visible within the <strong>Instance Group</strong>. Each <strong>Instance</strong> can assign a value to each of these attributes. Again, similar to the <strong>Instance Group</strong> browser, the <strong>Instance</strong> browser can use the assigned values to group <strong>Instances</strong> by those values.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>attributes</strong> are defined in the <strong>Instance Group</strong> settings. The <strong>values</strong> are assigned in the <strong>Instance</strong> settings.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_instance_dashboard">Instance Dashboard</h3>
@@ -1020,6 +1088,18 @@ On the BDeploy Releases page you will find some sample products to experiment wi
 <div class="content">
 <a class="image" href="images/Doc_InstanceDashboardActive.png"><img src="images/Doc_InstanceDashboardActive.png" alt="Instance Dashboard" width="480"></a>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For more information, see <a href="#_process_control">Process Control</a>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -1542,8 +1622,28 @@ The advantage of an <strong>Instance Template</strong> is that it can contain mo
 <a class="image" href="images/Doc_DashboardProcessControl.png"><img src="images/Doc_DashboardProcessControl.png" alt="Process Control Panel" width="480"></a>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_process_bulk_control">Process Bulk Control</h4>
 <div class="paragraph">
-<p>In addition to the actions for individual processes, the <a href="#_instance_dashboard">Instance Dashboard</a> offers <strong>bulk control</strong> actions from its toolbar, which allow to control all processes of <strong>start type</strong> <code>INSTANCE</code> at once.</p>
+<p>In addition to the actions for individual processes, the <a href="#_instance_dashboard">Instance Dashboard</a> offers <strong>bulk control</strong> actions from its toolbar, which allow to control all processes of <strong>start type</strong> <code>INSTANCE</code>, or multiple selected processes (of any start type except <code>MANUAL_CONFIRM</code>) at once.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_DashboardBulkProcessControl.png"><img src="images/Doc_DashboardBulkProcessControl.png" alt="Bulk Process Control" width="480"></a>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Using the <strong>bulk control</strong> actions with a single process selected is the same as using the individual actions on the process details panel.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_process_status">Process Status</h4>
@@ -1666,7 +1766,7 @@ The advantage of an <strong>Instance Template</strong> is that it can contain mo
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>MANUAL_CONFIRM</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Process must be started manually and an additional confirmation is required.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Process must be started manually and an additional confirmation is required. These kind of processes <strong>cannot</strong> take part in bulk control actions.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>INSTANCE</code></p></td>
@@ -1693,6 +1793,18 @@ The advantage of an <strong>Instance Template</strong> is that it can contain mo
 </div>
 <div class="paragraph">
 <p>The exact meanings of the different configuration options is described in the <a href="#_process_control_groups">Process Control Groups</a> section.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Bulk control of selected processes uses the exact same <a href="#_process_control_groups">Process Control Groups</a> configuration as the <b class="button">Start Instance</b> and <b class="button">Stop Instance</b> actions. Only selected processes will be affected, as opposed to the whole instance. The <b class="button">Start Instance</b> and <b class="button">Stop Instance</b> will only affect processes with start type <code>INSTANCE</code>, bulk control can also affect processes with start type <code>MANUAL</code> in addition (when selected).
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -1735,6 +1847,25 @@ The advantage of an <strong>Instance Template</strong> is that it can contain mo
 <h4 id="_native_processes">Native Processes</h4>
 <div class="paragraph">
 <p>Clicking on the <b class="button">Native Processes</b> below the process control will open a panel showing all operating system processes that associated with this <strong>Process</strong>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameter_pinning">Parameter Pinning</h4>
+<div class="paragraph">
+<p>Parameter Pinning allows you to pin "important" paramteres, so that they are not only visible during configuration of a process, but also on the process panel on the dashboard. This provides quick access to information about a process. A parameter can be pinned by clicking the little pin icon which appears on each parameters editor when hovering over it.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_InstanceConfigParameterPin.png"><img src="images/Doc_InstanceConfigParameterPin.png" alt="Data Files" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The pinned parameter is visible after saving, <strong>installation</strong> and <strong>activation</strong> of the <strong>Instance</strong> version where the parameter has been pinned.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_DashboardPinnedParameter.png"><img src="images/Doc_DashboardPinnedParameter.png" alt="Data Files" width="480"></a>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -4502,7 +4633,7 @@ If you already have a package in a BHive format or a package including a product
 <p>This chapter contains additional information for expert users, administrators of the system as well as those that want to use the CLI for features that the UI does not provide.</p>
 </div>
 <div class="sect2">
-<h3 id="_administration">Administration</h3>
+<h3 id="_administration_2">Administration</h3>
 <div class="paragraph">
 <p>There are several components in the Web UI which allow maintenance of <strong>BDeploy</strong>. These are not to be used during <em>normal</em> operation by users. They <em>are</em> required during setup and to maintain current software versions of <strong>BDeploy</strong> itself if not done using the <code><a href="#_bdeploy_cli">bdeploy remote-master</a></code> CLI.</p>
 </div>
@@ -4872,7 +5003,7 @@ Use the <b class="button">Upload</b> button to upload full <strong>BDeploy</stro
 </div>
 </div>
 <div class="sect2">
-<h3 id="_command_line_interface">Command Line Interface</h3>
+<h3 id="_command_line_interface_2">Command Line Interface</h3>
 <div class="paragraph">
 <p><strong>BDeploy</strong> provides a rich CLI which allows automating most interactions with <strong>BDeploy</strong>, e.g. for use in build pipelines, etc.</p>
 </div>
@@ -5558,7 +5689,7 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.1.2<br>
+Version 4.2.2<br>
 Last updated 2021-11-05 08:12:52 +0100
 </div>
 </div>
