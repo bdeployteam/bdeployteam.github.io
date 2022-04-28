@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 4.2.2</span>
+<span id="revnumber">version 4.3.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -568,6 +568,103 @@ In case you do not have the <code>node-ident.txt</code> file to drop to the drop
 </div>
 <div class="paragraph">
 <p>When editing an existing node by selecting it in the list, you can also drop the same <code>node-ident.txt</code> file to update the information. This way you can create nodes before they actually exist - using a dummy URI and authentication - and later on update the node administration with the actual configuration. This allows to configure instances to their future nodes without them existing yet.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_replacing_and_restoring_nodes">Replacing and Restoring Nodes</h5>
+<div class="paragraph">
+<p><strong>BDeploy</strong> supports replacing and restoring nodes. This is primarily meant to restore nodes after a catastrophic failure of the node in question. This feature is capable of re-installing all required node configurations of all instances which are/were deployed on the node.</p>
+</div>
+<div class="paragraph">
+<p>Replacing can be performed via the <a href="#_administrative_web_ui">Administrative Web UI</a>, much the same as <em>editing</em> a node. The steps to replace a node are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Find the node in the <a href="#_administrative_web_ui">Administrative Web UI</a> and click it to open the node details panel.</p>
+</li>
+<li>
+<p>In the panel, click <b class="button">Replace&#8230;&#8203;</b>. This will bring up the <em>Replace Node</em> panel.</p>
+</li>
+<li>
+<p>Initialize the new node on the target system. This can be done at any time up until now in preparation.</p>
+</li>
+<li>
+<p>Drag &amp; drop the <code>node-ident.txt</code> file to the drop zone in the <em>Replace Node</em> panel. The URI and authentication information will be prefilled.</p>
+</li>
+<li>
+<p>Click the <b class="button">Save</b> button. The panel will enter loading state. You can follow the progress of the operation in the <em>Activities</em> panel from the main menu.</p>
+</li>
+<li>
+<p>Once the operation completes, you will be brought back to the node details panel.</p>
+</li>
+<li>
+<p>Replacing and restoring has been performed, and all instances which use this node are available again.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_convertmigrate_to_node">Convert/Migrate to Node</h5>
+<div class="paragraph">
+<p>Existing <code>STANDALONE</code> and <code>MANAGED</code> servers can be migrated to type <code>NODE</code>. This can be handy in case software needs to run standalone on a <code>NODE</code> before the actual master server is available. In this case, setup a <code>STANDALONE</code> server on the node, configure all the required software, and migrate the server to <code>NODE</code> type later.</p>
+</div>
+<div class="paragraph">
+<p>To convert an existing server:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <a href="#_administrative_web_ui">Administrative Web UI</a> on both servers in separate browser tabs.</p>
+</li>
+<li>
+<p>On the new master server, click <b class="button">Add Node&#8230;&#8203;</b> in the toolbar to bring up the <em>Add Node</em> panel.</p>
+</li>
+<li>
+<p>On the to-be-migrated server, click the <strong>master</strong> node in the list of nodes. Click the <b class="button">Convert to Node&#8230;&#8203;</b> button.</p>
+</li>
+<li>
+<p>Now drag the yellow node identification card from the to-be-migrated server to the new masters drop zone.</p>
+</li>
+<li>
+<p>Information about the server is pre-filled in the form. Double check the information and press <b class="button">Save</b> to start the migration.</p>
+</li>
+<li>
+<p>You will be promted to confirm the migration. Click <b class="button">Migrate</b> to continue.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_Admin_Nodes_Conversion.png"><img src="images/Doc_Admin_Nodes_Conversion.png" alt="Node Conversion" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>After the migration is complete, the server will be available as a <code>NODE</code> on the new master server. All the <strong>Instances</strong> have been migrated to the new master server.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+During migration all <strong>Instances</strong> are modified in a way such that software still runs on the same phsyical hardware as before, i.e. the now-new master server is <strong>not</strong> participating in any of the <strong>Instances</strong> configuration. Instead, the previously-master, now-node server is still configured as deployment target where this was the case previously.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the to-be-migrated server has <strong>Nodes</strong> attached to it, all those <strong>Nodes</strong> will be attached to the new master after migration.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2457,14 +2554,6 @@ It is not required to synchronize the other way (<code>CENTRAL</code> to <code>M
 <div class="paragraph">
 <p>There is a limited possibility to change the <em>purpose</em> of an already intialized <strong>BDeploy</strong> server root directory. It is only possible to migrate from <code>STANDALONE</code> to <code>MANAGED</code> and vice versa, as data is <em>mostly</em> compatible. A command line tooling exists for this purpose:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="bash">bdeploy config --root=&lt;root-directory&gt; --mode=MANAGED</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The value for mode may be <code>MANAGED</code> or <code>STANDALONE</code>. The actual migration of data may be performed later on when first accessing them. For instance, when clicking an <strong>Instance Group</strong>, you might be prompted that an <strong>Instance Group</strong> requires to be attached to a <code>CENTRAL</code> server in <code>MANAGED</code> mode, and the <strong>Attach to Central Server</strong> wizard is launched.</p>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2472,10 +2561,18 @@ It is not required to synchronize the other way (<code>CENTRAL</code> to <code>M
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<strong>BDeploy</strong> server root directories are assumed to be of mode <code>STANDALONE</code> if they have been initilized with a <strong>BDeploy</strong> version prior to <em>1.4.0</em>.
+Migration from <code>STANDALONE</code> or <code>MANAGED</code> to <code>NODE</code> is available using a dedicated workflow from the Web UI. This allows to start off an installation as <code>STANDALONE</code> and later on migrate that to be a <code>NODE</code> in a larger setup. See <a href="#_convertmigrate_to_node">Convert/Migrate to Node</a>
 </td>
 </tr>
 </table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="bash">bdeploy config --root=&lt;root-directory&gt; --mode=MANAGED</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value for mode may be <code>MANAGED</code> or <code>STANDALONE</code>. The actual migration of data may be performed later on when first accessing them. For instance, when clicking an <strong>Instance Group</strong>, you might be prompted that an <strong>Instance Group</strong> requires to be attached to a <code>CENTRAL</code> server in <code>MANAGED</code> mode, and the <strong>Attach to Central Server</strong> wizard is launched.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2949,7 +3046,7 @@ endpoints: <i class="conum" data-value="12"></i><b>(12)</b>
       port: "{{V:port-param}}"
       secure: false
     - id: "Lifeness Endpoint"
-      type: PROBE_STARTUP <i class="conum" data-value="15"></i><b>(15)</b>
+      type: PROBE_ALIVE <i class="conum" data-value="15"></i><b>(15)</b>
       path: "lifeness/endpoint"
       port: "{{V:port-param}}"
       secure: false
@@ -5689,7 +5786,7 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.2.2<br>
+Version 4.3.0<br>
 Last updated 2021-11-05 08:12:52 +0100
 </div>
 </div>
