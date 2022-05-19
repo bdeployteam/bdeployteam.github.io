@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 4.3.0</span>
+<span id="revnumber">version 4.3.1</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -4769,6 +4769,20 @@ At least one login method must be configured. Disable local accounts only if it 
 </div>
 </div>
 <div class="sect4">
+<h5 id="_openid_connect">OpenID Connect</h5>
+<div class="paragraph">
+<p>OAuth2 with OpenID Connect support is available if enabled and configured. The URL must be the token endpoint of the OpenID Connect provider. For example, the URL may look something like this on Keycloak, depending on configuration:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">https://auth.example.com/auth/realms/realmName/protocol/openid-connect/token</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Client ID and Client Secret are used to authenticate with the OpenID Connect provider, and need to be obtained from the OpenID Connect provider.</p>
+</div>
+</div>
+<div class="sect4">
 <h5 id="_ldap_auth">LDAP Auth.</h5>
 <div class="paragraph">
 <p>On the <strong>LDAP Auth</strong> tab, you can configure a list of LDAP servers which are queried when authenticating a user. Use drag and drop to to specify the sort order in which the LDAP servers are queried for users that log on.</p>
@@ -5786,7 +5800,7 @@ curl -k -H "Accept: application/json" \
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.3.0<br>
+Version 4.3.1<br>
 Last updated 2021-11-05 08:12:52 +0100
 </div>
 </div>
