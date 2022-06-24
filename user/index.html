@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 4.3.1</span>
+<span id="revnumber">version 4.5.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -360,7 +360,7 @@ binary installation. Make sure that there is enough space available.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy init --root=/path/to/storage --hostname=&lt;hostname&gt; --mode=STANDALONE --port=7701 --initUser=username --initPassword=usersPassword</pre>
+<pre class="nowrap">bdeploy init --root=/path/to/root --hostname=&lt;hostname&gt; --mode=STANDALONE --port=7701 --initUser=username --initPassword=usersPassword</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -419,7 +419,7 @@ Be aware that the user running the <strong>start</strong> command later on <stro
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy master --root=/path/to/storage</pre>
+<pre class="nowrap">bdeploy master --root=/path/to/root</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -486,7 +486,7 @@ supported for testing, but not recommended for productive setups (as the <strong
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy init --root=/path/to/node/storage --hostname=&lt;hostname&gt; --nodeIdentFile=node-ident.txt --port=7702 --mode=node</pre>
+<pre class="nowrap">bdeploy init --root=/path/to/node/root --hostname=&lt;hostname&gt; --nodeIdentFile=node-ident.txt --port=7702 --mode=node</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -500,7 +500,7 @@ supported for testing, but not recommended for productive setups (as the <strong
 </div>
 <div class="literalblock">
 <div class="content">
-<pre class="nowrap">bdeploy start --root=/path/to/storage</pre>
+<pre class="nowrap">bdeploy start --root=/path/to/root</pre>
 </div>
 </div>
 </div>
@@ -1396,6 +1396,35 @@ You need to grant <strong>BDeploy</strong> access to the PCs Clipboard for the <
 <div class="content">
 <a class="image" href="images/Doc_InstanceConfigPreview.png"><img src="images/Doc_InstanceConfigPreview.png" alt="Preview Command Line with Custom Parameter" width="480"></a>
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_allowable_configuration_directories">Allowable Configuration Directories</h5>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This section applies to <code>CLIENT</code> applications only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>CLIENT</code> applications by default do not receive any <a href="#_configuration_files">Configuration Files</a> from the instance configuration. The reason for this is simple: security. Client PCs are typically less secure than the server running <code>SERVER</code> applications. Nevertheless, also <code>CLIENT</code> applications may <em>require</em> configuration files.</p>
+</div>
+<div class="paragraph">
+<p>Thus it is possible to <strong>whitelist</strong> certain configuration directories in the configuration of <em>each</em> <code>CLIENT</code> process in the instance configuration.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_InstanceConfig_ClientConfigDirs.png"><img src="images/Doc_InstanceConfig_ClientConfigDirs.png" alt="Allowed Configuration Directories" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Select one or more directories to have those installed to the PC running the <code>CLIENT</code> application in addition to server nodes.</p>
 </div>
 </div>
 </div>
@@ -2779,6 +2808,69 @@ Migration from <code>STANDALONE</code> or <code>MANAGED</code> to <code>NODE</co
 </div>
 </div>
 <div class="sect3">
+<h4 id="_import_product_version">Import Product Version</h4>
+<div class="paragraph">
+<p>You can import a new <strong>Product Version</strong> from a software repository.
+It is done in the <strong>Products</strong> page of the <strong>Instance Group</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Click on the desired <strong>Instance Group</strong></p>
+</li>
+<li>
+<p>Click on <b class="button">Products</b> button in the main menu.</p>
+</li>
+<li>
+<p>Click on the <b class="button">Import Product&#8230;&#8203;</b> button in the toolbar.</p>
+</li>
+<li>
+<p>Select software repository.</p>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_ImportProduct_SelectRepo.png"><img src="images/Doc_ImportProduct_SelectRepo.png" alt="Choose Repo" width="480"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Select product.</p>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_ImportProduct_SelectProduct.png"><img src="images/Doc_ImportProduct_SelectProduct.png" alt="Choose Product" width="480"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Select product version.</p>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_ImportProduct_SelectVersion.png"><img src="images/Doc_ImportProduct_SelectVersion.png" alt="Choose Product Version" width="480"></a>
+</div>
+</div>
+</li>
+<li>
+<p>Click import button.</p>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_ImportProduct_PanelFilled.png"><img src="images/Doc_ImportProduct_PanelFilled.png" alt="Press Import button" width="480"></a>
+</div>
+</div>
+</li>
+<li>
+<p>The product will appear in the list of available products once successfully imported.</p>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_ImportProduct_Success.png"><img src="images/Doc_ImportProduct_Success.png" alt="Product Version imported" width="480"></a>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <strong>Product Version</strong> is now available and can be used in all <strong>Instances</strong> of this <strong>Instance Group</strong>.</p>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_upgrade_instance">Upgrade Instance</h4>
 <div class="paragraph">
 <p>Changing the <strong>Product Version</strong> of an <strong>Instance</strong> is done in the <strong>Instance Configuration</strong> dialog:</p>
@@ -3001,8 +3093,9 @@ processControl: <i class="conum" data-value="6"></i><b>(6)</b>
      endpoint: "Lifeness Endpoint"
      initialDelaySeconds: 5
      periodSeconds: 10
+  configDirs: "/dir1,/dir2" <i class="conum" data-value="9"></i><b>(9)</b>
 
-startCommand: <i class="conum" data-value="9"></i><b>(9)</b>
+startCommand: <i class="conum" data-value="10"></i><b>(10)</b>
   launcherPath: "{{WINDOWS:launch.bat}}{{LINUX:launch.sh}}"
   parameters:
     - uid: "my.param.1"
@@ -3026,32 +3119,32 @@ startCommand: <i class="conum" data-value="9"></i><b>(9)</b>
       longDescription: "This is only visible and configurable if my.param.2 has value 'Value 1'"
       parameter: "--conditional"
       mandatory: true
-      condition: <i class="conum" data-value="10"></i><b>(10)</b>
+      condition: <i class="conum" data-value="11"></i><b>(11)</b>
         parameter: "my.param.2"
         must: EQUAL
         value: "Value 1"
 
-stopCommand: <i class="conum" data-value="11"></i><b>(11)</b>
+stopCommand: <i class="conum" data-value="12"></i><b>(12)</b>
   ...
 
-endpoints: <i class="conum" data-value="12"></i><b>(12)</b>
+endpoints: <i class="conum" data-value="13"></i><b>(13)</b>
   http:
-    - id: "my-endpoint" <i class="conum" data-value="13"></i><b>(13)</b>
+    - id: "my-endpoint" <i class="conum" data-value="14"></i><b>(14)</b>
       path: "path/to/the/endpoint"
-      port: "{{V:port-param}}" <i class="conum" data-value="14"></i><b>(14)</b>
+      port: "{{V:port-param}}" <i class="conum" data-value="15"></i><b>(15)</b>
       secure: false
     - id: "Startup Endpoint"
-      type: PROBE_STARTUP <i class="conum" data-value="15"></i><b>(15)</b>
+      type: PROBE_STARTUP <i class="conum" data-value="16"></i><b>(16)</b>
       path: "startup/endpoint"
       port: "{{V:port-param}}"
       secure: false
     - id: "Lifeness Endpoint"
-      type: PROBE_ALIVE <i class="conum" data-value="15"></i><b>(15)</b>
+      type: PROBE_ALIVE <i class="conum" data-value="16"></i><b>(16)</b>
       path: "lifeness/endpoint"
       port: "{{V:port-param}}"
       secure: false
 
-runtimeDependencies: <i class="conum" data-value="16"></i><b>(16)</b>
+runtimeDependencies: <i class="conum" data-value="17"></i><b>(17)</b>
   - "adoptium/jre:1.8.0_202-b08"</code></pre>
 </div>
 </div>
@@ -3091,34 +3184,38 @@ runtimeDependencies: <i class="conum" data-value="16"></i><b>(16)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
-<td>The start command of the <strong>Application</strong>. Contains the path to the <em>executable</em> to launch, as well as all known and supported parameters. For details, see the full list of <a href="#_supported_parameters_attributes">parameter</a> attributes. To apply e.g. instance-specific values, <a href="#_variable_expansion">Variable Expansion</a> is a powerful tool. It can be used for the <code>launcherPath</code> and each parameter&#8217;s <code>defaultValue</code>. In the Web UI it can be used for the parameter values.</td>
+<td>Allowed Configuration Directories preset - only valid for <code>CLIENT</code> applications. These relative sub-directories of the configuration files directory tree will be made available to this application when run on a client PC. This can later also be configured per process using the <a href="#_allowable_configuration_directories">Allowable Configuration Directories</a> configuration.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="10"></i><b>10</b></td>
-<td>A conditional parameter is a parameter with a condition on it. The condition always refers to another parameter on the same application. The parameter with the condition set will only be visible and configurable if the condition on the referenced parameter is met.</td>
+<td>The start command of the <strong>Application</strong>. Contains the path to the <em>executable</em> to launch, as well as all known and supported parameters. For details, see the full list of <a href="#_supported_parameters_attributes">parameter</a> attributes. To apply e.g. instance-specific values, <a href="#_variable_expansion">Variable Expansion</a> is a powerful tool. It can be used for the <code>launcherPath</code> and each parameter&#8217;s <code>defaultValue</code>. In the Web UI it can be used for the parameter values.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="11"></i><b>11</b></td>
-<td>The optional stop command can be specified to provide a mechanism for clean application shutdown once <strong>BDeploy</strong> tries to stop a process. This command may use <a href="#_variable_expansion">Variable Expansion</a> to access parameter values of the <code>startCommand</code> (e.g. configured 'stop port', etc.). It is <strong>not</strong> configurable through the Web UI though. All parameter values will have their (expanded) default values set when the command is run. If no <code>stopCommand</code> is specified, <strong>BDeploy</strong> will try to gracefully quit the process (i.e. <code>SIGTERM</code>). Both with and without <code>stopCommand</code>, <strong>BDeploy</strong> resorts to a <code>SIGKILL</code> after the <code><a href="#_supported_parameters_attributes">gracePeriod</a></code> has expired.</td>
+<td>A conditional parameter is a parameter with a condition on it. The condition always refers to another parameter on the same application. The parameter with the condition set will only be visible and configurable if the condition on the referenced parameter is met.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="12"></i><b>12</b></td>
-<td>Optional definition of provided endpoints. Currently only HTTP endpoints are supported. These endpoints can be configured on the application later, including additional information like authentication, certificates, etc. <strong>BDeploy</strong> can later on call these endpoints when instructed to do so by a third-party application.</td>
+<td>The optional stop command can be specified to provide a mechanism for clean application shutdown once <strong>BDeploy</strong> tries to stop a process. This command may use <a href="#_variable_expansion">Variable Expansion</a> to access parameter values of the <code>startCommand</code> (e.g. configured 'stop port', etc.). It is <strong>not</strong> configurable through the Web UI though. All parameter values will have their (expanded) default values set when the command is run. If no <code>stopCommand</code> is specified, <strong>BDeploy</strong> will try to gracefully quit the process (i.e. <code>SIGTERM</code>). Both with and without <code>stopCommand</code>, <strong>BDeploy</strong> resorts to a <code>SIGKILL</code> after the <code><a href="#_supported_parameters_attributes">gracePeriod</a></code> has expired.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="13"></i><b>13</b></td>
-<td>The ID of the endpoint can be used to call the endpoint remotely by tunneling through potentially multiple levels of <strong>BDeploy</strong> servers.</td>
+<td>Optional definition of provided endpoints. Currently only HTTP endpoints are supported. These endpoints can be configured on the application later, including additional information like authentication, certificates, etc. <strong>BDeploy</strong> can later on call these endpoints when instructed to do so by a third-party application.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="14"></i><b>14</b></td>
-<td><a href="#_variable_expansion">Variable Expansion</a> can be used on most of the endpoint properties.</td>
+<td>The ID of the endpoint can be used to call the endpoint remotely by tunneling through potentially multiple levels of <strong>BDeploy</strong> servers.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="15"></i><b>15</b></td>
-<td>The type of the endpoint can be used to control how the endpoint is handled by <strong>BDeploy</strong>.</td>
+<td><a href="#_variable_expansion">Variable Expansion</a> can be used on most of the endpoint properties.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="16"></i><b>16</b></td>
+<td>The type of the endpoint can be used to control how the endpoint is handled by <strong>BDeploy</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="17"></i><b>17</b></td>
 <td>Optional runtime dependencies. These dependencies are included in the <strong>Product</strong> when building it. Dependencies are fetched from <strong><a href="#_software_repositories">Software Repositories</a></strong>. <code>launcherPath</code> and parameter <code>defaultValue</code> (and of course the final configuration values) can access paths within each of the dependencies by using the <code>{{M:adoptium/jre}}</code> <a href="#_variable_expansion">Variable Expansion</a>, e.g. <code>launcherPath: {{M:adoptium/jre}}/bin/java</code>. Note that the declared <em>dependency</em> does not need to specify an operating system, but <strong>must</strong> specify a <em>version</em>. This will be resolved by <strong>BDeploy</strong> to either an exact match if available, or a operating system specific match, e.g. <code>adoptium/jre/linux:1.8.0_202-b08</code> on <code>LINUX</code>. When <em>referencing</em> the dependency in a <a href="#_variable_expansion">Variable Expansion</a>, neither an operating system nor a version is required - in fact it must not be specified.</td>
 </tr>
 </table>
@@ -4812,9 +4909,8 @@ Technical experts can use the <em>Check</em> action to test a single LDAP server
 <a class="image" href="images/Doc_Admin_Ldap_Server_Config.png"><img src="images/Doc_Admin_Ldap_Server_Config.png" alt="BDeploy LDAP Server Configuration" width="480"></a>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_ldap_server_properties">LDAP Server Properties</h5>
+<div class="sect5">
+<h6 id="_ldap_server_properties">LDAP Server Properties</h6>
 <div class="paragraph">
 <p>The following properties can be configured for each LDAP Server:</p>
 </div>
@@ -4872,6 +4968,36 @@ Technical experts can use the <em>Check</em> action to test a single LDAP server
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect5">
+<h6 id="_ldap_certificate_trust">LDAP Certificate Trust</h6>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This section currently only applies to Linux installations.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If the configured LDAP server uses official certificates which are not trusted by the current JVM&#8217;s default trust store, you can alternatively configure the <strong>BDeploy</strong> service to use the system <em>cacert</em> trust stores, which are typically available at a location like <code>/etc/pki/ca-trust/extracted/java/cacerts</code>. This path may be different on different Linux distributions.</p>
+</div>
+<div class="paragraph">
+<p>To use this trust store, you need to add these parameters to the command line of <strong>BDeploy</strong>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">-Djavax.net.ssl.trustStore=/etc/pki/ca-trust/extracted/java/cacerts -Djavax.net.ssl.trustStoreType=jks -Djavax.net.ssl.trustStorePassword=changeit</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can do so by means provided by the Linux distribution, e.g. directly editing the <code>bdeploy.service</code> systemd service file or setting <code>BDEPLOY_OPTS</code> environment variable to that value either globally or in a service environment file.</p>
+</div>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_global_attributes">Global Attributes</h5>
@@ -5794,13 +5920,90 @@ curl -k -H "Accept: application/json" \
 </table>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_ui_endpoints">UI Endpoints</h4>
+<div class="paragraph">
+<p>UI Endpoints can be defined to allow simple access to hosted web applications in a similar manner than client applications. This means that <strong>BDeploy</strong> will provide a link to the web application in much the same way as it provides access to client applications in its own UI, both on the (server) process status panel, as well as on the client applications page.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The permission to access a UI endpoint through the <strong>BDeploy</strong> UI is <code>CLIENT</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A sample UI endpoint definition may look something like this in the <a href="#_app_info_yaml">app-info.yaml</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">endpoints:
+  http:
+    - id: "appUi"
+      path: "/"
+      contextPath: "/appUi"
+      port: "8080"
+      secure: false
+      authType: NONE
+      type: UI
+      proxying: true</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The differenciation between <code>path</code> and <code>contextPath</code> is that while <code>path</code> defines the root of the server hosting the application, <code>contextPath</code> may be used to add more path segments to the link generated by BDeploy which leads to the application entry point. The <code>contextPath</code> is used <em>only</em> to determine the address to open when the application is opened through <strong>BDeploy</strong>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_ui_endpoint_proxying">UI Endpoint Proxying</h5>
+<div class="paragraph">
+<p>Much like "normal" <a href="#_endpoint_proxying">Endpoint Proxying</a>, <strong>BDeploy</strong> also provides proxying for UI endpoints - when enabled using the <code>proxying</code> attribute on the endpoint. A UI endpoint will be reachable on any participating <strong>BDeploy</strong> server (<code>STANDALONE</code> only or <code>CENTRAL</code> and <code>MANAGED</code> if used). <strong>BDeploy</strong> handles all the traffic from and to the actual web application. There is no direct access to the <strong>actual</strong> application required.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This feature is intended for simple use cases. Advanced use cases may not work as expected (e.g. WebSockets). <strong>BDeploy</strong> uses a simple request/response wrapping internally to forward requests and is <strong>not</strong> a full HTTP proxy.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Only users which are logged in to <strong>BDeploy</strong> can access UI endpoints through the proxy mechanism!
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.3.1<br>
+Version 4.5.0<br>
 Last updated 2021-11-05 08:12:52 +0100
 </div>
 </div>
