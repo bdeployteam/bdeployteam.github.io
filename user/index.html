@@ -27,7 +27,7 @@
 <div id="header">
 <h1>BDeploy End User Documentation</h1>
 <div class="details">
-<span id="revnumber">version 4.5.0</span>
+<span id="revnumber">version 5.0.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -75,7 +75,7 @@
 <li><a href="#_advanced_terms">Advanced Terms</a></li>
 <li><a href="#_integration_of_a_new_product">Integration of a new product</a></li>
 <li><a href="#_building_a_product">Building a Product</a></li>
-<li><a href="#_variable_expansion">Variable Expansion</a></li>
+<li><a href="#_variable_expansions">Variable Expansions</a></li>
 <li><a href="#_runtime_dependencies">Runtime Dependencies</a></li>
 <li><a href="#_runtime_dependency_packaging">Runtime Dependency Packaging</a></li>
 <li><a href="#_software_repositories">Software Repositories</a></li>
@@ -710,8 +710,10 @@ the <code>etc</code> directory and is named <code>bdeploy-service-install.bat</c
 <div class="literalblock">
 <div class="content">
 <pre class="nowrap">--master | --node      Start a master or node (only controls the name of the service.)
-&lt;Path-to-minion&gt;       Absolute path of the bdeploy executable
-&lt;Path-to-store-files&gt;  Absolute path of the data directory</pre>
+&lt;Path-to-minion-bat&gt;   Absolute path to the bdeploy batch file.
+                       Sample: C:\BDeploy\server\bin\bdeploy.bat
+&lt;Path-to-store-files&gt;  Absolute path to the data directory.
+                       Sample: C:\BDeploy\data\</pre>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -1161,6 +1163,33 @@ On the BDeploy Releases page you will find some sample products to experiment wi
 <p>The <strong>attributes</strong> are defined in the <strong>Instance Group</strong> settings. The <strong>values</strong> are assigned in the <strong>Instance</strong> settings.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_systems">Systems</h4>
+<div class="paragraph">
+<p><strong>Systems</strong> are a means of further grouping instances of different products inside a single <strong>Instance Group</strong>. <strong>Systems</strong> also provide means to apply shared configuration through <a href="#_system_variables">System Variables</a>.</p>
+</div>
+<div class="paragraph">
+<p>Once created, a <strong>System</strong> can be used by an <strong>Instance</strong> by configuring the in-use <strong>System</strong> in the <a href="#_instance_configuration">Instance Configuration</a> of each <strong>Instance</strong> which should <em>participate</em> in this particular <strong>System</strong>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A <strong>System</strong> definition may be used by many <strong>Instances</strong>, but each <strong>Instance</strong> can only be part of one <strong>System</strong> (or none).
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_system_variables">System Variables</h5>
+<div class="paragraph">
+<p><strong>System Variables</strong> can be configured on <strong>Systems</strong>. Those variables can then be used using <em>link expressions</em> on <a href="#_link_expressions">Link Expressions</a> (process parameters, endpoint configuration, instance variables, configuration files).</p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_instance_dashboard">Instance Dashboard</h3>
@@ -1374,6 +1403,18 @@ You need to grant <strong>BDeploy</strong> access to the PCs Clipboard for the <
 <div class="paragraph">
 <p><strong>Global Parameters</strong> are valid for all <strong>Processes</strong> of an <strong>Instance</strong>. They are also configured in the <strong>Process</strong>, but changes are copied to all other processes that also use this parameter. <strong>Global parameters</strong> are matched by their parameter UID, and marked with a globe icon in the <strong>parameter configuration</strong> panel.</p>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<strong>Global Parameters</strong> have been deprecated in favor of <a href="#_system_variables">System Variables</a> and <a href="#_instance_variables">Instance Variables</a>.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_conditional_parameters">Conditional Parameters</h5>
@@ -1382,9 +1423,20 @@ You need to grant <strong>BDeploy</strong> access to the PCs Clipboard for the <
 </div>
 </div>
 <div class="sect4">
-<h5 id="_variables">Variables</h5>
+<h5 id="_link_expressions">Link Expressions</h5>
 <div class="paragraph">
-<p><strong>BDeploy</strong> provides a mechanism for defining that a parameter should hold a dynamically computed value instead of a fixed one. The general syntax for variables is <code>{{TYPE:VARNAME:SUBVAR}}</code>. With that mechanism it is possible to define that a certain parameter holds different values for different operating systems or to refer to parameters defined in a different process. See <a href="#_variable_expansion">Variable Expansion</a> for more details.</p>
+<p>Link expressions can be used on all process parameters (as well as for endpoint configuration, inside configuration files, etc.). The <strong>BDeploy</strong> UI provides content assis for link expressions once a parameter editor is switched to expression mode, which is done using the toggle in front of each parameter. Each parameter is <em>either</em> a plain value or a link expression, depending on the toggle.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_InstVar_InParameter.png"><img src="images/Doc_InstVar_InParameter.png" alt="Content Asssist for Link Expressions" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The content assist will propose categories of <a href="#Variable Expansion">[Variable Expansion]</a> first, and once the category is determined will continue to provide more detailed assistence.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="#_variable_expansion">Variable Expansion</a> for more details.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1429,6 +1481,77 @@ This section applies to <code>CLIENT</code> applications only.
 </div>
 </div>
 <div class="sect3">
+<h4 id="_instance_variables">Instance Variables</h4>
+<div class="paragraph">
+<p><strong>Instance Variables</strong> have been introduced along with their even more global counterpart <a href="#_system_variables">System Variables</a>. <strong>Instance Variables</strong> replace the concept of <a href="#_global_parameters">Global Parameters</a>. They offer a more flexible - and along with <a href="#_system_variables">System Variables</a> also a more powerful - way of achieving the same result.</p>
+</div>
+<div class="paragraph">
+<p>To add <strong>Instance Variables</strong>, use the <b class="button">Instance Variables&#8230;&#8203;</b> option in the <strong>Instance Settings</strong> panel. Add a new <strong>Instance Variable</strong> using the <b class="button">+</b> button in the panels toolbar.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_InstVar_Plain.png"><img src="images/Doc_InstVar_Plain.png" alt="A new Instance Variable" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>The value of an <strong>Instance Variable</strong> can not only be a plain value of the selected type, but it can also be a <em>link expression</em>, which is a value consisting of a combination of plain text components and one or more <a href="#_variable_expansions">Variable Expansions</a>. In this mode, the editor will provide content assist for expansions and a dedicated variable list popup.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/Doc_InstVar_Link.png"><img src="images/Doc_InstVar_Link.png" alt="A new Instance Variable (Link Expression)" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Once created <strong>Instance Variables</strong> can be referenced from all other <a href="#_link_expressions">Link Expressions</a>, e.g. on process parameters, configuration files, etc.</p>
+</div>
+<div class="sect4">
+<h5 id="_migration_from_global_parameters_to_instance_variables">Migration from Global Parameters to Instance Variables</h5>
+<div class="paragraph">
+<p>Since <strong>Instance Variables</strong> are the successor concept for <strong>Global Parameters</strong> (those have been deprecated), there is a migration path.</p>
+</div>
+<div class="paragraph">
+<p>Products need to be updated at some point to no longer have the <code>global</code> flag on parameters, and use <strong>Instance Variables</strong> in their <a href="#_instance_templates">Instance Templates</a> instead. There is no automated migration for this, this has to be done manually by the respective maintainers.</p>
+</div>
+<div class="paragraph">
+<p>However, updating products will not "fix" existing instances, as templates are only used when creating instances, and also parameter values for existing processes will not be updated when changing the product.</p>
+</div>
+<div class="paragraph">
+<p>Thus, there is a <b class="button">Migrate Globals</b> button on the <strong>Instance Variables</strong> panel. Also, updating the product version will now (as long as migration has not been performed yet) prompt to perform the migration to <strong>Instance Variables</strong>. This migration will pick each <code>global</code> parameter in the <strong>Instance</strong> and:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create an <strong>Instance Variable</strong> using the parameters ID as variable name.</p>
+</li>
+<li>
+<p>Set the current <code>global</code> value to the new <strong>Instance Variable</strong>.</p>
+</li>
+<li>
+<p>Replace the current value for all instances of the <code>global</code> parameter in the <strong>Instance</strong> with a link expression referencing the new <strong>Instance Variable</strong></p>
+</li>
+<li>
+<p>Disable the use of <code>global</code> for <strong>this Instance</strong> only. All parameters will be treated as though the <code>global</code> flag was not set.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This brings the instance into a state where it is safe to either update <strong>BDeploy</strong> to a version which no longer supports <code>global</code> (which does not exist yet), or update the product to a version where the <code>global</code> flag is no longer used on parameters.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This migration must be done regardless of the product being updated. Without the migration, global parameters will turn into "normal" parameters at some point. If they still contain a plain value at that point in time (and not a <a href="#_link_expressions">Link Expression</a>) it will stay this way, and <strong>each</strong> of the formerly "connected" parameters (through the global mechanism) will have its own value and needs to be configured separately.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
 <h4 id="_configuration_files">Configuration Files</h4>
 <div class="paragraph">
 <p>The <strong>configuration files</strong> of all <strong>Processes</strong> of an <strong>Instance</strong> are maintained together in one place. It can be opened by clicking on the <b class="button">Configuration Files</b> button in the <strong>Instance Settings</strong> panel. The initial set of <strong>configuration files</strong> is derived from the default set delivered with the product, see <a href="#_product_info_yaml"><code>product-info.yaml</code></a>.</p>
@@ -1454,6 +1577,9 @@ This section applies to <code>CLIENT</code> applications only.
 </div>
 <div class="paragraph">
 <p>Online editing is only possible for text files. Binary files like ZIP, PDF, etc. can not be edited online. Instead, you can download and later on replace them.</p>
+</div>
+<div class="paragraph">
+<p><a href="#Variable Expansion">[Variable Expansion]</a> can be used in configuration files. The variables will be expanded when the file is written on disc on the target node. The editor for configuration files provides content assist for <a href="#Variable Expansion">[Variable Expansion]</a> on <b class="button">CTRL</b> + <b class="button">Space</b> if the current word in the editor contains <code>{{</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1678,7 +1804,7 @@ The advantage of an <strong>Instance Template</strong> is that it can contain mo
 </ul>
 </div>
 <div class="paragraph">
-<p>Additionally, each <strong>Process Control Group</strong> can be configured to wait for process startup, i.e. startup probes. Each <strong>Process Control Group</strong> has a <strong>Start Wait</strong> con:figure-caption:</p>
+<p>Additionally, each <strong>Process Control Group</strong> can be configured to wait for process startup, i.e. startup probes. Each <strong>Process Control Group</strong> has a <strong>Start Wait</strong> configuration:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2367,6 +2493,79 @@ Changing the product version or changing the launcher version on the server requ
 </table>
 </div>
 </div>
+<div class="sect4">
+<h5 id="_application_could_not_be_launched">Application Could Not be Launched</h5>
+<div class="paragraph">
+<p>Whenever the client application cannot be launched a generic error message is shown to the user. The root cause can be viewed when clicking on the <strong>View Details</strong> button. The error message is also logged to the <strong>Application Log</strong> file. The log file is located next to the installation directory in a folder called <strong>logs</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The table below shows some the most common error messages and how to solve them.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 40%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Error Message</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jakarta.ws.rs.ProcessingException: java.net.ConnectException: Connection refused</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The BDeploy server is either not running or the required port is not reachable.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Start the BDeploy server and check that the port is not blocked by a firewall.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Inconsistent file and folder permissions: Missing permission to delete files.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permissions of the root directory are invalid. Typically happens when just he <code>Modify</code> permission is revoked.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Make sure to also revoke the <code>Write</code> permissions to make the installation read-only or grant <code>Modify</code> permission.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Inconsistent file and folder permissions: Missing permission to create files.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permissions of the root directory are invalid. Typically happens when the <em>'Advanced Security'</em> options are used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Make sure that the permissions are set to <code>Modify</code> or to <code>Read, Execute</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Inconsistent file and folder permissions. Missing permission to modify files.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permissions of the root directory are invalid. Typically happens when the <em>'Advanced Security'</em> options are used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Make sure that the permissions are set to <code>Modify</code> or to <code>Read, Execute</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>BDeploy home directory has changed. Expected X. Got Y.</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Launcher detected that the installation directory has been moved or that it is accessed via a different path.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>When moving was done intentially update the path in the <code>bdeploy.home</code> file.</p>
+</div>
+<div class="paragraph">
+<p>When accessing the launcher via a file share then make sure that the path is exactly the same.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>\\my-server\launcher</em></p>
+</li>
+<li>
+<p><em>\\my-server.my-domain\launcher</em></p>
+</li>
+<li>
+<p><em>\\192.168.2.100\launcher</em></p>
+<div class="literalblock">
+<div class="content">
+<pre>The above network paths are treated as a different even if they actually resolve to the same server. When starting the launcher make sure to always use the same path.</pre>
+</div>
+</div>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -2990,6 +3189,14 @@ It is done in the <strong>Products</strong> page of the <strong>Instance Group</
 <dd>
 <p>optional YAML file(s) which can be used to define <strong>Instance Templates</strong></p>
 </dd>
+<dt class="hdlist1"><a href="#_parameter_template_yaml">parameter-template.yaml</a></dt>
+<dd>
+<p>optional YAML file(s) which can be used to provide shared definitions for parameters which are re-usable in <a href="#_app_info_yaml">app-info.yaml</a> files.</p>
+</dd>
+<dt class="hdlist1"><a href="#_instance_variable_template_yaml">instance-variable-template.yaml</a></dt>
+<dd>
+<p>optional YAML file(s) which can be used to provide shared definitions for instance variables which are re-usable in <a href="#_instance_template_yaml">instance-template.yaml</a> files.</p>
+</dd>
 </dl>
 </div>
 <div class="paragraph">
@@ -3006,6 +3213,14 @@ On the BDeploy Releases page you will find some zipped sample products for each 
 </td>
 </tr>
 </table>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="images/yaml-overview.png"><img src="images/yaml-overview.png" alt="YAML relation overview" width="480"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>This picture illustrates the relation between the various YAML files which are (can be) used to define a product. Almost all product information and data revolves around <strong>BDeploy</strong> enabling a user to configure instances and applications.</p>
 </div>
 <div class="sect3">
 <h4 id="_app_info_yaml">app-info.yaml</h4>
@@ -3103,7 +3318,7 @@ startCommand: <i class="conum" data-value="10"></i><b>(10)</b>
       longDescription: "This is a numeric parameter"
       groupName: "My Parameters"
       parameter: "--number"
-      defaultValue: "5"
+      defaultValue: "{{X:instance-number}}"  <i class="conum" data-value="11"></i><b>(11)</b>
       type: NUMERIC
     - uid: "my.param.2"
       name: "My textual parameter"
@@ -3119,32 +3334,33 @@ startCommand: <i class="conum" data-value="10"></i><b>(10)</b>
       longDescription: "This is only visible and configurable if my.param.2 has value 'Value 1'"
       parameter: "--conditional"
       mandatory: true
-      condition: <i class="conum" data-value="11"></i><b>(11)</b>
+      condition: <i class="conum" data-value="12"></i><b>(12)</b>
         parameter: "my.param.2"
         must: EQUAL
         value: "Value 1"
+    - template: param.template <i class="conum" data-value="13"></i><b>(13)</b>
 
-stopCommand: <i class="conum" data-value="12"></i><b>(12)</b>
+stopCommand: <i class="conum" data-value="14"></i><b>(14)</b>
   ...
 
-endpoints: <i class="conum" data-value="13"></i><b>(13)</b>
+endpoints: <i class="conum" data-value="15"></i><b>(15)</b>
   http:
-    - id: "my-endpoint" <i class="conum" data-value="14"></i><b>(14)</b>
+    - id: "my-endpoint" <i class="conum" data-value="16"></i><b>(16)</b>
       path: "path/to/the/endpoint"
-      port: "{{V:port-param}}" <i class="conum" data-value="15"></i><b>(15)</b>
+      port: "{{V:port-param}}" <i class="conum" data-value="17"></i><b>(17)</b>
       secure: false
     - id: "Startup Endpoint"
-      type: PROBE_STARTUP <i class="conum" data-value="16"></i><b>(16)</b>
+      type: PROBE_STARTUP <i class="conum" data-value="18"></i><b>(18)</b>
       path: "startup/endpoint"
       port: "{{V:port-param}}"
       secure: false
     - id: "Lifeness Endpoint"
-      type: PROBE_ALIVE <i class="conum" data-value="16"></i><b>(16)</b>
+      type: PROBE_ALIVE <i class="conum" data-value="18"></i><b>(18)</b>
       path: "lifeness/endpoint"
       port: "{{V:port-param}}"
       secure: false
 
-runtimeDependencies: <i class="conum" data-value="17"></i><b>(17)</b>
+runtimeDependencies: <i class="conum" data-value="19"></i><b>(19)</b>
   - "adoptium/jre:1.8.0_202-b08"</code></pre>
 </div>
 </div>
@@ -3192,31 +3408,39 @@ runtimeDependencies: <i class="conum" data-value="17"></i><b>(17)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="11"></i><b>11</b></td>
-<td>A conditional parameter is a parameter with a condition on it. The condition always refers to another parameter on the same application. The parameter with the condition set will only be visible and configurable if the condition on the referenced parameter is met.</td>
+<td><a href="#Variable Expansion">[Variable Expansion]</a> can also be used to expand to <a href="#_instance_variables">Instance Variables</a> in default values. These instance variables are required to exist once this application is configured in an instance. They can either be pre-provided using <a href="#_instance_templates">Instance Templates</a> or need to be manually created when required.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="12"></i><b>12</b></td>
-<td>The optional stop command can be specified to provide a mechanism for clean application shutdown once <strong>BDeploy</strong> tries to stop a process. This command may use <a href="#_variable_expansion">Variable Expansion</a> to access parameter values of the <code>startCommand</code> (e.g. configured 'stop port', etc.). It is <strong>not</strong> configurable through the Web UI though. All parameter values will have their (expanded) default values set when the command is run. If no <code>stopCommand</code> is specified, <strong>BDeploy</strong> will try to gracefully quit the process (i.e. <code>SIGTERM</code>). Both with and without <code>stopCommand</code>, <strong>BDeploy</strong> resorts to a <code>SIGKILL</code> after the <code><a href="#_supported_parameters_attributes">gracePeriod</a></code> has expired.</td>
+<td>A conditional parameter is a parameter with a condition on it. The condition always refers to another parameter on the same application. The parameter with the condition set will only be visible and configurable if the condition on the referenced parameter is met.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="13"></i><b>13</b></td>
-<td>Optional definition of provided endpoints. Currently only HTTP endpoints are supported. These endpoints can be configured on the application later, including additional information like authentication, certificates, etc. <strong>BDeploy</strong> can later on call these endpoints when instructed to do so by a third-party application.</td>
+<td>A product can provide <a href="#_parameter_template_yaml">parameter templates</a> which can be re-used by referencing their ID inline in applications parameter definitions. All parameter definitions in the template will be inlined at the place the template is referenced.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="14"></i><b>14</b></td>
-<td>The ID of the endpoint can be used to call the endpoint remotely by tunneling through potentially multiple levels of <strong>BDeploy</strong> servers.</td>
+<td>The optional stop command can be specified to provide a mechanism for clean application shutdown once <strong>BDeploy</strong> tries to stop a process. This command may use <a href="#_variable_expansion">Variable Expansion</a> to access parameter values of the <code>startCommand</code> (e.g. configured 'stop port', etc.). It is <strong>not</strong> configurable through the Web UI though. All parameter values will have their (expanded) default values set when the command is run. If no <code>stopCommand</code> is specified, <strong>BDeploy</strong> will try to gracefully quit the process (i.e. <code>SIGTERM</code>). Both with and without <code>stopCommand</code>, <strong>BDeploy</strong> resorts to a <code>SIGKILL</code> after the <code><a href="#_supported_parameters_attributes">gracePeriod</a></code> has expired.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="15"></i><b>15</b></td>
-<td><a href="#_variable_expansion">Variable Expansion</a> can be used on most of the endpoint properties.</td>
+<td>Optional definition of provided endpoints. Currently only HTTP endpoints are supported. These endpoints can be configured on the application later, including additional information like authentication, certificates, etc. <strong>BDeploy</strong> can later on call these endpoints when instructed to do so by a third-party application.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="16"></i><b>16</b></td>
-<td>The type of the endpoint can be used to control how the endpoint is handled by <strong>BDeploy</strong>.</td>
+<td>The ID of the endpoint can be used to call the endpoint remotely by tunneling through potentially multiple levels of <strong>BDeploy</strong> servers.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="17"></i><b>17</b></td>
-<td>Optional runtime dependencies. These dependencies are included in the <strong>Product</strong> when building it. Dependencies are fetched from <strong><a href="#_software_repositories">Software Repositories</a></strong>. <code>launcherPath</code> and parameter <code>defaultValue</code> (and of course the final configuration values) can access paths within each of the dependencies by using the <code>{{M:adoptium/jre}}</code> <a href="#_variable_expansion">Variable Expansion</a>, e.g. <code>launcherPath: {{M:adoptium/jre}}/bin/java</code>. Note that the declared <em>dependency</em> does not need to specify an operating system, but <strong>must</strong> specify a <em>version</em>. This will be resolved by <strong>BDeploy</strong> to either an exact match if available, or a operating system specific match, e.g. <code>adoptium/jre/linux:1.8.0_202-b08</code> on <code>LINUX</code>. When <em>referencing</em> the dependency in a <a href="#_variable_expansion">Variable Expansion</a>, neither an operating system nor a version is required - in fact it must not be specified.</td>
+<td><a href="#Variable Expansion">[Variable Expansion]</a> can be used on most of the endpoint properties.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="18"></i><b>18</b></td>
+<td>The type of the endpoint can be used to control how the endpoint is handled by <strong>BDeploy</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="19"></i><b>19</b></td>
+<td>Optional runtime dependencies. These dependencies are included in the <strong>Product</strong> when building it. Dependencies are fetched from <strong><a href="#_software_repositories">Software Repositories</a></strong>. <code>launcherPath</code> and parameter <code>defaultValue</code> (and of course the final configuration values) can access paths within each of the dependencies by using the <code>{{M:adoptium/jre}}</code> <a href="#Variable Expansion">[Variable Expansion]</a>, e.g. <code>launcherPath: {{M:adoptium/jre}}/bin/java</code>. Note that the declared <em>dependency</em> does not need to specify an operating system, but <strong>must</strong> specify a <em>version</em>. This will be resolved by <strong>BDeploy</strong> to either an exact match if available, or a operating system specific match, e.g. <code>adoptium/jre/linux:1.8.0_202-b08</code> on <code>LINUX</code>. When <em>referencing</em> the dependency in a <a href="#Variable Expansion">[Variable Expansion]</a>, neither an operating system nor a version is required - in fact it must not be specified.</td>
 </tr>
 </table>
 </div>
@@ -3385,7 +3609,21 @@ The value of the parameter is not part of this definition, nor is any potential 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>global</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whether this parameter is <code>global</code>. This means that inside a single <strong>Instance</strong>, every process requiring this parameter will receive the same value. The configuration UI will provide input fields for the parameter for every <strong>Application</strong> which requires the parameter, and propagate value changes to all other <strong>Applications</strong> requiring it.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Whether this parameter is <code>global</code>. This means that inside a single <strong>Instance</strong>, every process requiring this parameter will receive the same value. The configuration UI will provide input fields for the parameter for every <strong>Application</strong> which requires the parameter, and propagate value changes to all other <strong>Applications</strong> requiring it.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<strong>Global Parameters</strong> have been deprecated in favor of <a href="#_system_variables">System Variables</a> and <a href="#_instance_variables">Instance Variables</a>.
+</td>
+</tr>
+</table>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mandatory</code></p></td>
@@ -3445,6 +3683,14 @@ The value of the parameter is not part of this definition, nor is any potential 
 </div></div></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>customEditor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The id of a custom editor to be used when editing this parameter through the <strong>BDeploy</strong> web UI. Custom editors can be contributed by <a href="#_plugins">Plugins</a> which are either globally installed in the <strong>BDeploy</strong> server, or contributed dynamically by the product.</p>
+</div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>condition</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">no</p></td>
@@ -3463,6 +3709,20 @@ The value of the parameter is not part of this definition, nor is any potential 
 </div>
 </div>
 <div class="paragraph">
+<p>Or, in its newer form, the very same (but ultimately more powerful) using <code>expression</code> would look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="yaml">condition:
+  expression: "{{V:my.param.2}}"
+  must: EQUAL
+  value: "Value 1"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The power comes from the ability to provide an arbitrary amount of <a href="#Variable Expansion">[Variable Expansion]</a> in the <a href="#_link_expressions">Link Expressions</a>.</p>
+</div>
+<div class="paragraph">
 <p>The condition block understands the following fields:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -3479,7 +3739,25 @@ The value of the parameter is not part of this definition, nor is any potential 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>parameter</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">the referenced parameters UID.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The referenced parameters UID.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expression</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>A <a href="#_link_expressions">Link Expression</a> which is resolved and matched against the condition.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<code>parameter</code> may not be set if the newer <code>expression</code> is used, and vice versa.
+</td>
+</tr>
+</table>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>must</code></p></td>
@@ -3628,7 +3906,7 @@ Endpoints definitions are templates which can later on be configured by the user
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>port</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The port this endpoint is hosted on. <a href="#_variable_expansion">Variable Expansion</a> can be used, for instance to reference a parameter of the application (using <code>{{V:port-param}}</code> where <code>port-param</code> is the ID of a parameter on the <code>startCommand</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The port this endpoint is hosted on. <a href="#Variable Expansion">[Variable Expansion]</a> can be used, for instance to reference a parameter of the application (using <code>{{V:port-param}}</code> where <code>port-param</code> is the ID of a parameter on the <code>startCommand</code>).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>secure</code></p></td>
@@ -3640,11 +3918,11 @@ Endpoints definitions are templates which can later on be configured by the user
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>trustStore</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Path to a KeyStore in the <code>JKS</code> format, containing certificates to trust. <a href="#_variable_expansion">Variable Expansion</a> can be used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to a KeyStore in the <code>JKS</code> format, containing certificates to trust. <a href="#Variable Expansion">[Variable Expansion]</a> can be used.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>trustStorePass</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The passphrase used to load the <code>trustStore</code>. <a href="#_variable_expansion">Variable Expansion</a> can be used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The passphrase used to load the <code>trustStore</code>. <a href="#Variable Expansion">[Variable Expansion]</a> can be used.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>authType</code></p></td>
@@ -3652,11 +3930,11 @@ Endpoints definitions are templates which can later on be configured by the user
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>authUser</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The username to use for <code>BASIC</code> or <code>DIGEST</code> <code>authType</code>. <a href="#_variable_expansion">Variable Expansion</a> can be used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The username to use for <code>BASIC</code> or <code>DIGEST</code> <code>authType</code>. <a href="#Variable Expansion">[Variable Expansion]</a> can be used.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>authPass</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The password to use for <code>BASIC</code> or <code>DIGEST</code> <code>authType</code>. <a href="#_variable_expansion">Variable Expansion</a> can be used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The password to use for <code>BASIC</code> or <code>DIGEST</code> <code>authType</code>. <a href="#Variable Expansion">[Variable Expansion]</a> can be used.</p></td>
 </tr>
 </tbody>
 </table>
@@ -3691,11 +3969,18 @@ applications:
 
 configTemplates: my-config <i class="conum" data-value="5"></i><b>(5)</b>
 pluginFolder: my-plugins <i class="conum" data-value="6"></i><b>(6)</b>
+
 applicationTemplates:
   - 'my-templates/app-template.yaml' <i class="conum" data-value="7"></i><b>(7)</b>
 instanceTemplates:
   - 'my-templates/template.yaml' <i class="conum" data-value="8"></i><b>(8)</b>
-versionFile: my-versions.yaml <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
+
+parameterTemplates:
+  - 'my-templates/param-template.yaml' <i class="conum" data-value="9"></i><b>(9)</b>
+instanceVariableTemplates:
+  - 'my-templates/variable-template.yaml' <i class="conum" data-value="10"></i><b>(10)</b>
+
+versionFile: my-versions.yaml <i class="conum" data-value="11"></i><b>(11)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -3730,10 +4015,18 @@ versionFile: my-versions.yaml <i class="conum" data-value="9"></i><b>(9)</b></co
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
-<td>A reference to an instance template YAML file which defines an <a href="#_instance_template_yaml"><code>instance-template.yaml</code></a></td>
+<td>A reference to an instance template YAML file which defines an <a href="#_instance_template_yaml"><code>instance-template.yaml</code></a>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>A reference to a parameter template YAML file which defines a <a href="#_parameter_template_yaml"><code>parameter-template.yaml</code></a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>A reference to a instance variable template YAML file which defines a <a href="#_instance_variable_template_yaml"><code>instance-variable-template.yaml</code></a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
 <td>The <code>product-version.yaml</code> which associates the <strong>Application</strong> IDs (used above) with actual paths to <strong>Applications</strong> on the file system.</td>
 </tr>
 </table>
@@ -3817,7 +4110,7 @@ name: "Server With Sleep"
 description: "Server application which sleeps before exiting"
 preferredProcessControlGroup: "First Group" <i class="conum" data-value="2"></i><b>(2)</b>
 
-variables: <i class="conum" data-value="3"></i><b>(3)</b>
+templateVariables: <i class="conum" data-value="3"></i><b>(3)</b>
   - uid: sleep-timeout
     name: "Sleep Timeout"
     description: "The amount of time the server application should sleep"
@@ -3862,6 +4155,71 @@ startParameters: <i class="conum" data-value="5"></i><b>(5)</b>
 </tr>
 </table>
 </div>
+<div class="sect4">
+<h5 id="_supported_templatevariables_attributes">Supported <code>templateVariables</code> Attributes</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>uid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unique ID of the template variable. If multiple applications (or instances) define the same variable ID, it is queried from the user only once.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user visible name of the variable, used when querying user input while applying the template.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Further detailed description of the template variable, explaining to the user the purpose of the variable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>defaultValue</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional default value which is pre-filled when querying the user for template variable values.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>suggestedValues</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of values which will be suggested to the user once he begins providing a value for this variable.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_supported_startparameters_attributes">Supported <code>startParameters</code> Attributes</h5>
+<div class="paragraph">
+<p>The list of <code>startParameters</code> provides control over the parameters in the resulting process. This is different from the parameter <em>definition</em> in <a href="#_app_info_yaml"><code>app-info.yaml</code></a> as this list only provides information about presence and value of parameters when applying this template.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>uid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unique ID of the parameter. A definition of a parameter with this ID <strong>must</strong> exist in the <a href="#_app_info_yaml"><code>app-info.yaml</code></a> file of the referenced <code>application</code>. If the parameter is optional, it will be added to the process when applying the template.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target value of the parameter. If no value is given, the <code>defaultValue</code> from the parameter&#8217;s definition is applied.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_instance_template_yaml">instance-template.yaml</h4>
@@ -3885,19 +4243,30 @@ There is no actual requirement for the file to be named <code>instance-template.
 <pre class="prettyprint highlight nowrap"><code data-lang="yaml">name: Default Configuration <i class="conum" data-value="1"></i><b>(1)</b>
 description: "Creates an instance with the default server and client configuration"
 
-variables: <i class="conum" data-value="2"></i><b>(2)</b>
+templateVariables: <i class="conum" data-value="2"></i><b>(2)</b>
   - uid: sleep-timeout
     name: "Sleep Timeout"
     description: "The amount of time the server application should sleep"
     defaultValue: 60
 
-processControlGroups: <i class="conum" data-value="3"></i><b>(3)</b>
+instanceVariables: <i class="conum" data-value="3"></i><b>(3)</b>
+  - id: var.id
+    value: "MyValue"
+    description: "The description of my instance variable"
+    type: PASSWORD
+  - template: var.template <i class="conum" data-value="4"></i><b>(4)</b>
+
+instanceVariableDefaults: <i class="conum" data-value="5"></i><b>(5)</b>
+  - id: var.id
+    value: "A value other than above"
+
+processControlGroups: <i class="conum" data-value="6"></i><b>(6)</b>
   - name: "First Group"
     startType: "PARALLEL"
     startWait: "WAIT"
     stopType: "SEQUENTIAL"
 
-groups: <i class="conum" data-value="4"></i><b>(4)</b>
+groups: <i class="conum" data-value="7"></i><b>(7)</b>
 - name: "Server Apps"
   description: "All server applications"
 
@@ -3905,17 +4274,17 @@ groups: <i class="conum" data-value="4"></i><b>(4)</b>
   - application: server-app
     name: "Server No Sleep"
     description: "Server application which immediately exits"
-  - template: server-with-sleep <i class="conum" data-value="5"></i><b>(5)</b>
-  - application: server-app <i class="conum" data-value="6"></i><b>(6)</b>
+  - template: server-with-sleep <i class="conum" data-value="8"></i><b>(8)</b>
+  - application: server-app <i class="conum" data-value="9"></i><b>(9)</b>
     name: "Server With Sleep"
     description: "Server application which sleeps before exiting"
     processControl:
       startType: MANUAL_CONFIRM
-    startParameters: <i class="conum" data-value="7"></i><b>(7)</b>
+    startParameters: <i class="conum" data-value="10"></i><b>(10)</b>
     - uid: param.sleep
       value: "{{T:sleep-timeout}}"
 - name: "Client Apps"
-  type: CLIENT <i class="conum" data-value="8"></i><b>(8)</b>
+  type: CLIENT <i class="conum" data-value="11"></i><b>(11)</b>
   description: "All client applications"
 
   applications:
@@ -3935,32 +4304,302 @@ groups: <i class="conum" data-value="4"></i><b>(4)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><strong>Process Control Groups</strong> can be pre-configured for an instance template. If an application template later on wishes to be put into a certain <strong>Process Control Group</strong>, the group is created based on the template provided in the instance template. Note that the defaults for a <strong>Process Control Group</strong> in a template are slightly different from the implicit 'Default' <strong>Process Control Group</strong> in <strong>BDeploy</strong>. The defaults are: <code>startType</code>: <code>PARALLEL</code>, <code>startWait</code>: <code>WAIT</code>, <code>stopType</code>: <code>PARALLEL</code>.</td>
+<td><a href="#_instance_variables">Instance Variables</a> can be defined in an instance template. Those definitions will be applied to a new instance when this template is used. <a href="#_link_expressions">Link Expressions</a> can then be used to expand to the <a href="#_instance_variables">Instance Variables</a> values in parameters, configuration files, etc.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>A template defines one or more groups of applications to configure. Each group can be assigned to a physical node available on the target system. Groups can be skipped by not assigning them to a node, so they provide a mechanism to provide logical groups of processes (as result of configuring the applications) that belong together and might be optional. It is up to the user whether a group is mapped to a node, or not. Multiple groups can be mapped to the same phsysical node.</td>
+<td><a href="#_instance_variables">Instance Variables</a> can also be defined in an <a href="#_instance_variable_template_yaml"><code>instance-variable-template.yaml</code></a> file externally, and referenced via its ID.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><strong>Instance Templates</strong> can reference <strong>Application Templates</strong> by their <code>id</code>. The <strong>Instance Templates</strong> can further refine an <strong>Application Template</strong> by setting any of the valid application fields in addition to the template reference.</td>
+<td><code>instanceVariableDefaults</code> allows to override the value of a previous <a href="#_instance_variables">Instance Variables</a> definition in the same template. This is most useful when applying <a href="#_instance_variable_template_yaml"><code>instance-variable-template.yaml</code></a> files using the <code>template</code> syntax in <code>instanceVariables</code>. The instance variable template can be shared more easily if instance templates have means of providing distinct values per instance template.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>A template group contains one or more applications to configure, which each can consist of process control configuration and parameter definitions for the start command of the resulting process - exactly the same fields are valid as for <strong>Application Tempaltes</strong> - except for the <code>id</code> which is not required.</td>
+<td><strong>Process Control Groups</strong> can be pre-configured for an instance template. If an application template later on wishes to be put into a certain <strong>Process Control Group</strong>, the group is created based on the template provided in the instance template. Note that the defaults for a <strong>Process Control Group</strong> in a template are slightly different from the implicit 'Default' <strong>Process Control Group</strong> in <strong>BDeploy</strong>. The defaults are: <code>startType</code>: <code>PARALLEL</code>, <code>startWait</code>: <code>WAIT</code>, <code>stopType</code>: <code>PARALLEL</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>Start command parameters are referenced by their UID, defined in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</td>
+<td>A template defines one or more groups of applications to configure. Each group can be assigned to a physical node available on the target system. Groups can be skipped by not assigning them to a node, so they provide a mechanism to provide logical groups of processes (as result of configuring the applications) that belong together and might be optional. It is up to the user whether a group is mapped to a node, or not. Multiple groups can be mapped to the same phsysical node.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><strong>Instance Templates</strong> can reference <strong>Application Templates</strong> by their <code>id</code>. The <strong>Instance Templates</strong> can further refine an <strong>Application Template</strong> by setting any of the valid application fields in addition to the template reference.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>A template group contains one or more applications to configure, which each can consist of process control configuration and parameter definitions for the start command of the resulting process - exactly the same fields are valid as for <strong>Application Tempaltes</strong> - except for the <code>id</code> which is not required.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>Start command parameters are referenced by their UID, defined in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
 <td>A template group can have either type <code>SERVER</code> (default) or <code>CLIENT</code>. A group may only contain applications of a compatible type, i.e. only <code>SERVER</code> applications in <code>SERVER</code> type group. When applying the group to a node, applications will be instantiated to processes according to their supported OS and the nodes physical OS. If a <code>SERVER</code> application does not support the target nodes OS, it is ignored.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
 <p>An instance template will be presented to the user when visiting an <a href="#_instance_templates">Empty Instance</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_supported_templatevariables_attributes_2">Supported <code>templateVariables</code> Attributes</h5>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>templateVariables</code> follows the same scheme as <a href="#_supported_templatevariables_attributes">Supported <code>templateVariables</code> Attributes</a> in <a href="#_application_template_yaml"><code>application-template.yaml</code></a> files.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_supported_instancevariables_attributes">Supported <code>instanceVariables</code> Attributes</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>template</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Allows referencing a collection of template instance variables defined in a single <a href="#_instance_variable_template_yaml"><code>instance-variable-template.yaml</code></a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If this attribute is given, no other attribute may be given, as this item is replaced by the definitions from the instance variable template.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unique ID of the instance variable to be created.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value with which the instance variable should be created. This value can use template variables defined in the containing <a href="#_instance_template_yaml"><code>instance-template.yaml</code></a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A detailed description of the variable presented to the user in the <a href="#_instance_variables">Instance Variables</a> overview.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of the variable, the same types as if defining a <code>parameter</code> can be used, see <a href="#_supported_parameters_attributes">Supported <code>parameters</code> attributes</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>customEditor</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A potentially required custom editor from a plug-in which needs to be used to edit the value of the instance variable, also see <a href="#_supported_parameters_attributes">Supported <code>parameters</code> attributes</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_supported_instancevariabledefaults_attributes">Supported <code>instanceVariableDefaults</code> Attributes</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unique ID of a previously defined instance variable (either directly in the same template, or through an applied <a href="#_instance_variable_template_yaml"><code>instance-variable-template.yaml</code></a>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>value</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value to use when applying this instance template.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_supported_processcontrolgroups_attributes">Supported <code>processControlGroups</code> Attributes</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the <a href="#_process_control_groups">Process Control Group</a> to create. This group can be referenced by <a href="#_application_template_yaml"><code>application-template.yaml</code></a> files <code>preferredProcessControlGroup</code> attribute.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>startType</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The initial <strong>Start Type</strong>, see <a href="#_process_control_groups">Process Control Groups</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>startWait</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The initial <strong>Start Wait</strong>, see <a href="#_process_control_groups">Process Control Groups</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stopType</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The initial <strong>Stop Type</strong>, see <a href="#_process_control_groups">Process Control Groups</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_supported_groups_attributes">Supported <code>groups</code> Attributes</h5>
+<div class="paragraph">
+<p><code>groups</code> is a list of <em>template groups</em>. This groups together a set of <a href="#_application_template_yaml">Application Templates</a> or inline template definitions. Each group has a set of own attributes, as well as a list of templates:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the group. This will be presented to the user, and a user has the possibility to select which groups of the template should be applied to which node in an instance.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A description which helps the user in deciding whether to apply a certain group or not.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Either <code>SERVER</code> or <code>CLIENT</code> right now. The target node where the group is applied must match this type.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>applications</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of templates. A template can either be a reference to an <a href="#_application_template_yaml"><code>application-template.yaml</code></a> defined template, or - alternatively - can be defined inline. In this case all attributes of an <a href="#_application_template_yaml"><code>application-template.yaml</code></a> apply to a single item in the <code>applications</code> list.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parameter_template_yaml">parameter-template.yaml</h4>
+<div class="paragraph">
+<p>A <code>parameter-template.yaml</code> allows products to define re-usable blocks of parameters associated to a unique ID. These can then be applied in <code>app-info.yaml</code> files. For the user of <strong>BDeploy</strong>, those parameters will appear as if they were defined directly in the <a href="#_app_info_yaml"><code>app-info.yaml</code></a> of the application.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">id: param.template <i class="conum" data-value="1"></i><b>(1)</b>
+
+parameters: <i class="conum" data-value="2"></i><b>(2)</b>
+  - uid: tpl-param
+    name: "Template Parameter"
+    defaultValue: "x"
+    longDescription: "A parameter defined in a template"</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The ID can be used to reference the template afterwards from an <a href="#_app_info_yaml"><code>app-info.yaml</code></a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>parameters</code> can contain an arbitrary amount of parameter definitions, which follow exactly the same schema as <a href="#_supported_parameters_attributes">Supported <code>parameters</code> attributes</a> in <a href="#_app_info_yaml"><code>app-info.yaml</code></a>.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Inlining of templates into applications happens <strong>before</strong> anything else. Parameter templates can also reference other parameters (e.g. <code>{{V:my-param}}</code>), even if they are not part of this very template. All applications using this parameter would then either have to have (directly or through another template) this <code>my-param</code> parameter, <strong>or</strong> will receive a validation warning and need to change the value.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+To be able to use a template, the template needs to also be registered in the <a href="#_product_info_yaml"><code>product-info.yaml</code></a> so it is included at build time.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_instance_variable_template_yaml">instance-variable-template.yaml</h4>
+<div class="paragraph">
+<p>An <code>instance-variable-template.yaml</code> works the same as a <code>parameter-template.yaml</code> in that it provides common definitions for instance variables, which can be re-used in <a href="#_instance_template_yaml"><code>instance-template.yaml</code></a> files. Those definitions are inlined early on, so variables from <code>instance-variable-template.yaml</code> files can do exactly the same things as <code>instanceVariables</code> in a <a href="#_instance_template_yaml"><code>instance-template.yaml</code></a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="yaml">id: var.template <i class="conum" data-value="1"></i><b>(1)</b>
+
+instanceVariables: <i class="conum" data-value="2"></i><b>(2)</b>
+  - id: "my-instance-var"
+    description: "My Instance Variable"
+    value: "My Value!"
+    type: STRING</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The ID can be used to reference the template afterwards from an <a href="#_instance_template_yaml"><code>instance-template.yaml</code></a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>An arbitrary amount of instance variable templates. The schema is the same as <a href="#_supported_instancevariables_attributes">Supported <code>instanceVariables</code> Attributes</a> in <a href="#_instance_template_yaml"><code>instance-template.yaml</code></a></td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+To be able to use a template, the template needs to also be registered in the <a href="#_product_info_yaml"><code>product-info.yaml</code></a> so it is included at build time.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -4354,9 +4993,9 @@ applications:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_variable_expansion">Variable Expansion</h3>
+<h3 id="_variable_expansions">Variable Expansions</h3>
 <div class="paragraph">
-<p><strong>BDeploy</strong> provides a mechanism for variable expansion. There is a set of predefined possibilities. Currently, it is not possible to define your own variables, only the predefined set is available. Variable expansion can happen on the following:</p>
+<p><strong>BDeploy</strong> provides a mechanism for variable expansion, used in <a href="#_link_expressions">Link Expressions</a> and <a href="#_configuration_files">Configuration Files</a>. Variable expansion can happen on the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -4372,6 +5011,12 @@ applications:
 <li>
 <p>Most of the <a href="#_supported_endpoints_http_attributes">HTTP Endpoints</a> attributes.</p>
 </li>
+<li>
+<p>Instance Variables.</p>
+</li>
+<li>
+<p>System Variables (limited to certain expansions which are available globally).</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -4379,6 +5024,18 @@ applications:
 </div>
 <div class="paragraph">
 <p>The general syntax for variables is <code>{{TYPE:VARNAME:SUBVAR}}</code>. There are various types, usually denoted by a single character. The following section gives an overview of types, variables, and possible sub-variables.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since 4.6.0, <strong>BDeploy</strong> has a <em>link expression editor</em> built in. All elements in the UI (except the configuration file editor) can be switched from <em>plain value</em> editor to <em>link expression</em> editor, which gives rich content assist for link expressions (which contain one or more variable expansions). The configuration file editor uses rich content assist by default on <b class="button">CTRL</b> + <b class="button">Space</b> if the current word starts with <code>{{</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_m_manifest_reference">M: Manifest Reference</h4>
@@ -4527,8 +5184,8 @@ Beware that changing the name of an application will break the parameter referen
 <td class="tableblock halign-left valign-top"><p class="tableblock">The purpose of the instance in upper case letters. (PRODUCTIVE, TEST, DEVELOPMENT)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{{I:UUID}}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UUID of the instance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{{I:ID}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID of the instance</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{{I:NAME}}</p></td>
@@ -4570,8 +5227,8 @@ Beware that changing the name of an application will break the parameter referen
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{{A:UUID}}</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UUID of the application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{{A:ID}}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID of the application</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{{A:NAME}}</p></td>
@@ -4697,6 +5354,43 @@ this variable allows the usage of different arguments for different operating sy
 Especially for client applications it can be useful to do the actual replacing when the process is launched. This is can be achieved by prefixing
 the actual variable with the <strong>DELAYED</strong> prefix. This enables that different users of the client application are getting different parameter values
 depending on the value of the environmental variable.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_x_instance_and_system_variables">X: Instance and System Variables</h4>
+<div class="paragraph">
+<p>Used to expand to instance and system variables. The same prefix is used for both. Instance Variables take precedence over System Variables in expansions, if an both have a variable with the same ID.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">{{X:&lt;VAR&gt;}}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="#_instance_variables">Instance Variables</a> are defined in the <a href="#Instance Settings">[Instance Settings]</a> and <a href="#_system_variables">System Variables</a> are defined on <a href="#_systems">Systems</a> level in the <strong>Instance Group</strong>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_if_conditional_expansion">IF: Conditional Expansion</h4>
+<div class="paragraph">
+<p>The conditional expansion can be use to convert a boolean expression to any given value. The format of the conditional is</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">{{IF:condition?value-if-true:value-if-false}}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The condition is any other variable expansion <em>without</em> the curly braces, like for instance <code>X:MyVar</code> to resolve the instance variable <code>MyVar</code>. The result of the expression is expected to be boolean, however non-empty strings will be treated as <code>true</code> as well. The values the expression expands to can be of arbitrary type, and need to be plain values, i.e. they can <em>not</em> contain variable expansions.</p>
+</div>
+<div class="paragraph">
+<p>Some examples:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre class="nowrap">{{IF:V:use-auth?SchemeBasic:SchemeNone}}
+{{IF:X:instance-bool?ValueIfTrue:ValueIfFalse}}</pre>
+</div>
 </div>
 </div>
 </div>
@@ -5805,13 +6499,13 @@ Current swapping is possible only manually, proper CLI support pending.
 <p>The <code>id</code> of the instance group hosting the application you want to tunnel to.</p>
 </li>
 <li>
-<p>The <code>uuid</code> of the instance hosting the application you want to tunnel to. You can see this id for instance from the browsers URL when on the instance overview page for the instance in question.</p>
+<p>The <code>id</code> of the instance hosting the application you want to tunnel to. You can see this id for instance from the browsers URL when on the instance overview page for the instance in question.</p>
 </li>
 <li>
 <p>The <code>id</code> of the applications endpoint as defined in the <a href="#_app_info_yaml">app-info.yaml</a>.</p>
 </li>
 <li>
-<p>The <code>uuid</code> of the application which hosts the endpoint identified by the endpoint <code>id</code> above.</p>
+<p>The <code>id</code> of the application which hosts the endpoint identified by the endpoint <code>id</code> above.</p>
 </li>
 </ul>
 </div>
@@ -5845,11 +6539,11 @@ Current swapping is possible only manually, proper CLI support pending.
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><strong>xxxx-111-xxxx</strong> is the <code>uuid</code> of the instance which hosts the application to tunnel to.</td>
+<td><strong>xxxx-111-xxxx</strong> is the <code>id</code> of the instance which hosts the application to tunnel to.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td><strong>yyyy-111-yyyy</strong> is the <code>uuid</code> of the application which hosts an endpoint with the given endpoint <code>id</code>.</td>
+<td><strong>yyyy-111-yyyy</strong> is the <code>id</code> of the application which hosts an endpoint with the given endpoint <code>id</code>.</td>
 </tr>
 </table>
 </div>
@@ -5864,7 +6558,7 @@ Current swapping is possible only manually, proper CLI support pending.
 </div>
 </div>
 <div class="paragraph">
-<p>From the above URL, you can find the instance group <code>id</code> (<strong>MyGroup</strong>) as well as the instance <code>uuid</code> (<strong>xxxx-111-xxxx</strong>). When on the instance dashboard, click the server application you want to tunnel to. The process control panel for that application opens up, and you will see the applications ` Process ID` displayed.</p>
+<p>From the above URL, you can find the instance group <code>id</code> (<strong>MyGroup</strong>) as well as the instance <code>id</code> (<strong>xxxx-111-xxxx</strong>). When on the instance dashboard, click the server application you want to tunnel to. The process control panel for that application opens up, and you will see the applications ` Process ID` displayed.</p>
 </div>
 <div class="paragraph">
 <p>Last thing to manually lookup is the endpoint <code>id</code>. Endpoints can be accessed on the instance configuration page by clicking on to application you want to tunnel to and then clicking on <b class="button">Configure Endpoints</b></p>
@@ -5897,7 +6591,7 @@ curl -k -H "Accept: application/json" \
     -H "X-BDeploy-Authorization: Bearer &lt;X&gt;" \
     "https://server/api/public/v1/common/instances?BDeploy_group=MyGroup&amp;latest=true" <i class="conum" data-value="2"></i><b>(2)</b>
 
-# will fetch all endpoints exposed by a certain instance along with the uuids of the applications hosting them.
+# will fetch all endpoints exposed by a certain instance along with the ids of the applications hosting them.
 curl -k -H "Accept: application/json" \
     -H "X-BDeploy-Authorization: Bearer &lt;X&gt;" \
     "https://server/api/public/v1/common/endpoints?BDeploy_group=MyGroup&amp;BDeploy_instance=xxxx-111-xxxx" <i class="conum" data-value="2"></i><b>(2)</b> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
@@ -5911,11 +6605,11 @@ curl -k -H "Accept: application/json" \
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><strong>MyGroup</strong> is the name of one of the instance groups as obtained by the first API. You can fetch the <code>uuid</code> of each instance from the returned JSON.</td>
+<td><strong>MyGroup</strong> is the name of one of the instance groups as obtained by the first API. You can fetch the <code>id</code> of each instance from the returned JSON.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><strong>xxxx-111-xxxx</strong> is the instance <code>uuid</code> as obtained by the second API. The returned JSON will include the application <code>uuid</code> hosting the endpoint along with the actual specific configuration of that endpoint (including its <code>id</code>).</td>
+<td><strong>xxxx-111-xxxx</strong> is the instance <code>id</code> as obtained by the second API. The returned JSON will include the application <code>id</code> hosting the endpoint along with the actual specific configuration of that endpoint (including its <code>id</code>).</td>
 </tr>
 </table>
 </div>
@@ -6003,7 +6697,7 @@ Only users which are logged in to <strong>BDeploy</strong> can access UI endpoin
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 4.5.0<br>
+Version 5.0.0<br>
 Last updated 2021-11-05 08:12:52 +0100
 </div>
 </div>
