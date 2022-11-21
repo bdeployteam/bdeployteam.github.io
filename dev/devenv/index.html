@@ -3,43 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722335961937">
+    <meta name="turbo-root" content="/dev">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722335983531">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>User Documentation</title>
-    <meta name="title" content="User Documentation">
-    <meta name="description" content="Logo" />
+    <title>Development Setup</title>
+    <meta name="title" content="Development Setup">
+    <meta name="description" content="BDeploy uses the Eclipse IDE for backend- and VSCode for frontend-development. You will need:" />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://bdeploy.io/user/index.html" />
+    <link rel="canonical" href="https://bdeploy.io/dev/devenv/index.html" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bdeploy.io/user/index.html">
-    <meta property="og:title" content="User Documentation">
-    <meta property="og:description" content="Logo">
-    <meta property="og:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="og:url" content="https://bdeploy.io/dev/devenv/index.html">
+    <meta property="og:title" content="Development Setup">
+    <meta property="og:description" content="BDeploy uses the Eclipse IDE for backend- and VSCode for frontend-development. You will need:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bdeploy.io/user/index.html">
-    <meta property="twitter:title" content="User Documentation">
-    <meta property="twitter:description" content="Logo">
-    <meta property="twitter:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="twitter:url" content="https://bdeploy.io/dev/devenv/index.html">
+    <meta property="twitter:title" content="Development Setup">
+    <meta property="twitter:description" content="BDeploy uses the Eclipse IDE for backend- and VSCode for frontend-development. You will need:">
 
-    <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("/dev/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="images/logo.ico" rel="icon" />
-    <link href="resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
+    <link href="../images/logo.ico" rel="icon" />
+    <link href="../resources/css/retype.css?v=2.4.0.722335983531" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.722335983531" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/search.js?v=2.4.0.722335983531" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.722335983531" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.722335983531" defer></script>
 
     <style>
         table td {
@@ -109,13 +108,13 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="images/logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="images/logo-dark.svg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../images/logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../images/logo-dark.svg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Dev</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -264,15 +263,205 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="user-documentation" class="break-words">
+<doc-anchor-target id="development-setup" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#user-documentation">#</doc-anchor-trigger>
-        <span>User Documentation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#development-setup">#</doc-anchor-trigger>
+        <span>Development Setup</span>
     </h1>
 </doc-anchor-target>
-<div align="center"><p><img src="images/logo.svg" width="200" alt="Logo" /></p>
+<p>BDeploy uses the <strong>Eclipse IDE</strong> for backend- and <strong>VSCode</strong> for frontend-development. You will need:</p>
+<ul>
+<li>Get the latest <a href="https://adoptium.net/">OpenJDK 17</a>.</li>
+<li>Get the latest <a href="https://www.eclipse.org/downloads/">Eclipse IDE</a> including Java 17 support.
+<ul>
+<li>You need to have the <a href="https://marketplace.eclipse.org/content/launch-configuration-dsl">Launch Configuration DSL (LcDsl)</a> extension installed.</li>
+</ul>
+</li>
+<li><a href="https://code.visualstudio.com/download">VSCode</a>
+<ul>
+<li>You need to have the <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials">Angular Essentials</a> extension installed.</li>
+</ul>
+</li>
+<li><a href="https://www.npmjs.com/get-npm">NPM</a>
+<ul>
+<li>Some people prefer to use <a href="https://github.com/nvm-sh/nvm">NVM</a></li>
+</ul>
+</li>
+<li><a href="https://git-scm.com/downloads">GIT</a></li>
+</ul>
+<doc-anchor-target id="environment-setup">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#environment-setup">#</doc-anchor-trigger>
+        <span>Environment Setup</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>You will want to set the <code v-pre>JAVA_HOME</code> environment variable to point to the path where you extracted the <strong>OpenJDK 17</strong> package to assure that the build picks up the correct Java.</li>
+<li>Make sure that the <code v-pre>npm</code> command works from the command line where you will run <code v-pre>gradle</code> builds (<code v-pre>cmd.exe</code> on Windows, <code v-pre>bash</code> on Linux).</li>
+<li>Install the <strong>Angular CLI</strong> globally for easier working by running <code v-pre>npm install -g @angular/cli</code>.</li>
+</ul>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>You need root permissions on Linux if you installed NodeJS (and NPM) through your distribution to be able to globally install the <strong>Angular CLI</strong>.</p>
+        </div>
+    </div>
 </div>
-<p>Welcome to the <strong>BDeploy User Documentation</strong>. This documentation is intended for end users, not for developers. Find the current developer documentation <a href="../dev/index.html">here</a>.</p>
+<doc-anchor-target id="repository-and-gradle-build">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#repository-and-gradle-build">#</doc-anchor-trigger>
+        <span>Repository and Gradle Build</span>
+    </h2>
+</doc-anchor-target>
+<p>This documentation will assume the path <code v-pre>/work/bdeploy</code> to be available, if not substitute it with any other path that works for you.</p>
+<ul>
+<li>Clone the repository: <code v-pre>cd /work/bdeploy &amp;&amp; git clone https://github.com/bdeployteam/bdeploy.git</code></li>
+<li>Change to the repository directory: <code v-pre>cd bdeploy</code></li>
+<li>Start the <code v-pre>gradle</code> build
+<ul>
+<li><code v-pre>./gradlew build</code> on Linux (<code v-pre>bash</code>)</li>
+<li><code v-pre>.\gradlew.bat build</code> on Windows (<code v-pre>cmd.exe</code>)</li>
+<li>The build should conclude with a <code v-pre>BUILD SUCCESSFUL</code> message</li>
+</ul>
+</li>
+</ul>
+<p>The <code v-pre>gradle</code> build will build test and package BDeploy. You can find build artifacts after the build here:</p>
+<ul>
+<li><code v-pre>./launcher/build/distributions</code> - Distributable packages of the launcher application which is used to start client applications.</li>
+<li><code v-pre>./minion/build/distributions</code> - Distributable packages of the main BDeploy binaries. They contains the <strong>start</strong> (which runs <strong>BDeploy</strong> <strong>master</strong> and <strong>node</strong> servers) command as well as all CLI commands available to BDeploy Administrators. The distribution also contains all supported launcher packages as nested ZIP files.</li>
+<li><code v-pre>./interfaces/build/libs/bdeploy-api-**-all.jar</code> - The distributable API bundle including all external dependencies. This can be used to create additional integrations for BDeploy.</li>
+</ul>
+<p>Additionally, documentation deliverables can be found in the <code v-pre>./doc/build/docs/dev</code> and <code v-pre>./doc/build/docs/user</code> directories (developer and end-user documentation respectively).</p>
+<doc-anchor-target id="eclipse-workspace">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#eclipse-workspace">#</doc-anchor-trigger>
+        <span>Eclipse Workspace</span>
+    </h2>
+</doc-anchor-target>
+<p>To be able to build, start and debug BDeploy backend applications from the Eclipse IDE, you need to perform some extra setup steps:</p>
+<ul>
+<li>On the command line (see <doc-anchor-trigger to="#repository-and-gradle-build">Repository and Gradle Build</doc-anchor-trigger>) generate the <strong>Eclipse IDE</strong> project files by running <code v-pre>./gradlew eclipse</code> (<code v-pre>gradlew eclipse</code> on windows).</li>
+<li>Start the <strong>Eclipse IDE</strong> - choose a workspace, e.g. <code v-pre>/work/bdeploy/workspace</code>.</li>
+<li>Open the <strong>Git Repositories</strong> view.</li>
+<li>Click <strong>Add existing local repository</strong>, browse to the repository location (e.g. <code v-pre>/work/bdeploy/bdeploy</code>) and add it.</li>
+<li>Right click the repository in the <strong>Git Repositories</strong> view and select <strong>Import Projects...</strong>.
+<ul>
+<li>Select all projects with type <strong>Eclipse project</strong></li>
+<li><strong>Don&#x27;t</strong> select the projects in the <em>eclipse-tea</em> folder.</li>
+<li><strong>Don&#x27;t</strong> select projects of type <strong>Maven</strong>.</li>
+</ul>
+</li>
+</ul>
+<p>This results in a complete BDeploy workspace setup which compiles automatically.</p>
+<doc-anchor-target id="running-bdeploy-from-eclipse">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#running-bdeploy-from-eclipse">#</doc-anchor-trigger>
+        <span>Running BDeploy from Eclipse</span>
+    </h3>
+</doc-anchor-target>
+<p>BDeploy uses <strong>LcDsl</strong> launch configurations to run binaries. You can find launch configurations in the <strong>Launch Configurations</strong> view.</p>
+<ul>
+<li>Find and run (hint: right click) the <code v-pre>Master-Init</code> launch configuration.
+<ul>
+<li>This will initialize a BDeploy <strong>master root</strong> inside the chosen workspace directory, e.g. <code v-pre>/work/bdeploy/workspace/runtime/master</code>.</li>
+<li>A default user will be created: username = admin, password = admin.</li>
+</ul>
+</li>
+<li>Finally find and run the <code v-pre>Master</code> launch configuration to spin up a BDeploy <strong>master</strong>.</li>
+</ul>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>The BDeploy master will host the Web UI also when started from the <strong>Eclipse IDE</strong>, but it will not work due to slightly different setup. You must use <strong>VSCode</strong> to host a matching Web UI for the backend run from <strong>Eclipse</strong>.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="running-bdeploys-web-ui-from-vscode">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#running-bdeploys-web-ui-from-vscode">#</doc-anchor-trigger>
+        <span>Running BDeploy&#x27;s Web UI from VSCode</span>
+    </h2>
+</doc-anchor-target>
+<p>To spin up a matching frontend for the master started in <doc-anchor-trigger to="#running-bdeploy-from-eclipse">Running BDeploy from Eclipse</doc-anchor-trigger> you need to start the <strong>Angular</strong> application from within <strong>VSCode</strong>.</p>
+<ul>
+<li>On the command line, navigate the the <code v-pre>./ui/webapp</code> directory in the repository (e.g. <code v-pre>/work/bdeploy/bdeploy/ui/webapp</code>) and run <strong>VSCode</strong> in the current directory using <code v-pre>code .</code></li>
+<li>Open a terminal in <strong>VSCode</strong> and run <code v-pre>ng serve</code> to start the <strong>Angular</strong> development server. This will take a while to compile the Web UI.
+<ul>
+<li>The terminal can be opened using <strong>Terminal</strong> &gt; <strong>New Terminal</strong>.</li>
+<li>The application will be started at <a href="http://localhost:4200">http://localhost:4200</a> by default.</li>
+</ul>
+</li>
+</ul>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p>BDeploy&#x27;s backend is HTTPS <strong>only</strong>. It uses a self-signed certificate by default. This will require to accept the certificate in the browser before <strong>any</strong> communication (especially from within the Web UI) can happen.</p>
+<p>This makes it necessary to open a second tab in the browser and navigate to <a href="https://localhost:7701">https://localhost:7701</a> to accept the security exception before the Web UI can communicate with the backend properly. Note that this URL will also load the Web UI once the security exception is in place, but will fail to start (see note above).</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="building-for-other-platforms">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#building-for-other-platforms">#</doc-anchor-trigger>
+        <span>Building for other platforms</span>
+    </h2>
+</doc-anchor-target>
+<p>You can build distribution packages for other platforms by installing their respective JDKs. You need to specify those JDKs as properties during the build. To simplify the process, you can create these entries in <code v-pre>~/.gradle/gradle.properties</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-properties"><code v-pre class="language-properties">systemProp.win64jdk=/path/to/jdks/windows/jdk-17.0.1+12
+systemProp.linux64jdk=/path/to/jdks/linux/jdk-17.0.1+12
+#systemProp.mac64jdk=/path/to/jdks/mac/jdk-17.0.1+12/Contents/Home</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Tip</h5>
+<p>Of course you need to download those JDKs and adapt the paths to your environment.</p>
+        </div>
+    </div>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -282,13 +471,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../ui/index.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">UI Front- and Backend</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="intro/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../plugins/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Introduction</span>
+                                                <span class="block mt-1">Plugins</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -332,6 +528,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "User Documentation", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Development Setup", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>

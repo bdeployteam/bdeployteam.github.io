@@ -10,36 +10,34 @@
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>User Documentation</title>
-    <meta name="title" content="User Documentation">
-    <meta name="description" content="Logo" />
+    <title>Variable Expansions</title>
+    <meta name="title" content="Variable Expansions">
+    <meta name="description" content="BDeploy provides a mechanism for variable expansion, used in Link Expressions and Configuration Files" />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://bdeploy.io/user/index.html" />
+    <link rel="canonical" href="https://bdeploy.io/user/power/variables/index.html" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bdeploy.io/user/index.html">
-    <meta property="og:title" content="User Documentation">
-    <meta property="og:description" content="Logo">
-    <meta property="og:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="og:url" content="https://bdeploy.io/user/power/variables/index.html">
+    <meta property="og:title" content="Variable Expansions">
+    <meta property="og:description" content="BDeploy provides a mechanism for variable expansion, used in Link Expressions and Configuration Files">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bdeploy.io/user/index.html">
-    <meta property="twitter:title" content="User Documentation">
-    <meta property="twitter:description" content="Logo">
-    <meta property="twitter:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="twitter:url" content="https://bdeploy.io/user/power/variables/index.html">
+    <meta property="twitter:title" content="Variable Expansions">
+    <meta property="twitter:description" content="BDeploy provides a mechanism for variable expansion, used in Link Expressions and Configuration Files">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="images/logo.ico" rel="icon" />
-    <link href="resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
+    <link href="../../images/logo.ico" rel="icon" />
+    <link href="../../resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -109,10 +107,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="images/logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="images/logo-dark.svg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../images/logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../images/logo-dark.svg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
@@ -264,15 +262,369 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="user-documentation" class="break-words">
+<doc-anchor-target id="variable-expansions" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#user-documentation">#</doc-anchor-trigger>
-        <span>User Documentation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#variable-expansions">#</doc-anchor-trigger>
+        <span>Variable Expansions</span>
     </h1>
 </doc-anchor-target>
-<div align="center"><p><img src="images/logo.svg" width="200" alt="Logo" /></p>
+<p><strong>BDeploy</strong> provides a mechanism for variable expansion, used in <a href="../../user/instance/index.html#link-expressions">Link Expressions</a> and <a href="../../user/instance/index.html#configuration-files">Configuration Files</a>. Variable expansion can happen on the following:</p>
+<ul>
+<li>Launcher path specified in <a href="../product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>.</li>
+<li>Any parameter value. Either user-set value or the <code v-pre>defaultValue</code> specified in <a href="../product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>.</li>
+<li>Any configuration file content.</li>
+<li>Most of the <a href="../product/index.html#supported-endpointshttp-attributes">HTTP Endpoints</a> attributes.</li>
+<li>Instance Variables.</li>
+<li>System Variables (limited to certain expansions which are available globally).</li>
+</ul>
+<p>Any of the above will be processed <em>as late as possible</em>, i.e. on the target node, right before writing the final content to the target directories.</p>
+<p>The general syntax for variables is <code v-pre>{{TYPE:VARNAME:SUBVAR}}</code>. There are various types, usually denoted by a single character. The following section gives an overview of types, variables, and possible sub-variables.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>Since 4.6.0, <strong>BDeploy</strong> has a <em>link expression editor</em> built in. All elements in the UI (except the configuration file editor) can be switched from <em>plain value</em> editor to <em>link expression</em> editor, which gives rich content assist for link expressions (which contain one or more variable expansions). The configuration file editor uses rich content assist by default on [ <strong>CTRL</strong> ] + [ <strong>Space</strong> ] if the current word starts with <code v-pre>{{</code>.</p>
+        </div>
+    </div>
 </div>
-<p>Welcome to the <strong>BDeploy User Documentation</strong>. This documentation is intended for end users, not for developers. Find the current developer documentation <a href="../dev/index.html">here</a>.</p>
+<doc-anchor-target id="m-manifest-reference">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#m-manifest-reference">#</doc-anchor-trigger>
+        <span>M: Manifest Reference</span>
+    </h2>
+</doc-anchor-target>
+<p>Used whenever it is required to get the absolute installation path to another manifest’s path on the target system. The name of the variable indicates the manifest which should be references. An optional tag - separated with a &#x27;:&#x27; - can be added to refer to a specific version.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{M:&lt;Name of Manifest&gt;:&lt;Optional Manifest Tag&gt;}} </code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{M:adoptium/jre8}}</td>
+<td>Expands to the absolute path where the the manifest named &#x27;adoptium/jre8&#x27; is installed on the server. The exact version is specified through a <em>runtime dependency</em> in the <a href="../product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>.</td>
+</tr>
+<tr>
+<td>{{M:SELF}}</td>
+<td>Expands to the absolute path where the manifest is installed on the server which contains the <code v-pre>app-info.yaml</code> for this application. This substitution shortcut is only supported in <code v-pre>app-info.yaml</code> files.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="p-deployment-path">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#p-deployment-path">#</doc-anchor-trigger>
+        <span>P: Deployment Path</span>
+    </h2>
+</doc-anchor-target>
+<p>Used to expand to one of the special directories that are defined.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{P:&lt;PATH_ID&gt;}} </code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{P:CONFIG}}</td>
+<td>Directory where all configuration files are stored.</td>
+</tr>
+<tr>
+<td>{{P:BIN}}</td>
+<td>Directory where all binaries are are stored.</td>
+</tr>
+<tr>
+<td>{{P:RUNTIME}}</td>
+<td>Directory with runtime data (e.d. stdout/stderr capture files) is stored.</td>
+</tr>
+<tr>
+<td>{{P:DATA}}</td>
+<td>Directory shared by multiple deployments of the same instance.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="v-parameter-value">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#v-parameter-value">#</doc-anchor-trigger>
+        <span>V: Parameter Value</span>
+    </h2>
+</doc-anchor-target>
+<p>Used to reference a parameter within the same application or withing any other application from the same instance. Typically used when one application publishes a service on a specific port (<em>server</em>) and other applications (<em>clients</em>) should then connect to this port. The configuration of the <em>client</em> applications would then refer to the port of the <em>server</em> application. Thus when changing the port only the configuration of the <em>server</em> application must be adopted.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{V:&lt;PARAM_ID&gt;}} - Refers to a parameter defined in the same application
+{{V:&lt;APP_NAME&gt;:&lt;PARAM_ID&gt;}} - Refers to a parameter defined in the application with the given name  </code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{V:my.param.id}}</td>
+<td>Takes the value from the <em>my.param.id</em> parameter defined in the same application.</td>
+</tr>
+<tr>
+<td>{{V:MyServer:my.param.id}}</td>
+<td>Takes the value from the parameter <em>my.param.id</em> that is defined in the <em>MyServer</em> application.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p>Beware that changing the name of an application will break the parameter reference mechanism. There is no mechanism that automatically adapts the configuration of applications which refer to values of other applications. This must be done manually if required.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="i-instance-value">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#i-instance-value">#</doc-anchor-trigger>
+        <span>I: Instance Value</span>
+    </h2>
+</doc-anchor-target>
+<p>Used to expand to values related to the instance containing the parameter&#x27;s process.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{I:&lt;VAR&gt;}}</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{I:SYSTEM_PURPOSE}}</td>
+<td>The purpose of the instance in upper case letters. (PRODUCTIVE, TEST, DEVELOPMENT)</td>
+</tr>
+<tr>
+<td>{{I:ID}}</td>
+<td>ID of the instance</td>
+</tr>
+<tr>
+<td>{{I:NAME}}</td>
+<td>Name of the instance</td>
+</tr>
+<tr>
+<td>{{I:PRODUCT_ID}}</td>
+<td>Name of the &#x27;MANIFEST&#x27; keys name of the configured product</td>
+</tr>
+<tr>
+<td>{{I:PRODUCT_TAG}}</td>
+<td>The tag (i.e. &#x27;version&#x27;) of the configured product</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="a-application-value">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#a-application-value">#</doc-anchor-trigger>
+        <span>A: Application Value</span>
+    </h2>
+</doc-anchor-target>
+<p>Used to expand to values related to the application containing the parameter&#x27;s.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{A:&lt;VAR&gt;}}</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{A:ID}}</td>
+<td>ID of the application</td>
+</tr>
+<tr>
+<td>{{A:NAME}}</td>
+<td>Name of the application</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="h-minion-properties">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#h-minion-properties">#</doc-anchor-trigger>
+        <span>H: Minion Properties</span>
+    </h2>
+</doc-anchor-target>
+<p>Used to expand to properties of the minion where the application is deployed.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{H:&lt;VAR&gt;}}</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{H:HOSTNAME}}</td>
+<td>Expands to the hostname of the target minion where the application is deployed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p>Beware that due to the nature of variable expansion (the point in time this happens), <code v-pre>HOSTNAME</code> may not be what you expect, <em>especially</em> on global parameters used by multiple processes (it can be a different hostname for each process, if they are configured to different nodes). Even more precaution is required when using <code v-pre>HOSTNAME</code> on client applications, as it will expand to the <em>clients</em> hostname.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="operating-system">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#operating-system">#</doc-anchor-trigger>
+        <span>Operating System</span>
+    </h2>
+</doc-anchor-target>
+<p>Enables conditional output of text based on the current operating system. The name of the variable refers to the name of the operating system. Using
+this variable allows the usage of different arguments for different operating systems while still using a single YAML file.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{OSNAME:&lt;conditional output&gt;}} </code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{LINUX:java}}</td>
+<td>Expands to <em>java</em> on on <em>Linux</em></td>
+</tr>
+<tr>
+<td>{{WINDOWS:java.exe}}</td>
+<td>Expands to <em>java.exe</em> on on <em>Windows</em></td>
+</tr>
+<tr>
+<td>java{{WINDOWS:.exe}}</td>
+<td>Expands to <em>java</em> on Linux and <em>java.exe</em> <em>Windows</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="environmental-values">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#environmental-values">#</doc-anchor-trigger>
+        <span>Environmental Values</span>
+    </h2>
+</doc-anchor-target>
+<p>Enables access to environmental variables defined in the operating system. The name of the variable refers to the name of the environmental variable.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{ENV:NAME}}
+{{DELAYED:ENV:NAME}}</code></pre>
+</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{ENV:MY_VARIABLE}}</td>
+<td>Expands to the value of the environmental variable when the application is <strong>installed</strong> on the node or client.</td>
+</tr>
+<tr>
+<td>{{DELAYED:ENV:MY_VARIABLE}}</td>
+<td>Expands to the value of the environmental variable when the application is <strong>launched</strong> on the node or client.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Variables are replaced with their actual values when the process is installed on the target minion node. This might not always be desired.
+Especially for client applications it can be useful to do the actual replacing when the process is launched. This is can be achieved by prefixing
+the actual variable with the <strong>DELAYED</strong> prefix. This enables that different users of the client application are getting different parameter values
+depending on the value of the environmental variable.</p>
+<doc-anchor-target id="x-instance-and-system-variables">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#x-instance-and-system-variables">#</doc-anchor-trigger>
+        <span>X: Instance and System Variables</span>
+    </h2>
+</doc-anchor-target>
+<p>Used to expand to instance and system variables. The same prefix is used for both. Instance Variables take precedence over System Variables in expansions, if an both have a variable with the same ID.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{X:&lt;VAR&gt;}}</code></pre>
+</doc-codeblock></div>
+<p><a href="../../user/instance/index.html#instance-variables">Instance Variables</a> are defined in the <a href="../../user/instance/index.html#instance-configuration">Instance Settings</a> and <a href="../../user/instancegroup/index.html#system-variables">System Variables</a> are defined on <a href="../../user/instancegroup/index.html#systems">Systems</a> level in the <strong>Instance Group</strong>.</p>
+<doc-anchor-target id="if-conditional-expansion">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#if-conditional-expansion">#</doc-anchor-trigger>
+        <span>IF: Conditional Expansion</span>
+    </h2>
+</doc-anchor-target>
+<p>The conditional expansion can be use to convert a boolean expression to any given value. The format of the conditional is</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{IF:condition?value-if-true:value-if-false}}</code></pre>
+</doc-codeblock></div>
+<p>The condition is any other variable expansion <em>without</em> the curly braces, like for instance <code v-pre>X:MyVar</code> to resolve the instance variable <code v-pre>MyVar</code>. The result of the expression is expected to be boolean, however non-empty strings will be treated as <code v-pre>true</code> as well. The values the expression expands to can be of arbitrary type, and need to be plain values, i.e. they can <em>not</em> contain variable expansions.</p>
+<p>Some examples:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">{{IF:V:use-auth?SchemeBasic:SchemeNone}}
+{{IF:X:instance-bool?ValueIfTrue:ValueIfFalse}}</code></pre>
+</doc-codeblock></div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -282,13 +634,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../power/product/index.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Integration of a new product</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="intro/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../power/runtimedependencies/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Introduction</span>
+                                                <span class="block mt-1">Runtime Dependencies</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -332,6 +691,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "User Documentation", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Variable Expansions", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>

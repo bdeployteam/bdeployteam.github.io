@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/user">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722335961937">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 2.4.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Client Applications</title>
+    <meta name="title" content="Client Applications">
+    <meta name="description" content="A dedicated overview page shows all configured Client Applications of an entire Instance Group. This page can be opened by navigating to the desired" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://bdeploy.io/user/user/clientapps/index.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bdeploy.io/user/user/clientapps/index.html">
+    <meta property="og:title" content="Client Applications">
+    <meta property="og:description" content="A dedicated overview page shows all configured Client Applications of an entire Instance Group. This page can be opened by navigating to the desired">
+    <meta property="og:image" content="https://bdeploy.io/user/images/doc_clientapps.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bdeploy.io/user/user/clientapps/index.html">
+    <meta property="twitter:title" content="Client Applications">
+    <meta property="twitter:description" content="A dedicated overview page shows all configured Client Applications of an entire Instance Group. This page can be opened by navigating to the desired">
+    <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_clientapps.png">
+
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../images/logo.ico" rel="icon" />
+    <link href="../../resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
+
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+
+    <style>
+        table td {
+            vertical-align: top;
+        }
+
+        img {
+            position: relative;
+            transition: transform 0.25s ease;
+            cursor: zoom-in;
+            z-index: 7;
+        }
+        
+        img.preview {
+            -webkit-transform: scale(2);
+            transform: scale(2);
+            cursor: zoom-out;
+            z-index: 9;
+        }
+
+        .img-backdrop::after {
+            content: "";
+            display: block;
+            position: fixed;
+            background-color: black;
+            opacity: .7;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 8;
+        }
+
+    </style>
+    <script>
+    document.addEventListener('click', function(event) {
+        if(event.target.tagName === 'IMG'){
+            const classList = event.target.classList;
+            if (classList.contains('preview')) {
+                classList.remove('preview');
+                document.body.classList.remove('img-backdrop')
+            } else {
+                classList.add('preview');
+                document.body.classList.add('img-backdrop')
+            }
+            event.target.parentElement
+        } else {
+            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+            if (document.body.classList.contains('img-backdrop')) {
+                document.body.classList.remove('img-backdrop')
+                document.getElementsByClassName('preview')[0].classList.remove('preview')
+            }
+        }
+    });
+    </script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between grow pr-6 md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../images/logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../images/logo-dark.svg">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://bdeploy.io" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path fill-rule="evenodd" d="M11.03 2.59a1.5 1.5 0 011.94 0l7.5 6.363a1.5 1.5 0 01.53 1.144V19.5a1.5 1.5 0 01-1.5 1.5h-5.75a.75.75 0 01-.75-.75V14h-2v6.25a.75.75 0 01-.75.75H4.5A1.5 1.5 0 013 19.5v-9.403c0-.44.194-.859.53-1.144l7.5-6.363zM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v6.25h5v-9.403L12 3.734z"/>
+                                        </g>
+                                    </svg>
+                                    <span>bdeploy.io</span>
+                                </a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bdeployteam/bdeploy" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                        </g>
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+        
+                            <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                            style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search" />
+                        </div>
+        
+                        <!-- Mobile search button mock -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placehokder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button mock -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+                </div>
+            
+                <div class="pl-6 mb-4 mt-1">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://bdeploy.io" target="_blank">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                <g fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M11.03 2.59a1.5 1.5 0 011.94 0l7.5 6.363a1.5 1.5 0 01.53 1.144V19.5a1.5 1.5 0 01-1.5 1.5h-5.75a.75.75 0 01-.75-.75V14h-2v6.25a.75.75 0 01-.75.75H4.5A1.5 1.5 0 013 19.5v-9.403c0-.44.194-.859.53-1.144l7.5-6.363zM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v6.25h5v-9.403L12 3.734z"/>
+                                                </g>
+                                            </svg>
+                                            <span>bdeploy.io</span>
+                                        </a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bdeployteam/bdeploy" target="_blank">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                <g fill="currentColor">
+                                                    <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                                </g>
+                                            </svg>
+                                            <span>GitHub</span>
+                                        </a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="grow min-w-0 px-6 md:px-16">
+                        <main class="relative pt-6 pb-16">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="client-applications" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#client-applications">#</doc-anchor-trigger>
+        <span>Client Applications</span>
+    </h1>
+</doc-anchor-target>
+<p>A dedicated overview page shows all configured <strong>Client Applications</strong> of an entire <strong>Instance Group</strong>. This page can be opened by navigating to the desired <strong>Instance Group</strong>. Clicking on the [ <strong>Client Applications</strong> ] button in the main navigation menu opens the overview page.</p>
+<div align="center"><p><img src="../../images/doc_clientapps.png" width="480" alt="Client Applications" /></p>
+</div>
+<p>The page will offer the appropriate <strong>Client Application</strong> based on the operating system that the user is currently using. Switching the OS can be done by updating the default grouping of the <strong>Client Applications</strong> page.</p>
+<doc-anchor-target id="launcher">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#launcher">#</doc-anchor-trigger>
+        <span>Launcher</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Client Application</strong> are started through a special <strong>Launcher</strong> that needs to be installed on all client computers. The launcher is responsible for keeping the application up-to-date and to pass the configured parameters to the application.</p>
+<doc-anchor-target id="installer">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#installer">#</doc-anchor-trigger>
+        <span>Installer</span>
+    </h2>
+</doc-anchor-target>
+<p>An <strong>Installer</strong> is provided for each <strong>Client Application</strong> to make the installation as easy as possible. The installer does not have any prerequisites and can be downloaded and executed by any user.</p>
+<p>The <strong>Installer</strong> checks if the latest version of the <strong>Launcher</strong> is already installed. If not then the <strong>Launcher</strong> is downloaded and stored on the client computer. The user can then start a <strong>Client Application</strong> with the branded <strong>Shortcut</strong> that is stored on the <strong>Desktop</strong> or in the <strong>Start Menu</strong>.</p>
+<doc-anchor-target id="windows">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#windows">#</doc-anchor-trigger>
+        <span>Windows</span>
+    </h3>
+</doc-anchor-target>
+<p>The <strong>Launcher</strong> is installed for the <strong>Current User</strong> in the <em>%LOCALAPPDATA%\BDeploy</em> folder (<em>C:/Users/<user>/AppData/Local/BDeploy</em>). The location can be changed by setting the <strong>BDEPLOY_HOME</strong> environment variable before launching the installer. No administrative privileges are required for this installation type.</p>
+<doc-anchor-target id="unattended-mode">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#unattended-mode">#</doc-anchor-trigger>
+        <span>Unattended Mode</span>
+    </h4>
+</doc-anchor-target>
+<p>The <strong>Installer</strong> can also be started in an unattended mode with the <strong>/Unattended</strong> flag so that no UI is shown.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">./Installer.exe /Unattended</code></pre>
+</doc-codeblock></div>
+<p>When automating the installation it might be required to wait until the actual installation is finished. To do that using the <strong>PowerShell</strong> the <em>Start-Process</em> cmdlet can be used:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Start -FilePath &quot;./Installer.exe&quot; -ArgumentList &quot;/Unattended&quot; -Wait </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="for-all-users">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#for-all-users">#</doc-anchor-trigger>
+        <span>For All Users</span>
+    </h4>
+</doc-anchor-target>
+<p>The <strong>Launcher</strong> can also be installed for <strong>all</strong> users by starting the installer with the <strong>/ForAllUsers</strong> flag. The default location in that case is <em>%ProgramFiles%/BDeploy</em> (<em>C:/Program Files/BDeploy</em>). The location can be changed by setting the <strong>BDEPLOY_HOME</strong> environment variable before launching the installer. Ensure that all users have access to the customized location. Otherwise they cannot launch the application.</p>
+<p>Installation for <strong>All</strong> users requires a terminal with elevated privileges (<em>Run as Administrator</em>). Just running the command as local administrator is not sufficient.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Start -FilePath &quot;./Installer.exe&quot; -ArgumentList &quot;/ForAllUsers&quot; -Verb RunAs
+Start -FilePath &quot;./Installer.exe&quot; -ArgumentList &quot;/Unattended&quot;,&quot;/ForAllUsers&quot; -Wait -Verb RunAs</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>The <em>Start</em> cmdlet with the <em>-Verb RunAs</em> switch triggers a UAC prompt so that the installer is running with elevated privileges.</p>
+        </div>
+    </div>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>Additional configuration might be required depending on the installation location. See <doc-anchor-trigger to="#multi-user-installations">Multi-User Installations</doc-anchor-trigger> for more information.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="linux">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#linux">#</doc-anchor-trigger>
+        <span>Linux</span>
+    </h2>
+</doc-anchor-target>
+<p>The <strong>Installer</strong> stores the <strong>Launcher</strong> and all <strong>Client Applications</strong> in <em>$HOME/.bdeploy</em>. This location can be changed by setting the environment variable <strong>BDEPLOY_HOME</strong>.</p>
+<doc-anchor-target id="click--start">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#click--start">#</doc-anchor-trigger>
+        <span>Click &amp; Start</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Click &amp; Start</strong> enables the launching of <strong>Client Application</strong> by simply clicking a link in the web browser. In this case the applications are not integrated into the operating system (Start Menu, Desktop Shortcut). A prerequisite is that the <strong>Click &amp; Start Launcher</strong> is deployed on the client computer. This can be done by using the <strong>Click &amp; Start Installer</strong> available in the top-right corner of the <strong>Client Applications</strong> page. The installer will download the <strong>Click &amp; Start Launcher</strong> and associate it with <strong>.bdeploy</strong> files.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>The <strong>Launcher</strong> can also be manually deployed using the provided ZIP file. After downloading and unpacking the <strong>Launcher</strong> must be associated with <strong>.bdeploy</strong> files using the <code v-pre>FileAssoc.exe</code> on Windows or <code v-pre>file-assoc.sh</code> on Linux. Those commands are part of the launcher distributable.</p>
+        </div>
+    </div>
+</div>
+<p>Clicking on a <em>Click &amp; Start</em> link in the <strong>Browser</strong> will download a <strong>.bdeploy</strong> file that can be directly executed. A more elegant way is to configure the <strong>Browser</strong> to directly open the <strong>.bdeploy</strong> file type. Firefox as well as Chrome allows to configure this after the file has been downloaded.</p>
+<doc-anchor-target id="application-browser">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#application-browser">#</doc-anchor-trigger>
+        <span>Application Browser</span>
+    </h2>
+</doc-anchor-target>
+<p>The <strong>Launcher</strong> (<em>BDeploy.exe</em>) can also be launched directly without any arguments. In this case a dialog is shown that lists all locally installed applications.</p>
+<div align="center"><p><img src="../../images/manualdoc_clientbrowserapp.png" width="480" alt="Client Application Browser" /></p>
+</div>
+<p>The <strong>Customize &amp; Launch</strong> context menu entry allows the user to to modify the command line argumements that is used to start the application. A new dialog is opened that lists the existing command line arguments as currently defined by the <strong>active instance version</strong>.</p>
+<p>Additional arguments can be added or existing ones can be modified or deleted as desired. This option is especially useful for testing. Arguments can be modified locally without the need to change the global <a href="../instance/index.html#instance-configuration">Instance Configuration</a>. The modified arguments are not saved and they need to be re-done the next time the application is launched.</p>
+<doc-anchor-target id="additional-command-line-arguments">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#additional-command-line-arguments">#</doc-anchor-trigger>
+        <span>Additional Command Line Arguments</span>
+    </h2>
+</doc-anchor-target>
+<p>When launching an application using a <strong>.bdeploy</strong> file then additional command line arguments can be defined which are passed to the target application.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">./myApp.bdeploy -- &quot;arg1=value1&quot; &quot;arg2=value2&quot;</code></pre>
+</doc-codeblock></div>
+<p>All arguments after the <strong>--</strong> switch are passed to the launched application. They are added <em>AFTER</em> all existing arguments that are currently defined in the <strong>active instance version</strong>. Individual arguments need to be separated using a single space. Quotation marks are required when the argument or its value contains spaces.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>A shortcut can be saved that includes the customized parameters. Doing that it is possible to save the customized arguments so that they do not need to be entered all the time. Executing the shortcut then launches the application with the customized arguments.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="multi-user-installations">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#multi-user-installations">#</doc-anchor-trigger>
+        <span>Multi-User Installations</span>
+    </h2>
+</doc-anchor-target>
+<p>Larger organizations typically do not want to deploy client applications on each client computer manually. They prefer to install the client software on a central server and publish the software via Citrix or similar technologies so that all users have access to one shared installation. This has the advantage that the administrators are in control of the installation and can centralize the update handling. <strong>BDeploy</strong> supports such an installation szenario.</p>
+<p>There are two different locations that are important in the context of deploying applications in a multi-user setup:</p>
+<ul>
+<li><p><strong>Installation Area</strong> - The location where the launcher as well as all applications are installed. This location is typically protected by file system privileges so that an <strong>Administrator</strong> has full permissions and all other users have read permissions. This location is defined by the environment variable <strong>BDEPLOY_HOME</strong>.</p>
+</li>
+<li><p><strong>User Area</strong> - The per-user are where the launcher as well as each launched application is permitted to write files. This location is mandatory in case that the <strong>Installation Area</strong> is read-only. This location is defined by the environment variable <strong>BDEPLOY_USER_AREA</strong>.</p>
+</li>
+</ul>
+<doc-anchor-target id="configuration">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration">#</doc-anchor-trigger>
+        <span>Configuration</span>
+    </h3>
+</doc-anchor-target>
+<p>When the <strong>Installation Area</strong> is read-only the environment variable <strong>BDEPLOY_USER_AREA</strong> must be set for each user and must point to a directory that is writable for the user that wants to launch an application.</p>
+<doc-anchor-target id="installing-new-software">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#installing-new-software">#</doc-anchor-trigger>
+        <span>Installing new software</span>
+    </h3>
+</doc-anchor-target>
+<p>New software is typically installed by the <strong>Administrator</strong> that has full permissions in the <strong>Installation Area</strong>. The administrator is either using the provided <strong>Installer</strong> or a <strong>Click &amp; Start</strong> file in order to install the new application. After that step the application is available and can be launched by each new user by using the <strong>CLick &amp; Start</strong> file.</p>
+<doc-anchor-target id="updating-software">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#updating-software">#</doc-anchor-trigger>
+        <span>Updating software</span>
+    </h3>
+</doc-anchor-target>
+<p>Whenever a new <strong>Product version</strong> is <strong>Activated</strong> on the server the administrator <strong>needs</strong> to launch the application <strong>once</strong> to deploy the new update. Not doing that will lead to an error that each user receives when trying to launch the application. The <strong>Launcher</strong> always checks for updates and tries to install them. Using an outdated application is not permitted and thus users will not be able to launch the application any more.</p>
+<div align="center"><p><img src="../../images/manualdoc_clientlauncherupdaterequired.png" width="480" alt="Required Software Update" /></p>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>Configuration changes in a client application - like adding, removing or changing a parameter - <strong>do not</strong> require <strong>Administrator</strong> attention since the installation itself is not affected. The change is automatically applied on the next start of the application.</p>
+        </div>
+    </div>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Caution</h5>
+<p>Changing the product version or changing the launcher version on the server require a manual interaction of the <strong>Administrator</strong> otherwise <strong>NO</strong> user can use the client application anymore.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="application-could-not-be-launched">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#application-could-not-be-launched">#</doc-anchor-trigger>
+        <span>Application Could Not be Launched</span>
+    </h3>
+</doc-anchor-target>
+<p>Whenever the client application cannot be launched a generic error message is shown to the user. The root cause can be viewed when clicking on the <strong>View Details</strong> button. The error message is also logged to the <strong>Application Log</strong> file. The log file is located next to the installation directory in a folder called <strong>logs</strong>.</p>
+<p>The table below shows some the most common error messages and how to solve them.</p>
+<doc-panels>
+   <doc-panel id="error-message-jakarta-ws-rs-processingexception-java-net-connectexception-connection-refused">
+       <template #title><strong>Error Message</strong>: <code v-pre>jakarta.ws.rs.ProcessingException: java.net.ConnectException: Connection refused</code></template>
+<p><em>Description:</em> The BDeploy server is either not running or the required port is not reachable.</p>
+<p><em>Solution:</em> Start the BDeploy server and check that the port is not blocked by a firewall.</p>
+   </doc-panel>
+   <doc-panel id="error-message-inconsistent-file-and-folder-permissions-missing-permission-to-delete-files">
+       <template #title><strong>Error Message</strong>: <code v-pre>Inconsistent file and folder permissions: Missing permission to delete files.</code></template>
+<p><em>Description:</em> Permissions of the root directory are invalid. Typically happens when just he <code v-pre>Modify</code> permission is revoked.</p>
+<p><em>Solution:</em> Make sure to also revoke the <code v-pre>Write</code> permissions to make the installation read-only or grant <code v-pre>Modify</code> permission.</p>
+   </doc-panel>
+   <doc-panel id="error-message-inconsistent-file-and-folder-permissions-missing-permission-to-create-files">
+       <template #title><strong>Error Message</strong>:  <code v-pre>Inconsistent file and folder permissions: Missing permission to create files.</code></template>
+<p><em>Description:</em> Permissions of the root directory are invalid. Typically happens when the <em>&#x27;Advanced Security&#x27;</em> options are used.</p>
+<p><em>Solution:</em> Make sure that the permissions are set to <code v-pre>Modify</code> or to <code v-pre>Read, Execute</code>.</p>
+   </doc-panel>
+   <doc-panel id="error-message-inconsistent-file-and-folder-permissions-missing-permission-to-modify-files">
+       <template #title><strong>Error Message</strong>: <code v-pre>Inconsistent file and folder permissions. Missing permission to modify files.</code></template>
+<p><em>Description:</em> Permissions of the root directory are invalid. Typically happens when the <em>&#x27;Advanced Security&#x27;</em> options are used.</p>
+<p><em>Solution:</em> Make sure that the permissions are set to <code v-pre>Modify</code> or to <code v-pre>Read, Execute</code>.</p>
+   </doc-panel>
+   <doc-panel id="error-message-bdeploy-home-directory-has-changed-expected-x-got-y">
+       <template #title><strong>Error Message</strong>: <code v-pre>BDeploy home directory has changed. Expected X. Got Y.</code></template>
+<p><em>Description:</em> Launcher detected that the installation directory has been moved or that it is accessed via a different path.</p>
+<p><em>Solution:</em> When moving was done intentially update the path in the <code v-pre>bdeploy.home</code> file.</p>
+<p>When accessing the launcher via a file share then make sure that the path is exactly the same.</p>
+<ul>
+<li>\\my-server\launcher</li>
+<li>\\my-server.my-domain\launcher</li>
+<li>\\192.168.2.100\launcher</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">The above network paths are treated as a different even if they actually resolve to the same server.
+When starting the launcher make sure to always use the same path.</code></pre>
+</doc-codeblock></div>
+   </doc-panel>
+</doc-panels>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results />
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../user/history/index.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Instance History</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../user/central/index.html">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Central/Managed Specific Configuration</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2022. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script>window.__DOCS__ = { "title": "Client Applications", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+</body>
+</html>

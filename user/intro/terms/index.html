@@ -10,36 +10,34 @@
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>User Documentation</title>
-    <meta name="title" content="User Documentation">
-    <meta name="description" content="Logo" />
+    <title>Terms</title>
+    <meta name="title" content="Terms">
+    <meta name="description" content="BDeploy has a some important terms and concepts which should be known before diving into details of the application itself." />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://bdeploy.io/user/index.html" />
+    <link rel="canonical" href="https://bdeploy.io/user/intro/terms/index.html" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bdeploy.io/user/index.html">
-    <meta property="og:title" content="User Documentation">
-    <meta property="og:description" content="Logo">
-    <meta property="og:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="og:url" content="https://bdeploy.io/user/intro/terms/index.html">
+    <meta property="og:title" content="Terms">
+    <meta property="og:description" content="BDeploy has a some important terms and concepts which should be known before diving into details of the application itself.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bdeploy.io/user/index.html">
-    <meta property="twitter:title" content="User Documentation">
-    <meta property="twitter:description" content="Logo">
-    <meta property="twitter:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="twitter:url" content="https://bdeploy.io/user/intro/terms/index.html">
+    <meta property="twitter:title" content="Terms">
+    <meta property="twitter:description" content="BDeploy has a some important terms and concepts which should be known before diving into details of the application itself.">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="images/logo.ico" rel="icon" />
-    <link href="resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
+    <link href="../../images/logo.ico" rel="icon" />
+    <link href="../../resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -109,10 +107,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="images/logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="images/logo-dark.svg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../images/logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../images/logo-dark.svg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
@@ -264,15 +262,103 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="user-documentation" class="break-words">
+<style>
+    .t1 td {
+        vertical-align: text-top;
+    }
+    .t1 th:first-child {
+        width: 25%;
+    }
+</style>
+<doc-anchor-target id="terms" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#user-documentation">#</doc-anchor-trigger>
-        <span>User Documentation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#terms">#</doc-anchor-trigger>
+        <span>Terms</span>
     </h1>
 </doc-anchor-target>
-<div align="center"><p><img src="images/logo.svg" width="200" alt="Logo" /></p>
+<p>BDeploy has a some important terms and concepts which should be known before diving into details of the application itself. These terms will be used all over the documentation to cross-reference other parts of the application.</p>
+<div class="t1">
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Instance Group</strong></td>
+<td>An <strong>Instance Group</strong> is the main top-level element used in <strong>BDeploy</strong>. It provides a grouping of <strong>Instances</strong> (as the name suggests).</td>
+</tr>
+<tr>
+<td><strong>Product</strong></td>
+<td>A piece of software that can be deployed with <strong>BDeploy</strong>. A product is a bundle of <strong>Applications</strong> along with some meta-information.</td>
+</tr>
+<tr>
+<td><strong>Application</strong></td>
+<td>A part of a <strong>Product</strong> that can be started and stopped separately. Applications either run as <strong>Process</strong> on a server machine or as <strong>Client Application</strong> on a desktop computer.</td>
+</tr>
+<tr>
+<td><strong>Client Application</strong></td>
+<td>An <strong>Application</strong> that can be distributed on desktop computers.</td>
+</tr>
+<tr>
+<td><strong>Instance</strong></td>
+<td>An <strong>Instance</strong> is the actual deployment configuration of a <strong>Product</strong>. In one instance, the <strong>Applications</strong> of a <strong>Product</strong> can be distributed as <strong>Processes</strong> on one or more <strong>Nodes</strong>.<br/><br/>The <strong>Product</strong> (and it&#x27;s <strong>Applications</strong>) describes the <em>possible</em> configuration values (e.g. configuration files, command line parameters, etc.) - the <strong>Instance</strong> provides <em>actual</em> values for these.</td>
+</tr>
+<tr>
+<td><strong>Instance Version</strong></td>
+<td>An <strong>Instance Version</strong> describes the configuration state of an <strong>Instance</strong> at a given time. Each change that is done by the user results in a new instance version. Versions are immutable and cannot be changed. Each new change results in a new version of an <strong>Instance</strong>.</td>
+</tr>
+<tr>
+<td><strong>Process</strong></td>
+<td>A server <strong>Application</strong> that is configured to be started on one of the server <strong>Nodes</strong> of an <strong>Instance</strong>.</td>
+</tr>
+<tr>
+<td><strong>Build</strong></td>
+<td>A <strong>Build</strong> represents the immutable collection of all runtime artifacts   (binary files, configuration files, templates etc.) of a <strong>Product</strong>. As a <strong>Build</strong> is immutable, the build tool (Maven, Gradle, Eclipse) creates a new one on every execution.</td>
+</tr>
+<tr>
+<td><strong>Product Version</strong></td>
+<td>A <strong>Product Version</strong> represents a <strong>Build</strong> that is marked with a <strong>Tag</strong>.</td>
+</tr>
+<tr>
+<td><strong>Tag</strong></td>
+<td>A <strong>Tag</strong> identifies a <strong>Product Version</strong>. The structure of a tag is defined by the <strong>Product</strong> itself. The only obligation is, that a tag has to be unique for different <strong>Builds</strong> of the same <strong>Product</strong>.</td>
+</tr>
+<tr>
+<td><strong>Node</strong></td>
+<td>A server machine (virtual machine or bare metal) that is used in an <strong>Instance</strong> to run the configured <strong>Processes</strong> on it. <strong>BDeploy</strong> supports Windows and Linux nodes, even mixed in one instance.</td>
+</tr>
+<tr>
+<td><strong>Minion</strong></td>
+<td>Agent process provided by <strong>BDeploy</strong> that has to run on every <strong>physical node</strong> used by BDeploy. In a multi-node setup one minion takes the role of a master. All others act as headless nodes which are managed by the master.</td>
+</tr>
+<tr>
+<td><strong>Deployment</strong></td>
+<td>The whole process of making one <strong>Instance Version</strong> up and running. This includes the major process steps: <strong>Installation</strong>, <strong>Activation</strong>, <strong>Process Control</strong>.</td>
+</tr>
+<tr>
+<td><strong>Installation</strong></td>
+<td>The process of transferring the configured <strong>Processes</strong> of an <strong>Instance Version</strong> to all <strong>Nodes</strong> of that <strong>Instance</strong>. The <strong>Installation</strong> makes this <strong>Instance Version</strong> available for its <strong>Activation</strong>.</td>
+</tr>
+<tr>
+<td><strong>Activation</strong></td>
+<td>The <strong>Activation</strong> marks a previously <strong>Installed</strong> <strong>Instance Version</strong> as the one to be started by the <strong>Process Control</strong>. Only one instance version can be active for one instance at the same time.</td>
+</tr>
+<tr>
+<td><strong>Process Control</strong></td>
+<td>The <strong>Process Control</strong> is responsible for starting, keep-alive and stopping the <strong>Processes</strong> of the active <strong>Instance Version</strong>.</td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>A <strong>System</strong> is a bracket around multiple <strong>Instances</strong> using potentially different <strong>Products</strong>. A <strong>System</strong> is a logical group of individual pieces of deployed software.</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Welcome to the <strong>BDeploy User Documentation</strong>. This documentation is intended for end users, not for developers. Find the current developer documentation <a href="../dev/index.html">here</a>.</p>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -282,13 +368,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../intro/features/index.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Key Features</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="intro/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../setup/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Introduction</span>
+                                                <span class="block mt-1">Installation</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -332,6 +425,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "User Documentation", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Terms", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>

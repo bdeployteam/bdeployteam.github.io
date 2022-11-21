@@ -10,36 +10,37 @@
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>User Documentation</title>
-    <meta name="title" content="User Documentation">
-    <meta name="description" content="Logo" />
+    <title>Endpoint Proxying</title>
+    <meta name="title" content="Endpoint Proxying">
+    <meta name="description" content="BDeploy supports proxying (tunnelling) to application endpoints as defined in the app-info.yaml." />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://bdeploy.io/user/index.html" />
+    <link rel="canonical" href="https://bdeploy.io/user/experts/proxy/index.html" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bdeploy.io/user/index.html">
-    <meta property="og:title" content="User Documentation">
-    <meta property="og:description" content="Logo">
-    <meta property="og:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="og:url" content="https://bdeploy.io/user/experts/proxy/index.html">
+    <meta property="og:title" content="Endpoint Proxying">
+    <meta property="og:description" content="BDeploy supports proxying (tunnelling) to application endpoints as defined in the app-info.yaml.">
+    <meta property="og:image" content="https://bdeploy.io/user/images/doc_instanceconfig_endpoints.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bdeploy.io/user/index.html">
-    <meta property="twitter:title" content="User Documentation">
-    <meta property="twitter:description" content="Logo">
-    <meta property="twitter:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="twitter:url" content="https://bdeploy.io/user/experts/proxy/index.html">
+    <meta property="twitter:title" content="Endpoint Proxying">
+    <meta property="twitter:description" content="BDeploy supports proxying (tunnelling) to application endpoints as defined in the app-info.yaml.">
+    <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_instanceconfig_endpoints.png">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="images/logo.ico" rel="icon" />
-    <link href="resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
+    <link href="../../images/logo.ico" rel="icon" />
+    <link href="../../resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.722335961937" defer></script>
 
     <style>
         table td {
@@ -109,10 +110,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="images/logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="images/logo-dark.svg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../images/logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../images/logo-dark.svg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
@@ -264,15 +265,174 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="user-documentation" class="break-words">
+<doc-anchor-target id="endpoint-proxying" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#user-documentation">#</doc-anchor-trigger>
-        <span>User Documentation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#endpoint-proxying">#</doc-anchor-trigger>
+        <span>Endpoint Proxying</span>
     </h1>
 </doc-anchor-target>
-<div align="center"><p><img src="images/logo.svg" width="200" alt="Logo" /></p>
+<p><strong>BDeploy</strong> supports proxying (tunnelling) to application endpoints as defined in the <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a>.</p>
+<p>The application hosting the endpoint to call can be hosted on any node in the system. As long as this node is attached to a master you can reach (directly in <code v-pre>STANDALONE</code> or <code v-pre>MANAGED</code> mode, or indirectly in <code v-pre>CENTRAL</code> mode), you can tunnel there using <strong>BDeploy</strong>.</p>
+<p>You will need these information to be able to call an Endpoint of a remote application through the <strong>BDeploy</strong> public API:</p>
+<ul>
+<li>A <strong>BDeploy</strong> <em>slim</em> token to be supplied for an authorization header in the form of <code v-pre>X-BDeploy-Authorization: Bearer &lt;TOKEN&gt;</code>. You can obtain this token from the Web UI for the logged in user.</li>
+<li>The <code v-pre>id</code> of the instance group hosting the application you want to tunnel to.</li>
+<li>The <code v-pre>id</code> of the instance hosting the application you want to tunnel to. You can see this id for instance from the browsers URL when on the instance overview page for the instance in question.</li>
+<li>The <code v-pre>id</code> of the applications endpoint as defined in the <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a>.</li>
+<li>The <code v-pre>id</code> of the application which hosts the endpoint identified by the endpoint <code v-pre>id</code> above.</li>
+</ul>
+<p>A typical proxy call using the public API would look like this, when using <strong>cURL</strong>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">curl -k -H &quot;Accept: **/**&quot; \
+    -H &quot;X-BDeploy-Authorization: Bearer &lt;X&gt;&quot; \ &lt;1&gt;
+    &quot;https://server/api/public/v1/common/proxy/myEndpoint?BDeploy_group=MyGroup&amp;BDeploy_instance=xxxx-111-xxxx&amp;BDeploy_application=yyyy-111-yyyy&quot; &lt;2&gt; &lt;3&gt; &lt;4&gt; &lt;5&gt; &lt;6&gt;</code></pre>
+</doc-codeblock></div>
+<ol>
+<li><strong><X></strong> is a bearer token, which can be obtained from the Web UI (User drop-down menu).</li>
+<li><strong>server</strong> is the hostname (and port) of the <strong>BDeploy</strong> master. This may be either a <code v-pre>CENTRAL</code>, <code v-pre>MANAGED</code> or <code v-pre>STANDALONE</code> server, being in charge (directly or indirectly) of the application to tunnel to.</li>
+<li><strong>myEndpoint</strong> is the <code v-pre>id</code> of the endpoint to call as defined in the <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a> of the hosting application.</li>
+<li><strong>MyGroup</strong> is the <code v-pre>id</code> of the instance group which hosts the application to tunnel to.</li>
+<li><strong>xxxx-111-xxxx</strong> is the <code v-pre>id</code> of the instance which hosts the application to tunnel to.</li>
+<li><strong>yyyy-111-yyyy</strong> is the <code v-pre>id</code> of the application which hosts an endpoint with the given endpoint <code v-pre>id</code>.</li>
+</ol>
+<doc-anchor-target id="how-to-obtain-required-ids">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-obtain-required-ids">#</doc-anchor-trigger>
+        <span>How to obtain required IDs</span>
+    </h2>
+</doc-anchor-target>
+<p>There are two ways to obtain required IDs. You can use a pure manual approach and for instance deduce ID&#x27;s from URLs and the Web UI itself. Or you can use the public API to query <strong>BDeploy</strong> for available objects.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">http://my-server/#/instances/dashboard/MyGroup/xxxx-111-xxxx</code></pre>
+</doc-codeblock></div>
+<p>From the above URL, you can find the instance group <code v-pre>id</code> (<strong>MyGroup</strong>) as well as the instance <code v-pre>id</code> (<strong>xxxx-111-xxxx</strong>). When on the instance dashboard, click the server application you want to tunnel to. The process control panel for that application opens up, and you will see the applications <code v-pre> Process ID</code> displayed.</p>
+<p>Last thing to manually lookup is the endpoint <code v-pre>id</code>. Endpoints can be accessed on the instance configuration page by clicking on to application you want to tunnel to and then clicking on [ <strong>Configure Endpoints</strong> ]</p>
+<div align="center"><p><img src="../../images/doc_instanceconfig_endpoints.png" width="480" alt="Application Edit Panel" /></p>
 </div>
-<p>Welcome to the <strong>BDeploy User Documentation</strong>. This documentation is intended for end users, not for developers. Find the current developer documentation <a href="../dev/index.html">here</a>.</p>
+<p>You will be able to read the endpoint <code v-pre>id</code> and configure properties of the endpoint on this page. The configuration will be used by <strong>BDeploy</strong> when instructed remotely to call that endpoint. <strong>BDeploy</strong> will take care of things like authentication, security, etc. The actual caller will only require access (and permissions) on the master server he is calling into, not to the actual application. Instead, <strong>BDeploy</strong> itself is configured to be authorized to perform the call.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfig_endpointsconfig.png" width="480" alt="Application Endpoints Configuration" /></p>
+</div>
+<p>For automatic lookup, you can use the following <strong>BDeploy</strong> public API endpoints. Those are provided by the master server, same as the actual proxy endpoint:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash"># will list instance groups
+curl -k -H &quot;Accept: application/json&quot; \
+    -H &quot;X-BDeploy-Authorization: Bearer &lt;X&gt;&quot; \ &lt;1&gt;
+    &quot;https://server/api/public/v1/instanceGroups&quot;
+
+# will fetch the latest configuration of all instances in an instance group
+curl -k -H &quot;Accept: application/json&quot; \
+    -H &quot;X-BDeploy-Authorization: Bearer &lt;X&gt;&quot; \
+    &quot;https://server/api/public/v1/common/instances?BDeploy_group=MyGroup&amp;latest=true&quot; &lt;2&gt;
+
+# will fetch all endpoints exposed by a certain instance along with the ids of the applications hosting them.
+curl -k -H &quot;Accept: application/json&quot; \
+    -H &quot;X-BDeploy-Authorization: Bearer &lt;X&gt;&quot; \
+    &quot;https://server/api/public/v1/common/endpoints?BDeploy_group=MyGroup&amp;BDeploy_instance=xxxx-111-xxxx&quot; &lt;2&gt; &lt;3&gt;</code></pre>
+</doc-codeblock></div>
+<ol>
+<li><strong><X></strong> in all the following <strong>cURL</strong> calls is the bearer token as obtained from the Web UI.</li>
+<li><strong>MyGroup</strong> is the name of one of the instance groups as obtained by the first API. You can fetch the <code v-pre>id</code> of each instance from the returned JSON.</li>
+<li><strong>xxxx-111-xxxx</strong> is the instance <code v-pre>id</code> as obtained by the second API. The returned JSON will include the application <code v-pre>id</code> hosting the endpoint along with the actual specific configuration of that endpoint (including its <code v-pre>id</code>).</li>
+</ol>
+<doc-anchor-target id="ui-endpoints">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ui-endpoints">#</doc-anchor-trigger>
+        <span>UI Endpoints</span>
+    </h2>
+</doc-anchor-target>
+<p>UI Endpoints can be defined to allow simple access to hosted web applications in a similar manner than client applications. This means that <strong>BDeploy</strong> will provide a link to the web application in much the same way as it provides access to client applications in its own UI, both on the (server) process status panel, as well as on the client applications page.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>The permission to access a UI endpoint through the <strong>BDeploy</strong> UI is <code v-pre>CLIENT</code>.</p>
+        </div>
+    </div>
+</div>
+<p>A sample UI endpoint definition may look something like this in the <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-yaml"><code v-pre class="language-yaml">endpoints:
+  http:
+    - id: &quot;appUi&quot;
+      path: &quot;/&quot;
+      contextPath: &quot;/appUi&quot;
+      port: &quot;8080&quot;
+      secure: false
+      authType: NONE
+      type: UI
+      proxying: true</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>The differenciation between <code v-pre>path</code> and <code v-pre>contextPath</code> is that while <code v-pre>path</code> defines the root of the server hosting the application, <code v-pre>contextPath</code> may be used to add more path segments to the link generated by BDeploy which leads to the application entry point. The <code v-pre>contextPath</code> is used <em>only</em> to determine the address to open when the application is opened through <strong>BDeploy</strong>.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="ui-endpoint-proxying">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ui-endpoint-proxying">#</doc-anchor-trigger>
+        <span>UI Endpoint Proxying</span>
+    </h3>
+</doc-anchor-target>
+<p>Much like &quot;normal&quot; <doc-anchor-trigger to="#endpoint-proxying">Endpoint Proxying</doc-anchor-trigger>, <strong>BDeploy</strong> also provides proxying for UI endpoints - when enabled using the <code v-pre>proxying</code> attribute on the endpoint. A UI endpoint will be reachable on any participating <strong>BDeploy</strong> server (<code v-pre>STANDALONE</code> only or <code v-pre>CENTRAL</code> and <code v-pre>MANAGED</code> if used). <strong>BDeploy</strong> handles all the traffic from and to the actual web application. There is no direct access to the <strong>actual</strong> application required.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>This feature is intended for simple use cases. Advanced use cases may not work as expected (e.g. WebSockets). <strong>BDeploy</strong> uses a simple request/response wrapping internally to forward requests and is <strong>not</strong> a full HTTP proxy.</p>
+        </div>
+    </div>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>Only users which are logged in to <strong>BDeploy</strong> can access UI endpoints through the proxy mechanism!</p>
+        </div>
+    </div>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -282,16 +442,16 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../experts/security/index.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Security</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="intro/index.html">
-                                            <span>
-                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Introduction</span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
-                                        </a>
                                     </div>
                                 </nav>
                             </footer>
@@ -332,6 +492,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "User Documentation", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Endpoint Proxying", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>

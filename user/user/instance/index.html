@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-root" content="/user">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722335961937">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 2.4.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Instance Dashboard</title>
+    <meta name="title" content="Instance Dashboard">
+    <meta name="description" content="The Instance Dashboard is the central location for managing an instance. It provides an overview about all configured" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://bdeploy.io/user/user/instance/index.html" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bdeploy.io/user/user/instance/index.html">
+    <meta property="og:title" content="Instance Dashboard">
+    <meta property="og:description" content="The Instance Dashboard is the central location for managing an instance. It provides an overview about all configured">
+    <meta property="og:image" content="https://bdeploy.io/user/images/doc_instanceempty.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bdeploy.io/user/user/instance/index.html">
+    <meta property="twitter:title" content="Instance Dashboard">
+    <meta property="twitter:description" content="The Instance Dashboard is the central location for managing an instance. It provides an overview about all configured">
+    <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_instanceempty.png">
+
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../../images/logo.ico" rel="icon" />
+    <link href="../../resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
+
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+
+    <style>
+        table td {
+            vertical-align: top;
+        }
+
+        img {
+            position: relative;
+            transition: transform 0.25s ease;
+            cursor: zoom-in;
+            z-index: 7;
+        }
+        
+        img.preview {
+            -webkit-transform: scale(2);
+            transform: scale(2);
+            cursor: zoom-out;
+            z-index: 9;
+        }
+
+        .img-backdrop::after {
+            content: "";
+            display: block;
+            position: fixed;
+            background-color: black;
+            opacity: .7;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 8;
+        }
+
+    </style>
+    <script>
+    document.addEventListener('click', function(event) {
+        if(event.target.tagName === 'IMG'){
+            const classList = event.target.classList;
+            if (classList.contains('preview')) {
+                classList.remove('preview');
+                document.body.classList.remove('img-backdrop')
+            } else {
+                classList.add('preview');
+                document.body.classList.add('img-backdrop')
+            }
+            event.target.parentElement
+        } else {
+            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+            if (document.body.classList.contains('img-backdrop')) {
+                document.body.classList.remove('img-backdrop')
+                document.getElementsByClassName('preview')[0].classList.remove('preview')
+            }
+        }
+    });
+    </script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between grow pr-6 md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../images/logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../images/logo-dark.svg">
+                            </span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://bdeploy.io" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path fill-rule="evenodd" d="M11.03 2.59a1.5 1.5 0 011.94 0l7.5 6.363a1.5 1.5 0 01.53 1.144V19.5a1.5 1.5 0 01-1.5 1.5h-5.75a.75.75 0 01-.75-.75V14h-2v6.25a.75.75 0 01-.75.75H4.5A1.5 1.5 0 013 19.5v-9.403c0-.44.194-.859.53-1.144l7.5-6.363zM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v6.25h5v-9.403L12 3.734z"/>
+                                        </g>
+                                    </svg>
+                                    <span>bdeploy.io</span>
+                                </a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bdeployteam/bdeploy" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                        </g>
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                            </li>
+        
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+        
+                            <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                            style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search" />
+                        </div>
+        
+                        <!-- Mobile search button mock -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placehokder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button mock -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <!-- Render this div, if config.showSidebarFilter is `true` -->
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+                </div>
+            
+                <div class="pl-6 mb-4 mt-1">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                            <nav>
+                                <ul class="flex flex-wrap justify-center items-center">
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://bdeploy.io" target="_blank">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                <g fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M11.03 2.59a1.5 1.5 0 011.94 0l7.5 6.363a1.5 1.5 0 01.53 1.144V19.5a1.5 1.5 0 01-1.5 1.5h-5.75a.75.75 0 01-.75-.75V14h-2v6.25a.75.75 0 01-.75.75H4.5A1.5 1.5 0 013 19.5v-9.403c0-.44.194-.859.53-1.144l7.5-6.363zM12 3.734l-7.5 6.363V19.5h5v-6.25a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v6.25h5v-9.403L12 3.734z"/>
+                                                </g>
+                                            </svg>
+                                            <span>bdeploy.io</span>
+                                        </a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bdeployteam/bdeploy" target="_blank">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                <g fill="currentColor">
+                                                    <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                                </g>
+                                            </svg>
+                                            <span>GitHub</span>
+                                        </a>
+                                    </li>
+            
+                                </ul>
+                            </nav>
+                        </div>
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="grow min-w-0 px-6 md:px-16">
+                        <main class="relative pt-6 pb-16">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                
+                                <!-- Page content  -->
+<doc-anchor-target id="instance-dashboard" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#instance-dashboard">#</doc-anchor-trigger>
+        <span>Instance Dashboard</span>
+    </h1>
+</doc-anchor-target>
+<p>The <doc-anchor-trigger to="#instance-dashboard">Instance Dashboard</doc-anchor-trigger> is the central location for managing an instance. It provides an overview about all configured <strong>Processes</strong> and on which nodes they are running. Each <strong>Process</strong> is represented by an entry on the according node.</p>
+<p>If the instance has no active version yet, the dashboard is empty and shows a shortcut to the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger> instead.</p>
+<p>Instances in <strong>BDeploy</strong> need to be configured, installed and activated. Once <doc-anchor-trigger to="#instance-configuration">configured</doc-anchor-trigger>, the instance can be installed and activated either directly from the dashboard or by using the <a href="../history/index.html#instance-history">Instance History</a> page.</p>
+<div align="center"><p><img src="../../images/doc_instanceempty.png" width="480" alt="Empty Instance Dashboard" /></p>
+</div>
+<p>Once the instance has been <doc-anchor-trigger to="#instance-configuration">configured</doc-anchor-trigger>, installed and activated, the dashboard shows an overview of all available nodes, their respective state (CPU Usage, Load Average where available) and the <strong>Processes</strong> configured on them.</p>
+<div align="center"><p><img src="../../images/doc_instancedashboardactive.png" width="480" alt="Instance Dashboard" /></p>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>For more information, see <a href="../processcontrol/index.html#process-control">Process Control</a></p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="instance-configuration">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#instance-configuration">#</doc-anchor-trigger>
+        <span>Instance Configuration</span>
+    </h1>
+</doc-anchor-target>
+<p>The first step is to select the desired and required nodes used in the instance. The <strong>master</strong> node is enabled by default, the virtual <strong>Client Applications</strong> node is always present if client applications exist in the <strong>product</strong>. Additional nodes can be selected from the <strong>Instance Settings</strong>&#x27;s <strong>Manage Nodes</strong> section.</p>
+<div align="center"><p><img src="../../images/doc_instancemanagenodes.png" width="480" alt="Manage Nodes" /></p>
+</div>
+<p>Next up, you can assign <strong>processes</strong> to <strong>nodes</strong> by selecting <strong>applications</strong> from the <strong>node</strong>&#x27;s [ <strong>Add Application...</strong> ] toolbar button.</p>
+<div align="center"><p><img src="../../images/doc_instanceaddprocesspanel.png" width="480" alt="Add Processes" /></p>
+</div>
+<p>The panel will display all <strong>applications</strong> along with their <strong>process templates</strong> if available. You can click the [ <strong>Add</strong> ] button to add a new, unconfigured <strong>process</strong> to the <strong>node</strong>. Using the [ <strong>Add template</strong> ] button, you can add a new <strong>process</strong> from a <strong>template</strong>, which typically includes a complete configuration of the selected <strong>application</strong>, see <doc-anchor-trigger to="#application-templates">Application Templates</doc-anchor-trigger> for more information.</p>
+<p>In any case, the <strong>process</strong> will appear in the selected <strong>node</strong>. You can use drag &amp; drop to re-order <strong>processes</strong> within a <strong>node</strong>. This has currently mostly cosmetic impact, but can be important in a single scenario: when stopping processes, <strong>BDeploy</strong> will stop them in <strong>reverse</strong> order as configured on the <strong>node</strong>. It will stop one process after another, starting from the bottom of the list.</p>
+<div align="center"><p><img src="../../images/doc_instancenewprocess.png" width="480" alt="New Process" /></p>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>The virtual <strong>Client Application Node</strong> is not available if the product does not contain any client applications.</p>
+        </div>
+    </div>
+</div>
+<p>When changing configuration of processes, you will note a colored border next to new or modified processes, which indicate the current state the process is in. A newly added process receives a <strong>green</strong> border, a modified process receives a border in the current themes <strong>accent</strong> color, a process which has validation issues receives a border in the current themes <strong>warning</strong> color. Additionally, validation issues are displayed above any <strong>node</strong>.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigvalidation.png" width="480" alt="Configuration Validation" /></p>
+</div>
+<doc-anchor-target id="local-changes">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#local-changes">#</doc-anchor-trigger>
+        <span>Local Changes</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>BDeploy</strong> keeps track of any changes performed on any of the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger> pages panels. These changes can be viewed by pressing the [ <strong>Local Changes</strong> ] toolbar button.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfiglocalchanges.png" width="480" alt="Local Changes" /></p>
+</div>
+<p>You can [ <strong>Undo</strong> ] and [ <strong>Redo</strong> ] changes. Even dismissable messages (on product update) can be brought back by [ <strong>Undo</strong> ] and [ <strong>Redo</strong> ]. To view the current changes compared to the state you started from, use the [ <strong>Compare Local with Base</strong> ] button.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigcomparechanges.png" width="480" alt="Local Changes" /></p>
+</div>
+<doc-anchor-target id="process-settings">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#process-settings">#</doc-anchor-trigger>
+        <span>Process Settings</span>
+    </h2>
+</doc-anchor-target>
+<p>A <strong>process</strong> is started by executing the <strong>start</strong> command that is defined by the <strong>application</strong>. The parameters that are passed to the <strong>process</strong> are configured on the <strong>Process Setting</strong> panel. Click a <strong>process</strong> to access its settings panel.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigprocesssettings.png" width="480" alt="Process Settings" /></p>
+</div>
+<p>From there, use the [ <strong>Configure Parameters...</strong> ] button to access the <strong>parameter configuration</strong>.</p>
+<p>The available parameters, their type and whether or not they are mandatory or optional are defined by the <strong>Application</strong>. The dialog groups the available parameters into categories, which can be expanded by clicking them.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigparams.png" width="480" alt="Parameter Configuration" /></p>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>The <strong>Application</strong> defines in which order the parameters are passed to the <strong>Process</strong> this order cannot be changed for predefined parameters.</p>
+        </div>
+    </div>
+</div>
+<p>Hovering the mouse over a parameter will show a small popup that contains a thorough description of the selected parameter. This also works in the <strong>command line preview</strong> section, as well as in any <strong>compare</strong> views throughout <strong>BDeploy</strong>.</p>
+<p><strong>Validation issues</strong> are displayed per group in the respective title and next to the affected parameter.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Tip</h5>
+<p>You can use the <em>Search Bar</em> to search for and filter parameters even though they are not shown as table. Groups will be hidden from the page unless a parameter matches - this includes optional (not yet configured) parameters.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="copy--paste">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#copy--paste">#</doc-anchor-trigger>
+        <span>Copy &amp; Paste</span>
+    </h3>
+</doc-anchor-target>
+<p>You can copy a <strong>process</strong> configuration by accessing its <strong>process settings</strong> panel. Use the [ <strong>Copy to Clipboard</strong> ] button to copy the configuration to the clipboard. You can paste the configuration by accessing the [ <strong>Add Application...</strong> ] button of the desired <strong>node</strong>. Use the [ <strong>Paste</strong> ] button to paste the configuration from the clipboard.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigprocesssettings.png" width="480" alt="Process Settings" /></p>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>You need to grant <strong>BDeploy</strong> access to the PCs Clipboard for the [ <strong>Paste</strong> ] button to appear in the <strong>node</strong>&#x27;s <strong>application</strong> panel.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="optional-parameters">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#optional-parameters">#</doc-anchor-trigger>
+        <span>Optional Parameters</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Optional parameters</strong> can be selected for each group using the [ <strong>Select Parameters...</strong> ] button present on the header of each parameter group.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigoptionalparams.png" width="480" alt="Optional Parameters" /></p>
+</div>
+<p>Add an optional parameter by clicking the [ <strong>Add</strong> ] button in front of it. You can also remove an optional parameter by clicking the [ <strong>Remove</strong> ] button in front of it.</p>
+<doc-anchor-target id="custom-parameters">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#custom-parameters">#</doc-anchor-trigger>
+        <span>Custom Parameters</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Custom parameters</strong> can be maintained in a dedicated parameter group which is always present. Because all <strong>parameters</strong> must have a determined sequence, <strong>custom parameters</strong> must define a <strong>predecessor</strong> parameter after which they are put on the command line. If no <strong>predecessor</strong> is defined, the parameter will end up <strong>first</strong> on the command line.</p>
+<p>Click the [ <strong>Add</strong> ] button in the <strong>Custom Parameters</strong> group to add a new <strong>custom parameter</strong>.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigaddcustomparam.png" width="480" alt="Add Custom Parameter" /></p>
+</div>
+<doc-anchor-target id="global-parameters">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#global-parameters">#</doc-anchor-trigger>
+        <span>Global Parameters</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Global Parameters</strong> are valid for all <strong>Processes</strong> of an <strong>Instance</strong>. They are also configured in the <strong>Process</strong>, but changes are copied to all other processes that also use this parameter. <strong>Global parameters</strong> are matched by their parameter ID, and marked with a globe icon in the <strong>parameter configuration</strong> panel.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p><strong>Global Parameters</strong> have been deprecated in favor of <a href="../instancegroup/index.html#system-variables">System Variables</a> and <doc-anchor-trigger to="#instance-variables">Instance Variables</doc-anchor-trigger>.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="conditional-parameters">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#conditional-parameters">#</doc-anchor-trigger>
+        <span>Conditional Parameters</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>Conditional parameters</strong> are parameters which are only configurable if a specific dependent parameter exists or has a certain value. These parameters are hidden until the dependent parameter meets the conditions requirements.</p>
+<doc-anchor-target id="link-expressions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#link-expressions">#</doc-anchor-trigger>
+        <span>Link Expressions</span>
+    </h3>
+</doc-anchor-target>
+<p>Link expressions can be used on all process parameters (as well as for endpoint configuration, inside configuration files, etc.). The <strong>BDeploy</strong> UI provides content assis for link expressions once a parameter editor is switched to expression mode, which is done using the toggle in front of each parameter. Each parameter is <em>either</em> a plain value or a link expression, depending on the toggle.</p>
+<div align="center"><p><img src="../../images/doc_instvar_inparameter.png" width="480" alt="Content Asssist for Link Expressions" /></p>
+</div>
+<p>The content assist will propose categories of <a href="../../power/variables/index.html#variable-expansions">Variable Expansions</a> first, and once the category is determined will continue to provide more detailed assistence.</p>
+<p>See <a href="../../power/variables/index.html#variable-expansions">Variable Expansions</a> for more details.</p>
+<doc-anchor-target id="command-line-preview">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#command-line-preview">#</doc-anchor-trigger>
+        <span>Command Line Preview</span>
+    </h3>
+</doc-anchor-target>
+<p>A preview of the command that is executed to launch this process can be viewed by expanding the <strong>Command Line Preview</strong> section. The preview is especially useful in case of custom parameters to ensure that they are added as expected in the correct order.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigpreview.png" width="480" alt="Preview Command Line with Custom Parameter" /></p>
+</div>
+<doc-anchor-target id="allowable-configuration-directories">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#allowable-configuration-directories">#</doc-anchor-trigger>
+        <span>Allowable Configuration Directories</span>
+    </h3>
+</doc-anchor-target>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>This section applies to <code v-pre>CLIENT</code> applications only.</p>
+        </div>
+    </div>
+</div>
+<p><code v-pre>CLIENT</code> applications by default do not receive any <doc-anchor-trigger to="#configuration-files">Configuration Files</doc-anchor-trigger> from the instance configuration. The reason for this is simple: security. Client PCs are typically less secure than the server running <code v-pre>SERVER</code> applications. Nevertheless, also <code v-pre>CLIENT</code> applications may <em>require</em> configuration files.</p>
+<p>Thus it is possible to <strong>whitelist</strong> certain configuration directories in the configuration of <em>each</em> <code v-pre>CLIENT</code> process in the instance configuration.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfig_clientconfigdirs.png" width="480" alt="Allowed Configuration Directories" /></p>
+</div>
+<p>Select one or more directories to have those installed to the PC running the <code v-pre>CLIENT</code> application in addition to server nodes.</p>
+<doc-anchor-target id="instance-variables">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#instance-variables">#</doc-anchor-trigger>
+        <span>Instance Variables</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Instance Variables</strong> have been introduced along with their even more global counterpart <a href="../instancegroup/index.html#system-variables">System Variables</a>. <strong>Instance Variables</strong> replace the concept of <doc-anchor-trigger to="#global-parameters">Global Parameters</doc-anchor-trigger>. They offer a more flexible - and along with <a href="../instancegroup/index.html#system-variables">System Variables</a> also a more powerful - way of achieving the same result.</p>
+<p>To add <strong>Instance Variables</strong>, use the [ <strong>Instance Variables...</strong> ] option in the <strong>Instance Settings</strong> panel. Add a new <strong>Instance Variable</strong> using the [ <strong>+</strong> ] button in the panels toolbar.</p>
+<div align="center"><p><img src="../../images/doc_instvar_plain.png" width="480" alt="A new Instance Variable" /></p>
+</div>
+<p>The value of an <strong>Instance Variable</strong> can not only be a plain value of the selected type, but it can also be a <em>link expression</em>, which is a value consisting of a combination of plain text components and one or more <a href="../../power/variables/index.html#variable-expansions">Variable Expansions</a>. In this mode, the editor will provide content assist for expansions and a dedicated variable list popup.</p>
+<div align="center"><p><img src="../../images/doc_instvar_link.png" width="480" alt="A new Instance Variable (Link Expression)" /></p>
+</div>
+<p>Once created <strong>Instance Variables</strong> can be referenced from all other <doc-anchor-trigger to="#link-expressions">Link Expressions</doc-anchor-trigger>, e.g. on process parameters, configuration files, etc.</p>
+<doc-anchor-target id="migration-from-global-parameters-to-instance-variables">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#migration-from-global-parameters-to-instance-variables">#</doc-anchor-trigger>
+        <span>Migration from Global Parameters to Instance Variables</span>
+    </h3>
+</doc-anchor-target>
+<p>Since <strong>Instance Variables</strong> are the successor concept for <strong>Global Parameters</strong> (those have been deprecated), there is a migration path.</p>
+<p>Products need to be updated at some point to no longer have the <code v-pre>global</code> flag on parameters, and use <strong>Instance Variables</strong> in their <doc-anchor-trigger to="#instance-templates">Instance Templates</doc-anchor-trigger> instead. There is no automated migration for this, this has to be done manually by the respective maintainers.</p>
+<p>However, updating products will not &quot;fix&quot; existing instances, as templates are only used when creating instances, and also parameter values for existing processes will not be updated when changing the product.</p>
+<p>Thus, there is a [ <strong>Migrate Globals</strong> ] button on the <strong>Instance Variables</strong> panel. Also, updating the product version will now (as long as migration has not been performed yet) prompt to perform the migration to <strong>Instance Variables</strong>. This migration will pick each <code v-pre>global</code> parameter in the <strong>Instance</strong> and:</p>
+<ol>
+<li>Create an <strong>Instance Variable</strong> using the parameters ID as variable name.</li>
+<li>Set the current <code v-pre>global</code> value to the new <strong>Instance Variable</strong>.</li>
+<li>Replace the current value for all instances of the <code v-pre>global</code> parameter in the <strong>Instance</strong> with a link expression referencing the new <strong>Instance Variable</strong></li>
+<li>Disable the use of <code v-pre>global</code> for <strong>this Instance</strong> only. All parameters will be treated as though the <code v-pre>global</code> flag was not set.</li>
+</ol>
+<p>This brings the instance into a state where it is safe to either update <strong>BDeploy</strong> to a version which no longer supports <code v-pre>global</code> (which does not exist yet), or update the product to a version where the <code v-pre>global</code> flag is no longer used on parameters.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p>This migration must be done regardless of the product being updated. Without the migration, global parameters will turn into &quot;normal&quot; parameters at some point. If they still contain a plain value at that point in time (and not a <doc-anchor-trigger to="#link-expressions">Link Expression</doc-anchor-trigger>) it will stay this way, and <strong>each</strong> of the formerly &quot;connected&quot; parameters (through the global mechanism) will have its own value and needs to be configured separately.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="configuration-files">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration-files">#</doc-anchor-trigger>
+        <span>Configuration Files</span>
+    </h2>
+</doc-anchor-target>
+<p>The <strong>configuration files</strong> of all <strong>Processes</strong> of an <strong>Instance</strong> are maintained together in one place. It can be opened by clicking on the [ <strong>Configuration Files</strong> ] button in the <strong>Instance Settings</strong> panel. The initial set of <strong>configuration files</strong> is derived from the default set delivered with the product, see <a href="../../power/product/index.html#product-infoyaml"><code v-pre>product-info.yaml</code></a>.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigfiles.png" width="480" alt="Instance Configuration Files" /></p>
+</div>
+<p>The <strong>configuration files</strong> of an <strong>Instance</strong> can be compared with the original <strong>configuration file templates</strong> of the <strong>Product</strong> at any time, an according up to date hint is shown next to each configuration file if applicable. The [ <strong>Compare with product template</strong> ] button starts the comparison. Files which are present in the <strong>product</strong> but not in the <strong>instance configuration</strong> are marked, same is true the other way round.</p>
+<p>New configuration files can be be created using the [ <strong>+</strong> ] button. Prompt for a file name and an optional initial content to upload. When dropping a file onto the drop zone, the filename is updated automatically to match the dropped file.</p>
+<p>The [ <strong>Edit</strong> ] button on each file can be used to edt the content of the file using an online rich editor.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigfilesedit.png" width="480" alt="Edit Instance Configuration Files" /></p>
+</div>
+<p>Online editing is only possible for text files. Binary files like ZIP, PDF, etc. can not be edited online. Instead, you can download and later on replace them.</p>
+<p><a href="../../power/variables/index.html#variable-expansions">Variable Expansions</a> can be used in configuration files. The variables will be expanded when the file is written on disc on the target node. The editor for configuration files provides content assist for <a href="../../power/variables/index.html#variable-expansions">Variable Expansions</a> on [ <strong>CTRL</strong> ] + [ <strong>Space</strong> ] if the current word in the editor contains <code v-pre>{{</code>.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>Changes done in configuration files must be <strong>saved</strong> and they result in a new <strong>instance version</strong> that must be <strong>installed</strong> and <strong>activated</strong> so that the changes have an impact, much the same as <strong>any</strong> other change in the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger>.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="change-product-version">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#change-product-version">#</doc-anchor-trigger>
+        <span>Change Product Version</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Instances</strong> are based on a <strong>product version</strong>. While the <strong>Product</strong> of the <strong>Instance</strong> cannot be changed afterwards, the <strong>Version</strong> can be chosen from the available <strong>product versions</strong> (upgrade to a newer version / downgrade to an older version).</p>
+<p>If there&#x27;s a newer <strong>product version</strong> available (newer than the one that is configured for the latest <strong>instance version</strong>), a notification is shown in the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger> pages toolbar.</p>
+<div align="center"><p><img src="../../images/doc_instanceproductupdateavail.png" width="480" alt="Update Notification" /></p>
+</div>
+<p>Clicking on the notification opens the <strong>product version</strong> sidebar. The same sidebar can also be opened opened by clicking on the [ <strong>Update Product Version</strong> ] button in the <strong>Instance Settings</strong> panel.</p>
+<div align="center"><p><img src="../../images/doc_instanceproductupdate.png" width="480" alt="Change Current Product Version" /></p>
+</div>
+<p>Changing the version can be done by clicking on the [ <strong>Upgrade</strong> ] or [ <strong>Downgrade</strong> ] button displayed at the right side of the product version. Changing the product version will trigger an automated migration. This migration will also validate changes. It gives <strong>hints</strong> about potentially relevant (but not blocking) changes, and additionally validation issues in case the migration could not be performed fully automatically. You then have the chance to fix issues manually before saving the resulting <strong>instance version</strong>.</p>
+<div align="center"><p><img src="../../images/doc_instanceproductupdatehints.png" width="480" alt="Product Update Hints" /></p>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>Changing the <strong>product version</strong> will never change the <strong>Configuration Files</strong> of the <strong>Instance</strong>. In case configuration file templates change from one product version to the other, an update hint will be shown. You can then manully update configuration files as needed, see chapter <doc-anchor-trigger to="#configuration-files">Configuration Files</doc-anchor-trigger>.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="banner-message">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#banner-message">#</doc-anchor-trigger>
+        <span>Banner Message</span>
+    </h2>
+</doc-anchor-target>
+<p>A banner message can be created for an <strong>Instance</strong>, which is displayed very clearly at the top of the overview dialog. You can choose from a series of predefined colors, so that depending on the urgency or content of the message a suitable color can be selected.</p>
+<div align="center"><p><img src="../../images/doc_instancebannerconfig.png" width="480" alt="Instance Banner Configuration" /></p>
+</div>
+<p>Banner messages are maintained on instance level and are not versioned, i.e. they are independent of instance versions. Therefore they outlast configuration changes of an instance and can be configured without saving the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger>.</p>
+<div align="center"><p><img src="../../images/doc_instancebanner.png" width="480" alt="Instance Banner Configuration" /></p>
+</div>
+<p>The banner is shown in the <a href="../instancegroup/index.html#create-new-instances">Instance Overview</a> (as tooltip on the instance), in the <doc-anchor-trigger to="#instance-dashboard">Instance Dashboard</doc-anchor-trigger> and in the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger> pages.</p>
+<doc-anchor-target id="importexport">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#importexport">#</doc-anchor-trigger>
+        <span>Import/Export</span>
+    </h2>
+</doc-anchor-target>
+<p>Instance versions can be exported and downloaded from the <a href="../history/index.html#instance-history">Instance History</a>. This will download this specific instance version&#x27;s raw data as a <em>ZIP</em>. The <em>ZIP</em> can be re-imported using the <strong>Instance Settings</strong> panel to create a new <strong>instance version</strong> which has that exported instances content.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p>This mechanism allows access to the most internal data structures of <strong>BDeploy</strong>. Great care has to be taken to not damage any of the data when manipulating the <em>ZIP</em> files content manually.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="application-templates">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#application-templates">#</doc-anchor-trigger>
+        <span>Application Templates</span>
+    </h2>
+</doc-anchor-target>
+<p>A product may contain <strong>Application Templates</strong>. These are pre-defined configurations for applications, resulting in a more complete process configuration when added to the target node.</p>
+<p>We saw earlier how to <doc-anchor-trigger to="#instance-configuration">add applications using templates</doc-anchor-trigger>. Depending on the selected template, you may be prompted to enter the required template variable values.</p>
+<div align="center"><p><img src="../../images/doc_instanceaddprocesstemplvars.png" width="480" alt="Add Process Template" /></p>
+</div>
+<p>The process configuration is created from the application template using the given variable values.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>You will notice that the name of the process now matches the name of the template, not the name of the underlying application.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="instance-templates">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#instance-templates">#</doc-anchor-trigger>
+        <span>Instance Templates</span>
+    </h2>
+</doc-anchor-target>
+<p>A product can define and include <strong>Instance Templates</strong>. These templates can be applied on an instance (e.g. after creating a new instance). They can define processes just like <strong>Application Templates</strong>, in fact they typically include existing <strong>Application Templates</strong>.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>The advantage of an <strong>Instance Template</strong> is that it can contain more knowledge of how processes need to be set up to work together, wheras <strong>Application Templates</strong> define configuration for a single application.</p>
+        </div>
+    </div>
+</div>
+<div align="center"><p><img src="../../images/doc_instancetemplates.png" width="480" alt="Instance Templates" /></p>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p><strong>Instance Templates</strong> can also be applied to instances which already have configured processes.</p>
+        </div>
+    </div>
+</div>
+<p>Selecting a template (here: <em>Default Configuration</em>) will show a list of <em>groups</em> defined in the template. These <em>groups</em> can be assigned to compatible nodes - groups containing server applications to server nodes, and groups containing client applications to the virtual <em>Client Applications</em> node. Selecting <em>(skip)</em> as target node will skip the processes in this group.</p>
+<div align="center"><p><img src="../../images/doc_instancetemplatesnodes.png" width="480" alt="Instance Templates Node Assignment" /></p>
+</div>
+<p>When creating configurations on a <code v-pre>SERVER</code> node, applications will be added matching the nodes OS. If a server application is included in a group which is not available for the target OS, you will receive an according message.</p>
+<p>When creating configurations for a <code v-pre>CLIENT</code> group, applications are added to the <em>Client Applications</em> virtual node, one for each OS supported by the application.</p>
+<p>Next you will be presented with the template variables which need to be provided.</p>
+<div align="center"><p><img src="../../images/doc_instancetemplatesvars.png" width="480" alt="Instance Templates Variable Assignment" /></p>
+</div>
+<p>Clicking [ <strong>Confirm</strong> ] will create the processes defined in the template. The configuration will <strong>not</strong> be saved automatically, to allow further tuning of the configuration before doing so. Applying <strong>templates</strong> can be undone by clicking [ <strong>Undo</strong> ] like any other change.</p>
+<div align="center"><p><img src="../../images/doc_instancetemplatesdone.png" width="480" alt="Applied Instance Templates" /></p>
+</div>
+<doc-anchor-target id="network-ports">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#network-ports">#</doc-anchor-trigger>
+        <span>Network Ports</span>
+    </h2>
+</doc-anchor-target>
+<p>The <strong>Manage Network Ports</strong> panel can be reached from the <strong>Instance Settings</strong> panel. This panel provides a concise overview of all ports (<code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code> and <code v-pre>URL</code> parameters) used in the <strong>Instance</strong>.</p>
+<p>The [ <strong>Shift Ports</strong> ] action allows to bulk edit selected port parameters and shift them upwards or downwards by a given offset.</p>
+<p>The [ <strong>Export CSV</strong> ] action allows to export a CSV list of all ports configured in the system. This can be used to pass on information to external partners, for instance for further firewall configuration, etc.</p>
+<doc-anchor-target id="process-control-groups">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#process-control-groups">#</doc-anchor-trigger>
+        <span>Process Control Groups</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Processes</strong> can be grouped into <strong>Process Control Groups</strong>. Those groups dictate the order in which processes are started and stopped, as well as whether process startup is awaited - or not.</p>
+<p>Each <strong>Process Control Group</strong> has configurable behavior for contained processes regarding starting and stopping. Groups are processed in the configured order when starting, and the reverse configured order when stopping. Processes <strong>within</strong> each group are processed according to the groups configuration. Each group can have configuration for startup and stop behaviour.</p>
+<p>Possible values for the <strong>Start Type</strong> and <strong>Stop Type</strong> handling configuration are:</p>
+<ul>
+<li><code v-pre>SEQUENTIAL</code>: Each <strong>Process</strong> in the group is handled (started/stopped) sequentially. Any potential waiting (for startup and or shutdown, depending on the capabilities of the process) is done before proceeding to the next <strong>Process</strong> or <strong>Process Control Group</strong>.</li>
+<li><code v-pre>PARALLEL</code>: Each <strong>Process</strong> in the group is handled (started/stopped) in parallel. Only once all <strong>Process</strong> operations within the group have finished, the group is considered finished and processing continues with the next <strong>Process Control Group</strong>. Be aware that in conjunction with <code v-pre>CONTINUE</code> wait mode for process startup, this will make a group complete immediately and continue on to the next group immediately as well.</li>
+</ul>
+<p>Additionally, each <strong>Process Control Group</strong> can be configured to wait for process startup, i.e. startup probes. Each <strong>Process Control Group</strong> has a <strong>Start Wait</strong> configuration:</p>
+<ul>
+<li><code v-pre>WAIT</code>: When starting a <strong>Process</strong> in the group, wait for its startup to be complete. This is either once the <strong>Startup Probe</strong> signals process startup if available and configured, or once the process has been created if no probe is available.</li>
+<li><code v-pre>CONTINUE</code>: When starting a <strong>Process</strong> in the group, do not wait for its startup to be complete, instead move on to the next process immediately. This makes the startup handling types (<code v-pre>SEQUENTIAL</code>, <code v-pre>PARALLEL</code>) essentially irrelevant, as processes are typically created so fast that it does not make any difference anymore.</li>
+</ul>
+<div align="center"><p><img src="../../images/doc_instanceconfigaddprocesscontrolgroup.png" width="480" alt="Edit Process Control Groups" /></p>
+</div>
+<p>Each <code v-pre>SERVER</code> node automatically uses <strong>Process Control Groups</strong> and is initialized with a &#x27;Default&#x27; group. Adding a new <strong>Process</strong> to a <strong>Node</strong> will always add that <strong>Process</strong> to the last <strong>Process Control Group</strong>. It can then be moved by drag and drop to another <strong>Process Control Group</strong> if required.</p>
+<div align="center"><p><img src="../../images/doc_instanceconfigeditprocesscontrolgroup.png" width="480" alt="Edit Process Control Groups" /></p>
+</div>
+<p><strong>Process Control Groups</strong> themselves can be re-ordered using the [ <strong>Move Up</strong> ] and [ <strong>Move Down</strong> ] buttons.</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results />
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../user/instancegroup/index.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Instance Group</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../user/deployment/index.html">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Deployment</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2022. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script>window.__DOCS__ = { "title": "Instance Dashboard", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+</body>
+</html>

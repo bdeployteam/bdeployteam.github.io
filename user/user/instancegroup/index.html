@@ -10,36 +10,36 @@
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>User Documentation</title>
-    <meta name="title" content="User Documentation">
-    <meta name="description" content="Logo" />
+    <title>Instance Group</title>
+    <meta name="title" content="Instance Group">
+    <meta name="description" content="An Instance Group acts as logical container for Instances. It typically contains several Instances for different purposes (productive, test,..." />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://bdeploy.io/user/index.html" />
+    <link rel="canonical" href="https://bdeploy.io/user/user/instancegroup/index.html" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bdeploy.io/user/index.html">
-    <meta property="og:title" content="User Documentation">
-    <meta property="og:description" content="Logo">
-    <meta property="og:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="og:url" content="https://bdeploy.io/user/user/instancegroup/index.html">
+    <meta property="og:title" content="Instance Group">
+    <meta property="og:description" content="An Instance Group acts as logical container for Instances. It typically contains several Instances for different purposes (productive, test,...">
+    <meta property="og:image" content="https://bdeploy.io/user/images/doc_emptygroups.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bdeploy.io/user/index.html">
-    <meta property="twitter:title" content="User Documentation">
-    <meta property="twitter:description" content="Logo">
-    <meta property="twitter:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="twitter:url" content="https://bdeploy.io/user/user/instancegroup/index.html">
+    <meta property="twitter:title" content="Instance Group">
+    <meta property="twitter:description" content="An Instance Group acts as logical container for Instances. It typically contains several Instances for different purposes (productive, test,...">
+    <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_emptygroups.png">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="images/logo.ico" rel="icon" />
-    <link href="resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
+    <link href="../../images/logo.ico" rel="icon" />
+    <link href="../../resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -109,10 +109,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="images/logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="images/logo-dark.svg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../images/logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../images/logo-dark.svg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
@@ -264,15 +264,197 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="user-documentation" class="break-words">
+<doc-anchor-target id="instance-group" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#user-documentation">#</doc-anchor-trigger>
-        <span>User Documentation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#instance-group">#</doc-anchor-trigger>
+        <span>Instance Group</span>
     </h1>
 </doc-anchor-target>
-<div align="center"><p><img src="images/logo.svg" width="200" alt="Logo" /></p>
+<p>An <strong>Instance Group</strong> acts as logical container for <strong>Instances</strong>. It typically contains several <strong>Instances</strong> for different purposes (productive, test, development). Adding them to the same group provides a better overview which of them are belonging together. An empty page is displayed if no instance group has been created.</p>
+<div align="center"><p><img src="../../images/doc_emptygroups.png" width="480" alt="Empty Instance Group Overview" /></p>
 </div>
-<p>Welcome to the <strong>BDeploy User Documentation</strong>. This documentation is intended for end users, not for developers. Find the current developer documentation <a href="../dev/index.html">here</a>.</p>
+<p>Use the [ <strong>+</strong> ] button in the toolbar to create a new <strong>Instance Group</strong>.</p>
+<div align="center"><p><img src="../../images/doc_addgrouppanelfilled.png" width="480" alt="Create Instance Group" /></p>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>The name of an instance group cannot be changed, and is used internally as a name in the file system on the server. Be careful when choosing the name.</p>
+        </div>
+    </div>
+</div>
+<p>The <em>Automatic Cleanup</em> option helps to reduce the amount of consumed hard disk space. During the lifetime of an <strong>Instance Group</strong>, probably many new versions of a <strong>Product</strong> are deployed. To avoid that the hard disk is filled up with <strong>product versions</strong> that are not used anymore, there is an option to activate an automatic cleanup job. If the option <em>Automatic Cleanup</em> is enabled, old <strong>product versions</strong> that are no longer in use by <strong>Instances</strong> of this <strong>Instance Group</strong> are deleted automatically. To avoid that a <strong>Product</strong> vanishes completely, the very latest <strong>product version</strong> always remains.</p>
+<doc-anchor-target id="instance-group-dialog">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#instance-group-dialog">#</doc-anchor-trigger>
+        <span>Instance Group Dialog</span>
+    </h2>
+</doc-anchor-target>
+<p>All <strong>Instance Groups</strong> that are visible to the user (as per the assigned permissions) are shown in the <strong>Instance Groups</strong> dialog.</p>
+<div align="center"><p><img src="../../images/doc_demogroup.png" width="480" alt="Demo Instance Group" /></p>
+</div>
+<doc-anchor-target id="instance-group-access">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#instance-group-access">#</doc-anchor-trigger>
+        <span>Instance Group Access</span>
+    </h2>
+</doc-anchor-target>
+<p>A new <strong>Instance Group</strong> is initially only visible to users with global read permission (or higher). You can assign permissions to users either globally, or per <strong>Instance Group</strong>. To assign local permissions, click the <strong>Instance Group</strong> to get to its <strong>instance overview</strong> and then click the [ <strong>Group Settings</strong> ] toolbar button. The Group Settings panel is shown.</p>
+<div align="center"><p><img src="../../images/doc_groupsettings.png" width="480" alt="Instance Group Settings" /></p>
+</div>
+<p>Click the [ <strong>Instance Group Permissions</strong> ] button to navigate to the permission panel.</p>
+<div align="center"><p><img src="../../images/doc_grouppermglobalonly.png" width="480" alt="Instance Group Permissions" /></p>
+</div>
+<p>To assign a local permission to a given user, click the [ <strong>Modify</strong> ] button in the according table row. A dialog will pop up asking for the permission to assign. Choose an apropriate one and click [ <strong>OK</strong> ].</p>
+<div align="center"><p><img src="../../images/doc_grouppermsetwrite.png" width="480" alt="Instance Group Permission Assignment" /></p>
+</div>
+<p>The local permission will be shown next to the global permission. The highest available permission level is taken into account for any permission checks.</p>
+<div align="center"><p><img src="../../images/doc_grouppermassigned.png" width="480" alt="Instance Group Local Permission" /></p>
+</div>
+<p>The user table is grouped by permission assignment, either global, local or unassigned.</p>
+<doc-anchor-target id="initial-steps">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#initial-steps">#</doc-anchor-trigger>
+        <span>Initial Steps</span>
+    </h2>
+</doc-anchor-target>
+<p>Click on an <strong>Instance Group</strong> to open the <strong>instance browser</strong> of this group. Here you can see all <strong>Instances</strong> grouped by their <em>purpose</em> (can be <code v-pre>Development</code>, <code v-pre>Test</code> or <code v-pre>Productive</code>).</p>
+<div align="center"><p><img src="../../images/doc_demoinstancesempty.png" width="480" alt="Empty Instance Browser" /></p>
+</div>
+<p>Since an <strong>Instance</strong> requires a <strong>Product</strong>, an empty <strong>Instance Group</strong> will initially display a shortcut to the <doc-anchor-trigger to="#manage-products">products</doc-anchor-trigger> page. If there is at least one <strong>Product</strong> available already, the shortcut changes to help you to <doc-anchor-trigger to="#create-new-instances">create a new instance</doc-anchor-trigger>.</p>
+<div align="center"><p><img src="../../images/doc_demoinstancesnoinstance.png" width="480" alt="Empty Instance Browser with Product available" /></p>
+</div>
+<doc-anchor-target id="manage-products">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#manage-products">#</doc-anchor-trigger>
+        <span>Manage Products</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Products</strong> can be obtained by <a href="../../power/product/index.html#building-a-product">building a <strong>Product</strong></a> or by downloading an existing version from another <strong>Instance Group</strong> on the same or another <strong>BDeploy</strong> server, using the [ <strong>Download</strong> ] button on the <strong>Product</strong> details panel.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>On the BDeploy Releases page you will find some sample products to experiment with for each release, see <a href="https://github.com/bdeployteam/bdeploy/releases">https://github.com/bdeployteam/bdeploy/releases</a></p>
+        </div>
+    </div>
+</div>
+<div align="center"><p><img src="../../images/doc_productsempty.png" width="480" alt="Empty Products Page" /></p>
+</div>
+<p>On the <strong>Products</strong> page, click the [ <strong>Upload Product</strong> ] button to upload new <strong>Products</strong>.</p>
+<div align="center"><p><img src="../../images/doc_productsuploadpanel.png" width="480" alt="Upload Product" /></p>
+</div>
+<p>Click browse and choose a <strong>Product</strong> <em>ZIP</em> file to upload, or simply drop one on the highlighted drop zone. The <strong>Product</strong> will be uploaded immediately.</p>
+<div align="center"><p><img src="../../images/doc_productsuploadsuccess.png" width="480" alt="Upload Product (success)" /></p>
+</div>
+<p>Once a <strong>Product</strong> is available, you can click it to open the <strong>Product</strong> details panel. This panel allows you to [ <strong>Download</strong> ] a <strong>Product</strong> version as <em>ZIP</em>, or [ <strong>Delete</strong> ] individual versions of the <strong>Product</strong> as long as it is not currently in use by an <strong>Instance</strong> version. There rest of the panel provides additional information about the <strong>Product</strong>.</p>
+<div align="center"><p><img src="../../images/doc_productdetailspanel.png" width="480" alt="Product Details Panel" /></p>
+</div>
+<doc-anchor-target id="create-new-instances">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#create-new-instances">#</doc-anchor-trigger>
+        <span>Create New Instances</span>
+    </h2>
+</doc-anchor-target>
+<p>To create a new <strong>Instance</strong>, click the [ <strong>+</strong> ] button at the bottom of the page. After giving the new <strong>Instance</strong> a name, purpose and description, the most important thing is to select the <strong>Product</strong> you want to deploy. Additionally, the initial <strong>product version</strong> has to be chosen. It can be changed later at any time (<em>up-</em> and <em>downgrade</em>).</p>
+<div align="center"><p><img src="../../images/doc_instanceadd.png" width="480" alt="Create a new Instance" /></p>
+</div>
+<p>It is a common requirement that certain <strong>processes</strong> of an <strong>Instance</strong> should be automatically started whenever the <strong>BDeploy</strong> server itself is started. To accomplish that, the <em>Automatic Startup</em> flag of the <strong>Instance</strong> must be set.</p>
+<p>The <strong>Instance</strong> determines whether it is included in the automatic cleanup job. If the option <em>Automatic Uninstallation</em> is enabled, the cleanup job will uninstall all <strong>instance versions</strong> that are older than the activated and the previously activated <strong>instance version</strong>. Due to this automatic uninstallation some of the old <strong>product versions</strong> might become unused. If the option <em>Automatic Cleanup</em> is activated on the instance group, these unused <strong>product versions</strong> are deleted too (see <doc-anchor-trigger to="#instance-group">Instance Group</doc-anchor-trigger>).</p>
+<p>Click an <strong>Instance</strong> to proceed to the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a>.</p>
+<div align="center"><p><img src="../../images/doc_demoinstance.png" width="480" alt="Instance Browser" /></p>
+</div>
+<doc-anchor-target id="global-attributes-on-instance-groups">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#global-attributes-on-instance-groups">#</doc-anchor-trigger>
+        <span>Global Attributes on Instance Groups</span>
+    </h2>
+</doc-anchor-target>
+<p><a href="../../experts/system/index.html#global-attributes">Global Attributes</a> can be configured - as the name suggests - globally in the system administration. Each Instance Group <strong>may</strong> then associate a <strong>value</strong> with each of these global attributes.</p>
+<div align="center"><p><img src="../../images/doc_setglobalattributevalue.png" width="480" alt="Set Global Attribute Values" /></p>
+</div>
+<p>The value can then be used for grouping instance groups through the grouping panel.</p>
+<div align="center"><p><img src="../../images/doc_groupingpanel.png" width="480" alt="Group by Global Attribute" /></p>
+</div>
+<doc-anchor-target id="instance-group-attributes">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#instance-group-attributes">#</doc-anchor-trigger>
+        <span>Instance Group Attributes</span>
+    </h2>
+</doc-anchor-target>
+<p>Very similar to the global attributes, each <strong>Instance Group</strong> may have its own <strong>attributes</strong>. These attributes are not global, but are only visible within the <strong>Instance Group</strong>. Each <strong>Instance</strong> can assign a value to each of these attributes. Again, similar to the <strong>Instance Group</strong> browser, the <strong>Instance</strong> browser can use the assigned values to group <strong>Instances</strong> by those values.</p>
+<p>The <strong>attributes</strong> are defined in the <strong>Instance Group</strong> settings. The <strong>values</strong> are assigned in the <strong>Instance</strong> settings.</p>
+<doc-anchor-target id="systems">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#systems">#</doc-anchor-trigger>
+        <span>Systems</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Systems</strong> are a means of further grouping instances of different products inside a single <strong>Instance Group</strong>. <strong>Systems</strong> also provide means to apply shared configuration through <doc-anchor-trigger to="#system-variables">System Variables</doc-anchor-trigger>.</p>
+<p>Once created, a <strong>System</strong> can be used by an <strong>Instance</strong> by configuring the in-use <strong>System</strong> in the <a href="../instance/index.html#instance-configuration">Instance Configuration</a> of each <strong>Instance</strong> which should <em>participate</em> in this particular <strong>System</strong>.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>A <strong>System</strong> definition may be used by many <strong>Instances</strong>, but each <strong>Instance</strong> can only be part of one <strong>System</strong> (or none).</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="system-variables">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#system-variables">#</doc-anchor-trigger>
+        <span>System Variables</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>System Variables</strong> can be configured on <strong>Systems</strong>. Those variables can then be used using <em>link expressions</em> on <a href="../instance/index.html#link-expressions">Link Expressions</a> (process parameters, endpoint configuration, instance variables, configuration files).</p>
+<doc-anchor-target id="system-templates">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#system-templates">#</doc-anchor-trigger>
+        <span>System Templates</span>
+    </h3>
+</doc-anchor-target>
+<p>A <strong>System Template</strong> allows definition of complete systems. Since those templates life outside of any specific single product, they are single YAML files which have a separate lifecycle.</p>
+<p>A <strong>System Template</strong> will typically create multiple instances of multiple products in a to-be-created system. It can also create <doc-anchor-trigger to="#system-variables">System Variables</doc-anchor-trigger>, and use template variable overrides to control in much detail how instances are created.</p>
+<div align="center"><p><img src="../../images/doc_systemtemplate_wizard.png" width="480" alt="System Template Wizard" /></p>
+</div>
+<p>The <strong>System Template</strong> Wizard will request you to upload a <a href="../../power/product/index.html#system-templateyaml"><code v-pre>system-template.yaml</code></a> file. Once this is done, you can specify template variable values for variables defined and used in the system template itself. These are not to be confused with template variables used in instance templates, which will be queried at a later stage in the process as required. <strong>System Templates</strong> can use template variables in their own YAML descriptor to provide very dynamic (pre-)configuration for instance templates, thus those variables need to be available before configuring instance templates.</p>
+<div align="center"><p><img src="../../images/doc_systemtemplate_instancetemplates.png" width="480" alt="System Template Instance Configuration" /></p>
+</div>
+<p>The Wizard will now query each instance defined in the <strong>System Template</strong>. This allow users to skip instances, or configure intances in a way just &quot;as if&quot; they would apply the individual <strong>Instance Templates</strong> to a new, empty instance each.</p>
+<div align="center"><p><img src="../../images/doc_systemtemplate_done.png" width="480" alt="System Template Wizard - Done" /></p>
+</div>
+<p>Once done, the Wizard will show success confirmations along with potential warnings and errors that occured during application of the template(s).</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -282,13 +464,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../user/common-ui/index.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Common UI Elements</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="intro/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../user/instance/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Introduction</span>
+                                                <span class="block mt-1">Instance Dashboard</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -332,6 +521,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "User Documentation", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Instance Group", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>

@@ -10,36 +10,36 @@
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>User Documentation</title>
-    <meta name="title" content="User Documentation">
-    <meta name="description" content="Logo" />
+    <title>Nodes</title>
+    <meta name="title" content="Nodes">
+    <meta name="description" content="Nodes are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a..." />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://bdeploy.io/user/index.html" />
+    <link rel="canonical" href="https://bdeploy.io/user/setup/node/index.html" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bdeploy.io/user/index.html">
-    <meta property="og:title" content="User Documentation">
-    <meta property="og:description" content="Logo">
-    <meta property="og:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="og:url" content="https://bdeploy.io/user/setup/node/index.html">
+    <meta property="og:title" content="Nodes">
+    <meta property="og:description" content="Nodes are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a...">
+    <meta property="og:image" content="https://bdeploy.io/user/images/doc_admin_nodes_details.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bdeploy.io/user/index.html">
-    <meta property="twitter:title" content="User Documentation">
-    <meta property="twitter:description" content="Logo">
-    <meta property="twitter:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="twitter:url" content="https://bdeploy.io/user/setup/node/index.html">
+    <meta property="twitter:title" content="Nodes">
+    <meta property="twitter:description" content="Nodes are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a...">
+    <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_admin_nodes_details.png">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="images/logo.ico" rel="icon" />
-    <link href="resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
+    <link href="../../images/logo.ico" rel="icon" />
+    <link href="../../resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -109,10 +109,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="images/logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="images/logo-dark.svg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../images/logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../images/logo-dark.svg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
@@ -264,15 +264,177 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="user-documentation" class="break-words">
+<doc-anchor-target id="nodes" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#user-documentation">#</doc-anchor-trigger>
-        <span>User Documentation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#nodes">#</doc-anchor-trigger>
+        <span>Nodes</span>
     </h1>
 </doc-anchor-target>
-<div align="center"><p><img src="images/logo.svg" width="200" alt="Logo" /></p>
+<p><strong>Nodes</strong> are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a certain master. By default a master is itself a node as well where applications can be deployed to.</p>
+<doc-anchor-target id="initializing">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#initializing">#</doc-anchor-trigger>
+        <span>Initializing</span>
+    </h2>
+</doc-anchor-target>
+<p><strong>Nodes</strong> must be initialized on the according machines (or on the same machine using non-default ports; the default port is 7701).
+The command is similar to the one used to initialize the <strong>master</strong>. Pass (for example) <code v-pre>--port=7702</code> to change the
+default port to some other value to avoid conflicts. Running multiple <strong>BDeploy</strong> nodes on the same machine is
+supported for testing, but not recommended for productive setups (as the <strong>master</strong> can be deployed to directly anyway - no need for an explicit <strong>node</strong>).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy init --root=/path/to/node/root --hostname=&lt;hostname&gt; --nodeIdentFile=node-ident.txt --port=7702 --mode=node</code></pre>
+</doc-codeblock></div>
+<p>Note the <code v-pre>--nodeIdentFile</code> parameter given to the <code v-pre>init</code> command: this file is created during <code v-pre>init</code>, and will contain the required access information for this <strong>node</strong>. You need it to register the <strong>node</strong> with the <strong>master</strong>, so make sure you will have it available when doing so.</p>
+<doc-anchor-target id="launch">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#launch">#</doc-anchor-trigger>
+        <span>Launch</span>
+    </h2>
+</doc-anchor-target>
+<p>After the initialization - which needs to be done only once - the <strong>node</strong> can be started with the following command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy start --root=/path/to/node/root</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="administration">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#administration">#</doc-anchor-trigger>
+        <span>Administration</span>
+    </h2>
+</doc-anchor-target>
+<p>To register, remove or manage a <strong>node</strong> on the <strong>master</strong> you can either use the command line interface or the administrative Web UI on the <strong>master</strong>.</p>
+<doc-anchor-target id="command-line-interface">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#command-line-interface">#</doc-anchor-trigger>
+        <span>Command line interface</span>
+    </h3>
+</doc-anchor-target>
+<p>Use the CLI to register, remove or manage a <strong>node</strong> on the <strong>master</strong> (see the <code v-pre>bdeploy remote-node --help</code> command for more information).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-node --remote=https://master-host:7701/api --tokenFile=master-token.txt --add=node-name --nodeIdentFile=node-ident.txt</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>Both the <code v-pre>https</code> (beware the <code v-pre>s</code>) prefix and the <code v-pre>/api</code> suffix are required in all <strong>BDeploy</strong> URIs.</p>
+        </div>
+    </div>
 </div>
-<p>Welcome to the <strong>BDeploy User Documentation</strong>. This documentation is intended for end users, not for developers. Find the current developer documentation <a href="../dev/index.html">here</a>.</p>
+<p>The <strong>node</strong> is now registered as &#x27;node-name&#x27;. This is the name which is reported when querying <strong>nodes</strong> from the <strong>master</strong>.
+This is also the name displayed when configuring applications to run on certain <strong>nodes</strong> later on.</p>
+<doc-anchor-target id="administrative-web-ui">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#administrative-web-ui">#</doc-anchor-trigger>
+        <span>Administrative Web UI</span>
+    </h3>
+</doc-anchor-target>
+<p>The administrative Web UI provides the ability to add, remove, repair, and otherwise manage <strong>nodes</strong>.</p>
+<div align="center"><p><img src="../../images/doc_admin_nodes_details.png" width="480" alt="Node Administration" /></p>
+</div>
+<p>To add a new node, click the <code v-pre>Add Node...</code> button. In the resulting panel you can drag and drop the <code v-pre>node-ident.txt</code> file created during the initialization step. This will prefill the panel with the required information. You can change node-name and URI according to your needs before saving.</p>
+<div align="center"><p><img src="../../images/doc_admin_nodes_add.png" width="480" alt="Add Node" /></p>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>In case you do not have the <code v-pre>node-ident.txt</code> file to drop to the drop zone, you can also drag the <em>content</em> of the file as plain text to the drop zone - this has the same effect.</p>
+        </div>
+    </div>
+</div>
+<p>When editing an existing node by selecting it in the list, you can also drop the same <code v-pre>node-ident.txt</code> file to update the information. This way you can create nodes before they actually exist - using a dummy URI and authentication - and later on update the node administration with the actual configuration. This allows to configure instances to their future nodes without them existing yet.</p>
+<doc-anchor-target id="replacing-and-restoring-nodes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#replacing-and-restoring-nodes">#</doc-anchor-trigger>
+        <span>Replacing and Restoring Nodes</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>BDeploy</strong> supports replacing and restoring nodes. This is primarily meant to restore nodes after a catastrophic failure of the node in question. This feature is capable of re-installing all required node configurations of all instances which are/were deployed on the node.</p>
+<p>Replacing can be performed via the <doc-anchor-trigger to="#administrative-web-ui">Administrative Web UI</doc-anchor-trigger>, much the same as <em>editing</em> a node. The steps to replace a node are:</p>
+<ol>
+<li>Find the node in the <doc-anchor-trigger to="#administrative-web-ui">Administrative Web UI</doc-anchor-trigger> and click it to open the node details panel.</li>
+<li>In the panel, click [ <strong>Replace...</strong> ]. This will bring up the <em>Replace Node</em> panel.</li>
+<li>Initialize the new node on the target system. This can be done at any time up until now in preparation.</li>
+<li>Drag &amp; drop the <code v-pre>node-ident.txt</code> file to the drop zone in the <em>Replace Node</em> panel. The URI and authentication information will be prefilled.</li>
+<li>Click the [ <strong>Save</strong> ] button. The panel will enter loading state. You can follow the progress of the operation in the <em>Activities</em> panel from the main menu.</li>
+<li>Once the operation completes, you will be brought back to the node details panel.</li>
+<li>Replacing and restoring has been performed, and all instances which use this node are available again.</li>
+</ol>
+<doc-anchor-target id="convertmigrate-to-node">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#convertmigrate-to-node">#</doc-anchor-trigger>
+        <span>Convert/Migrate to Node</span>
+    </h3>
+</doc-anchor-target>
+<p>Existing <code v-pre>STANDALONE</code> and <code v-pre>MANAGED</code> servers can be migrated to type <code v-pre>NODE</code>. This can be handy in case software needs to run standalone on a <code v-pre>NODE</code> before the actual master server is available. In this case, setup a <code v-pre>STANDALONE</code> server on the node, configure all the required software, and migrate the server to <code v-pre>NODE</code> type later.</p>
+<p>To convert an existing server:</p>
+<ol>
+<li>Open the <doc-anchor-trigger to="#administrative-web-ui">Administrative Web UI</doc-anchor-trigger> on both servers in separate browser tabs.</li>
+<li>On the new master server, click [ <strong>Add Node...</strong> ] in the toolbar to bring up the <em>Add Node</em> panel.</li>
+<li>On the to-be-migrated server, click the <strong>master</strong> node in the list of nodes. Click the [ <strong>Convert to Node...</strong> ] button.</li>
+<li>Now drag the yellow node identification card from the to-be-migrated server to the new masters drop zone.</li>
+<li>Information about the server is pre-filled in the form. Double check the information and press [ <strong>Save</strong> ] to start the migration.</li>
+<li>You will be promted to confirm the migration. Click [ <strong>Migrate</strong> ] to continue.</li>
+</ol>
+<div align="center"><p><img src="../../images/doc_admin_nodes_conversion.png" width="480" alt="Node Conversion" /></p>
+</div>
+<p>After the migration is complete, the server will be available as a <code v-pre>NODE</code> on the new master server. All the <strong>Instances</strong> have been migrated to the new master server.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>During migration all <strong>Instances</strong> are modified in a way such that software still runs on the same phsyical hardware as before, i.e. the now-new master server is <strong>not</strong> participating in any of the <strong>Instances</strong> configuration. Instead, the previously-master, now-node server is still configured as deployment target where this was the case previously.</p>
+        </div>
+    </div>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>If the to-be-migrated server has <strong>Nodes</strong> attached to it, all those <strong>Nodes</strong> will be attached to the new master after migration.</p>
+        </div>
+    </div>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -282,13 +444,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../setup/certificate/index.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Custom Certificate</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="intro/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../setup/service/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Introduction</span>
+                                                <span class="block mt-1">Service</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -332,6 +501,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "User Documentation", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Nodes", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>

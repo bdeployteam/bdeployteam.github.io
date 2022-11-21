@@ -3,43 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722335961937">
+    <meta name="turbo-root" content="/dev">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722335983531">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>User Documentation</title>
-    <meta name="title" content="User Documentation">
-    <meta name="description" content="Logo" />
+    <title>Manifests</title>
+    <meta name="title" content="Manifests">
+    <meta name="description" content="Almost all of BDeploy's storage is encapsulated in Manifests in a BHive." />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://bdeploy.io/user/index.html" />
+    <link rel="canonical" href="https://bdeploy.io/dev/manifests/index.html" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bdeploy.io/user/index.html">
-    <meta property="og:title" content="User Documentation">
-    <meta property="og:description" content="Logo">
-    <meta property="og:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="og:url" content="https://bdeploy.io/dev/manifests/index.html">
+    <meta property="og:title" content="Manifests">
+    <meta property="og:description" content="Almost all of BDeploy's storage is encapsulated in Manifests in a BHive.">
+    <meta property="og:image" content="https://bdeploy.io/dev/images/manifestoverview.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bdeploy.io/user/index.html">
-    <meta property="twitter:title" content="User Documentation">
-    <meta property="twitter:description" content="Logo">
-    <meta property="twitter:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="twitter:url" content="https://bdeploy.io/dev/manifests/index.html">
+    <meta property="twitter:title" content="Manifests">
+    <meta property="twitter:description" content="Almost all of BDeploy's storage is encapsulated in Manifests in a BHive.">
+    <meta property="twitter:image" content="https://bdeploy.io/dev/images/manifestoverview.png">
 
-    <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("/dev/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="images/logo.ico" rel="icon" />
-    <link href="resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
+    <link href="../images/logo.ico" rel="icon" />
+    <link href="../resources/css/retype.css?v=2.4.0.722335983531" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.722335983531" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/search.js?v=2.4.0.722335983531" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.722335983531" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -109,13 +109,13 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="images/logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="images/logo-dark.svg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../images/logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../images/logo-dark.svg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Dev</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -264,15 +264,101 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="user-documentation" class="break-words">
+<doc-anchor-target id="manifests" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#user-documentation">#</doc-anchor-trigger>
-        <span>User Documentation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#manifests">#</doc-anchor-trigger>
+        <span>Manifests</span>
     </h1>
 </doc-anchor-target>
-<div align="center"><p><img src="images/logo.svg" width="200" alt="Logo" /></p>
+<p>Almost all of <strong>BDeploy</strong>&#x27;s storage is encapsulated in <strong>Manifests</strong> in a <strong>BHive</strong>. This holds true not only for actual application/product data, but for any configuration data as well. These have a few advantages over traditional storage:</p>
+<ul>
+<li>Contents is immutable</li>
+<li>Contents is validatable (through checksums)</li>
+<li>Contents is automatically versioned</li>
+<li>Contents history is available</li>
+</ul>
+<p>There are a bunch of <strong>Manifests</strong> for several purposes.</p>
+<div align="center"><p><img src="../images/manifestoverview.png" width="480" alt="Special Manifest Types" /></p>
 </div>
-<p>Welcome to the <strong>BDeploy User Documentation</strong>. This documentation is intended for end users, not for developers. Find the current developer documentation <a href="../dev/index.html">here</a>.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Manifest Name</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>InstanceGroupManifest</code></td>
+<td>Stores information (name, description, logo) related to an <strong>Instance Group</strong>. There is exactly one <code v-pre>InstanceGroupManifest</code> per <strong>Instance Group</strong> <strong>BHive</strong>.</td>
+</tr>
+<tr>
+<td><code v-pre>SoftwareRepositoryManifest</code></td>
+<td>Stores information (name, description) related to a <strong>Software Repository</strong>. There is exactly one <code v-pre>SoftwareRepositoryManifest</code> per <strong>Software Repository</strong> <strong>BHive</strong>.</td>
+</tr>
+<tr>
+<td><code v-pre>InstanceManifest</code></td>
+<td>The <code v-pre>InstanceManifest</code> holds information about an instance and keeps track of the all <code v-pre>InstanceNodeManifest</code> for the <strong>Instance</strong>.</td>
+</tr>
+<tr>
+<td><code v-pre>InstanceNodeManifest</code></td>
+<td>Keeps track of the <strong>Applications</strong> and their configuration per configured <strong>Node</strong> in the <strong>Instance</strong>.</td>
+</tr>
+<tr>
+<td><code v-pre>ProductManifest</code></td>
+<td>Holds information about a product and keeps track of all the <code v-pre>ApplicationManifest</code> for the <strong>Product</strong>.</td>
+</tr>
+<tr>
+<td><code v-pre>ApplicationManifest</code></td>
+<td>Holds information about a single application, includes the <code v-pre>app-info.yaml</code> for the application which holds information about all supported parameters, etc.</td>
+</tr>
+<tr>
+<td><code v-pre>MinionManifest</code></td>
+<td>Holds information about available nodes on a <strong>master</strong>.</td>
+</tr>
+<tr>
+<td><code v-pre>UserDatabase</code></td>
+<td>Manages special per-user <strong>Manifests</strong> which hold information about each user.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<doc-anchor-target id="metamanifests">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#metamanifests">#</doc-anchor-trigger>
+        <span>MetaManifests</span>
+    </h2>
+</doc-anchor-target>
+<p>In addition to traditional <strong>Manifests</strong> there are <strong>MetaManifests</strong>. These allow to <em>attach</em> certain information to other <strong>Manifests</strong>. This allows to update the attached <strong>MetaManifest</strong> independently of the <em>immutable</em> <strong>Manifest</strong>, whilst keeping all benefits of a <strong>Manifest</strong> for the <strong>MetaManifest</strong> as well (versioning, history, ...).</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>MetaManifest Name</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>InstanceState</code></td>
+<td>Keeps track of <strong>Instance</strong> state related information (installed <strong>Instance</strong> versions, activated <strong>Instance</strong> version, etc.).</td>
+</tr>
+<tr>
+<td><code v-pre>InstanceManifestHistory</code></td>
+<td>Keeps track of the history of an <strong>Instance</strong> version, storing timestamps at which certain actions happened (creation, installation, activation, etc.).</td>
+</tr>
+<tr>
+<td><code v-pre>ManagedMasters</code></td>
+<td>Keeps track of attached managed masters on a central master.</td>
+</tr>
+<tr>
+<td><code v-pre>ControllingMaster</code></td>
+<td>Keeps track of the responsible controlling master for a single <strong>Instance</strong>.</td>
+</tr>
+</tbody>
+</table>
+</div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -282,13 +368,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../interfaces/index.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Interfaces</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="intro/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../ui/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Introduction</span>
+                                                <span class="block mt-1">UI Front- and Backend</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -332,6 +425,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "User Documentation", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Manifests", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>

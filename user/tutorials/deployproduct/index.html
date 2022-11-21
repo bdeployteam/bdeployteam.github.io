@@ -10,36 +10,36 @@
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>User Documentation</title>
-    <meta name="title" content="User Documentation">
-    <meta name="description" content="Logo" />
+    <title>How can I deploy a new product version?</title>
+    <meta name="title" content="How can I deploy a new product version?">
+    <meta name="description" content="Upgrading the Product Version that is used in an Instance requires two distinct steps:" />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://bdeploy.io/user/index.html" />
+    <link rel="canonical" href="https://bdeploy.io/user/tutorials/deployproduct/index.html" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bdeploy.io/user/index.html">
-    <meta property="og:title" content="User Documentation">
-    <meta property="og:description" content="Logo">
-    <meta property="og:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="og:url" content="https://bdeploy.io/user/tutorials/deployproduct/index.html">
+    <meta property="og:title" content="How can I deploy a new product version?">
+    <meta property="og:description" content="Upgrading the Product Version that is used in an Instance requires two distinct steps:">
+    <meta property="og:image" content="https://bdeploy.io/user/images/doc_importproduct_selectrepo.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bdeploy.io/user/index.html">
-    <meta property="twitter:title" content="User Documentation">
-    <meta property="twitter:description" content="Logo">
-    <meta property="twitter:image" content="https://bdeploy.io/user/images/logo.svg">
+    <meta property="twitter:url" content="https://bdeploy.io/user/tutorials/deployproduct/index.html">
+    <meta property="twitter:title" content="How can I deploy a new product version?">
+    <meta property="twitter:description" content="Upgrading the Product Version that is used in an Instance requires two distinct steps:">
+    <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_importproduct_selectrepo.png">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="images/logo.ico" rel="icon" />
-    <link href="resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
+    <link href="../../images/logo.ico" rel="icon" />
+    <link href="../../resources/css/retype.css?v=2.4.0.722335961937" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722335961937" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -109,10 +109,10 @@
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
-                                <img class="max-h-10 dark:hidden md:inline-block" src="images/logo.svg">
-                                <img class="max-h-10 hidden dark:inline-block" src="images/logo-dark.svg">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../../images/logo.svg">
+                                <img class="max-h-10 hidden dark:inline-block" src="../../images/logo-dark.svg">
                             </span>
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
                         </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
@@ -264,15 +264,93 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="user-documentation" class="break-words">
+<doc-anchor-target id="how-can-i-deploy-a-new-product-version" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#user-documentation">#</doc-anchor-trigger>
-        <span>User Documentation</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-can-i-deploy-a-new-product-version">#</doc-anchor-trigger>
+        <span>How can I deploy a new product version?</span>
     </h1>
 </doc-anchor-target>
-<div align="center"><p><img src="images/logo.svg" width="200" alt="Logo" /></p>
+<p>Upgrading the <strong>Product Version</strong> that is used in an <strong>Instance</strong> requires two distinct steps:</p>
+<ol>
+<li>Uploading the new <strong>Product Version</strong></li>
+<li>Upgrading the <strong>Instance</strong></li>
+</ol>
+<doc-anchor-target id="upload-product-version">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#upload-product-version">#</doc-anchor-trigger>
+        <span>Upload Product Version</span>
+    </h2>
+</doc-anchor-target>
+<p>Uploading a new <strong>Product Version</strong> is done in the <strong>Products</strong> page of the <strong>Instance Group</strong>:</p>
+<ol>
+<li>Click on the desired <strong>Instance Group</strong></li>
+<li>Click on [ <strong>Products</strong> ] button in the main menu.</li>
+<li>Click on the [ <strong>Upload Product</strong> ] button in the toolbar.</li>
+<li>Select the ZIP archive containing the new <strong>Product Version</strong>. This archive is typically created by your <strong>Build</strong> tool.</li>
+<li>The product is uploaded, processed and will appear in the list of available products once successfully imported.</li>
+</ol>
+<p>The <strong>Product Version</strong> is now available and can be used in all <strong>Instances</strong> of this <strong>Instance Group</strong>.</p>
+<doc-anchor-target id="import-product-version">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#import-product-version">#</doc-anchor-trigger>
+        <span>Import Product Version</span>
+    </h2>
+</doc-anchor-target>
+<p>You can import a new <strong>Product Version</strong> from a software repository.
+It is done in the <strong>Products</strong> page of the <strong>Instance Group</strong></p>
+<ol>
+<li>Click on the desired <strong>Instance Group</strong></li>
+<li>Click on [ <strong>Products</strong> ] button in the main menu.</li>
+<li>Click on the [ <strong>Import Product...</strong> ] button in the toolbar.</li>
+<li>Select software repository.</li>
+</ol>
+<div align="center"><p><img src="../../images/doc_importproduct_selectrepo.png" width="480" alt="Choose Repo" /></p>
 </div>
-<p>Welcome to the <strong>BDeploy User Documentation</strong>. This documentation is intended for end users, not for developers. Find the current developer documentation <a href="../dev/index.html">here</a>.</p>
+<ol start="5">
+<li>Select product.</li>
+</ol>
+<div align="center"><p><img src="../../images/doc_importproduct_selectproduct.png" width="480" alt="Choose Product" /></p>
+</div>
+<ol start="6">
+<li>Select product version.</li>
+</ol>
+<div align="center"><p><img src="../../images/doc_importproduct_selectversion.png" width="480" alt="Choose Product Version" /></p>
+</div>
+<ol start="7">
+<li>Click import button.</li>
+</ol>
+<div align="center"><p><img src="../../images/doc_importproduct_panelfilled.png" width="480" alt="Press Import button" /></p>
+</div>
+<ol start="8">
+<li>The product will appear in the list of available products once successfully imported.</li>
+</ol>
+<div align="center"><p><img src="../../images/doc_importproduct_success.png" width="480" alt="Product Version imported" /></p>
+</div>
+<p>The <strong>Product Version</strong> is now available and can be used in all <strong>Instances</strong> of this <strong>Instance Group</strong>.</p>
+<doc-anchor-target id="upgrade-instance">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#upgrade-instance">#</doc-anchor-trigger>
+        <span>Upgrade Instance</span>
+    </h2>
+</doc-anchor-target>
+<p>Changing the <strong>Product Version</strong> of an <strong>Instance</strong> is done in the <strong>Instance Configuration</strong> dialog:</p>
+<ol>
+<li>Navigate back to the <strong>Instance Overview</strong> dialog by clicking the [ <strong>Instances</strong> ] button in the main menu.</li>
+<li>Open the desired <strong>Instance</strong> by clicking it.</li>
+<li>Each node displays the currently used product version. In case an update is available, a hint is shown in form of a small icon.</li>
+<li>Clicking on this hint opens the <strong>Instance Configuration</strong> page along with the <strong>Update Product</strong> panel.
+<ol type="a">
+<li>You can also navigate to the <strong>Instance Configuration</strong> page by clicking the [ <strong>Instance Configuration</strong> ] button in the main menu. This page shows a more prominent hint about the new <strong>Product Version</strong>.</li>
+</ol>
+</li>
+<li>Click on the [ <strong>Update</strong> ] button of the desired product version</li>
+<li>The update to the new <strong>Product Version</strong> is performed and validated on the server. It is - however - not saved, so you can undo/redo, perform changes - just like with any other configuration change.</li>
+<li>Update <em>hints</em> may be shown in a separate section which can be dismissed. Those are purely informative things which point to actions performed during the update which may or may not have an impact on the software.</li>
+<li><em>Validation Issues</em> may be shown in a separate section if they occur due to the update. This can be a wide variety of things - all of them require manual intervention before you are able to save the <strong>Instance Configuration</strong>.</li>
+<li>Adopt the configuration of the <strong>Processes</strong> as required</li>
+<li>Click on <strong>Save</strong> in the top right corner to save this version</li>
+</ol>
+<p>The <strong>Instance</strong> is now based on the new <strong>Product Version</strong>. Remember that the new <strong>Instance Version</strong> must be <strong>Installed</strong> and <strong>Activated</strong> so that the changes have an impact - clicking <strong>Save</strong> will bring you to the <strong>Instance Dashboard</strong> from where this can be performed directly.. Please read the <a href="../processconfig/index.html#how-can-i-change-a-process-configuration">Process Configuration</a> tutorial about more details how to do that.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -282,13 +360,20 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../tutorials/processcontrol/index.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">How can I see what's up and running?</span>
+                                            </span>
+                                        </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l rounded-r-lg transition-colors duration-150 relative hover:z-5" href="intro/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../power/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Introduction</span>
+                                                <span class="block mt-1">Advanced Usage</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -332,6 +417,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "User Documentation", isRoot: true, level: 0, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "How can I deploy a new product version?", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>
