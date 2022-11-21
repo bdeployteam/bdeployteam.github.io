@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722336963845">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722342470291">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -33,13 +33,13 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.722336963845" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.722342470291" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722336963845" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722342470291" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722336963845" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722336963845" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.722336963845" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722342470291" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722342470291" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.722342470291" defer></script>
 
     <style>
         table td {
@@ -294,6 +294,9 @@
 </div>
 <p><doc-anchor-trigger to="#system-templateyaml">system-template.yaml</doc-anchor-trigger></p>
 <div><p> Actually not part of any product itself. Freestanding description that can be used to create multiple instances of multiple products in one go.</p>
+</div>
+<p><doc-anchor-trigger to="#product-validationyaml">product-validation.yaml</doc-anchor-trigger></p>
+<div><p> A configuration file which references all the YAML files which should be part of a product pre-validation.</p>
 </div>
 <p>This chapter will walk you through these artifacs, what they are for and how to define them.</p>
 <div class="flex mb-6">
@@ -1716,6 +1719,22 @@ instances:
 </tbody>
 </table>
 </div>
+<doc-anchor-target id="product-validationyaml">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#product-validationyaml">#</doc-anchor-trigger>
+        <span>product-validation.yaml</span>
+    </h2>
+</doc-anchor-target>
+<p>The <code v-pre>product-validation.yaml</code> file contains references to all files that should be sent to the server when performing a product pre-validation. This validation can be used to verify that the product and all its applications contain valid <strong>BDeploy</strong> YAML.</p>
+<p>The content of this files is very straight forward:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-yaml"><code v-pre class="language-yaml">product: product-info.yaml
+
+applications:
+  my-application: app1/src/main/dist/app-info.yaml
+  other-application: app2/src/main/dist/app-info.yaml</code></pre>
+</doc-codeblock></div>
+<p>This file can be passed to the <code v-pre>remote-product-validation</code> CLI command, as well as to the <code v-pre>BDeployValidationTask</code> Gradle Task. More tool support will follow.</p>
 <doc-anchor-target id="building-a-product">
     <h1>
         <doc-anchor-trigger class="header-anchor-trigger" to="#building-a-product">#</doc-anchor-trigger>
@@ -1786,7 +1805,19 @@ ext { &lt;3&gt;
   buildVersion = project.version.replaceAll('SNAPSHOT', buildDate)
 }
 
-task buildProduct(type: io.bdeploy.gradle.BDeployProductTask, dependsOn: installDist) { &lt;4&gt;
+task validateProduct(type: io.bdeploy.gradle.BDeployValidationTask, dependsOn: installDist) { &lt;4&gt;
+  if(project.hasProperty('vtoken')) {
+    validationServer {
+      uri = 'https://localhost:7701/api'
+      token = project.getProperty('vtoken')
+    }
+  }   
+
+  validationYaml = file('bdeploy/product-validation.yaml')
+}
+
+
+task buildProduct(type: io.bdeploy.gradle.BDeployProductTask, dependsOn: installDist) { &lt;5&gt;
   product {
     version = project.ext.buildVersion
     productInfo = file('bdeploy/product-info.yaml')
@@ -1801,13 +1832,13 @@ task buildProduct(type: io.bdeploy.gradle.BDeployProductTask, dependsOn: install
   }
 }
 
-task zipProduct(type: io.bdeploy.gradle.BDeployZipTask, dependsOn: buildProduct) { &lt;5&gt;
+task zipProduct(type: io.bdeploy.gradle.BDeployZipTask, dependsOn: buildProduct) { &lt;6&gt;
   of buildProduct
   output = new File(buildDir, &quot;product-&quot; + project.ext.buildVersion + &quot;.zip&quot;);
 }
 
 
-task pushProduct(type: io.bdeploy.gradle.BDeployPushTask, dependsOn: buildProduct) { &lt;6&gt;
+task pushProduct(type: io.bdeploy.gradle.BDeployPushTask, dependsOn: buildProduct) { &lt;7&gt;
   of buildProduct
 
   target.servers {
@@ -1827,6 +1858,7 @@ task pushProduct(type: io.bdeploy.gradle.BDeployPushTask, dependsOn: buildProduc
 <li>Applies the plugin <strong>BDeploy</strong> gradle plugin.</li>
 <li>Sets the project version. <strong>Gradle</strong> does not strictly require a version, and uses &#x27;unspecified&#x27; as default. <strong>BDeploy</strong> requires <em>some</em> sort of version, and setting it for the whole project is good practice.</li>
 <li>Calculate a build date, which will be substituted instead of the <code v-pre>SNAPSHOT</code> in the version. This is optional, you could just plain use the version set. The actual <code v-pre>buildVersion</code> used later when building the product is derived from the project version and the <code v-pre>buildDate</code>.</li>
+<li>The <code v-pre>BDeployValidationTask</code> can be used to validate product information before actually building the product. The <doc-anchor-trigger to="#product-validationyaml"><code v-pre>product-validation.yaml</code></doc-anchor-trigger> file must contain a reference to the <code v-pre>product.info.yaml</code> used, as well as references to all <code v-pre>app-info.yaml</code> files.</li>
 <li>This task will actually build the product with the configured version. The actual data about the product is loaded from <code v-pre>bdeploy/product-info.yaml</code>, which we will create in a second. Note that this task depends on <code v-pre>installDist</code>, which will unpack the binary distribution of the application in this project into a folder, so <strong>BDeploy</strong> can import the individual files. Depending on the type of application and the way it is built, there might be different ways to achieve this.</li>
 <li>If <code v-pre>buildProduct</code> built a product, this task will package it as a ZIP file. Note that a ZIP will always contain <em>all of</em> the product, whereas <code v-pre>pushProduct</code> can push only required deltas which are not present on the target server.</li>
 <li>The <code v-pre>pushProduct</code> task can push required deltas to one or more configured target servers. When calling this task, you need to set according project properties, e.g. using <code v-pre>-Pserver=https://server:7701/api</code> or in <code v-pre>~/.gradle/gradle.properties</code>.</li>

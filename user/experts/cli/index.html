@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722336963845">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722342470291">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.722336963845" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.722342470291" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722336963845" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722342470291" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722336963845" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722336963845" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722342470291" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722342470291" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -356,10 +356,6 @@
 <td><code v-pre>storage</code></td>
 <td>Manages available <em>storage locations</em>. A <em>storage location</em> is a folder where the <strong>BDeploy</strong> <em>master</em> puts the <strong>BHives</strong> required to store data for <strong>Instance Groups</strong> and <strong>Software Repositories</strong>.</td>
 </tr>
-<tr>
-<td><code v-pre>node</code></td>
-<td>Manage <strong>nodes</strong> in attached to the <strong>master</strong> configuration in the given root directory. The given root must be an initialized (<code v-pre>init</code>) root directory using a <strong>master</strong> mode.</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -431,6 +427,10 @@
 <td>Manage remote configuration related to <em>managed</em> servers on a <em>central</em> server. Also allows to attach <em>managed</em> servers to a <em>central</em> server.</td>
 </tr>
 <tr>
+<td><code v-pre>remote-data-files</code></td>
+<td>Remotely manage data files for a given instance.</td>
+</tr>
+<tr>
 <td><code v-pre>remote-deployment</code></td>
 <td>Manage <strong>Instance</strong> deployment (<em>install</em>, <em>activate</em>, <em>uninstall</em>, <em>updateTo</em> (product version)) on a remote <strong>BDeploy</strong> server.<br/><br/><span class="docs-emoji">&#x2139;&#xFE0F;</span><strong>NOTE</strong> The <code v-pre>--updateTo</code> command will only work if the new product version can be updated to without manual changes. If for example a mandatory parameter is added, or a configured application is removed from the product, the update will fail.</td>
 </tr>
@@ -447,6 +447,10 @@
 <td>Query and manage system information on a remote <strong>BDeploy</strong> server. Allows to update both the <strong>BDeploy</strong> system software as well as the <strong>BDeploy</strong> launcher binaries.</td>
 </tr>
 <tr>
+<td><code v-pre>remote-node</code></td>
+<td>Manage <strong>nodes</strong> attached to the remote <strong>BDeploy</strong> server.</td>
+</tr>
+<tr>
 <td><code v-pre>remote-plugin</code></td>
 <td>Manage plugins available on the remote <strong>BDeploy</strong> server or install new ones from local <code v-pre>jar</code> files.</td>
 </tr>
@@ -459,8 +463,16 @@
 <td>Query and manage products available on the given <strong>Instance Group</strong> on a remote <strong>BDeploy</strong> server.</td>
 </tr>
 <tr>
+<td><code v-pre>remote-product-validation</code></td>
+<td>Uses a <a href="../../power/product/index.html#product-validationyaml"><code v-pre>product-validation.yaml</code></a> file to perform a remote pre-validation of a product to be built in the future.</td>
+</tr>
+<tr>
 <td><code v-pre>remote-repo</code></td>
 <td>Query and manage <strong>Software Repositories</strong> on a remote <strong>BDeploy</strong> server.</td>
+</tr>
+<tr>
+<td><code v-pre>remote-system</code></td>
+<td>Manage systems on a remote <strong>BDeploy</strong> server.</td>
 </tr>
 <tr>
 <td><code v-pre>remote-user</code></td>
@@ -508,7 +520,19 @@
 <tbody>
 <tr>
 <td><code v-pre>bhive</code></td>
-<td>Wraps around to the <doc-anchor-trigger to="#bhive-cli">BHive CLI</doc-anchor-trigger>. Can be used to access <strong>BHive</strong> CLI commands if the <strong>BHive</strong> stand-alone binaries are not available. Usage: <code v-pre>bdeploy bhive &lt;command&gt;</code></td>
+<td>Wraps around to the <doc-anchor-trigger to="#bhive-cli">BHive CLI</doc-anchor-trigger>. Can be used to access <strong>BHive</strong> CLI commands if the <strong>BHive</strong> stand-alone binaries are not available. Usage: <code v-pre>bdeploy bhive &lt;command&gt;</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>payload</code></td>
+<td>Internal use only.</td>
+</tr>
+<tr>
+<td><code v-pre>schema</code></td>
+<td>Used to generate YAML schemas and validate input files against those schemas.</td>
+</tr>
+<tr>
+<td><code v-pre>verify-signature</code></td>
+<td>Verifies whether the signature on a signed executable is deemed valid.</td>
 </tr>
 </tbody>
 </table>
