@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.722342470291">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.729347394997">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.722342470291" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.729347394997" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.722342470291" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.729347394997" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.722342470291" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.722342470291" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/search.js?v=2.4.0.729347394997" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.729347394997" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -427,6 +427,10 @@
 <td>Manage remote configuration related to <em>managed</em> servers on a <em>central</em> server. Also allows to attach <em>managed</em> servers to a <em>central</em> server.</td>
 </tr>
 <tr>
+<td><code v-pre>remote-config-files</code></td>
+<td>Remotely manage configuration files for a given instance.</td>
+</tr>
+<tr>
 <td><code v-pre>remote-data-files</code></td>
 <td>Remotely manage data files for a given instance.</td>
 </tr>
@@ -440,7 +444,7 @@
 </tr>
 <tr>
 <td><code v-pre>remote-instance</code></td>
-<td>Query and manage <strong>Instances</strong> on the remote <strong>BDeploy</strong> server. Can be used to <strong>export</strong> (to <em>ZIP</em>) and <strong>import</strong> (from <em>ZIP</em>) <strong>Instances</strong> locally.</td>
+<td>Query and manage <strong>Instances</strong> on the remote <strong>BDeploy</strong> server. Can be used to <strong>create</strong>, <strong>export</strong> (to <em>ZIP</em>) and <strong>import</strong> (from <em>ZIP</em>) <strong>Instances</strong> locally.<br/><span class="docs-emoji">&#x2139;&#xFE0F;</span><strong>NOTE</strong> Creating instances from a template requires a response file. The format is the same as the <a href="../../power/product/index.html#supported-instances-attributes"><code v-pre>instances</code> section of <strong>System Templates</strong></a>.</td>
 </tr>
 <tr>
 <td><code v-pre>remote-master</code></td>
@@ -455,8 +459,16 @@
 <td>Manage plugins available on the remote <strong>BDeploy</strong> server or install new ones from local <code v-pre>jar</code> files.</td>
 </tr>
 <tr>
+<td><code v-pre>remote-ports</code></td>
+<td>List ports configured for a specified instance.</td>
+</tr>
+<tr>
 <td><code v-pre>remote-process</code></td>
 <td>Query and manage application processes managed by <strong>BDeploy</strong> on a remote <strong>BDeploy</strong> server.</td>
+</tr>
+<tr>
+<td><code v-pre>remote-process-config</code></td>
+<td>Manipulate the process configuration (parameters) of a given instance remotely.</td>
 </tr>
 <tr>
 <td><code v-pre>remote-product</code></td>
@@ -780,7 +792,7 @@ Usage: PushTool &lt;args...&gt;
                                     <ul class="flex flex-wrap items-center text-sm">
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2022. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2023. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
