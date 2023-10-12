@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073212912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422158285">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Process Control</title>
@@ -31,14 +31,14 @@
     <meta property="twitter:description" content="For the active instance version, the process control of each Process can be displayed by clicking on it in the ">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_dashboardprocesscontrol.png">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.1.0.745073212912" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.750422158285" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -259,7 +259,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <style>
     .t1 th:first-child {
@@ -273,7 +272,11 @@
     </h1>
 </doc-anchor-target>
 <p>For the active <strong>instance version</strong>, the <strong>process control</strong> of each <strong>Process</strong> can be displayed by clicking on it in the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a>. The upper part of the <strong>Process Control</strong> panel shows the current <strong>status</strong>. Below this, the control elements for <em>starting</em>, <em>stopping</em> or <em>restarting</em> the process can be found.</p>
-<div align="center"><p><img src="../../images/doc_dashboardprocesscontrol.png" width="480" alt="Process Control Panel" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_dashboardprocesscontrol.png" alt="Process Control Panel" width="480">
+    <figcaption class="caption">Process Control Panel</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="process-bulk-control">
     <h2>
@@ -282,7 +285,11 @@
     </h2>
 </doc-anchor-target>
 <p>In addition to the actions for individual processes, the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a> offers <strong>bulk control</strong> actions from its toolbar, which allow to control all processes of <strong>start type</strong> <code v-pre>INSTANCE</code>, or multiple selected processes (of any start type except <code v-pre>MANUAL_CONFIRM</code>) at once.</p>
-<div align="center"><p><img src="../../images/doc_dashboardbulkprocesscontrol.png" width="480" alt="Bulk Process Control" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_dashboardbulkprocesscontrol.png" alt="Bulk Process Control" width="480">
+    <figcaption class="caption">Bulk Process Control</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -320,31 +327,31 @@
 </thead>
 <tbody>
 <tr>
-<td><img src="../../images/manualdoc_processstopped.png" width="32" alt="" /></td>
+<td><img src="../../images/manualdoc_processstopped.png" alt="" /></td>
 <td>Process is <strong>stopped</strong>.</td>
 </tr>
 <tr>
-<td><img src="../../images/manualdoc_processstarting.png" width="32" alt="" /></td>
+<td><img src="../../images/manualdoc_processstarting.png" alt="" /></td>
 <td>Process is <strong>starting</strong>.</td>
 </tr>
 <tr>
-<td><img src="../../images/manualdoc_processrunning.png" width="32" alt="" /></td>
+<td><img src="../../images/manualdoc_processrunning.png" alt="" /></td>
 <td>Process is <strong>running</strong>.  If the process defined a <em>startup probe</em> (see <a href="../../power/product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>), this status is reached as soon as the startup probe indicates a successful startup of the application. Otherwise - without probe - the process immediatly reaches the <strong>running</strong> state automatically.</td>
 </tr>
 <tr>
-<td><img src="../../images/manualdoc_processstopplanned.png" width="32" alt="" /></td>
+<td><img src="../../images/manualdoc_processstopplanned.png" alt="" /></td>
 <td>Process is <strong>running</strong> but <strong>stopping</strong> has been <strong>requested</strong> by the user.</td>
 </tr>
 <tr>
-<td><img src="../../images/manualdoc_processlifenessfailed.png" width="32" alt="" /></td>
+<td><img src="../../images/manualdoc_processlifenessfailed.png" alt="" /></td>
 <td>Process is <strong>running</strong>, but a defined <em>lifeness probe</em> (see <a href="../../power/product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>) indicates that the process has a problem.</td>
 </tr>
 <tr>
-<td><img src="../../images/manualdoc_processcrashed.png" width="32" alt="" /></td>
+<td><img src="../../images/manualdoc_processcrashed.png" alt="" /></td>
 <td>Process <strong>crashed</strong> unexpectedly. <strong>Process Control</strong> scheduled an automatic restart. No interaction required.</td>
 </tr>
 <tr>
-<td><img src="../../images/manualdoc_processcrashedpermanent.png" width="32" alt="" /></td>
+<td><img src="../../images/manualdoc_processcrashedpermanent.png" alt="" /></td>
 <td>Process <strong>crashed</strong> unexpectedly. <strong>Process Control</strong> gave up restarting as the last 5 attempts failed. <strong>Manual interaction required</strong>.</td>
 </tr>
 </tbody>
@@ -352,7 +359,11 @@
 </div>
 </div>
 <p>The life cycle of a process is visualized in the following state graph:</p>
-<div align="center"><p><img src="../../images/bdeploy_process_state_graph.png" width="480" alt="Process State Graph" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/bdeploy_process_state_graph.png" alt="Process State Graph" width="480">
+    <figcaption class="caption">Process State Graph</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="process-outdated">
     <h2>
@@ -401,7 +412,11 @@
 </div>
 <p>It is a common requirement that certain <strong>Processes</strong> of an <strong>Instance</strong> should be automatically started whenever the <strong>BDeploy</strong> server itself is started. To accomplish that, the <em>Automatic Startup</em> flag of the <strong>Instance</strong> must be set. This can be done in the <a href="../instance/index.html#instance-configuration">Instance Configuration</a>. Additionally the <strong>start type</strong> of the <strong>Process</strong> must set to <code v-pre>INSTANCE</code>. This can be done in the <strong>parameter configuration</strong> of the <strong>Process</strong>.</p>
 <p><strong>Processes</strong> that are executing actions that cannot be reverted or that are potentially dangerous in productive environments (dropping a database, deleting files) should be configured with the start type <code v-pre>MANUAL_CONFIRM</code>. Doing that results in an additional popup dialog that enforces the user to enter the name of the <strong>Process</strong> before it is started. The idea is, that the user takes an additional moment to ensure that he is really starting the desired <strong>Process</strong>.</p>
-<div align="center"><p><img src="../../images/doc_dashboardprocessmanualconfirm.png" width="480" alt="Manual Confirmation On Startup" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_dashboardprocessmanualconfirm.png" alt="Manual Confirmation On Startup" width="480">
+    <figcaption class="caption">Manual Confirmation On Startup</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="startup-and-shutdown-order">
     <h2>
@@ -436,10 +451,18 @@
     </h2>
 </doc-anchor-target>
 <p>If the <strong>Keep Alive</strong> flag for a <strong>Process</strong> is configured then the <strong>process control</strong> restarts it when it crashes unexpectedly. The first restart attempt is immediately executed after the process terminates. Subsequent attempts are delayed. That means the <strong>process control</strong> waits a given time period until the next start attempt is executed. Such a situation is visualized in the <strong>Process</strong> state.</p>
-<div align="center"><p><img src="../../images/doc_dashboardprocesscrash.png" width="480" alt="Crashed Server Process (temporarily)" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_dashboardprocesscrash.png" alt="Crashed Server Process (temporarily)" width="480">
+    <figcaption class="caption">Crashed Server Process (temporarily)</figcaption>
+</figure>
+</p>
 </div>
 <p>The <strong>process control</strong> will give up restarting a process after a configurable number of unsuccessful restart attempts. Such a situation is visualized in <strong>Process</strong> state. This icon means that the user has to manually check why it is failing and restart it if desired.</p>
-<div align="center"><p><img src="../../images/doc_dashboardprocesscrashpermanent.png" width="480" alt="Crashed Server Process (permanently)" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_dashboardprocesscrashpermanent.png" alt="Crashed Server Process (permanently)" width="480">
+    <figcaption class="caption">Crashed Server Process (permanently)</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="view-stdout--stderr">
     <h2>
@@ -448,7 +471,11 @@
     </h2>
 </doc-anchor-target>
 <p>Clicking on the terminal icon displayed below the process control actions will open a live stream of the <strong>stdout</strong> as well as <strong>stderr</strong> stream of the running <strong>Process</strong>. This allows a quick health check to ensure that everything is as expected.</p>
-<div align="center"><p><img src="../../images/doc_dashboardprocessconsole.png" width="480" alt="Show and Follow Process Output" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_dashboardprocessconsole.png" alt="Show and Follow Process Output" width="480">
+    <figcaption class="caption">Show and Follow Process Output</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="process-port-status">
     <h2>
@@ -471,10 +498,18 @@
     </h2>
 </doc-anchor-target>
 <p>Parameter Pinning allows you to pin &quot;important&quot; paramteres, so that they are not only visible during configuration of a process, but also on the process panel on the dashboard. This provides quick access to information about a process. A parameter can be pinned by clicking the little pin icon which appears on each parameters editor when hovering over it.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigparameterpin.png" width="480" alt="Data Files" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigparameterpin.png" alt="Data Files" width="480">
+    <figcaption class="caption">Data Files</figcaption>
+</figure>
+</p>
 </div>
 <p>The pinned parameter is visible after saving, <strong>installation</strong> and <strong>activation</strong> of the <strong>Instance</strong> version where the parameter has been pinned.</p>
-<div align="center"><p><img src="../../images/doc_dashboardpinnedparameter.png" width="480" alt="Data Files" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_dashboardpinnedparameter.png" alt="Data Files" width="480">
+    <figcaption class="caption">Data Files</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="data-files">
     <h2>
@@ -483,7 +518,11 @@
     </h2>
 </doc-anchor-target>
 <p>The <strong>Data Files</strong> page lists all files that are stored in the data directory of each node. Files can be downloaded or opened directly in the the UI where possible. The table is by default sorted by the last modification timestamp. Thus the newest files displayed first.</p>
-<div align="center"><p><img src="../../images/doc_datafiles.png" width="480" alt="Data Files" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_datafiles.png" alt="Data Files" width="480">
+    <figcaption class="caption">Data Files</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -504,10 +543,18 @@
     </div>
 </div>
 <p>Clicking a file will view the file, the [ <strong>Follow</strong> ] toggle allows to grab new output as it is written on the server.</p>
-<div align="center"><p><img src="../../images/doc_datafilesview.png" width="480" alt="View Data File" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_datafilesview.png" alt="View Data File" width="480">
+    <figcaption class="caption">View Data File</figcaption>
+</figure>
+</p>
 </div>
 <p>Data Files can also be manually added and edited online. Use the [ <strong>Add File</strong> ] button, and the [ <strong>Edit</strong> ] button per file to do so.</p>
-<div align="center"><p><img src="../../images/doc_datafilesedit.png" width="480" alt="Edit Data File" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_datafilesedit.png" alt="Edit Data File" width="480">
+    <figcaption class="caption">Edit Data File</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
@@ -592,6 +639,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Process Control", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Process Control", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

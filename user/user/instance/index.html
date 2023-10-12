@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073212912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422158285">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Instances</title>
@@ -31,14 +31,14 @@
     <meta property="twitter:description" content="The Instance Dashboard is the central location for managing an instance. It provides an overview about all configured ">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_instanceempty.png">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.1.0.745073212912" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.750422158285" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -259,7 +259,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <doc-anchor-target id="instances" class="break-words">
     <h1>
@@ -276,10 +275,18 @@
 <p>The <doc-anchor-trigger to="#instance-dashboard">Instance Dashboard</doc-anchor-trigger> is the central location for managing an instance. It provides an overview about all configured <strong>Processes</strong> and on which nodes they are running. Each <strong>Process</strong> is represented by an entry on the according node.</p>
 <p>If the instance has no active version yet, the dashboard is empty and shows a shortcut to the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger> instead.</p>
 <p>Instances in <strong>BDeploy</strong> need to be configured, installed and activated. Once <doc-anchor-trigger to="#instance-configuration">configured</doc-anchor-trigger>, the instance can be installed and activated either directly from the dashboard or by using the <a href="../history/index.html#instance-history">Instance History</a> page.</p>
-<div align="center"><p><img src="../../images/doc_instanceempty.png" width="480" alt="Empty Instance Dashboard" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceempty.png" alt="Empty Instance Dashboard" width="480">
+    <figcaption class="caption">Empty Instance Dashboard</figcaption>
+</figure>
+</p>
 </div>
 <p>Once the instance has been <doc-anchor-trigger to="#instance-configuration">configured</doc-anchor-trigger>, installed and activated, the dashboard shows an overview of all available nodes, their respective state (CPU Usage, Load Average where available) and the <strong>Processes</strong> configured on them.</p>
-<div align="center"><p><img src="../../images/doc_instancedashboardactive.png" width="480" alt="Instance Dashboard" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancedashboardactive.png" alt="Instance Dashboard" width="480">
+    <figcaption class="caption">Instance Dashboard</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -306,14 +313,26 @@
     </h2>
 </doc-anchor-target>
 <p>The first step is to select the desired and required nodes used in the instance. The <strong>master</strong> node is enabled by default, the virtual <strong>Client Applications</strong> node is always present if client applications exist in the <strong>product</strong>. Additional nodes can be selected from the <strong>Instance Settings</strong>&#x27;s <strong>Manage Nodes</strong> section.</p>
-<div align="center"><p><img src="../../images/doc_instancemanagenodes.png" width="480" alt="Manage Nodes" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancemanagenodes.png" alt="Manage Nodes" width="480">
+    <figcaption class="caption">Manage Nodes</figcaption>
+</figure>
+</p>
 </div>
 <p>Next up, you can assign <strong>processes</strong> to <strong>nodes</strong> by selecting <strong>applications</strong> from the <strong>node</strong>&#x27;s [ <strong>Add Application...</strong> ] toolbar button.</p>
-<div align="center"><p><img src="../../images/doc_instanceaddprocesspanel.png" width="480" alt="Add Processes" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceaddprocesspanel.png" alt="Add Processes" width="480">
+    <figcaption class="caption">Add Processes</figcaption>
+</figure>
+</p>
 </div>
 <p>The panel will display all <strong>applications</strong> along with their <strong>process templates</strong> if available. You can click the [ <strong>Add</strong> ] button to add a new, unconfigured <strong>process</strong> to the <strong>node</strong>. Using the [ <strong>Add template</strong> ] button, you can add a new <strong>process</strong> from a <strong>template</strong>, which typically includes a complete configuration of the selected <strong>application</strong>, see <doc-anchor-trigger to="#application-templates">Application Templates</doc-anchor-trigger> for more information.</p>
 <p>In any case, the <strong>process</strong> will appear in the selected <strong>node</strong>. You can use drag &amp; drop to re-order <strong>processes</strong> within a <strong>node</strong>. This has currently mostly cosmetic impact, but can be important in a single scenario: when stopping processes, <strong>BDeploy</strong> will stop them in <strong>reverse</strong> order as configured on the <strong>node</strong>. It will stop one process after another, starting from the bottom of the list.</p>
-<div align="center"><p><img src="../../images/doc_instancenewprocess.png" width="480" alt="New Process" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancenewprocess.png" alt="New Process" width="480">
+    <figcaption class="caption">New Process</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -334,7 +353,11 @@
     </div>
 </div>
 <p>When changing configuration of processes, you will note a colored border next to new or modified processes, which indicate the current state the process is in. A newly added process receives a <strong>green</strong> border, a modified process receives a border in the current themes <strong>accent</strong> color, a process which has validation issues receives a border in the current themes <strong>warning</strong> color. Additionally, validation issues are displayed above any <strong>node</strong>.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigvalidation.png" width="480" alt="Configuration Validation" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigvalidation.png" alt="Configuration Validation" width="480">
+    <figcaption class="caption">Configuration Validation</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="local-changes">
     <h3>
@@ -343,10 +366,18 @@
     </h3>
 </doc-anchor-target>
 <p><strong>BDeploy</strong> keeps track of any changes performed on any of the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger> pages panels. These changes can be viewed by pressing the [ <strong>Local Changes</strong> ] toolbar button.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfiglocalchanges.png" width="480" alt="Local Changes" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfiglocalchanges.png" alt="Local Changes" width="480">
+    <figcaption class="caption">Local Changes</figcaption>
+</figure>
+</p>
 </div>
 <p>You can [ <strong>Undo</strong> ] and [ <strong>Redo</strong> ] changes. Even dismissable messages (on product update) can be brought back by [ <strong>Undo</strong> ] and [ <strong>Redo</strong> ]. To view the current changes compared to the state you started from, use the [ <strong>Compare Local with Base</strong> ] button.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigcomparechanges.png" width="480" alt="Local Changes" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigcomparechanges.png" alt="Local Changes" width="480">
+    <figcaption class="caption">Local Changes</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="process-settings">
     <h3>
@@ -355,11 +386,19 @@
     </h3>
 </doc-anchor-target>
 <p>A <strong>process</strong> is started by executing the <strong>start</strong> command that is defined by the <strong>application</strong>. The parameters that are passed to the <strong>process</strong> are configured on the <strong>Process Setting</strong> panel. Click a <strong>process</strong> to access its settings panel.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigprocesssettings.png" width="480" alt="Process Settings" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigprocesssettings.png" alt="Process Settings" width="480">
+    <figcaption class="caption">Process Settings</figcaption>
+</figure>
+</p>
 </div>
 <p>From there, use the [ <strong>Configure Parameters...</strong> ] button to access the <strong>parameter configuration</strong>.</p>
 <p>The available parameters, their type and whether or not they are mandatory or optional are defined by the <strong>Application</strong>. The dialog groups the available parameters into categories, which can be expanded by clicking them.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigparams.png" width="480" alt="Parameter Configuration" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigparams.png" alt="Parameter Configuration" width="480">
+    <figcaption class="caption">Parameter Configuration</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -406,7 +445,11 @@
     </h4>
 </doc-anchor-target>
 <p>You can copy a <strong>process</strong> configuration by accessing its <strong>process settings</strong> panel. Use the [ <strong>Copy to Clipboard</strong> ] button to copy the configuration to the clipboard. You can paste the configuration by accessing the [ <strong>Add Application...</strong> ] button of the desired <strong>node</strong>. Use the [ <strong>Paste</strong> ] button to paste the configuration from the clipboard.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigprocesssettings.png" width="480" alt="Process Settings" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigprocesssettings.png" alt="Process Settings" width="480">
+    <figcaption class="caption">Process Settings</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -433,7 +476,11 @@
     </h4>
 </doc-anchor-target>
 <p><strong>Optional parameters</strong> can be selected for each group using the [ <strong>Select Parameters...</strong> ] button present on the header of each parameter group.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigoptionalparams.png" width="480" alt="Optional Parameters" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigoptionalparams.png" alt="Optional Parameters" width="480">
+    <figcaption class="caption">Optional Parameters</figcaption>
+</figure>
+</p>
 </div>
 <p>Add an optional parameter by clicking the [ <strong>Add</strong> ] button in front of it. You can also remove an optional parameter by clicking the [ <strong>Remove</strong> ] button in front of it.</p>
 <doc-anchor-target id="custom-parameters">
@@ -444,7 +491,11 @@
 </doc-anchor-target>
 <p><strong>Custom parameters</strong> can be maintained in a dedicated parameter group which is always present. Because all <strong>parameters</strong> must have a determined sequence, <strong>custom parameters</strong> must define a <strong>predecessor</strong> parameter after which they are put on the command line. If no <strong>predecessor</strong> is defined, the parameter will end up <strong>first</strong> on the command line.</p>
 <p>Click the [ <strong>Add</strong> ] button in the <strong>Custom Parameters</strong> group to add a new <strong>custom parameter</strong>.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigaddcustomparam.png" width="480" alt="Add Custom Parameter" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigaddcustomparam.png" alt="Add Custom Parameter" width="480">
+    <figcaption class="caption">Add Custom Parameter</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="global-parameters">
     <h4>
@@ -452,24 +503,7 @@
         <span>Global Parameters</span>
     </h4>
 </doc-anchor-target>
-<p><strong>Global Parameters</strong> are valid for all <strong>Processes</strong> of an <strong>Instance</strong>. They are also configured in the <strong>Process</strong>, but changes are copied to all other processes that also use this parameter. <strong>Global parameters</strong> are matched by their parameter ID, and marked with a globe icon in the <strong>parameter configuration</strong> panel.</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
-                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Warning</h5>
-<p><strong>Global Parameters</strong> have been deprecated in favor of <a href="../instancegroup/index.html#system-variables">System Variables</a> and <doc-anchor-trigger to="#instance-variables">Instance Variables</doc-anchor-trigger>.</p>
-        </div>
-    </div>
-</div>
+<p><strong>Global Parameters</strong> are valid for all <strong>Processes</strong> of an <strong>Instance</strong> that have a global parameter with the same <strong>id</strong>. They are also configured in the <strong>Process</strong>, but changes are copied to all other processes that also use this parameter. <strong>Global parameters</strong> are matched by their parameter ID, and marked with a globe icon in the <strong>parameter configuration</strong> panel.</p>
 <doc-anchor-target id="conditional-parameters">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#conditional-parameters">#</doc-anchor-trigger>
@@ -484,7 +518,11 @@
     </h4>
 </doc-anchor-target>
 <p>Link expressions can be used on all process parameters (as well as for endpoint configuration, inside configuration files, etc.). The <strong>BDeploy</strong> UI provides content assis for link expressions once a parameter editor is switched to expression mode, which is done using the toggle in front of each parameter. Each parameter is <em>either</em> a plain value or a link expression, depending on the toggle.</p>
-<div align="center"><p><img src="../../images/doc_instvar_inparameter.png" width="480" alt="Content Asssist for Link Expressions" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instvar_inparameter.png" alt="Content Asssist for Link Expressions" width="480">
+    <figcaption class="caption">Content Asssist for Link Expressions</figcaption>
+</figure>
+</p>
 </div>
 <p>The content assist will propose categories of <a href="../../power/variables/index.html#variable-expansions">Variable Expansions</a> first, and once the category is determined will continue to provide more detailed assistence.</p>
 <p>See <a href="../../power/variables/index.html#variable-expansions">Variable Expansions</a> for more details.</p>
@@ -495,7 +533,11 @@
     </h4>
 </doc-anchor-target>
 <p>A preview of the command that is executed to launch this process can be viewed by expanding the <strong>Command Line Preview</strong> section. The preview is especially useful in case of custom parameters to ensure that they are added as expected in the correct order.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigpreview.png" width="480" alt="Preview Command Line with Custom Parameter" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigpreview.png" alt="Preview Command Line with Custom Parameter" width="480">
+    <figcaption class="caption">Preview Command Line with Custom Parameter</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="allowable-configuration-directories">
     <h4>
@@ -523,7 +565,11 @@
 </div>
 <p><code v-pre>CLIENT</code> applications by default do not receive any <doc-anchor-trigger to="#configuration-files">Configuration Files</doc-anchor-trigger> from the instance configuration. The reason for this is simple: security. Client PCs are typically less secure than the server running <code v-pre>SERVER</code> applications. Nevertheless, also <code v-pre>CLIENT</code> applications may <em>require</em> configuration files.</p>
 <p>Thus it is possible to <strong>whitelist</strong> certain configuration directories in the configuration of <em>each</em> <code v-pre>CLIENT</code> process in the instance configuration.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfig_clientconfigdirs.png" width="480" alt="Allowed Configuration Directories" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfig_clientconfigdirs.png" alt="Allowed Configuration Directories" width="480">
+    <figcaption class="caption">Allowed Configuration Directories</figcaption>
+</figure>
+</p>
 </div>
 <p>Select one or more directories to have those installed to the PC running the <code v-pre>CLIENT</code> application in addition to server nodes.</p>
 <doc-anchor-target id="instance-variables">
@@ -532,48 +578,23 @@
         <span>Instance Variables</span>
     </h3>
 </doc-anchor-target>
-<p><strong>Instance Variables</strong> have been introduced along with their even more global counterpart <a href="../instancegroup/index.html#system-variables">System Variables</a>. <strong>Instance Variables</strong> replace the concept of <doc-anchor-trigger to="#global-parameters">Global Parameters</doc-anchor-trigger>. They offer a more flexible - and along with <a href="../instancegroup/index.html#system-variables">System Variables</a> also a more powerful - way of achieving the same result.</p>
+<p><strong>Instance Variables</strong> have been introduced along with their even more global counterpart <a href="../instancegroup/index.html#system-variables">System Variables</a>. <strong>Instance Variables</strong> complement the concept of <doc-anchor-trigger to="#global-parameters">Global Parameters</doc-anchor-trigger>. They offer a more flexible - and along with <a href="../instancegroup/index.html#system-variables">System Variables</a> also a more powerful - way of achieving the same result in many cases, and allow for even more use cases.</p>
+<p><strong>Instance Variables</strong> come in especially handy when used outside of process parameters, e.g. in configuration files, or process endpoints. They are inherently shared between all elements of an instance.</p>
 <p>To add <strong>Instance Variables</strong>, use the [ <strong>Instance Variables...</strong> ] option in the <strong>Instance Settings</strong> panel. Add a new <strong>Instance Variable</strong> using the [ <strong>+</strong> ] button in the panels toolbar.</p>
-<div align="center"><p><img src="../../images/doc_instvar_plain.png" width="480" alt="A new Instance Variable" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instvar_plain.png" alt="A new Instance Variable" width="480">
+    <figcaption class="caption">A new Instance Variable</figcaption>
+</figure>
+</p>
 </div>
 <p>The value of an <strong>Instance Variable</strong> can not only be a plain value of the selected type, but it can also be a <em>link expression</em>, which is a value consisting of a combination of plain text components and one or more <a href="../../power/variables/index.html#variable-expansions">Variable Expansions</a>. In this mode, the editor will provide content assist for expansions and a dedicated variable list popup.</p>
-<div align="center"><p><img src="../../images/doc_instvar_link.png" width="480" alt="A new Instance Variable (Link Expression)" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instvar_link.png" alt="A new Instance Variable (Link Expression)" width="480">
+    <figcaption class="caption">A new Instance Variable (Link Expression)</figcaption>
+</figure>
+</p>
 </div>
 <p>Once created <strong>Instance Variables</strong> can be referenced from all other <doc-anchor-trigger to="#link-expressions">Link Expressions</doc-anchor-trigger>, e.g. on process parameters, configuration files, etc.</p>
-<doc-anchor-target id="migration-from-global-parameters-to-instance-variables">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#migration-from-global-parameters-to-instance-variables">#</doc-anchor-trigger>
-        <span>Migration from Global Parameters to Instance Variables</span>
-    </h4>
-</doc-anchor-target>
-<p>Since <strong>Instance Variables</strong> are the successor concept for <strong>Global Parameters</strong> (those have been deprecated), there is a migration path.</p>
-<p>Products need to be updated at some point to no longer have the <code v-pre>global</code> flag on parameters, and use <strong>Instance Variables</strong> in their <doc-anchor-trigger to="#instance-templates">Instance Templates</doc-anchor-trigger> instead. There is no automated migration for this, this has to be done manually by the respective maintainers.</p>
-<p>However, updating products will not &quot;fix&quot; existing instances, as templates are only used when creating instances, and also parameter values for existing processes will not be updated when changing the product.</p>
-<p>Thus, there is a [ <strong>Migrate Globals</strong> ] button on the <strong>Instance Variables</strong> panel. Also, updating the product version will now (as long as migration has not been performed yet) prompt to perform the migration to <strong>Instance Variables</strong>. This migration will pick each <code v-pre>global</code> parameter in the <strong>Instance</strong> and:</p>
-<ol>
-<li>Create an <strong>Instance Variable</strong> using the parameters ID as variable name.</li>
-<li>Set the current <code v-pre>global</code> value to the new <strong>Instance Variable</strong>.</li>
-<li>Replace the current value for all instances of the <code v-pre>global</code> parameter in the <strong>Instance</strong> with a link expression referencing the new <strong>Instance Variable</strong></li>
-<li>Disable the use of <code v-pre>global</code> for <strong>this Instance</strong> only. All parameters will be treated as though the <code v-pre>global</code> flag was not set.</li>
-</ol>
-<p>This brings the instance into a state where it is safe to either update <strong>BDeploy</strong> to a version which no longer supports <code v-pre>global</code> (which does not exist yet), or update the product to a version where the <code v-pre>global</code> flag is no longer used on parameters.</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
-                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Warning</h5>
-<p>This migration must be done regardless of the product being updated. Without the migration, global parameters will turn into &quot;normal&quot; parameters at some point. If they still contain a plain value at that point in time (and not a <doc-anchor-trigger to="#link-expressions">Link Expression</doc-anchor-trigger>) it will stay this way, and <strong>each</strong> of the formerly &quot;connected&quot; parameters (through the global mechanism) will have its own value and needs to be configured separately.</p>
-        </div>
-    </div>
-</div>
 <doc-anchor-target id="configuration-files">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#configuration-files">#</doc-anchor-trigger>
@@ -581,12 +602,20 @@
     </h3>
 </doc-anchor-target>
 <p>The <strong>configuration files</strong> of all <strong>Processes</strong> of an <strong>Instance</strong> are maintained together in one place. It can be opened by clicking on the [ <strong>Configuration Files</strong> ] button in the <strong>Instance Settings</strong> panel. The initial set of <strong>configuration files</strong> is derived from the default set delivered with the product, see <a href="../../power/product/index.html#product-infoyaml"><code v-pre>product-info.yaml</code></a>.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigfiles.png" width="480" alt="Instance Configuration Files" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigfiles.png" alt="Instance Configuration Files" width="480">
+    <figcaption class="caption">Instance Configuration Files</figcaption>
+</figure>
+</p>
 </div>
 <p>The <strong>configuration files</strong> of an <strong>Instance</strong> can be compared with the original <strong>configuration file templates</strong> of the <strong>Product</strong> at any time, an according up to date hint is shown next to each configuration file if applicable. The [ <strong>Compare with product template</strong> ] button starts the comparison. Files which are present in the <strong>product</strong> but not in the <strong>instance configuration</strong> are marked, same is true the other way round.</p>
 <p>New configuration files can be be created using the [ <strong>+</strong> ] button. Prompt for a file name and an optional initial content to upload. When dropping a file onto the drop zone, the filename is updated automatically to match the dropped file.</p>
 <p>The [ <strong>Edit</strong> ] button on each file can be used to edt the content of the file using an online rich editor.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigfilesedit.png" width="480" alt="Edit Instance Configuration Files" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigfilesedit.png" alt="Edit Instance Configuration Files" width="480">
+    <figcaption class="caption">Edit Instance Configuration Files</figcaption>
+</figure>
+</p>
 </div>
 <p>Online editing is only possible for text files. Binary files like ZIP, PDF, etc. can not be edited online. Instead, you can download and later on replace them.</p>
 <p><a href="../../power/variables/index.html#variable-expansions">Variable Expansions</a> can be used in configuration files. The variables will be expanded when the file is written on disc on the target node. The editor for configuration files provides content assist for <a href="../../power/variables/index.html#variable-expansions">Variable Expansions</a> on [ <strong>CTRL</strong> ] + [ <strong>Space</strong> ] if the current word in the editor contains <code v-pre>{{</code>.</p>
@@ -616,13 +645,25 @@
 </doc-anchor-target>
 <p><strong>Instances</strong> are based on a <strong>product version</strong>. While the <strong>Product</strong> of the <strong>Instance</strong> cannot be changed afterwards, the <strong>Version</strong> can be chosen from the available <strong>product versions</strong> (upgrade to a newer version / downgrade to an older version).</p>
 <p>If there&#x27;s a newer <strong>product version</strong> available (newer than the one that is configured for the latest <strong>instance version</strong>), a notification is shown in the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger> pages toolbar.</p>
-<div align="center"><p><img src="../../images/doc_instanceproductupdateavail.png" width="480" alt="Update Notification" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceproductupdateavail.png" alt="Update Notification" width="480">
+    <figcaption class="caption">Update Notification</figcaption>
+</figure>
+</p>
 </div>
 <p>Clicking on the notification opens the <strong>product version</strong> sidebar. The same sidebar can also be opened opened by clicking on the [ <strong>Update Product Version</strong> ] button in the <strong>Instance Settings</strong> panel.</p>
-<div align="center"><p><img src="../../images/doc_instanceproductupdate.png" width="480" alt="Change Current Product Version" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceproductupdate.png" alt="Change Current Product Version" width="480">
+    <figcaption class="caption">Change Current Product Version</figcaption>
+</figure>
+</p>
 </div>
 <p>Changing the version can be done by clicking on the [ <strong>Upgrade</strong> ] or [ <strong>Downgrade</strong> ] button displayed at the right side of the product version. Changing the product version will trigger an automated migration. This migration will also validate changes. It gives <strong>hints</strong> about potentially relevant (but not blocking) changes, and additionally validation issues in case the migration could not be performed fully automatically. You then have the chance to fix issues manually before saving the resulting <strong>instance version</strong>.</p>
-<div align="center"><p><img src="../../images/doc_instanceproductupdatehints.png" width="480" alt="Product Update Hints" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceproductupdatehints.png" alt="Product Update Hints" width="480">
+    <figcaption class="caption">Product Update Hints</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -649,10 +690,18 @@
     </h3>
 </doc-anchor-target>
 <p>A banner message can be created for an <strong>Instance</strong>, which is displayed very clearly at the top of the overview dialog. You can choose from a series of predefined colors, so that depending on the urgency or content of the message a suitable color can be selected.</p>
-<div align="center"><p><img src="../../images/doc_instancebannerconfig.png" width="480" alt="Instance Banner Configuration" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancebannerconfig.png" alt="Instance Banner Configuration" width="480">
+    <figcaption class="caption">Instance Banner Configuration</figcaption>
+</figure>
+</p>
 </div>
 <p>Banner messages are maintained on instance level and are not versioned, i.e. they are independent of instance versions. Therefore they outlast configuration changes of an instance and can be configured without saving the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger>.</p>
-<div align="center"><p><img src="../../images/doc_instancebanner.png" width="480" alt="Instance Banner Configuration" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancebanner.png" alt="Instance Banner Configuration" width="480">
+    <figcaption class="caption">Instance Banner Configuration</figcaption>
+</figure>
+</p>
 </div>
 <p>The banner is shown in the <a href="../instancegroup/index.html#create-new-instances">Instance Overview</a> (as tooltip on the instance), in the <doc-anchor-trigger to="#instance-dashboard">Instance Dashboard</doc-anchor-trigger> and in the <doc-anchor-trigger to="#instance-configuration">Instance Configuration</doc-anchor-trigger> pages.</p>
 <doc-anchor-target id="importexport">
@@ -687,7 +736,11 @@
 </doc-anchor-target>
 <p>A product may contain <strong>Application Templates</strong>. These are pre-defined configurations for applications, resulting in a more complete process configuration when added to the target node.</p>
 <p>We saw earlier how to <doc-anchor-trigger to="#instance-configuration">add applications using templates</doc-anchor-trigger>. Depending on the selected template, you may be prompted to enter the required template variable values.</p>
-<div align="center"><p><img src="../../images/doc_instanceaddprocesstemplvars.png" width="480" alt="Add Process Template" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceaddprocesstemplvars.png" alt="Add Process Template" width="480">
+    <figcaption class="caption">Add Process Template</figcaption>
+</figure>
+</p>
 </div>
 <p>The process configuration is created from the application template using the given variable values.</p>
 <div class="flex mb-6">
@@ -733,7 +786,11 @@
         </div>
     </div>
 </div>
-<div align="center"><p><img src="../../images/doc_instancetemplates.png" width="480" alt="Instance Templates" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancetemplates.png" alt="Instance Templates" width="480">
+    <figcaption class="caption">Instance Templates</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -754,15 +811,27 @@
     </div>
 </div>
 <p>Selecting a template (here: <em>Default Configuration</em>) will show a list of <em>groups</em> defined in the template. These <em>groups</em> can be assigned to compatible nodes - groups containing server applications to server nodes, and groups containing client applications to the virtual <em>Client Applications</em> node. Selecting <em>(skip)</em> as target node will skip the processes in this group.</p>
-<div align="center"><p><img src="../../images/doc_instancetemplatesnodes.png" width="480" alt="Instance Templates Node Assignment" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancetemplatesnodes.png" alt="Instance Templates Node Assignment" width="480">
+    <figcaption class="caption">Instance Templates Node Assignment</figcaption>
+</figure>
+</p>
 </div>
 <p>When creating configurations on a <code v-pre>SERVER</code> node, applications will be added matching the nodes OS. If a server application is included in a group which is not available for the target OS, you will receive an according message.</p>
 <p>When creating configurations for a <code v-pre>CLIENT</code> group, applications are added to the <em>Client Applications</em> virtual node, one for each OS supported by the application.</p>
 <p>Next you will be presented with the template variables which need to be provided.</p>
-<div align="center"><p><img src="../../images/doc_instancetemplatesvars.png" width="480" alt="Instance Templates Variable Assignment" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancetemplatesvars.png" alt="Instance Templates Variable Assignment" width="480">
+    <figcaption class="caption">Instance Templates Variable Assignment</figcaption>
+</figure>
+</p>
 </div>
 <p>Clicking [ <strong>Confirm</strong> ] will create the processes defined in the template. The configuration will <strong>not</strong> be saved automatically, to allow further tuning of the configuration before doing so. Applying <strong>templates</strong> can be undone by clicking [ <strong>Undo</strong> ] like any other change.</p>
-<div align="center"><p><img src="../../images/doc_instancetemplatesdone.png" width="480" alt="Applied Instance Templates" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancetemplatesdone.png" alt="Applied Instance Templates" width="480">
+    <figcaption class="caption">Applied Instance Templates</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="network-ports">
     <h3>
@@ -791,10 +860,18 @@
 <li><code v-pre>WAIT</code>: When starting a <strong>Process</strong> in the group, wait for its startup to be complete. This is either once the <strong>Startup Probe</strong> signals process startup if available and configured, or once the process has been created if no probe is available.</li>
 <li><code v-pre>CONTINUE</code>: When starting a <strong>Process</strong> in the group, do not wait for its startup to be complete, instead move on to the next process immediately. This makes the startup handling types (<code v-pre>SEQUENTIAL</code>, <code v-pre>PARALLEL</code>) essentially irrelevant, as processes are typically created so fast that it does not make any difference anymore.</li>
 </ul>
-<div align="center"><p><img src="../../images/doc_instanceconfigaddprocesscontrolgroup.png" width="480" alt="Edit Process Control Groups" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigaddprocesscontrolgroup.png" alt="Edit Process Control Groups" width="480">
+    <figcaption class="caption">Edit Process Control Groups</figcaption>
+</figure>
+</p>
 </div>
 <p>Each <code v-pre>SERVER</code> node automatically uses <strong>Process Control Groups</strong> and is initialized with a &#x27;Default&#x27; group. Adding a new <strong>Process</strong> to a <strong>Node</strong> will always add that <strong>Process</strong> to the last <strong>Process Control Group</strong>. It can then be moved by drag and drop to another <strong>Process Control Group</strong> if required.</p>
-<div align="center"><p><img src="../../images/doc_instanceconfigeditprocesscontrolgroup.png" width="480" alt="Edit Process Control Groups" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceconfigeditprocesscontrolgroup.png" alt="Edit Process Control Groups" width="480">
+    <figcaption class="caption">Edit Process Control Groups</figcaption>
+</figure>
+</p>
 </div>
 <p><strong>Process Control Groups</strong> themselves can be re-ordered using the [ <strong>Move Up</strong> ] and [ <strong>Move Down</strong> ] buttons.</p>
 <doc-anchor-target id="deleting-an-instance">
@@ -870,6 +947,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Instances", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Instances", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

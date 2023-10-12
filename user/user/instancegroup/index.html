@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073212912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422158285">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Instance Group</title>
@@ -31,14 +31,14 @@
     <meta property="twitter:description" content="An Instance Group acts as logical container for Instances. It typically contains several Instances for different purposes (productive, test,...">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_emptygroups.png">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.1.0.745073212912" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.750422158285" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -259,7 +259,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <doc-anchor-target id="instance-group" class="break-words">
     <h1>
@@ -268,10 +267,18 @@
     </h1>
 </doc-anchor-target>
 <p>An <strong>Instance Group</strong> acts as logical container for <strong>Instances</strong>. It typically contains several <strong>Instances</strong> for different purposes (productive, test, development). Adding them to the same group provides a better overview which of them are belonging together. An empty page is displayed if no instance group has been created.</p>
-<div align="center"><p><img src="../../images/doc_emptygroups.png" width="480" alt="Empty Instance Group Overview" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_emptygroups.png" alt="Empty Instance Group Overview" width="480">
+    <figcaption class="caption">Empty Instance Group Overview</figcaption>
+</figure>
+</p>
 </div>
 <p>Use the [ <strong>+</strong> ] button in the toolbar to create a new <strong>Instance Group</strong>.</p>
-<div align="center"><p><img src="../../images/doc_addgrouppanelfilled.png" width="480" alt="Create Instance Group" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_addgrouppanelfilled.png" alt="Create Instance Group" width="480">
+    <figcaption class="caption">Create Instance Group</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -299,7 +306,11 @@
     </h2>
 </doc-anchor-target>
 <p>All <strong>Instance Groups</strong> that are visible to the user (as per the assigned permissions) are shown in the <strong>Instance Groups</strong> dialog.</p>
-<div align="center"><p><img src="../../images/doc_demogroup.png" width="480" alt="Demo Instance Group" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_demogroup.png" alt="Demo Instance Group" width="480">
+    <figcaption class="caption">Demo Instance Group</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="instance-group-access">
     <h2>
@@ -308,16 +319,32 @@
     </h2>
 </doc-anchor-target>
 <p>A new <strong>Instance Group</strong> is initially only visible to users with global read permission (or higher). You can assign permissions to users either globally, or per <strong>Instance Group</strong>. To assign local permissions, click the <strong>Instance Group</strong> to get to its <strong>instance overview</strong> and then click the [ <strong>Group Settings</strong> ] toolbar button. The Group Settings panel is shown.</p>
-<div align="center"><p><img src="../../images/doc_groupsettings.png" width="480" alt="Instance Group Settings" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_groupsettings.png" alt="Instance Group Settings" width="480">
+    <figcaption class="caption">Instance Group Settings</figcaption>
+</figure>
+</p>
 </div>
 <p>Click the [ <strong>Instance Group Permissions</strong> ] button to navigate to the permission panel.</p>
-<div align="center"><p><img src="../../images/doc_grouppermglobalonly.png" width="480" alt="Instance Group Permissions" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_grouppermglobalonly.png" alt="Instance Group Permissions" width="480">
+    <figcaption class="caption">Instance Group Permissions</figcaption>
+</figure>
+</p>
 </div>
 <p>To assign a local permission to a given user, click the [ <strong>Modify</strong> ] button in the according table row. A dialog will pop up asking for the permission to assign. Choose an apropriate one and click [ <strong>OK</strong> ].</p>
-<div align="center"><p><img src="../../images/doc_grouppermsetwrite.png" width="480" alt="Instance Group Permission Assignment" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_grouppermsetwrite.png" alt="Instance Group Permission Assignment" width="480">
+    <figcaption class="caption">Instance Group Permission Assignment</figcaption>
+</figure>
+</p>
 </div>
 <p>The local permission will be shown next to the global permission. The highest available permission level is taken into account for any permission checks.</p>
-<div align="center"><p><img src="../../images/doc_grouppermassigned.png" width="480" alt="Instance Group Local Permission" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_grouppermassigned.png" alt="Instance Group Local Permission" width="480">
+    <figcaption class="caption">Instance Group Local Permission</figcaption>
+</figure>
+</p>
 </div>
 <p>The user table is grouped by permission assignment, either global, local or unassigned.</p>
 <doc-anchor-target id="initial-steps">
@@ -326,11 +353,19 @@
         <span>Initial Steps</span>
     </h2>
 </doc-anchor-target>
-<p>Click on an <strong>Instance Group</strong> to open the <strong>instance browser</strong> of this group. Here you can see all <strong>Instances</strong> grouped by their <em>purpose</em> (can be <code v-pre>Development</code>, <code v-pre>Test</code> or <code v-pre>Productive</code>).</p>
-<div align="center"><p><img src="../../images/doc_demoinstancesempty.png" width="480" alt="Empty Instance Browser" /></p>
+<p>Click on an <strong>Instance Group</strong> to open the <strong>Instance Browser</strong> of this group. Here you can see all <strong>Instances</strong> grouped by their <em>purpose</em> (can be <code v-pre>Development</code>, <code v-pre>Test</code> or <code v-pre>Productive</code>).</p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_demoinstancesempty.png" alt="Empty Instance Browser" width="480">
+    <figcaption class="caption">Empty Instance Browser</figcaption>
+</figure>
+</p>
 </div>
 <p>Since an <strong>Instance</strong> requires a <strong>Product</strong>, an empty <strong>Instance Group</strong> will initially display a shortcut to the <doc-anchor-trigger to="#manage-products">products</doc-anchor-trigger> page. If there is at least one <strong>Product</strong> available already, the shortcut changes to help you to <doc-anchor-trigger to="#create-new-instances">create a new instance</doc-anchor-trigger>.</p>
-<div align="center"><p><img src="../../images/doc_demoinstancesnoinstance.png" width="480" alt="Empty Instance Browser with Product available" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_demoinstancesnoinstance.png" alt="Empty Instance Browser with Product available" width="480">
+    <figcaption class="caption">Empty Instance Browser with Product available</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="manage-products">
     <h2>
@@ -357,16 +392,32 @@
         </div>
     </div>
 </div>
-<div align="center"><p><img src="../../images/doc_productsempty.png" width="480" alt="Empty Products Page" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_productsempty.png" alt="Empty Products Page" width="480">
+    <figcaption class="caption">Empty Products Page</figcaption>
+</figure>
+</p>
 </div>
 <p>On the <strong>Products</strong> page, click the [ <strong>Upload Product</strong> ] button to upload new <strong>Products</strong>.</p>
-<div align="center"><p><img src="../../images/doc_productsuploadpanel.png" width="480" alt="Upload Product" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_productsuploadpanel.png" alt="Upload Product" width="480">
+    <figcaption class="caption">Upload Product</figcaption>
+</figure>
+</p>
 </div>
 <p>Click browse and choose a <strong>Product</strong> <em>ZIP</em> file to upload, or simply drop one on the highlighted drop zone. The <strong>Product</strong> will be uploaded immediately.</p>
-<div align="center"><p><img src="../../images/doc_productsuploadsuccess.png" width="480" alt="Upload Product (success)" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_productsuploadsuccess.png" alt="Upload Product (success)" width="480">
+    <figcaption class="caption">Upload Product (success)</figcaption>
+</figure>
+</p>
 </div>
 <p>Once a <strong>Product</strong> is available, you can click it to open the <strong>Product</strong> details panel. This panel allows you to [ <strong>Download</strong> ] a <strong>Product</strong> version as <em>ZIP</em>, or [ <strong>Delete</strong> ] individual versions of the <strong>Product</strong> as long as it is not currently in use by an <strong>Instance</strong> version. There rest of the panel provides additional information about the <strong>Product</strong>.</p>
-<div align="center"><p><img src="../../images/doc_productdetailspanel.png" width="480" alt="Product Details Panel" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_productdetailspanel.png" alt="Product Details Panel" width="480">
+    <figcaption class="caption">Product Details Panel</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -393,12 +444,20 @@
     </h2>
 </doc-anchor-target>
 <p>To create a new <strong>Instance</strong>, click the [ <strong>+</strong> ] button at the bottom of the page. After giving the new <strong>Instance</strong> a name, purpose and description, the most important thing is to select the <strong>Product</strong> you want to deploy. Additionally, the initial <strong>product version</strong> has to be chosen. It can be changed later at any time (<em>up-</em> and <em>downgrade</em>).</p>
-<div align="center"><p><img src="../../images/doc_instanceadd.png" width="480" alt="Create a new Instance" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instanceadd.png" alt="Create a new Instance" width="480">
+    <figcaption class="caption">Create a new Instance</figcaption>
+</figure>
+</p>
 </div>
 <p>It is a common requirement that certain <strong>processes</strong> of an <strong>Instance</strong> should be automatically started whenever the <strong>BDeploy</strong> server itself is started. To accomplish that, the <em>Automatic Startup</em> flag of the <strong>Instance</strong> must be set.</p>
 <p>The <strong>Instance</strong> determines whether it is included in the automatic cleanup job. If the option <em>Automatic Uninstallation</em> is enabled, the cleanup job will uninstall all <strong>instance versions</strong> that are older than the activated and the previously activated <strong>instance version</strong>. Due to this automatic uninstallation some of the old <strong>product versions</strong> might become unused. If the option <em>Automatic Cleanup</em> is activated on the instance group, these unused <strong>product versions</strong> are deleted too (see <doc-anchor-trigger to="#instance-group">Instance Group</doc-anchor-trigger>).</p>
 <p>Click an <strong>Instance</strong> to proceed to the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a>.</p>
-<div align="center"><p><img src="../../images/doc_demoinstance.png" width="480" alt="Instance Browser" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_demoinstance.png" alt="Instance Browser" width="480">
+    <figcaption class="caption">Instance Browser</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="global-attributes-on-instance-groups">
     <h2>
@@ -407,10 +466,18 @@
     </h2>
 </doc-anchor-target>
 <p><a href="../../experts/system/index.html#global-attributes">Global Attributes</a> can be configured - as the name suggests - globally in the system administration. Each Instance Group <strong>may</strong> then associate a <strong>value</strong> with each of these global attributes.</p>
-<div align="center"><p><img src="../../images/doc_setglobalattributevalue.png" width="480" alt="Set Global Attribute Values" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_setglobalattributevalue.png" alt="Set Global Attribute Values" width="480">
+    <figcaption class="caption">Set Global Attribute Values</figcaption>
+</figure>
+</p>
 </div>
 <p>The value can then be used for grouping instance groups through the grouping panel.</p>
-<div align="center"><p><img src="../../images/doc_groupingpanel.png" width="480" alt="Group by Global Attribute" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_groupingpanel.png" alt="Group by Global Attribute" width="480">
+    <figcaption class="caption">Group by Global Attribute</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="instance-group-attributes">
     <h2>
@@ -420,6 +487,26 @@
 </doc-anchor-target>
 <p>Very similar to the global attributes, each <strong>Instance Group</strong> may have its own <strong>attributes</strong>. These attributes are not global, but are only visible within the <strong>Instance Group</strong>. Each <strong>Instance</strong> can assign a value to each of these attributes. Again, similar to the <strong>Instance Group</strong> browser, the <strong>Instance</strong> browser can use the assigned values to group <strong>Instances</strong> by those values.</p>
 <p>The <strong>attributes</strong> are defined in the <strong>Instance Group</strong> settings. The <strong>values</strong> are assigned in the <strong>Instance</strong> settings.</p>
+<doc-anchor-target id="bulk-manipulation-and-control">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#bulk-manipulation-and-control">#</doc-anchor-trigger>
+        <span>Bulk Manipulation and Control</span>
+    </h2>
+</doc-anchor-target>
+<p>Instances can be manipulated and controlled in batches from the <strong>Instance Browser</strong>. Click the [<strong>Bulk Manipulation</strong>] button in the toolbar. This will open the <strong>Bulk Manipulation</strong> panel to the right. Instances can be selected in the main content area now by selecting the checkboxes in front of them.</p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancesbulkpanel.png" alt="Bulk Manipulation Panel and Selection" width="480">
+    <figcaption class="caption">Bulk Manipulation Panel and Selection</figcaption>
+</figure>
+</p>
+</div>
+<p>Once a set of instances is selected, the available actions can be performed on all of them. All actions (except for start/stop) will show a result once performed. Start/stop will not show a result, as it will just <em>trigger</em> start/stop on instances. Depending on their configuration it is not possible to show a result.</p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_instancesbulkresult.png" alt="Bulk Manipulation Panel and Selection" width="480">
+    <figcaption class="caption">Bulk Manipulation Panel and Selection</figcaption>
+</figure>
+</p>
+</div>
 <doc-anchor-target id="systems">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#systems">#</doc-anchor-trigger>
@@ -461,13 +548,25 @@
 </doc-anchor-target>
 <p>A <strong>System Template</strong> allows definition of complete systems. Since those templates life outside of any specific single product, they are single YAML files which have a separate lifecycle.</p>
 <p>A <strong>System Template</strong> will typically create multiple instances of multiple products in a to-be-created system. It can also create <doc-anchor-trigger to="#system-variables">System Variables</doc-anchor-trigger>, and use template variable overrides to control in much detail how instances are created.</p>
-<div align="center"><p><img src="../../images/doc_systemtemplate_wizard.png" width="480" alt="System Template Wizard" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_systemtemplate_wizard.png" alt="System Template Wizard" width="480">
+    <figcaption class="caption">System Template Wizard</figcaption>
+</figure>
+</p>
 </div>
 <p>The <strong>System Template</strong> Wizard will request you to upload a <a href="../../power/product/index.html#system-templateyaml"><code v-pre>system-template.yaml</code></a> file. Once this is done, you can specify template variable values for variables defined and used in the system template itself. These are not to be confused with template variables used in instance templates, which will be queried at a later stage in the process as required. <strong>System Templates</strong> can use template variables in their own YAML descriptor to provide very dynamic (pre-)configuration for instance templates, thus those variables need to be available before configuring instance templates.</p>
-<div align="center"><p><img src="../../images/doc_systemtemplate_instancetemplates.png" width="480" alt="System Template Instance Configuration" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_systemtemplate_instancetemplates.png" alt="System Template Instance Configuration" width="480">
+    <figcaption class="caption">System Template Instance Configuration</figcaption>
+</figure>
+</p>
 </div>
 <p>The Wizard will now query each instance defined in the <strong>System Template</strong>. This allow users to skip instances, or configure intances in a way just &quot;as if&quot; they would apply the individual <strong>Instance Templates</strong> to a new, empty instance each.</p>
-<div align="center"><p><img src="../../images/doc_systemtemplate_done.png" width="480" alt="System Template Wizard - Done" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_systemtemplate_done.png" alt="System Template Wizard - Done" width="480">
+    <figcaption class="caption">System Template Wizard - Done</figcaption>
+</figure>
+</p>
 </div>
 <p>Once done, the Wizard will show success confirmations along with potential warnings and errors that occured during application of the template(s).</p>
 
@@ -536,6 +635,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Instance Group", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Instance Group", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

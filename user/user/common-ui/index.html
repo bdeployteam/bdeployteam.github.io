@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073212912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422158285">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Common UI Elements</title>
@@ -31,14 +31,14 @@
     <meta property="twitter:description" content="BDeploy tries to follow a few quite simple patterns regarding UI/UX.">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_searchbarenabled.png">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.1.0.745073212912" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.750422158285" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -259,7 +259,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <doc-anchor-target id="common-ui-elements" class="break-words">
     <h1>
@@ -275,10 +274,18 @@
     </h2>
 </doc-anchor-target>
 <p>The search bar at the top of the screen can be used to search in the current page. It will filter all tables and lists in the current page, regardless of where the table is located.</p>
-<div align="center"><p><img src="../../images/doc_searchbarenabled.png" width="480" alt="Search Bar" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_searchbarenabled.png" alt="Search Bar" width="480">
+    <figcaption class="caption">Search Bar</figcaption>
+</figure>
+</p>
 </div>
 <p>The search bar might be disabled in case there is no element on the screen currently which can be filtered.</p>
-<div align="center"><p><img src="../../images/doc_searchbardisabled.png" width="480" alt="Disabled Search Bar" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_searchbardisabled.png" alt="Disabled Search Bar" width="480">
+    <figcaption class="caption">Disabled Search Bar</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="panel">
     <h2>
@@ -287,7 +294,11 @@
     </h2>
 </doc-anchor-target>
 <p>The panel is the area on the left side of the screen which typically contains content related to the content in the main area. This panel is invisible by default, and slides into view when the according content is available. This is typically triggered by clicking an entry in a table or a toolbar button. An example for a panel is the <em>Create Instance Group</em> panel, which will also be one of the first panels you&#x27;ll see in the application.</p>
-<div align="center"><p><img src="../../images/doc_addgrouppanelempty.png" width="480" alt="Panel" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_addgrouppanelempty.png" alt="Panel" width="480">
+    <figcaption class="caption">Panel</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="table-vs-card-view">
     <h2>
@@ -296,9 +307,17 @@
     </h2>
 </doc-anchor-target>
 <p>A lot of tables throughout the <strong>BDeploy</strong> UI offer the possibility to display them as cards instead of as a list. This is done by clicking the corresponding button in the toolbar of each dialog.</p>
-<div align="center"><p><img src="../../images/doc_modetable.png" width="480" alt="Table Mode" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_modetable.png" alt="Table Mode" width="480">
+    <figcaption class="caption">Table Mode</figcaption>
+</figure>
+</p>
 </div>
-<div align="center"><p><img src="../../images/doc_modecards.png" width="480" alt="Card Mode" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_modecards.png" alt="Card Mode" width="480">
+    <figcaption class="caption">Card Mode</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="grouping">
     <h2>
@@ -307,7 +326,11 @@
     </h2>
 </doc-anchor-target>
 <p>Most tables offer the possibility to group the entries by a certain criteria. The criteria may be predefined or freely configurable, depending on the type of data in the table. Grouping can be changed using the <em>Data Grouping</em> toolbar button.</p>
-<div align="center"><p><img src="../../images/doc_groupingpanel.png" width="480" alt="Data Grouping" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_groupingpanel.png" alt="Data Grouping" width="480">
+    <figcaption class="caption">Data Grouping</figcaption>
+</figure>
+</p>
 </div>
 <p>Groups are represented as collapsable sections in the table. Multiple levels of grouping are supported in table mode. Press the [ <strong>+</strong> ] button to add an additional level of grouping and choose a criteria to group. Pressing the [ <strong>-</strong> ] button will remove the last level of grouping.</p>
 <p>The <em>Save as local preset</em> button will save the current data grouping settings as preset in the browser storage. This will be the default grouping settings whenever you open the same page again.</p>
@@ -402,6 +425,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Common UI Elements", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Common UI Elements", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

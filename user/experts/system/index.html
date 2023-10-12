@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073212912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422158285">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Administration</title>
@@ -31,14 +31,14 @@
     <meta property="twitter:description" content="There are several components in the Web UI which allow maintenance of BDeploy. These are not to be used during ">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_admin_settings.png">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.1.0.745073212912" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.750422158285" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -259,7 +259,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <doc-anchor-target id="administration" class="break-words">
     <h1>
@@ -282,7 +281,11 @@
         <span>General</span>
     </h3>
 </doc-anchor-target>
-<div align="center"><p><img src="../../images/doc_admin_settings.png" width="480" alt="BDeploy Settings" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_settings.png" alt="BDeploy Settings" width="480">
+    <figcaption class="caption">BDeploy Settings</figcaption>
+</figure>
+</p>
 </div>
 <p><em>Gravatar</em> support can be enabled here. If disabled, a generic icon is used for all useres. Otherwise, <strong>BDeploy</strong> shows the <em>Globally Recognized Avatar</em> (or a substitute image) wherever a user icon is displayed in a dialog. Visit <a href="https://gravatar.com">gravatar.com</a> for more information.</p>
 <p><strong>BDeploy</strong> supports both built-in and external authentication mechanims. The built-in user authentication can be disabled completely in the settings.</p>
@@ -336,7 +339,11 @@
     </h3>
 </doc-anchor-target>
 <p>On the <strong>LDAP Auth</strong> tab, you can configure a list of LDAP servers which are queried when authenticating a user. Use drag and drop to to specify the sort order in which the LDAP servers are queried for users that log on.</p>
-<div align="center"><p><img src="../../images/doc_admin_ldap_servers.png" width="480" alt="BDeploy LDAP Servers" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_ldap_servers.png" alt="BDeploy LDAP Servers" width="480">
+    <figcaption class="caption">BDeploy LDAP Servers</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -357,7 +364,11 @@
     </div>
 </div>
 <p><strong>BDeploy</strong> uses simple bind to authenticate users. First, a simple bind is made with the configured <em>User</em>. This user must have permissions to list other users that should be able to log into <strong>BDeploy</strong>. This bind is used to query for a user where the <code v-pre>Account User Field</code> matches the user name to be authenticated. This can be any field like <code v-pre>user</code>, <code v-pre>sAMAccountName</code>, or even <code v-pre>mail</code> if you want users to log on using their E-Mail Address. Once the user to log on is found, it&#x27;s distinguished name is used to perform another simple bind using the provided password. Once this succeeds the user is authenticated and an according record is created in <strong>BDeploy</strong>. From that point on, permissions can be granted to this user.</p>
-<div align="center"><p><img src="../../images/doc_admin_ldap_server_config.png" width="480" alt="BDeploy LDAP Server Configuration" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_ldap_server_config.png" alt="BDeploy LDAP Server Configuration" width="480">
+    <figcaption class="caption">BDeploy LDAP Server Configuration</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="ldap-server-properties">
     <h4>
@@ -427,6 +438,10 @@
 <td>Follow Referrals</td>
 <td>Specifies whether the authentication process should follow referrals or not.</td>
 </tr>
+<tr>
+<td>Periodically sync users and groups</td>
+<td>A flag that marks the connection to be selected for <doc-anchor-trigger to="#ldap-synchronization-job">LDAP Synchronization Job</doc-anchor-trigger>. If not selected, users and groups can be imported only manually via <em>Import</em> action in Admin UI.</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -457,6 +472,17 @@
         </div>
     </div>
 </div>
+<doc-anchor-target id="ldap-synchronization-job">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#ldap-synchronization-job">#</doc-anchor-trigger>
+        <span>LDAP Synchronization Job</span>
+    </h5>
+</doc-anchor-target>
+<p><em>LDAP Synchronization Job</em> periodically imports users and groups for LDAP connections with selected <strong>Periodically sync users and groups</strong> flag.<br />
+The job is identical to <em>Import</em> action.<br />
+By default job starts every midnight, but its schedule can be reconfigured via CLI.<br />
+To reschedule a job use <code v-pre>ldap --root=... &quot;--setSyncSchedule=...&quot;</code> where <em>setSyncSchedule</em> is in cron format (e.g. 0 0 0 * * ? for midnight)<br />
+To check current schedule and last run timestamp use <code v-pre>ldap --root=... --showSyncInfo</code></p>
 <doc-anchor-target id="ldap-certificate-trust">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#ldap-certificate-trust">#</doc-anchor-trigger>
@@ -494,7 +520,11 @@
     </h3>
 </doc-anchor-target>
 <p>In the <em>Global Attributes</em> tab, globally available attributes for <strong>Instance Groups</strong> can be maintained. Global attributes can be used to maintain additional information for <strong>Instance Groups</strong>, which is then used as an additional grouping or sorting criteria.</p>
-<div align="center"><p><img src="../../images/doc_admin_global_attributes.png" width="480" alt="BDeploy Global Attributes" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_global_attributes.png" alt="BDeploy Global Attributes" width="480">
+    <figcaption class="caption">BDeploy Global Attributes</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="plugins">
     <h3>
@@ -503,7 +533,11 @@
     </h3>
 </doc-anchor-target>
 <p>The <em>Plugins</em> tab can be used to manage the plugins known by <strong>BDeploy</strong>. Plugins that are currently loaded can be stopped here. Via the <em>Upload Plugin</em> action global plugins can be uploaded. Global plugins can also be deleted from the system here.</p>
-<div align="center"><p><img src="../../images/doc_admin_plugins.png" width="480" alt="BDeploy Plugins Maintenance" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_plugins.png" alt="BDeploy Plugins Maintenance" width="480">
+    <figcaption class="caption">BDeploy Plugins Maintenance</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="user-accounts">
     <h2>
@@ -512,10 +546,18 @@
     </h2>
 </doc-anchor-target>
 <p>The <strong>User Accounts</strong> dialog lists all users known in the system, regardless of whether they are local users or LDAP users.</p>
-<div align="center"><p><img src="../../images/doc_admin_user_accounts.png" width="480" alt="BDeploy User Accounts" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_user_accounts.png" alt="BDeploy User Accounts" width="480">
+    <figcaption class="caption">BDeploy User Accounts</figcaption>
+</figure>
+</p>
 </div>
 <p>Use the [ <strong>Create User</strong> ] button to create a local user.</p>
-<div align="center"><p><img src="../../images/doc_admin_user_accounts_add.png" width="480" alt="BDeploy User Accounts" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_user_accounts_add.png" alt="BDeploy User Accounts" width="480">
+    <figcaption class="caption">BDeploy User Accounts</figcaption>
+</figure>
+</p>
 </div>
 <p>Once a <strong>User</strong> is available, you can click it to open <strong>User Details</strong> panel where detail information is shown on top as well as the list of permissions.</p>
 <div class="flex mb-6">
@@ -537,10 +579,18 @@
     </div>
 </div>
 <p>The [ <strong>Deactivate Account</strong> ] resp. [ <strong>Activate Account</strong> ] allows to deactivate/activate the selected user.</p>
-<div align="center"><p><img src="../../images/doc_admin_user_accounts_inactive.png" width="480" alt="BDeploy User Accounts" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_user_accounts_inactive.png" alt="BDeploy User Accounts" width="480">
+    <figcaption class="caption">BDeploy User Accounts</figcaption>
+</figure>
+</p>
 </div>
 <p>The [ <strong>Assign Permission</strong> ] opens a popup for adding a permission entry. Global permissions as well as scoped permissions on <strong>Instance Groups</strong> and <strong>Software Repositories</strong> can be maintained here.</p>
-<div align="center"><p><img src="../../images/doc_admin_user_accounts_permissions_add.png" width="480" alt="BDeploy User Accounts" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_user_accounts_permissions_add.png" alt="BDeploy User Accounts" width="480">
+    <figcaption class="caption">BDeploy User Accounts</figcaption>
+</figure>
+</p>
 </div>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
@@ -571,7 +621,11 @@
 </table>
 </div>
 <p>The [ <strong>Edit User</strong> ] opens a popup for editing the main user properties and also for changing the password.</p>
-<div align="center"><p><img src="../../images/doc_admin_user_accounts_edit.png" width="480" alt="BDeploy User Accounts" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_user_accounts_edit.png" alt="BDeploy User Accounts" width="480">
+    <figcaption class="caption">BDeploy User Accounts</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="user-groups">
     <h2>
@@ -582,18 +636,34 @@
 <p><strong>BDeploy</strong> supports user groups. Their purpose is to simplify security management. By adding users to groups, administrators can efficiantly manage access levels for multiple users in one place. All the permissions of an active user group will propagate to its users.</p>
 <p><strong>User Groups</strong> are managed the same way as <strong>User Accounts</strong></p>
 <p>The <strong>User Groups</strong> dialog lists all groups known in the system, regardless of whether they are local or LDAP groups.</p>
-<div align="center"><p><img src="../../images/doc_admin_user_groups.png" width="480" alt="BDeploy User Groups" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_user_groups.png" alt="BDeploy User Groups" width="480">
+    <figcaption class="caption">BDeploy User Groups</figcaption>
+</figure>
+</p>
 </div>
 <p>Use the [ <strong>Create User Group</strong> ] button to create a local user group.</p>
-<div align="center"><p><img src="../../images/doc_admin_user_groups_add.png" width="480" alt="BDeploy User Groups" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_user_groups_add.png" alt="BDeploy User Groups" width="480">
+    <figcaption class="caption">BDeploy User Groups</figcaption>
+</figure>
+</p>
 </div>
 <p>Once a <strong>User Group</strong> is available, you can click it to open <strong>User Group Details</strong> panel where detail information is shown on top along with users that belong to the group as well as the list of permissions.</p>
 <p>The [ <strong>Deactivate Group</strong> ] resp. [ <strong>Activate Group</strong> ] allows to deactivate/activate the selected user.</p>
 <p>Use [ <strong>Add user to the group</strong> ] input to add user to the group. Enter user&#x27;s login name and press [ <strong>+</strong> ] icon.</p>
-<div align="center"><p><img src="../../images/doc_admin_user_groups_add_test_user.png" width="480" alt="BDeploy User Groups" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_user_groups_add_test_user.png" alt="BDeploy User Groups" width="480">
+    <figcaption class="caption">BDeploy User Groups</figcaption>
+</figure>
+</p>
 </div>
 <p>The [ <strong>Assign Permission</strong> ] opens a popup for adding a permission entry. Global permissions as well as scoped permissions on <strong>Instance Groups</strong> and <strong>Software Repositories</strong> can be maintained here.</p>
-<div align="center"><p><img src="../../images/doc_admin_user_groups_permissions_add.png" width="480" alt="BDeploy User Groups" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_user_groups_permissions_add.png" alt="BDeploy User Groups" width="480">
+    <figcaption class="caption">BDeploy User Groups</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="manual-cleanup">
     <h2>
@@ -635,10 +705,18 @@
 </table>
 </div>
 <p>The dialog can be used to immediately trigger a cleanup and to reviewing of the actions performed <em>before</em> doing so.</p>
-<div align="center"><p><img src="../../images/doc_cleanup.png" width="480" alt="BDeploy Cleanup Page" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_cleanup.png" alt="BDeploy Cleanup Page" width="480">
+    <figcaption class="caption">BDeploy Cleanup Page</figcaption>
+</figure>
+</p>
 </div>
 <p>Press the [ <strong>Calculate</strong> ] button to perform cleanup calculation. The result will be actions to be performed on <strong>Instance Groups</strong> or <strong>Nodes</strong> (including the <strong>Master</strong>). If no action is calculated at all, a corresponding message is displayed.</p>
-<div align="center"><p><img src="../../images/doc_cleanup_actions.png" width="480" alt="BDeploy Cleanup Actions" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_cleanup_actions.png" alt="BDeploy Cleanup Actions" width="480">
+    <figcaption class="caption">BDeploy Cleanup Actions</figcaption>
+</figure>
+</p>
 </div>
 <p>Press the [ <strong>Perform</strong> ] button to actually perform the calculated actions. The button [ <strong>Abort Cleanup</strong> ] resets the dialog without further actions.</p>
 <div class="flex mb-6">
@@ -708,7 +786,11 @@
     </h2>
 </doc-anchor-target>
 <p>The <strong>BDeploy Update</strong> page from the <strong>Administration</strong> menu offers a mechanism to upload new <strong>BDeploy</strong> software versions, deploy these versions (<em>upgrade</em> and <em>downgrade</em> possible) to the running <strong>BDeploy</strong> <em>master</em> and attached <em>nodes</em>.</p>
-<div align="center"><p><img src="../../images/doc_system_bdeploy_update.png" width="480" alt="BDeploy System Software" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_system_bdeploy_update.png" alt="BDeploy System Software" width="480">
+    <figcaption class="caption">BDeploy System Software</figcaption>
+</figure>
+</p>
 </div>
 <p>It also offers a way to <em>upload</em> <strong>BDeploy Launcher</strong> binaries. These binaries are included within a full <strong>BDeploy</strong> distribution and are required when <a href="../../power/product/index.html#app-infoyaml"><code v-pre>CLIENT</code> <strong>Applications</strong></a> are configured. Usually, a manual upload is not required. In case launchers have been removed by mistake, they can be re-added this way. Use the [ <strong>Upload</strong> ] button to upload full <strong>BDeploy</strong> versions or <strong>Bdeploy Launcher</strong> binaries from the binary distributions (<em>ZIP</em>).</p>
 
@@ -777,6 +859,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Administration", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Administration", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

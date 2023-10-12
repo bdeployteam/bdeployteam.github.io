@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073212912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422158285">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Central/Managed Specific Configuration</title>
@@ -31,14 +31,14 @@
     <meta property="twitter:description" content="The Central/Managed Mode requires some configuration to attach CENTRAL and MANAGED servers.">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_managedempty.png">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.1.0.745073212912" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.750422158285" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -259,7 +259,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <doc-anchor-target id="centralmanaged-specific-configuration" class="break-words">
     <h1>
@@ -305,7 +304,11 @@
     </h2>
 </doc-anchor-target>
 <p>You will notice that a <code v-pre>MANAGED</code> server will greet slightly different on the welcome page. Instead of a [ <strong>Add Instance Group</strong> ] button, there is a [ <strong>Link Instance Group</strong> ] button, and the text reads accordingly.</p>
-<div align="center"><p><img src="../../images/doc_managedempty.png" width="480" alt="Managed Server Welcome Page" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_managedempty.png" alt="Managed Server Welcome Page" width="480">
+    <figcaption class="caption">Managed Server Welcome Page</figcaption>
+</figure>
+</p>
 </div>
 <p>Attaching an <strong>Instance Group</strong> is a two way operation.</p>
 <ul>
@@ -335,13 +338,25 @@
     </div>
 </div>
 <p>On the <code v-pre>CENTRAL</code> server, choose [ <strong>Managed Servers</strong> ] on the main menu after selecting an <strong>Instance Group</strong> you want to attach. This will take you to the <strong>Managed Servers</strong> page for that <strong>Instance Group</strong>. Initially, this page will be empty.</p>
-<div align="center"><p><img src="../../images/doc_centralemptyservers.png" width="480" alt="Managed Servers Page on Central" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_centralemptyservers.png" alt="Managed Servers Page on Central" width="480">
+    <figcaption class="caption">Managed Servers Page on Central</figcaption>
+</figure>
+</p>
 </div>
 <p>Click the [ <strong>Link Managed Server</strong> ] button to initiate attaching a <code v-pre>MANAGED</code> server to this <strong>Instance Group</strong>.</p>
-<div align="center"><p><img src="../../images/doc_centrallinkserver.png" width="480" alt="Link Managed Server Panel" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_centrallinkserver.png" alt="Link Managed Server Panel" width="480">
+    <figcaption class="caption">Link Managed Server Panel</figcaption>
+</figure>
+</p>
 </div>
 <p>You will be prompted to drop <code v-pre>MANAGED</code> server information on a drop-zone. You can find the counterpiece on the <code v-pre>MANAGED</code> server. To initiate attaching on the <code v-pre>MANAGED</code> server, click the [ <strong>Link Instance Group</strong> ] button on the main <strong>Instance Group</strong> page (which is the initial start page of the Web UI). This will open the <em>Link Instance Group</em> panel.</p>
-<div align="center"><p><img src="../../images/doc_managedlinkgroup.png" width="480" alt="Link Instance Group" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_managedlinkgroup.png" alt="Link Instance Group" width="480">
+    <figcaption class="caption">Link Instance Group</figcaption>
+</figure>
+</p>
 </div>
 <p>The <code v-pre>MANAGED</code> server provides the card to drag to the counterpiece on the <code v-pre>CENTRAL</code> server. Drag it over to fill out information on the <code v-pre>CENTRAL</code> server automatically.</p>
 <div class="flex mb-6">
@@ -363,7 +378,11 @@
     </div>
 </div>
 <p>Once the information is dropped on the according drop zone on the <code v-pre>CENTRAL</code> server, it will fill out the information. Adapt the URL if required and fill in a human readable description of the <code v-pre>MANAGED</code> server. The URL should be reachable from the <code v-pre>CENTRAL</code> server and accomodate for any hostname mapping required (NAT, VPN, DNS, ...).</p>
-<div align="center"><p><img src="../../images/doc_centrallinkserverfilled.png" width="480" alt="Filled out Link panel" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_centrallinkserverfilled.png" alt="Filled out Link panel" width="480">
+    <figcaption class="caption">Filled out Link panel</figcaption>
+</figure>
+</p>
 </div>
 <p>Clicking [ <strong>Save</strong> ] will initiate the actual attachment process. The <code v-pre>CENTRAL</code> server will contact the <code v-pre>MANAGED</code> server using the provided URL. It will then perform the initial synchronization of data. Once this is done, the panels close on both servers. The attached server appears on the <code v-pre>CENTRAL</code>, and the attached <strong>Instance Group</strong> appears on the <code v-pre>MANAGED</code> server. In case attaching is not possible automatically, you will be provided with the possibility to download synchronization information from the <code v-pre>CENTRAL</code> server. You can drop this in the <em>Manual and Offline Linking</em> panel on the <code v-pre>MANAGED</code> server to complete linking without actual contact to the server.</p>
 <div class="flex mb-6">
@@ -384,7 +403,11 @@
         </div>
     </div>
 </div>
-<div align="center"><p><img src="../../images/doc_centrallinkdone.png" width="480" alt="Link Success (Central)" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_centrallinkdone.png" alt="Link Success (Central)" width="480">
+    <figcaption class="caption">Link Success (Central)</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="instance-synchronization">
     <h2>
@@ -411,11 +434,23 @@
         </div>
     </div>
 </div>
-<div align="center"><p><img src="../../images/doc_centralinstancelist.png" width="480" alt="Instance Browser (Central)" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_centralinstancelist.png" alt="Instance Browser (Central)" width="480">
+    <figcaption class="caption">Instance Browser (Central)</figcaption>
+</figure>
+</p>
 </div>
-<div align="center"><p><img src="../../images/doc_centralinstancedashboard.png" width="480" alt="Instance Dashboard (Central)" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_centralinstancedashboard.png" alt="Instance Dashboard (Central)" width="480">
+    <figcaption class="caption">Instance Dashboard (Central)</figcaption>
+</figure>
+</p>
 </div>
-<div align="center"><p><img src="../../images/doc_centralinstanceconfiguration.png" width="480" alt="Instance Configuration (Central)" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_centralinstanceconfiguration.png" alt="Instance Configuration (Central)" width="480">
+    <figcaption class="caption">Instance Configuration (Central)</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -474,13 +509,25 @@
 <p>The recommended way of working is to exclusively use the <code v-pre>CENTRAL</code> server for all tasks, e.g. pushing new product versions, changing configuration, etc. When <em>installing</em> an <strong>Instance</strong> version to the target server, the required product data is automatically transferred as part of the process.</p>
 <p>Sometimes it might still be necessary to transfer product versions from one server to another. For instance, a product version was directly pushed to <code v-pre>MANAGED</code> server <em>A</em>, but is required as well on <code v-pre>MANAGED</code> server <em>B</em>. In this case you can use the <strong>Product Synchronization</strong> wizard to copy product versions from one server to another from the <code v-pre>CENTRAL</code> server.</p>
 <p>You can find the <em>Product Synchronization</em> panel on the <strong>Products</strong> page on the <code v-pre>CENTRAL</code> server inside a given <strong>Instance Group</strong>. The additional [ <strong>Synchronize Product Versions</strong> ] button is only available on the <code v-pre>CENTRAL</code> server.</p>
-<div align="center"><p><img src="../../images/doc_centralprodsync.png" width="480" alt="Synchronize Product Versions" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_centralprodsync.png" alt="Synchronize Product Versions" width="480">
+    <figcaption class="caption">Synchronize Product Versions</figcaption>
+</figure>
+</p>
 </div>
 <p>Clicking it will open the <em>Product Synchronization</em> panel. First you need to choose a <em>direction</em> of transfer. Either transfer products <em>to</em> or <em>from</em> the <code v-pre>CENTRAL</code> server. After selecting a direction, you will have to choose the <code v-pre>MANAGED</code> server to transfer from or to.</p>
-<div align="center"><p><img src="../../images/doc_centralprodsyncserver.png" width="480" alt="Choose Server" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_centralprodsyncserver.png" alt="Choose Server" width="480">
+    <figcaption class="caption">Choose Server</figcaption>
+</figure>
+</p>
 </div>
 <p>Clicking a server will fetch available products from that server. The list will contain product versions which are not yet present on the target server. Check all you want to transfer and click [ <strong>Transfer</strong> ].</p>
-<div align="center"><p><img src="../../images/doc_centralprodsyncversion.png" width="480" alt="Choose Product Versions" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_centralprodsyncversion.png" alt="Choose Product Versions" width="480">
+    <figcaption class="caption">Choose Product Versions</figcaption>
+</figure>
+</p>
 </div>
 <p>The panel will initialize the transfer of the product version(s) in the background. You can keep track of transfers using the global activity report available from the main menu. Once a product version is transferred, it will appear in the list of available products on the target server.</p>
 
@@ -549,6 +596,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Central/Managed Specific Configuration", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Central/Managed Specific Configuration", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

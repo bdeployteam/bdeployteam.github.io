@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073212912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422158285">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Custom Certificate</title>
@@ -29,14 +29,14 @@
     <meta property="twitter:title" content="Custom Certificate">
     <meta property="twitter:description" content="By default BDeploy uses a self signed certificate for both TLS (HTTPS) traffic encryption as well as token issuing.">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.1.0.745073212912" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.750422158285" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -257,7 +257,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <doc-anchor-target id="custom-certificate" class="break-words">
     <h1>
@@ -265,7 +264,7 @@
         <span>Custom Certificate</span>
     </h1>
 </doc-anchor-target>
-<p>By default <strong>BDeploy</strong> uses a self signed certificate for both TLS (HTTPS) traffic encryption as well as token issuing. Tokens can be issued on the command line and from the User menu in the Web UI. These tokens are used to authenticate and authorize any actions performed remotely (command line, third party software, Web UI, etc.).</p>
+<p>By default <strong>BDeploy</strong> uses a self signed certificate for both TLS (HTTPS) traffic encryption as well as token issuing. Tokens can be issued on the command line and from the User menu in the Web UI. These tokens are used to authenticate and authorize any actions performed remotely (command line, third party software, Web UI, client application launcher, etc.).</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -279,14 +278,19 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Warning</h5>
-<p>By changing the certificate <strong>BDeploy</strong> uses, all existing tokens will lose their validity.</p>
+<p>By re-generating the certificate <strong>BDeploy</strong> uses, all existing tokens will lose their validity.</p>
         </div>
     </div>
 </div>
-<p>You can use the <code v-pre>certificate</code> tool to switch to another ceritificate:</p>
+<p>You can use the <code v-pre>certificate</code> tool to re-generate the internal certificate to intentionally invalidate all tokens and logins, or (which is the more common use case), you can set or update a dedicated HTTPS certificate which is then used to secure HTTPS communication only, but keep all issued tokens intact. Also tokens issued in the future will keep their validity when a custom HTTPS certificate is in use and updated later.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy certificate --update=&lt;path-to-pem&gt; --root=&lt;path-to-root&gt;</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy certificate --https=&lt;path-to-pem&gt; --root=&lt;path-to-root&gt;</code></pre>
 </doc-codeblock></div>
+<p>In case this is no longer wanted, you can revert to use the self-signed certificate for HTTPS as well again, by using the <code v-pre>--removeHttps</code> switch:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy certificate --removeHttps --root=&lt;path-to-root&gt;</code></pre>
+</doc-codeblock></div>
+<p>The <code v-pre>bdeploy certificate</code> command also offers commands to re-generate the internal certificate (<code v-pre>--regenerate</code>), revert changes to both types of certificates (<code v-pre>--revert</code>, <code v-pre>--revertHttps</code>), export certificates (<code v-pre>--export</code>, <code v-pre>--exportHttps</code>) and re-generate master tokens in case they are lost (<code v-pre>--exportToken</code>).</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -353,6 +357,6 @@
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Custom Certificate", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Custom Certificate", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

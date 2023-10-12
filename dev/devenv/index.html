@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/dev">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073208143">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422153380">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Development Setup</title>
@@ -29,15 +29,15 @@
     <meta property="twitter:title" content="Development Setup">
     <meta property="twitter:description" content="BDeploy uses the Eclipse IDE for backend- and VSCode for frontend-development. You will need:">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/dev/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.1.0.745073208143" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.750422153380" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.1.0.745073208143" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/search.js?v=3.1.0.745073208143" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.1.0.745073208143" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.1.0.745073208143" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.750422153380" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/search.js?v=3.5.0.750422153380" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.750422153380" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.750422153380" defer></script>
 
     <style>
         table td {
@@ -258,7 +258,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <doc-anchor-target id="development-setup" class="break-words">
     <h1>
@@ -279,7 +278,7 @@
 <li>You need to have the <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials">Angular Essentials</a> extension installed.</li>
 </ul>
 </li>
-<li><a href="https://www.npmjs.com/get-npm">NPM</a>
+<li><a href="https://nodejs.org/de">Node.js</a> including npm, currently 18.x LTS.
 <ul>
 <li>Some people prefer to use <a href="https://github.com/nvm-sh/nvm">NVM</a></li>
 </ul>
@@ -327,8 +326,7 @@
 <li>Change to the repository directory: <code v-pre>cd bdeploy</code></li>
 <li>Start the <code v-pre>gradle</code> build
 <ul>
-<li><code v-pre>./gradlew build</code> on Linux (<code v-pre>bash</code>)</li>
-<li><code v-pre>.\gradlew.bat build</code> on Windows (<code v-pre>cmd.exe</code>)</li>
+<li><code v-pre>./gradlew build</code></li>
 <li>The build should conclude with a <code v-pre>BUILD SUCCESSFUL</code> message</li>
 </ul>
 </li>
@@ -348,7 +346,7 @@
 </doc-anchor-target>
 <p>To be able to build, start and debug BDeploy backend applications from the Eclipse IDE, you need to perform some extra setup steps:</p>
 <ul>
-<li>On the command line (see <doc-anchor-trigger to="#repository-and-gradle-build">Repository and Gradle Build</doc-anchor-trigger>) generate the <strong>Eclipse IDE</strong> project files by running <code v-pre>./gradlew eclipse</code> (<code v-pre>gradlew eclipse</code> on windows).</li>
+<li>On the command line (see <doc-anchor-trigger to="#repository-and-gradle-build">Repository and Gradle Build</doc-anchor-trigger>) generate the <strong>Eclipse IDE</strong> project files by running <code v-pre>./gradlew eclipse</code>.</li>
 <li>Start the <strong>Eclipse IDE</strong> - choose a workspace, e.g. <code v-pre>/work/bdeploy/workspace</code>.</li>
 <li>Open the <strong>Git Repositories</strong> view.</li>
 <li>Click <strong>Add existing local repository</strong>, browse to the repository location (e.g. <code v-pre>/work/bdeploy/bdeploy</code>) and add it.</li>
@@ -525,6 +523,6 @@ systemProp.linux64jdk=/path/to/jdks/linux/jdk-17.0.1+12
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Development Setup", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Development Setup", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073212912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422158285">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Client Applications</title>
@@ -31,14 +31,14 @@
     <meta property="twitter:description" content="A dedicated overview page shows all configured Client Applications of an entire Instance Group. This page can be opened by navigating to the desired ">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_clientapps.png">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.1.0.745073212912" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.750422158285" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -259,7 +259,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <doc-anchor-target id="client-applications" class="break-words">
     <h1>
@@ -268,7 +267,11 @@
     </h1>
 </doc-anchor-target>
 <p>A dedicated overview page shows all configured <strong>Client Applications</strong> of an entire <strong>Instance Group</strong>. This page can be opened by navigating to the desired <strong>Instance Group</strong>. Clicking on the [ <strong>Client Applications</strong> ] button in the main navigation menu opens the overview page.</p>
-<div align="center"><p><img src="../../images/doc_clientapps.png" width="480" alt="Client Applications" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_clientapps.png" alt="Client Applications" width="480">
+    <figcaption class="caption">Client Applications</figcaption>
+</figure>
+</p>
 </div>
 <p>The page will offer the appropriate <strong>Client Application</strong> based on the operating system that the user is currently using. Switching the OS can be done by updating the default grouping of the <strong>Client Applications</strong> page.</p>
 <doc-anchor-target id="launcher">
@@ -404,7 +407,11 @@ Start -FilePath &quot;./Installer.exe&quot; -ArgumentList &quot;/Unattended&quot
     </h2>
 </doc-anchor-target>
 <p>The <strong>Launcher</strong> (<em>BDeploy.exe</em>) can also be launched directly without any arguments. In this case a dialog is shown that lists all locally installed applications.</p>
-<div align="center"><p><img src="../../images/manualdoc_clientbrowserapp.png" width="480" alt="Client Application Browser" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/manualdoc_clientbrowserapp.png" alt="Client Application Browser" width="480">
+    <figcaption class="caption">Client Application Browser</figcaption>
+</figure>
+</p>
 </div>
 <p>The <strong>Customize &amp; Launch</strong> context menu entry allows the user to to modify the command line argumements that is used to start the application. A new dialog is opened that lists the existing command line arguments as currently defined by the <strong>active instance version</strong>.</p>
 <p>Additional arguments can be added or existing ones can be modified or deleted as desired. This option is especially useful for testing. Arguments can be modified locally without the need to change the global <a href="../instance/index.html#instance-configuration">Instance Configuration</a>. The modified arguments are not saved and they need to be re-done the next time the application is launched.</p>
@@ -472,7 +479,11 @@ Start -FilePath &quot;./Installer.exe&quot; -ArgumentList &quot;/Unattended&quot
     </h3>
 </doc-anchor-target>
 <p>Whenever a new <strong>Product version</strong> is <strong>Activated</strong> on the server the administrator <strong>needs</strong> to launch the application <strong>once</strong> to deploy the new update. Not doing that will lead to an error that each user receives when trying to launch the application. The <strong>Launcher</strong> always checks for updates and tries to install them. Using an outdated application is not permitted and thus users will not be able to launch the application any more.</p>
-<div align="center"><p><img src="../../images/manualdoc_clientlauncherupdaterequired.png" width="480" alt="Required Software Update" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/manualdoc_clientlauncherupdaterequired.png" alt="Required Software Update" width="480">
+    <figcaption class="caption">Required Software Update</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -620,6 +631,6 @@ When starting the launcher make sure to always use the same path.</code></pre>
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Client Applications", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Client Applications", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

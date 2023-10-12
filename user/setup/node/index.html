@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073212912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422158285">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Nodes</title>
@@ -31,14 +31,14 @@
     <meta property="twitter:description" content="Nodes are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a...">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_admin_nodes_details.png">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.1.0.745073212912" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.750422158285" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -259,7 +259,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <doc-anchor-target id="nodes" class="break-words">
     <h1>
@@ -336,10 +335,18 @@ This is also the name displayed when configuring applications to run on certain 
     </h3>
 </doc-anchor-target>
 <p>The administrative Web UI provides the ability to add, remove, repair, and otherwise manage <strong>nodes</strong>.</p>
-<div align="center"><p><img src="../../images/doc_admin_nodes_details.png" width="480" alt="Node Administration" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_nodes_details.png" alt="Node Administration" width="480">
+    <figcaption class="caption">Node Administration</figcaption>
+</figure>
+</p>
 </div>
 <p>To add a new node, click the <code v-pre>Add Node...</code> button. In the resulting panel you can drag and drop the <code v-pre>node-ident.txt</code> file created during the initialization step. This will prefill the panel with the required information. You can change node-name and URI according to your needs before saving.</p>
-<div align="center"><p><img src="../../images/doc_admin_nodes_add.png" width="480" alt="Add Node" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_nodes_add.png" alt="Add Node" width="480">
+    <figcaption class="caption">Add Node</figcaption>
+</figure>
+</p>
 </div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -393,7 +400,11 @@ This is also the name displayed when configuring applications to run on certain 
 <li>Information about the server is pre-filled in the form. Double check the information and press [ <strong>Save</strong> ] to start the migration.</li>
 <li>You will be promted to confirm the migration. Click [ <strong>Migrate</strong> ] to continue.</li>
 </ol>
-<div align="center"><p><img src="../../images/doc_admin_nodes_conversion.png" width="480" alt="Node Conversion" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_admin_nodes_conversion.png" alt="Node Conversion" width="480">
+    <figcaption class="caption">Node Conversion</figcaption>
+</figure>
+</p>
 </div>
 <p>After the migration is complete, the server will be available as a <code v-pre>NODE</code> on the new master server. All the <strong>Instances</strong> have been migrated to the new master server.</p>
 <div class="flex mb-6">
@@ -498,6 +509,6 @@ This is also the name displayed when configuring applications to run on certain 
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Nodes", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Nodes", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

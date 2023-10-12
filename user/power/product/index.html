@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.1.0.745073212912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.750422158285">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.1.0">
+    <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
     <title>Integration of a new product</title>
@@ -31,15 +31,15 @@
     <meta property="twitter:description" content="This chapter is intended for those who want to integrate their own Product to be deployed with BDeploy">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/yaml-overview.png">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("/user/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.1.0.745073212912" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.750422158285" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.1.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.1.0.745073212912" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.1.0.745073212912" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.750422158285" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.750422158285" defer></script>
 
     <style>
         table td {
@@ -260,7 +260,6 @@
                             <div class="docs-markdown" id="docs-content">
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
-                
                                 <!-- Page content  -->
 <doc-anchor-target id="integration-of-a-new-product" class="break-words">
     <h1>
@@ -315,7 +314,11 @@
         </div>
     </div>
 </div>
-<div align="center"><p><img src="../../images/yaml-overview.png" width="480" alt="YAML relation overview" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/yaml-overview.png" alt="YAML relation overview" width="480">
+    <figcaption class="caption">YAML relation overview</figcaption>
+</figure>
+</p>
 </div>
 <p>This picture illustrates the relation between the various YAML files which are (can be) used to define a product. Almost all product information and data revolves around <strong>BDeploy</strong> enabling a user to configure instances and applications.</p>
 <doc-anchor-target id="app-infoyaml">
@@ -717,8 +720,9 @@ runtimeDependencies: &lt;19&gt;
        <template #title><strong>Attribute</strong>: <code v-pre>type</code></template>
 <p><em>Default:</em> <code v-pre>STRING</code></p>
 <p><em>Mandatory:</em> no</p>
-<p><em>Description:</em> Type of parameter. This defines the type of input field used to edit the parameter. Available are <code v-pre>STRING</code>, <code v-pre>NUMERIC</code>, <code v-pre>BOOLEAN</code>, <code v-pre>PASSWORD</code>, <code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code>.</p>
+<p><em>Description:</em> Type of parameter. This defines the type of input field used to edit the parameter. Available are <code v-pre>STRING</code>, <code v-pre>NUMERIC</code>, <code v-pre>BOOLEAN</code>, <code v-pre>PASSWORD</code>, <code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code>. Since <em>5.6.0</em>, <code v-pre>ENVIRONMENT</code> is available as an additional type.</p>
 <p>The <code v-pre>CLIENT_PORT</code> and <code v-pre>SERVER_PORT</code> types are treated like <code v-pre>NUMERIC</code> parameters throughout the whole application, with the exception of the dialogs that deal with ports specifically.</p>
+<p>The <code v-pre>ENVIRONMENT</code> type will cause a parameter to be put in the process&#x27; environment instead of its command line. The name of the environment variable is specified using the <code v-pre>parameter</code> field. The fields <code v-pre>hasValue</code>, <code v-pre>valueAsSeparateArg</code> and <code v-pre>valueSeparator</code> must not be set on <code v-pre>ENVIRONMENT</code> parameters, and are ignored. Instead the Operating System specific Environment Variable handling is applied.</p>
    </doc-panel>
    <doc-panel id="attribute-customeditor">
        <template #title><strong>Attribute</strong>: <code v-pre>customEditor</code></template>
@@ -887,6 +891,10 @@ runtimeDependencies: &lt;19&gt;
 <td>The unique ID of the endpoint. This ID can be used by an authorized third-pary application to instruct <strong>BDeploy</strong> to call this endpoint and return the result.</td>
 </tr>
 <tr>
+<td><code v-pre>enabled</code></td>
+<td>Any <a href="../../user/instance/index.html#link-expressions">Link Expression</a>. If the expression evaluates to a non-empty value which does <em>not</em> equal <code v-pre>false</code>, the endpoint is considered available/enabled and presented to the user both for configuration and usage. This can be used to tie an endpoint to the configuration of a certain parameter, e.g. the server port configuration which will host the endpoint.</td>
+</tr>
+<tr>
 <td><code v-pre>type</code></td>
 <td>Currently <code v-pre>DEFAULT</code>, <code v-pre>PROBE_STARTUP</code> and <code v-pre>PROBE_ALIVE</code> are supported. Endpoints referenced by <em>startup</em> or <em>lifeness probes</em> in the <code v-pre>processControl</code> section of a server process need to have the according type. If not specified, the <code v-pre>DEFAULT</code> type is assumed.</td>
 </tr>
@@ -928,6 +936,24 @@ runtimeDependencies: &lt;19&gt;
 </tr>
 </tbody>
 </table>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>Endpoints which are not considered <em>enabled</em> are not required to be configured by the user, but are still reported via public API.</p>
+        </div>
+    </div>
 </div>
 <doc-anchor-target id="product-infoyaml">
     <h2>
@@ -1061,7 +1087,8 @@ appInfo:
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-yaml"><code v-pre class="language-yaml">id: server-with-sleep &lt;1&gt;
 application: server-app
-name: &quot;Server With Sleep&quot;
+name: &quot;Server With Sleep (Oracle)&quot;
+processName: &quot;Server With Sleep&quot;
 description: &quot;Server application which sleeps before exiting&quot;
 preferredProcessControlGroup: &quot;First Group&quot; &lt;2&gt;
 
@@ -1087,6 +1114,7 @@ startParameters: &lt;5&gt;
 </doc-codeblock></div>
 <ol>
 <li>An <strong>Application Template</strong> must have an ID. This can be used to reference it from an <strong>Instance Template</strong>.</li>
+<li><code v-pre>name</code> is the value user sees when he chooses the template in UI. <code v-pre>processName</code> is the name of the resulting process configuration.</li>
 <li>The preferred process control group is used to determine which process control group to use when applying the application template. This is only used if a <strong>Process Control Group</strong> with this name exists in the instance configuration. <strong>Process Control Groups</strong> can be pre-configured in an <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger>.</li>
 <li>A template can define (and use) template variables which are mandatory input by the user when using the template. A template variable can be referenced in parameter value definitions using the <code v-pre>{{T:varname}}</code> syntax. If the parameter value is numeric, you can also use simple arithmetic operations on the template variable like <code v-pre>{{T:varname:+10}}</code> which will add 10 to the numeric value of the template variable.</li>
 <li>A template can define arbitrary process control parameters to further control the default process control settings.</li>
@@ -1858,12 +1886,9 @@ ext { &lt;3&gt;
 }
 
 task validateProduct(type: io.bdeploy.gradle.BDeployValidationTask, dependsOn: installDist) { &lt;4&gt;
-  if(project.hasProperty('vtoken')) {
-    validationServer {
-      uri = 'https://localhost:7701/api'
-      token = project.getProperty('vtoken')
-    }
-  }   
+  validationServer {
+    useLogin = true
+  }
 
   validationYaml = file('bdeploy/product-validation.yaml')
 }
@@ -1894,13 +1919,10 @@ task pushProduct(type: io.bdeploy.gradle.BDeployPushTask, dependsOn: buildProduc
   of buildProduct
 
   target.servers {
-    if(project.hasProperty('server')) {
       myServer { &lt;7&gt;
-        uri = project.getProperty('server')
-        token = project.getProperty('token')
+        useLogin = true
         instanceGroup = project.getProperty('instanceGroup')
       }
-    }
   }
 }
 
@@ -1910,10 +1932,10 @@ task pushProduct(type: io.bdeploy.gradle.BDeployPushTask, dependsOn: buildProduc
 <li>Applies the plugin <strong>BDeploy</strong> gradle plugin.</li>
 <li>Sets the project version. <strong>Gradle</strong> does not strictly require a version, and uses &#x27;unspecified&#x27; as default. <strong>BDeploy</strong> requires <em>some</em> sort of version, and setting it for the whole project is good practice.</li>
 <li>Calculate a build date, which will be substituted instead of the <code v-pre>SNAPSHOT</code> in the version. This is optional, you could just plain use the version set. The actual <code v-pre>buildVersion</code> used later when building the product is derived from the project version and the <code v-pre>buildDate</code>.</li>
-<li>The <code v-pre>BDeployValidationTask</code> can be used to validate product information before actually building the product. The <doc-anchor-trigger to="#product-validationyaml"><code v-pre>product-validation.yaml</code></doc-anchor-trigger> file must contain a reference to the <code v-pre>product.info.yaml</code> used, as well as references to all <code v-pre>app-info.yaml</code> files.</li>
+<li>The <code v-pre>BDeployValidationTask</code> can be used to validate product information before actually building the product. The <doc-anchor-trigger to="#product-validationyaml"><code v-pre>product-validation.yaml</code></doc-anchor-trigger> file must contain a reference to the <code v-pre>product.info.yaml</code> used, as well as references to all <code v-pre>app-info.yaml</code> files. The <code v-pre>validationServer</code> can set <code v-pre>useLogin = true</code> to use logins created on the system using the <code v-pre>bdeploy login</code> command. You can provide a login name using <code v-pre>login = xx</code>, or specify <code v-pre>uri</code> and <code v-pre>token</code> manually to have full control.</li>
 <li>This task will actually build the product with the configured version. The actual data about the product is loaded from <code v-pre>bdeploy/product-info.yaml</code>, which we will create in a second. Note that this task depends on <code v-pre>installDist</code>, which will unpack the binary distribution of the application in this project into a folder, so <strong>BDeploy</strong> can import the individual files. Depending on the type of application and the way it is built, there might be different ways to achieve this.</li>
 <li>If <code v-pre>buildProduct</code> built a product, this task will package it as a ZIP file. Note that a ZIP will always contain <em>all of</em> the product, whereas <code v-pre>pushProduct</code> can push only required deltas which are not present on the target server.</li>
-<li>The <code v-pre>pushProduct</code> task can push required deltas to one or more configured target servers. When calling this task, you need to set according project properties, e.g. using <code v-pre>-Pserver=https://server:7701/api</code> or in <code v-pre>~/.gradle/gradle.properties</code>.</li>
+<li>The <code v-pre>pushProduct</code> task can push required deltas to one or more configured target servers. Each server can set <code v-pre>useLogin = true</code> to use logins created on the system using the <code v-pre>bdeploy login</code> command. You can provide a login name using <code v-pre>login = xx</code>, or specify <code v-pre>uri</code> and <code v-pre>token</code> manually to have full control. In addition the target <code v-pre>instanceGroup</code> must be specified for pushing.</li>
 <li>Multiple target servers can be specified in the <code v-pre>target.servers</code> section. The plugin will push to each of them.</li>
 </ol>
 <p>Next we need the required descriptors for the product and the application. For this sample, the information will be the bare minimum, please see <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger> and <doc-anchor-trigger to="#product-infoyaml"><code v-pre>product-info.yaml</code></doc-anchor-trigger> for all supported content.</p>
@@ -2048,18 +2070,34 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
 </doc-anchor-target>
 <p><strong>BDeploy</strong> provides integration into <a href="https://www.eclipse.org/tea/">Eclipse TEA</a>. Using this integration, you can easily export <strong>Eclipse RCP</strong> based products as <strong>Applications</strong> and bundle them into a custom <strong>Product</strong>.</p>
 <p>Once you have required files, select <strong>TEA &gt; TEA Build Library &gt; Build BDeploy Product...</strong>. You will be prompted which <strong>Product</strong> to build and where to put the resulting product. You can choose to create a self-contained ZIP, or to push deltas to a selected server.</p>
-<div align="center"><p><img src="../../images/tea_build_product.png" width="480" alt="TEA Integration Product Build" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/tea_build_product.png" alt="TEA Integration Product Build" width="480">
+    <figcaption class="caption">TEA Integration Product Build</figcaption>
+</figure>
+</p>
 </div>
 <p>You can configure multiple servers by using the [ <strong>Add</strong> ], [ <strong>Delete</strong> ] and [ <strong>Edit</strong> ] buttons.</p>
-<div align="center"><p><img src="../../images/tea_edit_server.png" width="480" alt="TEA BDeploy Server configuration" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/tea_edit_server.png" alt="TEA BDeploy Server configuration" width="480">
+    <figcaption class="caption">TEA BDeploy Server configuration</figcaption>
+</figure>
+</p>
 </div>
 <p>Enter a description and a URL. You will then be able to use the [ <strong>Login</strong> ] button to create a token for the server.</p>
-<div align="center"><p><img src="../../images/tea_login.png" width="480" alt="TEA BDeploy Login" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/tea_login.png" alt="TEA BDeploy Login" width="480">
+    <figcaption class="caption">TEA BDeploy Login</figcaption>
+</figure>
+</p>
 </div>
 <p>Now you can use the [ <strong>Load Groups</strong> ] to fetch a list of existing instance groups from the server to choose from. Finally, use the verity button to check whether the entered information is correct.</p>
 <p>When confirming the build dialog, on first run you will be prompted to login to the Software Repositories <strong>BDeploy</strong> server configured in the TEA <strong>BDeploy</strong> preferences.</p>
 <p>Since product builds are stored in the workspace, you can choose to re-push a previous build of the product (to the same or another server). Select <strong>TEA &gt; TEA Build Library &gt; Push BDeploy Product...</strong> to do so. You will be presented a list of available local product versions and the configured <strong>BDeploy</strong> servers.</p>
-<div align="center"><p><img src="../../images/tea_push_product.png" width="480" alt="TEA Integration Product Push" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/tea_push_product.png" alt="TEA Integration Product Push" width="480">
+    <figcaption class="caption">TEA Integration Product Push</figcaption>
+</figure>
+</p>
 </div>
 <doc-anchor-target id="productsyaml">
     <h3>
@@ -2092,7 +2130,11 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
   &quot;Product Two&quot;: &quot;prod-2-build.yaml&quot;</code></pre>
 </doc-codeblock></div>
 <p>The path to the <code v-pre>products.yaml</code> has to be configured in the <strong>Eclipse TEA</strong> preferences</p>
-<div align="center"><p><img src="../../images/tea_preferences_products.png" width="480" alt="TEA Integration Products Preference" /></p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/tea_preferences_products.png" alt="TEA Integration Products Preference" width="480">
+    <figcaption class="caption">TEA Integration Products Preference</figcaption>
+</figure>
+</p>
 </div>
 <p>The preferences also allow to configure a <strong>BDeploy</strong> server whos <a href="../runtimedependencies/index.html#software-repositories">Software Repositories</a> are used during resolution of <a href="../runtimedependencies/index.html#runtime-dependencies">Runtime Dependencies</a>. You will be asked to log into this server once when starting a product build.</p>
 <doc-anchor-target id="product-buildyaml">
@@ -2185,6 +2227,6 @@ applications:
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Integration of a new product", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Integration of a new product", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
