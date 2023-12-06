@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/dev">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.751469489528">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.755166599758">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,13 +31,13 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.751469489528" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.755166599758" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.751469489528" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.755166599758" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/search.js?v=3.5.0.751469489528" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.751469489528" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.751469489528" defer></script>
+    <script data-cfasync="false" src="../resources/js/search.js?v=3.5.0.755166599758" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.755166599758" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.755166599758" defer></script>
 
     <style>
         table td {
@@ -267,8 +267,8 @@
 </doc-anchor-target>
 <p>BDeploy uses the <strong>Eclipse IDE</strong> for backend- and <strong>VSCode</strong> for frontend-development. You will need:</p>
 <ul>
-<li>Get the latest <a href="https://adoptium.net/">OpenJDK 17</a>.</li>
-<li>Get the latest <a href="https://www.eclipse.org/downloads/">Eclipse IDE</a> including Java 17 support.
+<li>Get the latest <a href="https://adoptium.net/">OpenJDK 21</a>.</li>
+<li>Get the latest <a href="https://www.eclipse.org/downloads/">Eclipse IDE</a> including Java 21 support.
 <ul>
 <li>You need to have the <a href="https://marketplace.eclipse.org/content/launch-configuration-dsl">Launch Configuration DSL (LcDsl)</a> extension installed.</li>
 </ul>
@@ -278,7 +278,7 @@
 <li>You need to have the <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials">Angular Essentials</a> extension installed.</li>
 </ul>
 </li>
-<li><a href="https://nodejs.org/de">Node.js</a> including npm, currently 18.x LTS.
+<li><a href="https://nodejs.org/de">Node.js</a> including npm, currently 20.x LTS.
 <ul>
 <li>Some people prefer to use <a href="https://github.com/nvm-sh/nvm">NVM</a></li>
 </ul>
@@ -292,7 +292,7 @@
     </h2>
 </doc-anchor-target>
 <ul>
-<li>You will want to set the <code v-pre>JAVA_HOME</code> environment variable to point to the path where you extracted the <strong>OpenJDK 17</strong> package to assure that the build picks up the correct Java.</li>
+<li>You will want to set the <code v-pre>JAVA_HOME</code> environment variable to point to the path where you extracted the <strong>OpenJDK 21</strong> package to assure that the build picks up the correct Java.</li>
 <li>Make sure that the <code v-pre>npm</code> command works from the command line where you will run <code v-pre>gradle</code> builds (<code v-pre>cmd.exe</code> on Windows, <code v-pre>bash</code> on Linux).</li>
 <li>Install the <strong>Angular CLI</strong> globally for easier working by running <code v-pre>npm install -g @angular/cli</code>.</li>
 </ul>
@@ -436,9 +436,9 @@
 <p>You can build distribution packages for other platforms by installing their respective JDKs. You need to specify those JDKs as properties during the build. To simplify the process, you can create these entries in <code v-pre>~/.gradle/gradle.properties</code>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">~/.gradle/gradle.properties</div>
-<pre class="language-properties"><code v-pre class="language-properties">systemProp.win64jdk=/path/to/jdks/windows/jdk-17.0.1+12
-systemProp.linux64jdk=/path/to/jdks/linux/jdk-17.0.1+12
-#systemProp.mac64jdk=/path/to/jdks/mac/jdk-17.0.1+12/Contents/Home</code></pre>
+<pre class="language-properties"><code v-pre class="language-properties">systemProp.win64jdk=/path/to/jdks/windows/jdk-21
+systemProp.linux64jdk=/path/to/jdks/linux/jdk-21
+#systemProp.mac64jdk=/path/to/jdks/mac/jdk-21/Contents/Home</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>

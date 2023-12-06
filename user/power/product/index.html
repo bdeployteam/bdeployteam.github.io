@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.751469494583">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.755166604850">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -33,13 +33,13 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.751469494583" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.755166604850" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.751469494583" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.755166604850" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.751469494583" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.751469494583" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.751469494583" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.755166604850" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.755166604850" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.755166604850" defer></script>
 
     <style>
         table td {
@@ -1339,8 +1339,10 @@ groups: &lt;7&gt;
     startParameters: &lt;11&gt;
     - id: param.sleep
       value: &quot;{{T:sleep-timeout}}&quot;
+    applyTo: &lt;12&gt;
+    - LINUX
 - name: &quot;Client Apps&quot;
-  type: CLIENT &lt;12&gt;
+  type: CLIENT &lt;13&gt;
   description: &quot;All client applications&quot;
   
   applications:
@@ -1359,6 +1361,7 @@ groups: &lt;7&gt;
 <li>When referencing an application template, it is possible to define <em>overrides</em> for the template variables (<code v-pre>{{X:...}}</code>) used in the template. Use provided values will <strong>not</strong> be taken into account for this variable when applying the template, instead the <em>fixed</em> value will be used.</li>
 <li>A template group contains one or more applications to configure, which each can consist of process control configuration and parameter definitions for the start command of the resulting process - exactly the same fields are valid as for <strong>Application Tempaltes</strong> - except for the <code v-pre>id</code> which is not required.</li>
 <li>Start command parameters are referenced by their ID, defined in <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</li>
+<li>Using <code v-pre>applyTo</code>, an application can be restricted to be applied only to certain nodes, running a specified operating system. A list of supported operating systems can be specified. If this is not specified, the application is assumed to be capable of being applied to nodes running any of all supported operating systems.</li>
 <li>A template group can have either type <code v-pre>SERVER</code> (default) or <code v-pre>CLIENT</code>. A group may only contain applications of a compatible type, i.e. only <code v-pre>SERVER</code> applications in <code v-pre>SERVER</code> type group. When applying the group to a node, applications will be instantiated to processes according to their supported OS and the nodes physical OS. If a <code v-pre>SERVER</code> application does not support the target nodes OS, it is ignored.</li>
 </ol>
 <p>An instance template will be presented to the user when visiting an <a href="../../user/instance/index.html#instance-templates">Empty Instance</a>.</p>
