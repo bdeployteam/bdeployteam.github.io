@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -33,67 +33,69 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -271,12 +273,12 @@
 <ul>
 <li>Each <strong>Instance Group</strong> has a list of <code v-pre>MANAGED</code> servers attached to it.</li>
 <li>Each <strong>Instance</strong> is associated with exactly <strong>one</strong> of those <code v-pre>MANAGED</code> servers.</li>
-<li>Synchonization to the <code v-pre>CENTRAL</code> servers data store is done on demand (through a button in the Web UI). When synchonizing from a <code v-pre>MANAGED</code> to a <code v-pre>CENTRAL</code> server, only <em>configuration</em> data is synchronized. Actual <strong>Product</strong> and <strong>Application</strong> data is only synchronized when explicitly requested through the <doc-anchor-trigger to="#product-synchronization">Product Synchronization</doc-anchor-trigger> page on the <code v-pre>CENTRAL</code> server.</li>
-<li>It is possible to create a new <strong>instance version</strong> on the <code v-pre>CENTRAL</code> server from a <strong>product version</strong> which has been pushed only to the <code v-pre>CENTRAL</code> server (but not to the <code v-pre>MANAGED</code>). In this case, the required product data is sent to the <code v-pre>MANAGED</code> server once <strong>install</strong> is performed on this <strong>instance version</strong>. In this scenarion <strong>install</strong> <strong>has to be</strong> performed on the <code v-pre>CENTRAL</code> server.</li>
+<li>Synchronization to the <code v-pre>CENTRAL</code> servers data store is done on demand (through a button in the Web UI). When synchronizing from a <code v-pre>MANAGED</code> to a <code v-pre>CENTRAL</code> server, only <em>configuration</em> data is synchronized. Actual <strong>Product</strong> and <strong>Application</strong> data is only synchronized when explicitly requested through the <doc-anchor-trigger to="#product-synchronization">Product Synchronization</doc-anchor-trigger> page on the <code v-pre>CENTRAL</code> server.</li>
+<li>It is possible to create a new <strong>instance version</strong> on the <code v-pre>CENTRAL</code> server from a <strong>product version</strong> which has been pushed only to the <code v-pre>CENTRAL</code> server (but not to the <code v-pre>MANAGED</code>). In this case, the required product data is sent to the <code v-pre>MANAGED</code> server once <strong>install</strong> is performed on this <strong>instance version</strong>. In this scenario <strong>install</strong> <strong>must be</strong> performed on the <code v-pre>CENTRAL</code> server.</li>
 </ul>
 <p>On The <code v-pre>MANAGED</code> server side:</p>
 <ul>
-<li>Creation and editing of <strong>Instance Group</strong> (title, description, logo, etc.) is not possible locally. This has to happen on the <code v-pre>CENTRAL</code> server, as information <strong>must</strong> match.</li>
+<li>Creation and editing of <strong>Instance Groups</strong> (title, description, logo, etc.) is not possible locally. This has to happen on the <code v-pre>CENTRAL</code> server, as information <strong>must</strong> match.</li>
 <li>Creation and editing of <strong>Instances</strong> (applications, parameters, etc.) is possible just the same as with a <code v-pre>STANDALONE</code> server. New data will be synchronized to the <code v-pre>CENTRAL</code> server the next time the <code v-pre>CENTRAL</code> server requests such a synchronization.</li>
 </ul>
 <div class="flex mb-6">
@@ -303,7 +305,7 @@
         <span>Attaching an Instance Group to a Central Server</span>
     </h2>
 </doc-anchor-target>
-<p>You will notice that a <code v-pre>MANAGED</code> server will greet slightly different on the welcome page. Instead of a [ <strong>Add Instance Group</strong> ] button, there is a [ <strong>Link Instance Group</strong> ] button, and the text reads accordingly.</p>
+<p>You will notice that a <code v-pre>MANAGED</code> server will greet slightly differently on the welcome page. Instead of an [ <strong>Add Instance Group</strong> ] button, there is a [ <strong>Link Instance Group</strong> ] button.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_managedempty.png" alt="Managed Server Welcome Page" width="480">
     <figcaption class="caption">Managed Server Welcome Page</figcaption>
@@ -314,7 +316,7 @@
 <ul>
 <li>The <code v-pre>MANAGED</code> server needs to share some details about itself with the <code v-pre>CENTRAL</code> server. This happens either via drag &amp; drop of an element from the <code v-pre>MANAGED</code> servers Web UI to the <code v-pre>CENTRAL</code> servers Web UI, or manually by downloading the <code v-pre>MANAGED</code> servers information and dropping that file to the <code v-pre>CENTRAL</code> servers Web UI.</li>
 <li>On the <code v-pre>CENTRAL</code> server, you will choose the <strong>Instance Group</strong> which should be attached. The <strong>Instance Group</strong> <em>must</em> exist on the <code v-pre>CENTRAL</code> server. If the <code v-pre>MANAGED</code> server happens to have an <strong>Instance Group</strong> of the same name already (i.e. if the <code v-pre>MANAGED</code> server was migrated from <code v-pre>STANDALONE</code>), this is perfectly fine - <strong>Instances</strong> in this <strong>Instance Group</strong> will not be lost, they will be attached to the <code v-pre>CENTRAL</code> server instead.</li>
-<li>The <code v-pre>CENTRAL</code> server will try to contact the <code v-pre>MANAGED</code> server. You can provide an alternate URL to accomodate for hostname differences (different DNS, NAT, VPN, etc.) before it does so.</li>
+<li>The <code v-pre>CENTRAL</code> server will try to contact the <code v-pre>MANAGED</code> server. You can provide an alternative URL to accomodate for hostname differences (different DNS, NAT, VPN, etc.) before it does so.</li>
 <li>Once contacted, the <code v-pre>CENTRAL</code> server will push the <strong>Instance Group</strong> meta-data to the <code v-pre>MANAGED</code> server, as the information on the <code v-pre>CENTRAL</code> is the single source of <strong>Instance Group</strong> configuration.</li>
 <li>Finally, the <code v-pre>CENTRAL</code> server will fetch all potentially existing <strong>Instance</strong> information from the <code v-pre>MANAGED</code> server. This is only relevant if the <code v-pre>MANAGED</code> server was migrated from <code v-pre>STANDALONE</code> mode before.</li>
 </ul>
@@ -333,7 +335,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>You can distiguish <code v-pre>CENTRAL</code> and <code v-pre>MANAGED</code> servers by the according banner in the expanded main menu in the Web UI.</p>
+<p>You can distinguish <code v-pre>CENTRAL</code> and <code v-pre>MANAGED</code> servers by the according banner in the expanded main menu in the Web UI.</p>
         </div>
     </div>
 </div>
@@ -353,8 +355,8 @@
 </div>
 <p>You will be prompted to drop <code v-pre>MANAGED</code> server information on a drop-zone. You can find the counterpiece on the <code v-pre>MANAGED</code> server. To initiate attaching on the <code v-pre>MANAGED</code> server, click the [ <strong>Link Instance Group</strong> ] button on the main <strong>Instance Group</strong> page (which is the initial start page of the Web UI). This will open the <em>Link Instance Group</em> panel.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_managedlinkgroup.png" alt="Link Instance Group" width="480">
-    <figcaption class="caption">Link Instance Group</figcaption>
+    <img src="../../images/doc_managedlinkgroup.png" alt="Link Instance Group Panel" width="480">
+    <figcaption class="caption">Link Instance Group Panel</figcaption>
 </figure>
 </p>
 </div>
@@ -379,8 +381,8 @@
 </div>
 <p>Once the information is dropped on the according drop zone on the <code v-pre>CENTRAL</code> server, it will fill out the information. Adapt the URL if required and fill in a human readable description of the <code v-pre>MANAGED</code> server. The URL should be reachable from the <code v-pre>CENTRAL</code> server and accomodate for any hostname mapping required (NAT, VPN, DNS, ...).</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_centrallinkserverfilled.png" alt="Filled out Link panel" width="480">
-    <figcaption class="caption">Filled out Link panel</figcaption>
+    <img src="../../images/doc_centrallinkserverfilled.png" alt="Filled out Link Panel" width="480">
+    <figcaption class="caption">Filled out Link Panel</figcaption>
 </figure>
 </p>
 </div>
@@ -399,7 +401,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>Servers which do not have an actual connection to each other, but are linked manually, will not be able to synchronize instance information. The link is purely <em>informational</em>, to hint that the server <em>exists</em>. More possibilities for synchronization may be added in the future.</p>
+<p>Servers which do not have an actual connection to each other, but are linked manually, will not be able to synchronize instance information unless a mail configuration is set up. See <a href="../../experts/mail/index.html">E-Mail Sending and Receiving</a> for details.</p>
         </div>
     </div>
 </div>
@@ -430,7 +432,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>The [ <strong>Synchronize</strong> ] <strong>only</strong> exists on the <code v-pre>CENTRAL</code> server.</p>
+<p>The [ <strong>Synchronize</strong> ] button <strong>only</strong> exists on the <code v-pre>CENTRAL</code> server.</p>
         </div>
     </div>
 </div>
@@ -476,7 +478,7 @@
         <span>Migrating between Modes</span>
     </h2>
 </doc-anchor-target>
-<p>There is a limited possibility to change the <em>purpose</em> of an already intialized <strong>BDeploy</strong> server root directory. It is only possible to migrate from <code v-pre>STANDALONE</code> to <code v-pre>MANAGED</code> and vice versa, as data is <em>mostly</em> compatible. A command line tooling exists for this purpose:</p>
+<p>There is a limited possibility to change the <em>purpose</em> of an already initialized <strong>BDeploy</strong> server root directory. It is only possible to migrate from <code v-pre>STANDALONE</code> to <code v-pre>MANAGED</code> and vice versa, as data is <em>mostly</em> compatible. A command line tooling exists for this purpose:</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -491,12 +493,12 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>Migration from <code v-pre>STANDALONE</code> or <code v-pre>MANAGED</code> to <code v-pre>NODE</code> is available using a dedicated workflow from the Web UI. This allows to start off an installation as <code v-pre>STANDALONE</code> and later on migrate that to be a <code v-pre>NODE</code> in a larger setup. See <a href="../../setup/node/index.html#convertmigrate-to-node">Convert/Migrate to Node</a></p>
+<p>Migration from <code v-pre>STANDALONE</code> or <code v-pre>MANAGED</code> to <code v-pre>NODE</code> is available using a dedicated workflow from the Web UI. This allows to start off an installation as <code v-pre>STANDALONE</code> and later on migrate that to be a <code v-pre>NODE</code> in a larger setup. See <a href="../../setup/node/index.html#convertmigrate-to-node">Convert/Migrate to Node</a>.</p>
         </div>
     </div>
 </div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy config --root=&lt;root-directory&gt; --mode=MANAGED</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy config --root=&lt;/path/to/root&gt; --mode=MANAGED</code></pre>
 </doc-codeblock></div>
 <p>The value for mode may be <code v-pre>MANAGED</code> or <code v-pre>STANDALONE</code>. The actual migration of data may be performed later on when first accessing them. For instance, when clicking an <strong>Instance Group</strong>, you might be prompted that an <strong>Instance Group</strong> requires to be attached to a <code v-pre>CENTRAL</code> server in <code v-pre>MANAGED</code> mode, and the <strong>Attach to Central Server</strong> wizard is launched.</p>
 <doc-anchor-target id="product-synchronization">
@@ -507,25 +509,25 @@
 </doc-anchor-target>
 <p>When working with <code v-pre>CENTRAL</code> and <code v-pre>MANAGED</code> servers, products can be uploaded to either of the servers. However, a product version must be available on the server which is used to update and configure an <strong>Instance</strong> using that version.</p>
 <p>The recommended way of working is to exclusively use the <code v-pre>CENTRAL</code> server for all tasks, e.g. pushing new product versions, changing configuration, etc. When <em>installing</em> an <strong>Instance</strong> version to the target server, the required product data is automatically transferred as part of the process.</p>
-<p>Sometimes it might still be necessary to transfer product versions from one server to another. For instance, a product version was directly pushed to <code v-pre>MANAGED</code> server <em>A</em>, but is required as well on <code v-pre>MANAGED</code> server <em>B</em>. In this case you can use the <strong>Product Synchronization</strong> wizard to copy product versions from one server to another from the <code v-pre>CENTRAL</code> server.</p>
+<p>Sometimes, it might be necessary to transfer product versions from one server to another. For instance, a product version was directly pushed to <code v-pre>MANAGED</code> server <em>A</em>, but is required as well on <code v-pre>MANAGED</code> server <em>B</em>. In this case you can use the <strong>Product Synchronization</strong> wizard to copy product versions from one server to another from the <code v-pre>CENTRAL</code> server.</p>
 <p>You can find the <em>Product Synchronization</em> panel on the <strong>Products</strong> page on the <code v-pre>CENTRAL</code> server inside a given <strong>Instance Group</strong>. The additional [ <strong>Synchronize Product Versions</strong> ] button is only available on the <code v-pre>CENTRAL</code> server.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_centralprodsync.png" alt="Synchronize Product Versions" width="480">
-    <figcaption class="caption">Synchronize Product Versions</figcaption>
+    <img src="../../images/doc_centralprodsync.png" alt="Synchronize Product Versions Panel" width="480">
+    <figcaption class="caption">Synchronize Product Versions Panel</figcaption>
 </figure>
 </p>
 </div>
 <p>Clicking it will open the <em>Product Synchronization</em> panel. First you need to choose a <em>direction</em> of transfer. Either transfer products <em>to</em> or <em>from</em> the <code v-pre>CENTRAL</code> server. After selecting a direction, you will have to choose the <code v-pre>MANAGED</code> server to transfer from or to.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_centralprodsyncserver.png" alt="Choose Server" width="480">
-    <figcaption class="caption">Choose Server</figcaption>
+    <img src="../../images/doc_centralprodsyncserver.png" alt="Choose Server Panel" width="480">
+    <figcaption class="caption">Choose Server Panel</figcaption>
 </figure>
 </p>
 </div>
 <p>Clicking a server will fetch available products from that server. The list will contain product versions which are not yet present on the target server. Check all you want to transfer and click [ <strong>Transfer</strong> ].</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_centralprodsyncversion.png" alt="Choose Product Versions" width="480">
-    <figcaption class="caption">Choose Product Versions</figcaption>
+    <img src="../../images/doc_centralprodsyncversion.png" alt="Choose Product Versions Panel" width="480">
+    <figcaption class="caption">Choose Product Versions Panel</figcaption>
 </figure>
 </p>
 </div>

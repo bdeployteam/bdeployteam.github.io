@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Deployment</title>
     <meta name="title" content="Deployment">
-    <meta name="description" content="The process of making one instance version up and running is called deployment. This includes the steps ">
+    <meta name="description" content="The process of getting one instance version up and running is called deployment. This includes the steps ">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://bdeploy.io/user/user/deployment/index.html">
@@ -21,77 +21,79 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/user/user/deployment/index.html">
     <meta property="og:title" content="Deployment">
-    <meta property="og:description" content="The process of making one instance version up and running is called deployment. This includes the steps ">
+    <meta property="og:description" content="The process of getting one instance version up and running is called deployment. This includes the steps ">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/user/user/deployment/index.html">
     <meta property="twitter:title" content="Deployment">
-    <meta property="twitter:description" content="The process of making one instance version up and running is called deployment. This includes the steps ">
+    <meta property="twitter:description" content="The process of getting one instance version up and running is called deployment. This includes the steps ">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -264,24 +266,24 @@
         <span>Deployment</span>
     </h1>
 </doc-anchor-target>
-<p>The process of making one <strong>instance version</strong> up and running is called <strong>deployment</strong>. This includes the steps <strong>installation</strong>, <strong>activation</strong> and <strong>process control</strong>.</p>
-<p>A <strong>Deployment</strong> can be performed on the <strong>current</strong> <strong>instance version</strong> or on a <strong>historic</strong> <strong>instance version</strong>. All <strong>instance versions</strong> can be deployed using the <a href="../history/index.html#instance-history">Instance History</a> page - select a version and use the according actions. For the most common case of deplying the <strong>current</strong> <strong>instance version</strong>, the <strong>deployment</strong> is performed by clicking the [ <strong>Install</strong> ] and [ <strong>Activate</strong> ] buttons on the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a> after configuring an <strong>instance</strong>.</p>
+<p>The process of getting one <strong>instance version</strong> up and running is called <strong>deployment</strong>. This includes the steps <strong>installation</strong>, <strong>activation</strong> and <strong>process control</strong>.</p>
+<p>A <strong>Deployment</strong> can be performed on the <strong>current</strong> <strong>instance version</strong> or on a <strong>historic</strong> <strong>instance version</strong>. All <strong>instance versions</strong> can be deployed using the <a href="../history/index.html#instance-history">Instance History</a> page - select a version and use the according actions. For the most common case of deploying the <strong>current</strong> <strong>instance version</strong>, the <strong>deployment</strong> is performed by clicking the [ <strong>Install</strong> ] and [ <strong>Activate</strong> ] buttons on the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a> after configuring an <strong>instance</strong>.</p>
 <doc-anchor-target id="installation">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#installation">#</doc-anchor-trigger>
         <span>Installation</span>
     </h2>
 </doc-anchor-target>
-<p>All available <strong>instance versions</strong> can be installed via the action [ <strong>Install</strong> ] on the <a href="../history/index.html#instance-history">Instance History</a> page or the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a>. Clicking on that button will transfer all files that the application requires to the configured target nodes. More specific that means the applications are extracted from the internal storage that <strong>BDeploy</strong> is using and written to the hard disk.</p>
+<p>All available <strong>instance versions</strong> can be installed via the action [ <strong>Install</strong> ] on the <a href="../history/index.html#instance-history">Instance History</a> page or the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a>. Clicking on that button will transfer all files that the application requires to the configured target nodes. This means the applications are extracted from the internal storage that <strong>BDeploy</strong> is using and written to the hard disk.</p>
 <p>Installed versions occupy additional disk space on the target node. Applications are installed in a shared <strong>pool</strong> directory on the target node. Thus multiple different <strong>processes</strong> referring to the same <strong>application</strong> are written only once to the hard disk. This minimizes the required disk space and leads to faster <strong>installation</strong> times as only the first <strong>process</strong> needs to be be written to the hard disk. The kind of pooling used can be configured in <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a> by the product vendor.</p>
-<p>Multiple <strong>instance versions</strong> can be installed simultanously. This allows very quick switching beteen them, for instance in case of a failed upgrade to immediately switch back to the previous software version.</p>
+<p>Multiple <strong>instance versions</strong> can be installed simultaneously. This allows very quick switching between them. This is useful in case of a failed upgrade because it allows to immediately switch back to the previous software version.</p>
 <doc-anchor-target id="activation">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#activation">#</doc-anchor-trigger>
         <span>Activation</span>
     </h2>
 </doc-anchor-target>
-<p>Exactly one of the installed <strong>instance versions</strong> can be marked as <em>active</em> with the action [ <strong>Activate</strong> ]. The <strong>process control</strong> always refers to the <em>active</em> version. Versions that are just installed but not active cannot be started. Only <strong>processes</strong> from the <strong>active</strong> version can be started. The <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a> allows control of the <strong>active</strong> versions <strong>processes</strong>.</p>
+<p>Exactly one of the installed <strong>instance versions</strong> can be marked as <em>active</em> with the action [ <strong>Activate</strong> ]. The <strong>process control</strong> always refers to the <em>active</em> version. Versions that are just installed but not active cannot be started. Only <strong>processes</strong> from the <strong>active</strong> version can be started. The <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a> allows control of the <strong>processes</strong> of the <strong>active</strong> version.</p>
 <p>Marking a desired version as <em>active</em> does not require to stop all running <strong>processes</strong>. An <em>outdated</em> hint is displayed on the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a> when processes from <em>non-active</em> versions are still running. They can be manually stopped if desired and then started from the currently active version.</p>
 
                                 

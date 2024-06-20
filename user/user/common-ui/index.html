@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Common UI Elements</title>
     <meta name="title" content="Common UI Elements">
-    <meta name="description" content="BDeploy tries to follow a few quite simple patterns regarding UI/UX.">
+    <meta name="description" content="BDeploy tries to follow a few simple patterns regarding UI/UX.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://bdeploy.io/user/user/common-ui/index.html">
@@ -21,79 +21,81 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/user/user/common-ui/index.html">
     <meta property="og:title" content="Common UI Elements">
-    <meta property="og:description" content="BDeploy tries to follow a few quite simple patterns regarding UI/UX.">
+    <meta property="og:description" content="BDeploy tries to follow a few simple patterns regarding UI/UX.">
     <meta property="og:image" content="https://bdeploy.io/user/images/doc_searchbarenabled.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/user/user/common-ui/index.html">
     <meta property="twitter:title" content="Common UI Elements">
-    <meta property="twitter:description" content="BDeploy tries to follow a few quite simple patterns regarding UI/UX.">
+    <meta property="twitter:description" content="BDeploy tries to follow a few simple patterns regarding UI/UX.">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_searchbarenabled.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -266,11 +268,11 @@
         <span>Common UI Elements</span>
     </h1>
 </doc-anchor-target>
-<p><strong>BDeploy</strong> tries to follow a few quite simple patterns regarding UI/UX. The common parts of the UI which is the same for nearly all pages is described in this section.</p>
-<doc-anchor-target id="search">
+<p><strong>BDeploy</strong> tries to follow a few simple patterns regarding UI/UX. The common parts of the UI, which are the same for nearly all pages, are described in this section.</p>
+<doc-anchor-target id="search-bar">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#search">#</doc-anchor-trigger>
-        <span>Search</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#search-bar">#</doc-anchor-trigger>
+        <span>Search Bar</span>
     </h2>
 </doc-anchor-target>
 <p>The search bar at the top of the screen can be used to search in the current page. It will filter all tables and lists in the current page, regardless of where the table is located.</p>
@@ -280,7 +282,7 @@
 </figure>
 </p>
 </div>
-<p>The search bar might be disabled in case there is no element on the screen currently which can be filtered.</p>
+<p>The search bar might be disabled if no elements on the current screen can be filtered.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_searchbardisabled.png" alt="Disabled Search Bar" width="480">
     <figcaption class="caption">Disabled Search Bar</figcaption>
@@ -293,7 +295,7 @@
         <span>Panel</span>
     </h2>
 </doc-anchor-target>
-<p>The panel is the area on the left side of the screen which typically contains content related to the content in the main area. This panel is invisible by default, and slides into view when the according content is available. This is typically triggered by clicking an entry in a table or a toolbar button. An example for a panel is the <em>Create Instance Group</em> panel, which will also be one of the first panels you&#x27;ll see in the application.</p>
+<p>The panel is the area on the right side of the screen which typically contains details related to the content in the main area. This panel is hidden by default and slides into view whenever necessarry. This is typically triggered by clicking an entry in a table or a toolbar button. An example for a panel is the <em>Add Instance Group</em> panel, which will also be one of the first panels you&#x27;ll see in the application.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_addgrouppanelempty.png" alt="Panel" width="480">
     <figcaption class="caption">Panel</figcaption>
@@ -333,7 +335,7 @@
 </p>
 </div>
 <p>Groups are represented as collapsable sections in the table. Multiple levels of grouping are supported in table mode. Press the [ <strong>+</strong> ] button to add an additional level of grouping and choose a criteria to group. Pressing the [ <strong>-</strong> ] button will remove the last level of grouping.</p>
-<p>The <em>Save as local preset</em> button will save the current data grouping settings as preset in the browser storage. This will be the default grouping settings whenever you open the same page again.</p>
+<p>The <em>Save preset</em> button will save the current data grouping settings as preset in the browser storage. This will be the default grouping settings whenever you open the same page again.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">

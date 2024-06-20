@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Service</title>
     <meta name="title" content="Service">
-    <meta name="description" content="The bdeploy-linux64-x.x.x.zip package contains a template file from which a systemd service can be created. It is">
+    <meta name="description" content="The bdeploy-linux64-X.Y.Z.zip package contains a template file from which a systemd service can be created. It is located in the ">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://bdeploy.io/user/setup/service/index.html">
@@ -21,77 +21,79 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/user/setup/service/index.html">
     <meta property="og:title" content="Service">
-    <meta property="og:description" content="The bdeploy-linux64-x.x.x.zip package contains a template file from which a systemd service can be created. It is">
+    <meta property="og:description" content="The bdeploy-linux64-X.Y.Z.zip package contains a template file from which a systemd service can be created. It is located in the ">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/user/setup/service/index.html">
     <meta property="twitter:title" content="Service">
-    <meta property="twitter:description" content="The bdeploy-linux64-x.x.x.zip package contains a template file from which a systemd service can be created. It is">
+    <meta property="twitter:description" content="The bdeploy-linux64-X.Y.Z.zip package contains a template file from which a systemd service can be created. It is located in the ">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -264,17 +266,15 @@
         <span>Service</span>
     </h1>
 </doc-anchor-target>
-<doc-anchor-target id="linux-service-systemd">
+<doc-anchor-target id="linux">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#linux-service-systemd">#</doc-anchor-trigger>
-        <span>Linux Service (SYSTEMD)</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#linux">#</doc-anchor-trigger>
+        <span>Linux</span>
     </h2>
 </doc-anchor-target>
-<p>The <code v-pre>bdeploy-linux64-x.x.x.zip</code> package contains a template file from which a systemd service can be created. It is
-located in the <code v-pre>etc</code> directory and named <code v-pre>bdeploy-minion.service</code>.</p>
+<p>The <code v-pre>bdeploy-linux64-X.Y.Z.zip</code> package contains a template file from which a systemd service can be created. It is located in the <code v-pre>etc</code> directory and named <code v-pre>bdeploy-minion.service</code>.</p>
 <p>The template itself contains instructions on how to create a valid service from it.</p>
-<p>You can copy the service template to a different filename while installing into the systemd service directory. The
-filename will later on be the service name. This allows to install multiple <strong>BDeploy</strong> services on a single machine.</p>
+<p>You can copy the service template to a different filename while installing it into the systemd service directory. The filename will later on be the service name. This allows installing multiple <strong>BDeploy</strong> services on a single machine.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -289,27 +289,43 @@ filename will later on be the service name. This allows to install multiple <str
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>To get systemd to recognize the service(s) after copying the service file(s) use the <code v-pre>systemctl daemon-reload</code> command (as root).
+<p>To get <em>systemd</em> to recognize the service(s) after copying the service file(s) use the <code v-pre>systemctl daemon-reload</code> command (as root).
 Once installed, you can control the service using <code v-pre>systemctl</code>.</p>
         </div>
     </div>
 </div>
-<doc-anchor-target id="windows-service">
+<doc-anchor-target id="windows">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#windows-service">#</doc-anchor-trigger>
-        <span>Windows Service</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#windows">#</doc-anchor-trigger>
+        <span>Windows</span>
     </h2>
 </doc-anchor-target>
-<p>The <code v-pre>bdeploy-win64-x.x.x.zip</code> package contains a batch script to create a new Windows service. The script is located in
-the <code v-pre>etc</code> directory and is named <code v-pre>bdeploy-service-install.bat</code></p>
+<p>The <code v-pre>bdeploy-win64-X.Y.Z.zip</code> package contains a batch script to create a new Windows service. The script is located in the <code v-pre>etc</code> directory and is named <code v-pre>bdeploy-service-install.bat</code></p>
 <p>The script must be called with administrative privileges and it expects the following arguments:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">--master | --node      Start a master or node (only controls the name of the service.)
-&lt;Path-to-minion-bat&gt;   Absolute path to the bdeploy batch file. 
-                       Sample: C:\BDeploy\server\bin\bdeploy.bat
-&lt;Path-to-store-files&gt;  Absolute path to the data directory. Make sure to not include a trailing backslash.
-                       Sample: C:\BDeploy\data</code></pre>
-</doc-codeblock></div>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--master | --node</td>
+<td>Start a master or node (only controls the name of the service).</td>
+</tr>
+<tr>
+<td>&lt;\path\to\minion\batch.bat&gt;</td>
+<td>Absolute path to the bdeploy batch file. Sample: C:\BDeploy\server\bin\bdeploy.bat</td>
+</tr>
+<tr>
+<td>&lt;\path\to\store\files&gt;</td>
+<td>Absolute path to the data directory. Make sure to not include a trailing backslash. Sample: C:\BDeploy\data</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -323,11 +339,11 @@ the <code v-pre>etc</code> directory and is named <code v-pre>bdeploy-service-in
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Warning</h5>
-<p>By default the service runs as <em>Local System</em> but you can and should change that afterwards by using the services.msc application. Simply configure the desired account in the <em>Log On</em> tab of the services management console. We <strong>strongly</strong> recommend to use a non-priviledged user to run the <strong>BDeploy</strong> service.</p>
+<p>By default the service runs as <em>Local System</em> but you can and should change that afterwards by using the <em>services.msc</em> application. Configure the desired account in the <em>Log On</em> tab of the services management console. We <strong>strongly</strong> recommend to use a non-privileged user to run the <strong>BDeploy</strong> service.</p>
         </div>
     </div>
 </div>
-<p>Once installed, you can start the service using services.msc or by calling <code v-pre>net start BDeployMaster | BDeployNode</code>.</p>
+<p>Once installed, you can start the service using <em>services.msc</em> or by calling <code v-pre>net start &lt;BDeployMaster|BDeployNode&gt;</code>.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -360,7 +376,7 @@ the <code v-pre>etc</code> directory and is named <code v-pre>bdeploy-service-in
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>Application logs (stdout, stderror) are written to a log file that is stored in <code v-pre>&lt;path-to-store-files&gt;\log\service.log</code></p>
+<p>Application logs (stdout, stderror) are written to a log file that is stored in <code v-pre>&lt;\path\to\store\files&gt;\log\service.log</code>.</p>
         </div>
     </div>
 </div>
@@ -396,8 +412,7 @@ the <code v-pre>etc</code> directory and is named <code v-pre>bdeploy-service-in
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>You need to adopt the batch script when you want to create multiple services on the same machine. Simply adopt the
-<code v-pre>MINION_SERVICE_PREFIX</code> to use another prefix for the service.</p>
+<p>You need to modify the batch script when you want to create multiple services on the same machine. Simply adopt the <code v-pre>MINION_SERVICE_PREFIX</code> to use another prefix for the service.</p>
         </div>
     </div>
 </div>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Instance History</title>
     <meta name="title" content="Instance History">
-    <meta name="description" content="Whenever saving the Instance Configuration, BDeploy creates a new instance version. Each historic version is avilable from the ">
+    <meta name="description" content="Whenever saving the Instance Configuration, BDeploy creates a new instance version. Each historic version is available from the ">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://bdeploy.io/user/user/history/index.html">
@@ -21,79 +21,81 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/user/user/history/index.html">
     <meta property="og:title" content="Instance History">
-    <meta property="og:description" content="Whenever saving the Instance Configuration, BDeploy creates a new instance version. Each historic version is avilable from the ">
+    <meta property="og:description" content="Whenever saving the Instance Configuration, BDeploy creates a new instance version. Each historic version is available from the ">
     <meta property="og:image" content="https://bdeploy.io/user/images/doc_history.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/user/user/history/index.html">
     <meta property="twitter:title" content="Instance History">
-    <meta property="twitter:description" content="Whenever saving the Instance Configuration, BDeploy creates a new instance version. Each historic version is avilable from the ">
+    <meta property="twitter:description" content="Whenever saving the Instance Configuration, BDeploy creates a new instance version. Each historic version is available from the ">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_history.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -266,7 +268,7 @@
         <span>Instance History</span>
     </h1>
 </doc-anchor-target>
-<p>Whenever saving the <a href="../instance/index.html#instance-configuration">Instance Configuration</a>, <strong>BDeploy</strong> creates a new <strong>instance version</strong>. Each historic version is avilable from the <doc-anchor-trigger to="#instance-history">Instance History</doc-anchor-trigger>. You can <strong>view</strong> all those changes, <strong>who</strong> made them and <strong>when</strong> they were made here.</p>
+<p>Whenever saving the <a href="../instance/index.html#instance-configuration">Instance Configuration</a>, <strong>BDeploy</strong> creates a new <strong>instance version</strong>. Each historic version is available from the <doc-anchor-trigger to="#instance-history">Instance History</doc-anchor-trigger>. Here you can <strong>view</strong> all those changes and see <strong>who</strong> made them and <strong>when</strong> they were made.</p>
 <p>There are three types of history entries: <em>Creation</em>, <em>Deployment</em> and <em>Runtime</em> events. Each event has a title, the corresponding <strong>version</strong>, as well as the <strong>time</strong> the event happened.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -300,22 +302,22 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>If you haven&#x27;t made any changes, only one entry will be shown: <em>Version 1: Created</em>. This is the initial (empty) <strong>instance version</strong>.</p>
+<p>If you have not made any changes, only one entry will be shown: <em>Version 1: Created</em>. This is the initial (empty) <strong>instance version</strong>.</p>
         </div>
     </div>
 </div>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_history.png" alt="Instance history" width="480">
-    <figcaption class="caption">Instance history</figcaption>
+    <img src="../../images/doc_history.png" alt="Instance History" width="480">
+    <figcaption class="caption">Instance History</figcaption>
 </figure>
 </p>
 </div>
 <p>To see details for a certain <strong>history entry</strong>, click it. This will open the details panel. This panel offers different kinds of information and actions depending on the type of history entry.</p>
-<p><em>Creation</em> events are special in that they represent a specific <strong>instance version</strong>, and allow you to <strong>install</strong>, <strong>activate</strong> and <strong>compare</strong> them to other <strong>instance versions</strong>. Given the proper permissions, you can also <strong>delete</strong> them - which will remove this specific version completely from the server, no restoring possible.</p>
+<p><em>Creation</em> events are special in that they represent a specific <strong>instance version</strong> and allow you to <strong>install</strong>, <strong>activate</strong> and <strong>compare</strong> them to other <strong>instance versions</strong>. Given the proper permissions, you can also <strong>delete</strong> them - which will remove this specific version completely from the server, <strong>no restoring possible</strong>.</p>
 <p><strong>Instance versions</strong> can also be <strong>exported</strong> from the details. The export produces a <em>ZIP</em> file which contains <strong>all</strong> data that represents an instance version. This can be used to create a new <strong>instance version</strong> on a <strong>different</strong> instance from the current configuration of <strong>this</strong> instance by importing the <em>ZIP</em> in the <a href="../instance/index.html#instance-configuration">Instance Configuration</a> of the other instance.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_historyentry.png" alt="History Entry" width="480">
-    <figcaption class="caption">History Entry</figcaption>
+    <img src="../../images/doc_historyentry.png" alt="Instance History Entry Details" width="480">
+    <figcaption class="caption">Instance History Entry Details</figcaption>
 </figure>
 </p>
 </div>
@@ -342,8 +344,8 @@
 <p><em>Deployment</em> events are: <code v-pre>INSTALLED</code>,<code v-pre>ACTIVATED</code>,<code v-pre>DEACTIVATED</code>,<code v-pre>UNINSTALLED</code>.</p>
 <p><em>Deployment</em> events will show up once you <strong>enabled</strong> them using the toolbar. <em>Deployment</em> events allow tracking of who deployed what and when.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_historydeployment.png" alt="Runtime Events" width="480">
-    <figcaption class="caption">Runtime Events</figcaption>
+    <img src="../../images/doc_historydeployment.png" alt="Creation and Deployment Events" width="480">
+    <figcaption class="caption">Creation and Deployment Events</figcaption>
 </figure>
 </p>
 </div>
@@ -354,7 +356,7 @@
     </h2>
 </doc-anchor-target>
 <p><em>Runtime</em> events are: <code v-pre>STARTED</code>, <code v-pre>STOPPED</code>, <code v-pre>CRASHED</code>, <code v-pre>RESTARTED</code>, <code v-pre>CRASHED PERMANENTLY</code>.</p>
-<p><em>Runtime</em> events will show up once you <strong>enabled</strong> them using the toolbar. <em>Runtime</em> events can be used to track <strong>process</strong> state history. You will be able to see who started/stopped <strong>processes</strong> and when. Events not induced by a user action are shown using <em>BDeploy System</em> as user, e.g. when a <strong>proces</strong> is restarted after a crash.</p>
+<p><em>Runtime</em> events will show up once you <strong>enabled</strong> them using the toolbar. <em>Runtime</em> events can be used to track <strong>process</strong> state history. You will be able to see who started/stopped <strong>processes</strong> and when. Events not induced by a user action are shown using <em>BDeploy System</em> as user, e.g. when a <strong>process</strong> is restarted after a crash.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -374,8 +376,8 @@
     </div>
 </div>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_historyruntime.png" alt="Runtime Events" width="480">
-    <figcaption class="caption">Runtime Events</figcaption>
+    <img src="../../images/doc_historyruntime.png" alt="Creation and Runtime Events" width="480">
+    <figcaption class="caption">Creation and Runtime Events</figcaption>
 </figure>
 </p>
 </div>

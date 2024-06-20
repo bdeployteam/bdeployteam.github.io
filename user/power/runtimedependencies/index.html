@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Runtime Dependencies</title>
     <meta name="title" content="Runtime Dependencies">
-    <meta name="description" content="As you saw before ( app-info.yaml), Applications can declare dependencies to third-party Manifests. These ">
+    <meta name="description" content="As previously described in app-info.yaml, Applications can declare dependencies to third-party Manifests">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://bdeploy.io/user/power/runtimedependencies/index.html">
@@ -21,79 +21,81 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/user/power/runtimedependencies/index.html">
     <meta property="og:title" content="Runtime Dependencies">
-    <meta property="og:description" content="As you saw before ( app-info.yaml), Applications can declare dependencies to third-party Manifests. These ">
+    <meta property="og:description" content="As previously described in app-info.yaml, Applications can declare dependencies to third-party Manifests">
     <meta property="og:image" content="https://bdeploy.io/user/images/doc_softwarerepo.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/user/power/runtimedependencies/index.html">
     <meta property="twitter:title" content="Runtime Dependencies">
-    <meta property="twitter:description" content="As you saw before ( app-info.yaml), Applications can declare dependencies to third-party Manifests. These ">
+    <meta property="twitter:description" content="As previously described in app-info.yaml, Applications can declare dependencies to third-party Manifests">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_softwarerepo.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -266,20 +268,20 @@
         <span>Runtime Dependencies</span>
     </h1>
 </doc-anchor-target>
-<p>As you saw before (<a href="../product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>), <strong>Applications</strong> can declare dependencies to third-party <strong>Manifests</strong>. These <strong>Manifests</strong> are hosted in <strong>Software Repositories</strong> on the <strong>BDeploy</strong> Server.</p>
-<p>To make them available on the server, you need to:</p>
+<p>As previously described in <a href="../product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>, <strong>Applications</strong> can declare dependencies to third-party <strong>Manifests</strong>. These <strong>Manifests</strong> are hosted in <strong>Software Repositories</strong> on the <strong>BDeploy</strong> Server.</p>
+<p>To make these <strong>Manifests</strong> available on the server, you need to:</p>
 <ul>
 <li>Use <code v-pre>bhive import</code> to import the directory containing the third-party software into a local <strong>BHive</strong>.</li>
 <li>Use <code v-pre>bhive push</code> to push the created <strong>Manifest</strong> to the <strong>Software Repository</strong> of your choice.</li>
 </ul>
-<p>Alternatively the Web UI provides a mechanism to upload arbitrary software to <strong>Software Repositories</strong>.</p>
+<p>Alternatively, the Web UI provides a mechanism to upload arbitrary software to <strong>Software Repositories</strong>.</p>
 <doc-anchor-target id="manifest-naming">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#manifest-naming">#</doc-anchor-trigger>
         <span>Manifest Naming</span>
     </h2>
 </doc-anchor-target>
-<p>Third party software <strong>Manifests</strong> can have basically any name. If you want to provide different <strong>Manifests</strong> per target operating system though, you will have to follow a simple naming rule: append the operating system name to the <strong>Manifest</strong> name part, e.g.:</p>
+<p>Third party software <strong>Manifests</strong> can have basically any name. However, if you want to provide different <strong>Manifests</strong> per target operating system, you will have to follow a simple naming rule: append the operating system name to the <strong>Manifest</strong> name part, e.g.:</p>
 <ul>
 <li><code v-pre>my/external/software/windows:1.0.0</code></li>
 <li><code v-pre>my/external/software/linux:1.0.0</code></li>
@@ -306,7 +308,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>Included runtime dependencies will not show up on the target server&#x27;s Web UI anywhere. Especially there is no <doc-anchor-trigger to="#software-repositories">Software Repository</doc-anchor-trigger> created automatically for any third-party software. It is simply included in the product.</p>
+<p>Included runtime dependencies will not show up on the target server&#x27;s Web UI anywhere. There is no <doc-anchor-trigger to="#software-repositories">Software Repository</doc-anchor-trigger> created automatically for any third-party software. It is simply included in the product.</p>
         </div>
     </div>
 </div>
@@ -326,11 +328,11 @@
 <doc-anchor-target id="upload-software">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#upload-software">#</doc-anchor-trigger>
-        <span>Upload software</span>
+        <span>Upload Software</span>
     </h2>
 </doc-anchor-target>
 <p>To upload external software, open a software repository and click on the [ <strong>Upload Software</strong> ] button in the toolbar. Then click on <strong>browse</strong> or <strong>drop files</strong>. You can upload zip packages.</p>
-<p>After uploading arbitraty content, you need to specify the <strong>name</strong> of the software, the <strong>version</strong> and the supported <strong>operating systems</strong>.
+<p>After uploading arbitrary content, you need to specify the <strong>name</strong> of the software, the <strong>version</strong> and the supported <strong>operating systems</strong>.
 If you already have a package in a BHive format or a package including a product descriptor containing all of this metadata, the available information will be used automatically.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_softwarerepofillinfo.png" alt="External Software Upload" width="480">
@@ -338,14 +340,14 @@ If you already have a package in a BHive format or a package including a product
 </figure>
 </p>
 </div>
-<p>After all requested information is entered, click <strong>Import</strong> to finally import the files to the <strong>Software Repository</strong>.</p>
+<p>After all requested information is entered, click <strong>Import</strong> to import the files to the <strong>Software Repository</strong>.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_softwarerepouploadsuccess.png" alt="External Software Import" width="480">
     <figcaption class="caption">External Software Import</figcaption>
 </figure>
 </p>
 </div>
-<p>If the upload was succesful, the software for each operating system will show up.</p>
+<p>If the upload was successful, the software for each operating system will show up.</p>
 <p>The available software packages and products can be viewed and <strong>downloaded</strong> if required.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_softwarerepodetails.png" alt="Software Details" width="480">
@@ -359,14 +361,32 @@ If you already have a package in a BHive format or a package including a product
         <span>Software Repositories Access</span>
     </h2>
 </doc-anchor-target>
-<p><strong>Software Repositories</strong> are created and managed by global administrators. A <strong>Software Repository</strong> is always visible and readable for all users (exception: <code v-pre>CLIENT</code> permission users). <code v-pre>WRITE</code> permissions are required to manage the software packages in the repository. To be able to upload software, a user therefore requires <code v-pre>ADMIN</code> or <code v-pre>WRITE</code> permissions either globally, or assigned in the <strong>Software Repository Permissions</strong> panel.</p>
+<p><strong>Software Repositories</strong> are created and managed by global administrators. A <strong>Software Repository</strong> needs <code v-pre>READ</code> permission to be visible and readable. <code v-pre>WRITE</code> permissions are required to manage the software packages in the repository. Therefore, to upload software, a user requires <code v-pre>ADMIN</code> or <code v-pre>WRITE</code> permissions either globally or assigned in the <strong>Software Repository Permissions</strong> panel.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_softwarerepopermissions.png" alt="Software Repository Permissions" width="480">
     <figcaption class="caption">Software Repository Permissions</figcaption>
 </figure>
 </p>
 </div>
-<p>The <strong>Software Repository Permissions</strong> panel works very similar to the <a href="../../user/instancegroup/index.html#instance-group-access"><strong>Instance Group Permissions</strong></a>.</p>
+<p>The <strong>Software Repository Permissions</strong> panel works similarly to the <a href="../../user/instancegroup/index.html#instance-group-access"><strong>Instance Group Permissions</strong></a>.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>You can make <strong>Software Repository</strong> public by assigning local <code v-pre>READ</code> permission to <a href="../../experts/system/index.html#all-users-group"><strong>All Users Group</strong></a>.</p>
+        </div>
+    </div>
+</div>
 
                                 
                                 <!-- Required only on API pages -->

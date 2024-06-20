@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -33,67 +33,69 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -267,14 +269,14 @@
     </h1>
 </doc-anchor-target>
 <p>There are several components in the Web UI which allow maintenance of <strong>BDeploy</strong>. These are not to be used during <em>normal</em> operation by users. They <em>are</em> required during setup and to maintain current software versions of <strong>BDeploy</strong> itself if not done using the <a href="../cli/index.html#bdeploy-cli"><code v-pre>bdeploy remote-master</code></a> CLI.</p>
-<p>The administration dialogs are grouped into a Configuration section  and a Housekeeping and Maintenance section.</p>
+<p>The administration dialogs are grouped into a <em>Configuration</em>, a <em>Housekeeping</em> and a <em>Maintenance</em> section.</p>
 <doc-anchor-target id="settings">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#settings">#</doc-anchor-trigger>
         <span>Settings</span>
     </h2>
 </doc-anchor-target>
-<p>In the Settings area some global settings can be made.</p>
+<p>In the <em>Settings</em> area some global settings can be configured.</p>
 <doc-anchor-target id="general">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#general">#</doc-anchor-trigger>
@@ -338,7 +340,7 @@
         <span>LDAP Auth.</span>
     </h3>
 </doc-anchor-target>
-<p>On the <strong>LDAP Auth</strong> tab, you can configure a list of LDAP servers which are queried when authenticating a user. Use drag and drop to to specify the sort order in which the LDAP servers are queried for users that log on.</p>
+<p>On the <strong>LDAP Auth</strong> tab, you can configure a list of LDAP servers which are queried when authenticating a user. Use drag and drop to specify the sort order in which the LDAP servers are queried for users that log on.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_admin_ldap_servers.png" alt="BDeploy LDAP Servers" width="480">
     <figcaption class="caption">BDeploy LDAP Servers</figcaption>
@@ -359,11 +361,11 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Tip</h5>
-<p>Technical experts can use the <em>Check</em> action to test a single LDAP server entry: <strong>BDeploy</strong> tries to establish a connection to the configured server. Some logging information, esp. Java Exceptions are shown in a popup window. Simmilarly, the <em>Test Auth.</em> action can be used to trace the entire authentication of a user.</p>
+<p>Technical experts can use the <em>Check</em> action to test a single LDAP server entry: <strong>BDeploy</strong> tries to establish a connection to the configured server. Some logging information, especially Java Exceptions, are shown in a popup window. Similarly, the <em>Test Auth.</em> action can be used to trace the entire authentication of a user.</p>
         </div>
     </div>
 </div>
-<p><strong>BDeploy</strong> uses simple bind to authenticate users. First, a simple bind is made with the configured <em>User</em>. This user must have permissions to list other users that should be able to log into <strong>BDeploy</strong>. This bind is used to query for a user where the <code v-pre>Account User Field</code> matches the user name to be authenticated. This can be any field like <code v-pre>user</code>, <code v-pre>sAMAccountName</code>, or even <code v-pre>mail</code> if you want users to log on using their E-Mail Address. Once the user to log on is found, it&#x27;s distinguished name is used to perform another simple bind using the provided password. Once this succeeds the user is authenticated and an according record is created in <strong>BDeploy</strong>. From that point on, permissions can be granted to this user.</p>
+<p><strong>BDeploy</strong> uses simple bind to authenticate users. First, a simple bind is made with the configured <em>User</em>. This user must have permissions to list other users that should be able to log into <strong>BDeploy</strong>. This bind is used to query for a user where the <code v-pre>Account User Field</code> matches the user name to be authenticated. This can be any field like <code v-pre>user</code>, <code v-pre>sAMAccountName</code>, or even <code v-pre>mail</code> if you want users to log on using their e-mail address. Once the user to log on is found, its distinguished name is used to perform another simple bind using the provided password. Once this succeeds the user is authenticated and an according record is created in <strong>BDeploy</strong>. From that point on, permissions can be granted to the user.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_admin_ldap_server_config.png" alt="BDeploy LDAP Server Configuration" width="480">
     <figcaption class="caption">BDeploy LDAP Server Configuration</figcaption>
@@ -392,11 +394,11 @@
 </tr>
 <tr>
 <td>Description</td>
-<td>Free text to describe the entry</td>
+<td>Free text to describe the entry.</td>
 </tr>
 <tr>
 <td>User</td>
-<td>The user which is used to query other users on the LDAP server (aka <em>bind user</em>)</td>
+<td>The user which is used to query other users on the LDAP server (aka <em>bind user</em>).</td>
 </tr>
 <tr>
 <td>Password</td>
@@ -424,7 +426,7 @@
 </tr>
 <tr>
 <td>Group Pattern</td>
-<td>A partial LDAP query expression used to fetch groups from LDAP e.g. (objectClass=posixGroup)</td>
+<td>A partial LDAP query expression used to fetch groups from LDAP e.g. (objectClass=posixGroup).</td>
 </tr>
 <tr>
 <td>Group Name Field</td>
@@ -452,7 +454,7 @@
     </h4>
 </doc-anchor-target>
 <p>To ensure a successful operation of the <em>Import</em> feature, it is essential to accurately configure the following fields: <em>Account and Group Base</em>, <em>Account Pattern</em>, <em>Account User Field</em>, <em>Account Name Field</em>, <em>Account E-Mail Field</em>, <em>Group Pattern</em>, <em>Group Name Field</em>, and <em>Group Description</em>.</p>
-<p>Once these configurations are correctly set up, the import process becomes a straightforward task. Simply click on the <em>Import</em> action button, and <strong>BDeploy</strong> will seamlessly handle the rest. Should any errors occur during the import attempt, the system will promptly notify you of the encountered issues.</p>
+<p>Once these configurations are set up correctly, the import process becomes a straightforward task. Simply click on the <em>Import</em> action button, and <strong>BDeploy</strong> will seamlessly handle the rest. Should any errors occur during the import attempt, the system will promptly notify you of the encountered issues.</p>
 <p>For added confidence, consider utilizing the <em>Check</em> action before initiating the <em>Import</em> process. This will help ensure a smooth connection to the LDAP Server and preemptively address any potential issues.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -478,11 +480,11 @@
         <span>LDAP Synchronization Job</span>
     </h5>
 </doc-anchor-target>
-<p><em>LDAP Synchronization Job</em> periodically imports users and groups for LDAP connections with selected <strong>Periodically sync users and groups</strong> flag.<br />
-The job is identical to <em>Import</em> action.<br />
-By default job starts every midnight, but its schedule can be reconfigured via CLI.<br />
-To reschedule a job use <code v-pre>ldap --root=... &quot;--setSyncSchedule=...&quot;</code> where <em>setSyncSchedule</em> is in cron format (e.g. 0 0 0 * * ? for midnight)<br />
-To check current schedule and last run timestamp use <code v-pre>ldap --root=... --showSyncInfo</code></p>
+<p>The <em>LDAP Synchronization Job</em> periodically imports users and groups for LDAP connections with selected <strong>Periodically sync users and groups</strong> flag.<br />
+The job is identical to the <em>Import</em> action.<br />
+By default, job starts every midnight, but its schedule can be reconfigured via the CLI.<br />
+To reschedule a job use <code v-pre>ldap --root=... &quot;--setSyncSchedule=...&quot;</code> where <em>setSyncSchedule</em> is in cron format (e.g. <code v-pre>0 0 0 \* \* ?</code> for midnight).<br />
+To check current schedule and last run timestamp use <code v-pre>ldap --root=... --showSyncInfo</code>.</p>
 <doc-anchor-target id="ldap-certificate-trust">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#ldap-certificate-trust">#</doc-anchor-trigger>
@@ -507,7 +509,7 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
         </div>
     </div>
 </div>
-<p>If the configured LDAP server uses official certificates which are not trusted by the current JVM&#x27;s default trust store, you can alternatively configure the <strong>BDeploy</strong> service to use the system <em>cacert</em> trust stores, which are typically available at a location like <code v-pre>/etc/pki/ca-trust/extracted/java/cacerts</code>. This path may be different on different Linux distributions.</p>
+<p>If the configured LDAP server uses official certificates which are not trusted by the current JVM&#x27;s default trust store, you can alternatively configure the <strong>BDeploy</strong> service to use the system <em>cacert</em> trust stores, which are typically available at a location like <code v-pre>/etc/pki/ca-trust/extracted/java/cacerts</code>. This path may be different on individual Linux distributions.</p>
 <p>To use this trust store, you need to add these parameters to the command line of <strong>BDeploy</strong>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">-Djavax.net.ssl.trustStore=/etc/pki/ca-trust/extracted/java/cacerts -Djavax.net.ssl.trustStoreType=jks -Djavax.net.ssl.trustStorePassword=changeit</code></pre>
@@ -519,7 +521,7 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
         <span>Global Attributes</span>
     </h3>
 </doc-anchor-target>
-<p>In the <em>Global Attributes</em> tab, globally available attributes for <strong>Instance Groups</strong> can be maintained. Global attributes can be used to maintain additional information for <strong>Instance Groups</strong>, which is then used as an additional grouping or sorting criteria.</p>
+<p>In the <em>Global Attributes</em> tab, globally available attributes for <strong>Instance Groups</strong> can be maintained. Global attributes can be used to configure additional information for <strong>Instance Groups</strong>, which is then used as an additional grouping or sorting criteria.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_admin_global_attributes.png" alt="BDeploy Global Attributes" width="480">
     <figcaption class="caption">BDeploy Global Attributes</figcaption>
@@ -545,7 +547,7 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
         <span>User Accounts</span>
     </h2>
 </doc-anchor-target>
-<p>The <strong>User Accounts</strong> dialog lists all users known in the system, regardless of whether they are local users or LDAP users.</p>
+<p>The <strong>User Accounts</strong> dialog lists all users known to the system, regardless of whether they are local users or LDAP users.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_admin_user_accounts.png" alt="BDeploy User Accounts" width="480">
     <figcaption class="caption">BDeploy User Accounts</figcaption>
@@ -559,7 +561,7 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
 </figure>
 </p>
 </div>
-<p>Once a <strong>User</strong> is available, you can click it to open <strong>User Details</strong> panel where detail information is shown on top as well as the list of permissions.</p>
+<p>Once a <strong>User</strong> is available, you can click it to open the <strong>User Details</strong> panel where detailed information about the user, including a list of their permissions, is displayed.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -578,7 +580,7 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
         </div>
     </div>
 </div>
-<p>The [ <strong>Deactivate Account</strong> ] resp. [ <strong>Activate Account</strong> ] allows to deactivate/activate the selected user.</p>
+<p>The [ <strong>Deactivate Account</strong> ] and [ <strong>Activate Account</strong> ] buttons allow to deactivate/activate the selected user.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_admin_user_accounts_inactive.png" alt="BDeploy User Accounts" width="480">
     <figcaption class="caption">BDeploy User Accounts</figcaption>
@@ -620,7 +622,7 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
 </tbody>
 </table>
 </div>
-<p>The [ <strong>Edit User</strong> ] opens a popup for editing the main user properties and also for changing the password.</p>
+<p>The [ <strong>Edit User</strong> ] opens a popup for editing the main user properties, as well as changing the password.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_admin_user_accounts_edit.png" alt="BDeploy User Accounts" width="480">
     <figcaption class="caption">BDeploy User Accounts</figcaption>
@@ -633,7 +635,7 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
         <span>User Groups</span>
     </h2>
 </doc-anchor-target>
-<p><strong>BDeploy</strong> supports user groups. Their purpose is to simplify security management. By adding users to groups, administrators can efficiantly manage access levels for multiple users in one place. All the permissions of an active user group will propagate to its users.</p>
+<p><strong>BDeploy</strong> supports user groups. Their purpose is to simplify security management. By adding users to groups, administrators can efficiently manage access levels for multiple users in one place. All the permissions of an active user group will propagate to its users.</p>
 <p><strong>User Groups</strong> are managed the same way as <strong>User Accounts</strong></p>
 <p>The <strong>User Groups</strong> dialog lists all groups known in the system, regardless of whether they are local or LDAP groups.</p>
 <div align="center"><p><figure class="content-center">
@@ -650,7 +652,7 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
 </p>
 </div>
 <p>Once a <strong>User Group</strong> is available, you can click it to open <strong>User Group Details</strong> panel where detail information is shown on top along with users that belong to the group as well as the list of permissions.</p>
-<p>The [ <strong>Deactivate Group</strong> ] resp. [ <strong>Activate Group</strong> ] allows to deactivate/activate the selected user.</p>
+<p>The [ <strong>Deactivate Group</strong> ] and [ <strong>Activate Group</strong> ] buttons allow to deactivate/activate the selected group.</p>
 <p>Use [ <strong>Add user to the group</strong> ] input to add user to the group. Enter user&#x27;s login name and press [ <strong>+</strong> ] icon.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_admin_user_groups_add_test_user.png" alt="BDeploy User Groups" width="480">
@@ -665,6 +667,13 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
 </figure>
 </p>
 </div>
+<doc-anchor-target id="all-users-group">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#all-users-group">#</doc-anchor-trigger>
+        <span>All Users Group</span>
+    </h3>
+</doc-anchor-target>
+<p>There is a special <strong>All Users Group</strong> that cannot be deleted or deactivated, but its permissions can be edited. Every user, both present and future, is automatically enlisted in this group. You can make any <strong>Instance Group/Software Repository</strong> effectively public by assigning <strong>READ</strong> permission to <strong>All Users Group</strong> for <strong>Instance Group/Software Repository</strong> of your choice.</p>
 <doc-anchor-target id="manual-cleanup">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#manual-cleanup">#</doc-anchor-trigger>
@@ -691,7 +700,7 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
 </tr>
 <tr>
 <td>All Nodes</td>
-<td>Delete <strong>Manifests</strong> that are not known by the master</td>
+<td>Delete <strong>Manifests</strong> that are not known by the master.</td>
 </tr>
 <tr>
 <td>All Nodes</td>
@@ -763,14 +772,14 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
     </div>
 </div>
 <p>Clicking a BHive opens the panel with maintenance actions</p>
-<p>The details tab allows access to the <em>Audit Logs</em> and the content that is stored in a BHive. It also gives access to the repair and prune operations (see CLI) from the web interface.</p>
+<p>The details tab allows access to the <em>Audit Logs</em> and the content that is stored in a BHive. It also gives access to the repair and prune operations (see <a href="../cli/index.html">CLI</a>) from the web interface.</p>
 <doc-anchor-target id="metrics">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#metrics">#</doc-anchor-trigger>
         <span>Metrics</span>
     </h2>
 </doc-anchor-target>
-<p>This dialog provides a quick way to investigate potential performance issues in the server itself by providing access to the in-memory metrics kept track by the server for all actions and requests performed.</p>
+<p>This dialog provides a quick way to investigate potential performance issues in the server itself by providing access to the in-memory metrics kept by the server for all actions.</p>
 <p>The <code v-pre>SERVER</code> metrics will show various system information about the Java Virtual Machine of the master hosting the Web UI.</p>
 <doc-anchor-target id="logging">
     <h2>
@@ -785,7 +794,7 @@ To check current schedule and last run timestamp use <code v-pre>ldap --root=...
         <span>BDeploy Update</span>
     </h2>
 </doc-anchor-target>
-<p>The <strong>BDeploy Update</strong> page from the <strong>Administration</strong> menu offers a mechanism to upload new <strong>BDeploy</strong> software versions, deploy these versions (<em>upgrade</em> and <em>downgrade</em> possible) to the running <strong>BDeploy</strong> <em>master</em> and attached <em>nodes</em>.</p>
+<p>The <strong>BDeploy Update</strong> page from the <strong>Administration</strong> menu offers a mechanism to upload new <strong>BDeploy</strong> software versions and deploy these versions (<em>upgrade</em> and <em>downgrade</em> possible) to the running <strong>BDeploy</strong> <em>master</em> and attached <em>nodes</em>.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_system_bdeploy_update.png" alt="BDeploy System Software" width="480">
     <figcaption class="caption">BDeploy System Software</figcaption>

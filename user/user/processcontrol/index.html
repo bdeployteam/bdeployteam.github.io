@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Process Control</title>
     <meta name="title" content="Process Control">
-    <meta name="description" content="For the active instance version, the process control of each Process can be displayed by clicking on it in the ">
+    <meta name="description" content="For the active Instance Version, the Process Control of each Process can be displayed by clicking it in the ">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://bdeploy.io/user/user/processcontrol/index.html">
@@ -21,79 +21,81 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/user/user/processcontrol/index.html">
     <meta property="og:title" content="Process Control">
-    <meta property="og:description" content="For the active instance version, the process control of each Process can be displayed by clicking on it in the ">
+    <meta property="og:description" content="For the active Instance Version, the Process Control of each Process can be displayed by clicking it in the ">
     <meta property="og:image" content="https://bdeploy.io/user/images/doc_dashboardprocesscontrol.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/user/user/processcontrol/index.html">
     <meta property="twitter:title" content="Process Control">
-    <meta property="twitter:description" content="For the active instance version, the process control of each Process can be displayed by clicking on it in the ">
+    <meta property="twitter:description" content="For the active Instance Version, the Process Control of each Process can be displayed by clicking it in the ">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_dashboardprocesscontrol.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -271,7 +273,7 @@
         <span>Process Control</span>
     </h1>
 </doc-anchor-target>
-<p>For the active <strong>instance version</strong>, the <strong>process control</strong> of each <strong>Process</strong> can be displayed by clicking on it in the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a>. The upper part of the <strong>Process Control</strong> panel shows the current <strong>status</strong>. Below this, the control elements for <em>starting</em>, <em>stopping</em> or <em>restarting</em> the process can be found.</p>
+<p>For the active <strong>Instance Version</strong>, the <strong>Process Control</strong> of each <strong>Process</strong> can be displayed by clicking it in the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a>. The upper part of the <strong>Process Control</strong> panel shows the current <strong>Status</strong>. Below it, the control elements for <em>starting</em>, <em>stopping</em> or <em>restarting</em> the process can be found.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_dashboardprocesscontrol.png" alt="Process Control Panel" width="480">
     <figcaption class="caption">Process Control Panel</figcaption>
@@ -284,7 +286,7 @@
         <span>Process Bulk Control</span>
     </h2>
 </doc-anchor-target>
-<p>In addition to the actions for individual processes, the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a> offers <strong>bulk control</strong> actions from its toolbar, which allow to control all processes of <strong>start type</strong> <code v-pre>INSTANCE</code>, or multiple selected processes (of any start type except <code v-pre>MANUAL_CONFIRM</code>) at once.</p>
+<p>In addition to the actions for individual processes, the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a> offers <strong>bulk control</strong> actions from its toolbar. The three instance control buttons exclusively affect processes with <strong>start type</strong> <code v-pre>INSTANCE</code>, while the three <strong>Selected Processes</strong> buttons affect all processes except for those with <strong>start type</strong> <code v-pre>MANUAL_CONFIRM</code>.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_dashboardbulkprocesscontrol.png" alt="Bulk Process Control" width="480">
     <figcaption class="caption">Bulk Process Control</figcaption>
@@ -316,7 +318,6 @@
     </h2>
 </doc-anchor-target>
 <p>The process status is visualized using an icon for each process. Hover over the icon to get details about the current status.</p>
-<div class="t1">
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -336,32 +337,31 @@
 </tr>
 <tr>
 <td><img src="../../images/manualdoc_processrunning.png" alt="" /></td>
-<td>Process is <strong>running</strong>.  If the process defined a <em>startup probe</em> (see <a href="../../power/product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>), this status is reached as soon as the startup probe indicates a successful startup of the application. Otherwise - without probe - the process immediatly reaches the <strong>running</strong> state automatically.</td>
+<td>Process is <strong>running</strong>. If the process defined a <em>startup probe</em> (see <a href="../../power/product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>), this status is reached as soon as the startup probe indicates a successful startup of the application. Otherwise - without probe - the process reaches the <strong>running</strong> state immideately.</td>
 </tr>
 <tr>
 <td><img src="../../images/manualdoc_processstopplanned.png" alt="" /></td>
 <td>Process is <strong>running</strong> but <strong>stopping</strong> has been <strong>requested</strong> by the user.</td>
 </tr>
 <tr>
-<td><img src="../../images/manualdoc_processlifenessfailed.png" alt="" /></td>
-<td>Process is <strong>running</strong>, but a defined <em>lifeness probe</em> (see <a href="../../power/product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>) indicates that the process has a problem.</td>
+<td><img src="../../images/manualdoc_processlivenessfailed.png" alt="" /></td>
+<td>Process is <strong>running</strong>, but a defined <em>liveness probe</em> (see <a href="../../power/product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>) indicates that the process has a problem.</td>
 </tr>
 <tr>
 <td><img src="../../images/manualdoc_processcrashed.png" alt="" /></td>
-<td>Process <strong>crashed</strong> unexpectedly. <strong>Process Control</strong> scheduled an automatic restart. No interaction required.</td>
+<td>Process <strong>crashed</strong> unexpectedly. <strong>Process Control</strong> scheduled an automatic restart. No interaction is required.</td>
 </tr>
 <tr>
 <td><img src="../../images/manualdoc_processcrashedpermanent.png" alt="" /></td>
-<td>Process <strong>crashed</strong> unexpectedly. <strong>Process Control</strong> gave up restarting as the last 5 attempts failed. <strong>Manual interaction required</strong>.</td>
+<td>Process <strong>crashed</strong> unexpectedly. <strong>Process Control</strong> gave up restarting as the last 5 attempts failed. <strong>Manual interaction is required</strong>.</td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
 <p>The life cycle of a process is visualized in the following state graph:</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/bdeploy_process_state_graph.png" alt="Process State Graph" width="480">
-    <figcaption class="caption">Process State Graph</figcaption>
+    <img src="../../images/bdeploy_process_state_graph.png" alt="Process Life Cycle" width="480">
+    <figcaption class="caption">Process Life Cycle</figcaption>
 </figure>
 </p>
 </div>
@@ -371,21 +371,21 @@
         <span>Process Outdated</span>
     </h2>
 </doc-anchor-target>
-<p>An warning message - <strong>Outdated</strong> - is displayed whenever one or more <strong>Processes</strong> are running in a version that is currently not <strong>active</strong>. This happens when <strong>deploying</strong> a new version while <strong>Processes</strong> are still running.</p>
+<p>A warning message - <strong>Outdated</strong> - is displayed whenever one or more <strong>Processes</strong> are running in a version that is currently not <strong>active</strong>. This happens when <strong>deploying</strong> a new version while <strong>Processes</strong> are still running.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/manualdoc_processoutdated.png" alt="Outdated Process">
     <figcaption class="caption">Outdated Process</figcaption>
 </figure>
 </p>
 </div>
-<p>In principle this is nothing to worry about. It is just a remainder that the configuration has changed. The <strong>Processes</strong> will remain running in their current version until they are actively restarted. The message cannot be confirmed / closed as it automatically disappear once all <strong>Processes</strong> are running in the <strong>active</strong> version.</p>
-<doc-anchor-target id="process-start-type">
+<p>In principle this is nothing to worry about. It is just a reminder that the configuration has changed. The <strong>Processes</strong> will remain running in their current version until they are actively restarted. The message cannot be confirmed or closed as it automatically disappears once all <strong>Processes</strong> are running in the <strong>active</strong> version.</p>
+<doc-anchor-target id="process-start-types">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#process-start-type">#</doc-anchor-trigger>
-        <span>Process Start Type</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#process-start-types">#</doc-anchor-trigger>
+        <span>Process Start Types</span>
     </h2>
 </doc-anchor-target>
-<p>The <strong>Start Type</strong> of a <strong>Process</strong> can be configured in the <strong>Process Configuration</strong> dialog. The available options are depending on the <strong>Application</strong>. That means the publisher of an <strong>Application</strong> defines which <strong>Start Types</strong> are supported. The following types are available:</p>
+<p>The <strong>Start Type</strong> of a <strong>Process</strong> can be configured in the <strong>Process Configuration</strong> dialog. The available options depend on the <strong>Application</strong>. That means the publisher of an <strong>Application</strong> defines which <strong>Start Types</strong> are supported. The following types are available:</p>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -410,11 +410,11 @@
 </tbody>
 </table>
 </div>
-<p>It is a common requirement that certain <strong>Processes</strong> of an <strong>Instance</strong> should be automatically started whenever the <strong>BDeploy</strong> server itself is started. To accomplish that, the <em>Automatic Startup</em> flag of the <strong>Instance</strong> must be set. This can be done in the <a href="../instance/index.html#instance-configuration">Instance Configuration</a>. Additionally the <strong>start type</strong> of the <strong>Process</strong> must set to <code v-pre>INSTANCE</code>. This can be done in the <strong>parameter configuration</strong> of the <strong>Process</strong>.</p>
-<p><strong>Processes</strong> that are executing actions that cannot be reverted or that are potentially dangerous in productive environments (dropping a database, deleting files) should be configured with the start type <code v-pre>MANUAL_CONFIRM</code>. Doing that results in an additional popup dialog that enforces the user to enter the name of the <strong>Process</strong> before it is started. The idea is, that the user takes an additional moment to ensure that he is really starting the desired <strong>Process</strong>.</p>
+<p>It is a common requirement that certain <strong>Processes</strong> of an <strong>Instance</strong> should be automatically started whenever the <strong>BDeploy</strong> server itself is started. To accomplish that, the <em>Automatic Startup</em> flag of the <strong>Instance</strong> must be set. This can be done in the <a href="../instance/index.html#instance-configuration">Instance Configuration</a>. Additionally, the <strong>start type</strong> of the <strong>Process</strong> must set to <code v-pre>INSTANCE</code>. This can be done in the <strong>parameter configuration</strong> of the <strong>Process</strong>.</p>
+<p><strong>Processes</strong> that are executing actions that cannot be reverted or that are potentially dangerous in productive environments (e.g. dropping a database and/or deleting files) should be configured with the start type <code v-pre>MANUAL_CONFIRM</code>. Doing that results in an additional popup dialog that forces the user to enter the name of the <strong>Process</strong> before it is started. The idea is that the user takes an additional moment to ensure that they are really want to start the selected <strong>Process</strong>.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_dashboardprocessmanualconfirm.png" alt="Manual Confirmation On Startup" width="480">
-    <figcaption class="caption">Manual Confirmation On Startup</figcaption>
+    <img src="../../images/doc_dashboardprocessmanualconfirm.png" alt="Manual Confirmation on Startup" width="480">
+    <figcaption class="caption">Manual Confirmation on Startup</figcaption>
 </figure>
 </p>
 </div>
@@ -424,7 +424,7 @@
         <span>Startup and Shutdown Order</span>
     </h2>
 </doc-anchor-target>
-<p>The <strong>process control</strong> starts the processes in the order as they are defined in the <strong>process configuration</strong> dialog. <strong>Processes</strong> can be grouped in <strong>Process Control Groups</strong>, which dictate the exact behavior for a group of <strong>Processes</strong>. When [ <strong>Start Instance</strong> ] is invoked then all processes with startup type <code v-pre>INSTANCE</code> are started in the defined order - potentially waiting for a <strong>startup probe</strong> after launching the command. When [ <strong>Stop Instance</strong> ] is invoked then all running processes are stopped according to the group strategies. The order is reversed during the stop operation. That means the last process is stopped first and the first process is stopped at last (in <code v-pre>SEQUENTIAL</code> mode). The next process is stopped only when the previous is terminated. The same holds for <strong>Process Control Groups</strong>; groups are processed one after another when starting, and in reverse order when stopping.</p>
+<p>The <strong>Process Control</strong> starts the processes in the order as they are defined in the <strong>Process Configuration</strong> dialog. <strong>Processes</strong> can be grouped in <strong>Process Control Groups</strong>, which dictate the exact behavior for a group of <strong>Processes</strong>. When [ <strong>Start Instance</strong> ] is invoked then all processes with startup type <code v-pre>INSTANCE</code> are started in the defined order - potentially waiting for a <strong>startup probe</strong> after launching the command. When [ <strong>Stop Instance</strong> ] is invoked then all running processes are stopped according to the group strategies. The order is reversed during the stop operation. That means the last process is stopped first and the first process is stopped at last (in <code v-pre>SEQUENTIAL</code> mode). The next process is stopped only when the previous is terminated. The same holds for <strong>Process Control Groups</strong>; groups are processed one after another when starting, and in reverse order when stopping.</p>
 <p>The exact meanings of the different configuration options is described in the <a href="../instance/index.html#process-control-groups">Process Control Groups</a> section.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -440,7 +440,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>Bulk control of selected processes uses the exact same <a href="../instance/index.html#process-control-groups">Process Control Groups</a> configuration as the [ <strong>Start Instance</strong> ] and [ <strong>Stop Instance</strong> ] actions. Only selected processes will be affected, as opposed to the whole instance. The [ <strong>Start Instance</strong> ] and [ <strong>Stop Instance</strong> ] will only affect processes with start type <code v-pre>INSTANCE</code>, bulk control can also affect processes with start type <code v-pre>MANUAL</code> in addition (when selected).</p>
+<p>Bulk control of selected processes uses the exact same <a href="../instance/index.html#process-control-groups">Process Control Groups</a> configuration as the [ <strong>Start Instance</strong> ] and [ <strong>Stop Instance</strong> ] actions. Only selected processes will be affected, as opposed to the whole instance. The [ <strong>Start Instance</strong> ] and [ <strong>Stop Instance</strong> ] will only affect processes with start type <code v-pre>INSTANCE</code>. Bulk control can also affect processes with start type <code v-pre>MANUAL</code> (when selected).</p>
         </div>
     </div>
 </div>
@@ -450,14 +450,14 @@
         <span>Keep Alive</span>
     </h2>
 </doc-anchor-target>
-<p>If the <strong>Keep Alive</strong> flag for a <strong>Process</strong> is configured then the <strong>process control</strong> restarts it when it crashes unexpectedly. The first restart attempt is immediately executed after the process terminates. Subsequent attempts are delayed. That means the <strong>process control</strong> waits a given time period until the next start attempt is executed. Such a situation is visualized in the <strong>Process</strong> state.</p>
+<p>If the <strong>Keep Alive</strong> flag for a <strong>Process</strong> is configured then the <strong>Process Control</strong> restarts it when it crashes unexpectedly. The first restart attempt is immediately executed after the process terminates. Subsequent attempts are delayed. That means the <strong>Process Control</strong> waits a given time period until the next start attempt is executed. Such a situation is visualized in the <strong>Process</strong> state.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_dashboardprocesscrash.png" alt="Crashed Server Process (temporarily)" width="480">
     <figcaption class="caption">Crashed Server Process (temporarily)</figcaption>
 </figure>
 </p>
 </div>
-<p>The <strong>process control</strong> will give up restarting a process after a configurable number of unsuccessful restart attempts. Such a situation is visualized in <strong>Process</strong> state. This icon means that the user has to manually check why it is failing and restart it if desired.</p>
+<p>The <strong>Process Control</strong> will give up restarting a process after a configurable number of unsuccessful restart attempts. Such a situation is visualized in <strong>Process</strong> state. This icon means that the user has to manually check why it is failing and restart it if desired.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_dashboardprocesscrashpermanent.png" alt="Crashed Server Process (permanently)" width="480">
     <figcaption class="caption">Crashed Server Process (permanently)</figcaption>
@@ -467,10 +467,10 @@
 <doc-anchor-target id="view-stdout--stderr">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#view-stdout--stderr">#</doc-anchor-trigger>
-        <span>View stdout / stderr</span>
+        <span>View STDOUT / STDERR</span>
     </h2>
 </doc-anchor-target>
-<p>Clicking on the terminal icon displayed below the process control actions will open a live stream of the <strong>stdout</strong> as well as <strong>stderr</strong> stream of the running <strong>Process</strong>. This allows a quick health check to ensure that everything is as expected.</p>
+<p>Clicking on the terminal icon displayed below the process control actions will open a live stream of the <strong>STDOUT</strong> as well as <strong>STDERR</strong> stream of the running <strong>Process</strong>. This allows a quick health check to ensure that everything works as expected.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_dashboardprocessconsole.png" alt="Show and Follow Process Output" width="480">
     <figcaption class="caption">Show and Follow Process Output</figcaption>
@@ -483,31 +483,31 @@
         <span>Process Port Status</span>
     </h2>
 </doc-anchor-target>
-<p>The applications server ports (if any are defined) and their state on the target node can be viewed by clicking on the [ <strong>Process Port Status</strong> ] below the process controls. Each parameter of type <code v-pre>SERVER_PORT</code> is displayed here, with its description and configured value. Each port has a <strong>status</strong>. This <strong>status</strong> determines whether the port has the <strong>expected</strong> state on the server. This means that the port is <strong>closed</strong> if the process is <strong>not</strong> running, and vice versa. <strong>BDeploy</strong> cannot check whether the port was opened by the correct application.</p>
+<p>The applications server ports (if any are defined) and their state on the target node can be viewed by clicking on the [ <strong>Process Port Status</strong> ] below the process controls. Each parameter of type <code v-pre>SERVER_PORT</code> is displayed here - including its description and configured value. Each port has a <strong>status</strong>. This <strong>status</strong> determines whether the port has the <strong>expected</strong> state on the server. This means that the port is <strong>closed</strong> if the process is <strong>not</strong> running, and vice versa. <strong>BDeploy</strong> cannot check whether the port was opened by the correct application.</p>
 <doc-anchor-target id="native-processes">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#native-processes">#</doc-anchor-trigger>
         <span>Native Processes</span>
     </h2>
 </doc-anchor-target>
-<p>Clicking on the [ <strong>Native Processes</strong> ] below the process control will open a panel showing all operating system processes that associated with this <strong>Process</strong>.</p>
+<p>Clicking on the [ <strong>Native Processes</strong> ] below the process control will open a panel showing all operating system processes that are associated with this <strong>Process</strong>.</p>
 <doc-anchor-target id="parameter-pinning">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#parameter-pinning">#</doc-anchor-trigger>
         <span>Parameter Pinning</span>
     </h2>
 </doc-anchor-target>
-<p>Parameter Pinning allows you to pin &quot;important&quot; paramteres, so that they are not only visible during configuration of a process, but also on the process panel on the dashboard. This provides quick access to information about a process. A parameter can be pinned by clicking the little pin icon which appears on each parameters editor when hovering over it.</p>
+<p>Parameter Pinning allows you to pin &quot;important&quot; parameters, so that they are not only visible during configuration of a process, but also on the process panel on the dashboard. This provides quick access to information about a process. A parameter can be pinned by clicking the little pin icon which appears on each parameters editor when hovering over it.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_instanceconfigparameterpin.png" alt="Data Files" width="480">
-    <figcaption class="caption">Data Files</figcaption>
+    <img src="../../images/doc_instanceconfigparameterpin.png" alt="Parameter Pinning" width="480">
+    <figcaption class="caption">Parameter Pinning</figcaption>
 </figure>
 </p>
 </div>
 <p>The pinned parameter is visible after saving, <strong>installation</strong> and <strong>activation</strong> of the <strong>Instance</strong> version where the parameter has been pinned.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_dashboardpinnedparameter.png" alt="Data Files" width="480">
-    <figcaption class="caption">Data Files</figcaption>
+    <img src="../../images/doc_dashboardpinnedparameter.png" alt="Pinned Parameter on Dashboard" width="480">
+    <figcaption class="caption">Pinned Parameter on Dashboard</figcaption>
 </figure>
 </p>
 </div>
@@ -517,7 +517,7 @@
         <span>Data Files</span>
     </h2>
 </doc-anchor-target>
-<p>The <strong>Data Files</strong> page lists all files that are stored in the data directory of each node. Files can be downloaded or opened directly in the the UI where possible. The table is by default sorted by the last modification timestamp. Thus the newest files displayed first.</p>
+<p>The <strong>Data Files</strong> page lists all files that are stored in the data directory of each node. All files can be downloaded, and some supported filetypes (e.g. .txt) can even be opened and edited directly in the UI by clicking on them. The table is by default sorted by the last modification timestamp. Thus the newest files are displayed first.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_datafiles.png" alt="Data Files" width="480">
     <figcaption class="caption">Data Files</figcaption>
@@ -542,17 +542,17 @@
         </div>
     </div>
 </div>
-<p>Clicking a file will view the file, the [ <strong>Follow</strong> ] toggle allows to grab new output as it is written on the server.</p>
+<p>Clicking a file will open the file in the file viewer, the [ <strong>Follow</strong> ] toggle allows to grab new output as it is written on the server.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_datafilesview.png" alt="View Data File" width="480">
-    <figcaption class="caption">View Data File</figcaption>
+    <img src="../../images/doc_datafilesview.png" alt="File Viewer" width="480">
+    <figcaption class="caption">File Viewer</figcaption>
 </figure>
 </p>
 </div>
-<p>Data Files can also be manually added and edited online. Use the [ <strong>Add File</strong> ] button, and the [ <strong>Edit</strong> ] button per file to do so.</p>
+<p>Files can also be manually added and edited online. Use the [ <strong>Add File</strong> ] button, and the [ <strong>Edit</strong> ] button per file to do so.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_datafilesedit.png" alt="Edit Data File" width="480">
-    <figcaption class="caption">Edit Data File</figcaption>
+    <img src="../../images/doc_datafilesedit.png" alt="File Editor" width="480">
+    <figcaption class="caption">File Editor</figcaption>
 </figure>
 </p>
 </div>
@@ -569,10 +569,30 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Caution</h5>
-<p>It is possible to put symbolic links inside the data directory, to access directories <strong>not</strong> directly within the data directory through the <strong>BDeploy</strong> UI. This possibility must be used with care. It is the responsibility of the user to assure that manually created symlinks will be safe to read <em>and</em> write by <strong>BDeploy</strong> and/or its controlled applications.</p>
+<p>It is possible to put symbolic links inside the data directory to access directories <strong>not</strong> directly within the data directory through the <strong>BDeploy</strong> UI. This possibility must be used with care. It is the responsibility of the user to assure that manually created symlinks will be safe to read <em>and</em> write by <strong>BDeploy</strong> and/or its controlled applications.</p>
         </div>
     </div>
 </div>
+<doc-anchor-target id="log-files">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#log-files">#</doc-anchor-trigger>
+        <span>Log Files</span>
+    </h2>
+</doc-anchor-target>
+<p>The <strong>Log Files</strong> page lists all files that are stored in the designated log files directory of the <strong>BDeploy</strong> server. The table is by default sorted by the last modification timestamp. Thus the newest files are displayed first.</p>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_logfiles.png" alt="Log Files" width="480">
+    <figcaption class="caption">Log Files</figcaption>
+</figure>
+</p>
+</div>
+<div align="center"><p><figure class="content-center">
+    <img src="../../images/doc_logfilesview.png" alt="View Log File" width="480">
+    <figcaption class="caption">View Log File</figcaption>
+</figure>
+</p>
+</div>
+<p>This behaves exactly the same as the aforementioned <strong>Data Files</strong>, with the one exceptions that <strong>Log Files</strong> are read only - it is not possible to edit or delete them via the browser, and it is also not possible to manually create new files.</p>
 
                                 
                                 <!-- Required only on API pages -->

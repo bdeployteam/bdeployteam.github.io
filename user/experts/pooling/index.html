@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -33,67 +33,69 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -273,9 +275,9 @@
         <span>Per-BHive Pool Setup</span>
     </h2>
 </doc-anchor-target>
-<p>Each <strong>BHive</strong> can have a configured <em>pool directory</em>, which must be non-existant or an existing object database. You can enable pooling on a single <strong>BHive</strong> from the CLI using:</p>
+<p>Each <strong>BHive</strong> can have a configured <em>pool directory</em>, which must be non-existent or an existing object database. You can enable pooling on a single <strong>BHive</strong> from the CLI using:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy bhive --hive=/path/to/hive --pool=/path/to/pool</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy bhive --hive=&lt;/path/to/hive&gt; --pool=&lt;/path/to/pool&gt;</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
@@ -314,7 +316,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>Pooling naturally only makes sense if more that one <strong>BHive</strong> is configured to use the <em>same</em> pool directory.</p>
+<p>Pooling naturally only makes sense if more than one <strong>BHive</strong> is configured to use the <em>same</em> pool directory.</p>
         </div>
     </div>
 </div>
@@ -326,11 +328,11 @@
 </doc-anchor-target>
 <p><strong>BDeploy</strong> can be configured to provide a global default pool directory which is automatically configured on <em>new</em> BHives (e.g. new <strong>Instance Group</strong>, new <strong>Software Repository</strong>), but not on existing BHives. This setup can be performed during init:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy init --root=/path/to/root ... --pooling [--pool=/path/to/somewhere/pool]</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy init --root=&lt;/path/to/root&gt; ... --pooling [--pool=&lt;/path/to/pool&gt;]</code></pre>
 </doc-codeblock></div>
-<p>You can also setup the global default after init using:</p>
+<p>You can also setup the global default pool after init using:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy pool --root=/path/to/root --defaultPool=/path/to/pool</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy pool --root=&lt;/path/to/root&gt; --defaultPool=&lt;/path/to/pool&gt;</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -356,9 +358,9 @@
         <span>Global Usage Threshold</span>
     </h3>
 </doc-anchor-target>
-<p>The <em>global usage threshold</em> specifies how often a certain object has to be seen in <strong>BHives</strong> participating in a particular pool. Only once this threshold is reached will an object be move to the pool. The threshold can be set on the CLI, its default value if <strong>2</strong>:</p>
+<p>The <em>global usage threshold</em> specifies how often a certain object has to be seen in <strong>BHives</strong> participating in a particular pool. Only once this threshold is reached will an object be moved to the pool. The threshold can be set on the CLI, its default value is <strong>2</strong>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy pool --root=/path/to/root --usageThreshold=3</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy pool --root=&lt;/path/to/root&gt; --usageThreshold=&lt;threshold&gt;</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="pooling-the-default-bhive">
     <h2>
@@ -373,7 +375,7 @@
         <span>Re-organizing Pools</span>
     </h2>
 </doc-anchor-target>
-<p>Pooling works semi-<em>offline</em> in <strong>BDeploy</strong>. Each <strong>BHive</strong> uses its pool as <em>read-only</em> additional data-source. The <em>Pool Re-organization</em> Job will (at some configured point in time or when triggered manually) re-organize pool storage by finding all objects eligible to be moved to the pool and doing so. Thereafter those objects are removed from their origin <strong>BHives</strong>. As a last step, the job will find objects in the pool which are no longer referenced by any of the <strong>BHives</strong>, and delete them.</p>
+<p>Pooling works semi-<em>offline</em> in <strong>BDeploy</strong>. Each <strong>BHive</strong> uses its pool as <em>read-only</em> additional data-source. The <em>Pool Re-organization</em> Job will (at some configured point in time or when triggered manually) re-organize pool storage by finding all objects eligible to be moved to the pool and doing so. Thereafter those objects are removed from their origin <strong>BHives</strong>. As a last step, the job will find objects in the pool that are no longer referenced by any of the <strong>BHives</strong>, and delete them.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_admin_jobs.png" alt="Jobs" width="480">
     <figcaption class="caption">Jobs</figcaption>
@@ -383,12 +385,12 @@
 <doc-anchor-target id="unpooling-or-disabling-pools">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#unpooling-or-disabling-pools">#</doc-anchor-trigger>
-        <span><em>Unpooling</em> or disabling Pools</span>
+        <span>Unpooling or disabling Pools</span>
     </h2>
 </doc-anchor-target>
-<p>Pooling can be disabled on <strong>BHives</strong> if pooling is currently enabled. However this operation requires to <em>unpool</em> required objects from the currently set pool back into the <strong>BHive</strong> local storage. You can do this using:</p>
+<p>Pooling can be disabled for individual <strong>BHives</strong> even while pooling is currently enabled. However, this operation requires to <em>unpool</em> required objects from the currently set pool back into the <strong>BHive</strong> local storage. You can do this using:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy bhive pool --hive=/path/to/hive --unpool</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy bhive pool --hive=&lt;/path/to/hive&gt; --unpool</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="managing-pool-through-administrative-ui">
     <h2>
@@ -396,7 +398,7 @@
         <span>Managing Pool through Administrative UI</span>
     </h2>
 </doc-anchor-target>
-<p>Pooling can be enabled or disabled through the <strong>BHive Browser</strong> administrative UI. Selecing a <strong>BHive</strong> will give you the options to enable and disable pooling. This is a little less flexible compared to the CLI, as it will enable pooling only on the globally set default pool - if there is one set. Otherwise enabling through the UI is not possible.</p>
+<p>Pooling can be enabled or disabled through the <strong>BHive Browser</strong> administrative UI. Selecting a <strong>BHive</strong> will give you the options to enable and disable pooling. This is a little less flexible compared to the CLI, as it will enable pooling only on the globally set default pool - if there is one set. Otherwise enabling through the UI is not possible.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_admin_bhive_details.png" alt="BHive Details" width="480">
     <figcaption class="caption">BHive Details</figcaption>

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
 
     <!-- Primary Meta Tags -->
-    <title>How can I deploy a new product version?</title>
-    <meta name="title" content="How can I deploy a new product version?">
+    <title>How can I deploy a new Product Version?</title>
+    <meta name="title" content="How can I deploy a new Product Version?">
     <meta name="description" content="Upgrading the Product Version that is used in an Instance requires two distinct steps:">
 
     <!-- Canonical -->
@@ -20,80 +20,82 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/user/tutorials/deployproduct/index.html">
-    <meta property="og:title" content="How can I deploy a new product version?">
+    <meta property="og:title" content="How can I deploy a new Product Version?">
     <meta property="og:description" content="Upgrading the Product Version that is used in an Instance requires two distinct steps:">
     <meta property="og:image" content="https://bdeploy.io/user/images/doc_importproduct_selectrepo.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/user/tutorials/deployproduct/index.html">
-    <meta property="twitter:title" content="How can I deploy a new product version?">
+    <meta property="twitter:title" content="How can I deploy a new Product Version?">
     <meta property="twitter:description" content="Upgrading the Product Version that is used in an Instance requires two distinct steps:">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_importproduct_selectrepo.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -263,7 +265,7 @@
 <doc-anchor-target id="how-can-i-deploy-a-new-product-version" class="break-words">
     <h1>
         <doc-anchor-trigger class="header-anchor-trigger" to="#how-can-i-deploy-a-new-product-version">#</doc-anchor-trigger>
-        <span>How can I deploy a new product version?</span>
+        <span>How can I deploy a new Product Version?</span>
     </h1>
 </doc-anchor-target>
 <p>Upgrading the <strong>Product Version</strong> that is used in an <strong>Instance</strong> requires two distinct steps:</p>
@@ -277,7 +279,7 @@
         <span>Upload Product Version</span>
     </h2>
 </doc-anchor-target>
-<p>Uploading a new <strong>Product Version</strong> is done in the <strong>Products</strong> page of the <strong>Instance Group</strong>:</p>
+<p>Uploading a new <strong>Product Version</strong> is done on the <strong>Products</strong> page of the <strong>Instance Group</strong>:</p>
 <ol>
 <li>Click on the desired <strong>Instance Group</strong></li>
 <li>Click on [ <strong>Products</strong> ] button in the main menu.</li>
@@ -298,50 +300,22 @@ It is done in the <strong>Products</strong> page of the <strong>Instance Group</
 <li>Click on the desired <strong>Instance Group</strong></li>
 <li>Click on [ <strong>Products</strong> ] button in the main menu.</li>
 <li>Click on the [ <strong>Import Product...</strong> ] button in the toolbar.</li>
-<li>Select software repository.</li>
+<li>Select a software repository.
+<div align="center"><img src="../../images/doc_importproduct_selectrepo.png" width="480" alt="Choose Repo" /></div>
+</li>
+<li>Select the product.
+<div align="center"><img src="../../images/doc_importproduct_selectproduct.png" width="480" alt="Choose Product" /></div>
+</li>
+<li>Select the product version.
+<div align="center"><img src="../../images/doc_importproduct_selectversion.png" width="480" alt="Choose Product Version" /></div>
+</li>
+<li>Click the import button.
+<div align="center"><img src="../../images/doc_importproduct_panelfilled.png" width="480" alt="Press Import button" /></div>
+</li>
+<li>The product will appear in the list of available products once successfully imported.
+<div align="center"><img src="../../images/doc_importproduct_success.png" width="480" alt="Product Version imported" /></div>
+</li>
 </ol>
-<div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_importproduct_selectrepo.png" alt="Choose Repo" width="480">
-    <figcaption class="caption">Choose Repo</figcaption>
-</figure>
-</p>
-</div>
-<ol start="5">
-<li>Select product.</li>
-</ol>
-<div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_importproduct_selectproduct.png" alt="Choose Product" width="480">
-    <figcaption class="caption">Choose Product</figcaption>
-</figure>
-</p>
-</div>
-<ol start="6">
-<li>Select product version.</li>
-</ol>
-<div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_importproduct_selectversion.png" alt="Choose Product Version" width="480">
-    <figcaption class="caption">Choose Product Version</figcaption>
-</figure>
-</p>
-</div>
-<ol start="7">
-<li>Click import button.</li>
-</ol>
-<div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_importproduct_panelfilled.png" alt="Press Import button" width="480">
-    <figcaption class="caption">Press Import button</figcaption>
-</figure>
-</p>
-</div>
-<ol start="8">
-<li>The product will appear in the list of available products once successfully imported.</li>
-</ol>
-<div align="center"><p><figure class="content-center">
-    <img src="../../images/doc_importproduct_success.png" alt="Product Version imported" width="480">
-    <figcaption class="caption">Product Version imported</figcaption>
-</figure>
-</p>
-</div>
 <p>The <strong>Product Version</strong> is now available and can be used in all <strong>Instances</strong> of this <strong>Instance Group</strong>.</p>
 <doc-anchor-target id="upgrade-instance">
     <h2>
@@ -359,12 +333,12 @@ It is done in the <strong>Products</strong> page of the <strong>Instance Group</
 <li>You can also navigate to the <strong>Instance Configuration</strong> page by clicking the [ <strong>Instance Configuration</strong> ] button in the main menu. This page shows a more prominent hint about the new <strong>Product Version</strong>.</li>
 </ol>
 </li>
-<li>Click on the [ <strong>Update</strong> ] button of the desired product version</li>
+<li>Click on the [ <strong>Update</strong> ] button of the desired product version.</li>
 <li>The update to the new <strong>Product Version</strong> is performed and validated on the server. It is - however - not saved, so you can undo/redo, perform changes - just like with any other configuration change.</li>
 <li>Update <em>hints</em> may be shown in a separate section which can be dismissed. Those are purely informative things which point to actions performed during the update which may or may not have an impact on the software.</li>
 <li><em>Validation Issues</em> may be shown in a separate section if they occur due to the update. This can be a wide variety of things - all of them require manual intervention before you are able to save the <strong>Instance Configuration</strong>.</li>
-<li>Adopt the configuration of the <strong>Processes</strong> as required</li>
-<li>Click on <strong>Save</strong> in the top right corner to save this version</li>
+<li>Adopt the configuration of the <strong>Processes</strong> as required.</li>
+<li>Click on <strong>Save</strong> in the top right corner to save this version.</li>
 </ol>
 <p>The <strong>Instance</strong> is now based on the new <strong>Product Version</strong>. Remember that the new <strong>Instance Version</strong> must be <strong>Installed</strong> and <strong>Activated</strong> so that the changes have an impact - clicking <strong>Save</strong> will bring you to the <strong>Instance Dashboard</strong> from where this can be performed directly.. Please read the <a href="../processconfig/index.html#how-can-i-change-a-process-configuration">Process Configuration</a> tutorial about more details how to do that.</p>
 
@@ -433,6 +407,6 @@ It is done in the <strong>Products</strong> page of the <strong>Instance Group</
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "How can I deploy a new product version?", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "How can I deploy a new Product Version?", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Endpoint Proxying</title>
     <meta name="title" content="Endpoint Proxying">
-    <meta name="description" content="BDeploy supports proxying (tunnelling) to application endpoints as defined in the app-info.yaml.">
+    <meta name="description" content="BDeploy supports proxying (tunneling) to application endpoints as defined in the app-info.yaml.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://bdeploy.io/user/experts/proxy/index.html">
@@ -21,80 +21,82 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/user/experts/proxy/index.html">
     <meta property="og:title" content="Endpoint Proxying">
-    <meta property="og:description" content="BDeploy supports proxying (tunnelling) to application endpoints as defined in the app-info.yaml.">
+    <meta property="og:description" content="BDeploy supports proxying (tunneling) to application endpoints as defined in the app-info.yaml.">
     <meta property="og:image" content="https://bdeploy.io/user/images/doc_instanceconfig_endpoints.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/user/experts/proxy/index.html">
     <meta property="twitter:title" content="Endpoint Proxying">
-    <meta property="twitter:description" content="BDeploy supports proxying (tunnelling) to application endpoints as defined in the app-info.yaml.">
+    <meta property="twitter:description" content="BDeploy supports proxying (tunneling) to application endpoints as defined in the app-info.yaml.">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_instanceconfig_endpoints.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.762502641526" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.772197328428" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -267,15 +269,15 @@
         <span>Endpoint Proxying</span>
     </h1>
 </doc-anchor-target>
-<p><strong>BDeploy</strong> supports proxying (tunnelling) to application endpoints as defined in the <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a>.</p>
-<p>The application hosting the endpoint to call can be hosted on any node in the system. As long as this node is attached to a master you can reach (directly in <code v-pre>STANDALONE</code> or <code v-pre>MANAGED</code> mode, or indirectly in <code v-pre>CENTRAL</code> mode), you can tunnel there using <strong>BDeploy</strong>.</p>
-<p>You will need these information to be able to call an Endpoint of a remote application through the <strong>BDeploy</strong> public API:</p>
+<p><strong>BDeploy</strong> supports proxying (tunneling) to application endpoints as defined in the <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a>.</p>
+<p>The application hosting the endpoint to call can be hosted on any node within the system. As long as this node is attached to a master you can reach (directly in <code v-pre>STANDALONE</code> or <code v-pre>MANAGED</code> mode, or indirectly in <code v-pre>CENTRAL</code> mode), you can tunnel there using <strong>BDeploy</strong>.</p>
+<p>You will need these informations to be able to call an Endpoint of a remote application through the <strong>BDeploy</strong> public API:</p>
 <ul>
 <li>A <strong>BDeploy</strong> <em>slim</em> token to be supplied for an authorization header in the form of <code v-pre>X-BDeploy-Authorization: Bearer &lt;TOKEN&gt;</code>. You can obtain this token from the Web UI for the logged in user.</li>
-<li>The <code v-pre>id</code> of the instance group hosting the application you want to tunnel to.</li>
-<li>The <code v-pre>id</code> of the instance hosting the application you want to tunnel to. You can see this id for instance from the browsers URL when on the instance overview page for the instance in question.</li>
-<li>The <code v-pre>id</code> of the applications endpoint as defined in the <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a>.</li>
-<li>The <code v-pre>id</code> of the application which hosts the endpoint identified by the endpoint <code v-pre>id</code> above.</li>
+<li>The <code v-pre>ID</code> of the instance group hosting the application you want to tunnel to.</li>
+<li>The <code v-pre>ID</code> of the instance hosting the application you want to tunnel to. You can see this ID for instance from the browser&#x27;s URL when on the instance overview page for the instance in question.</li>
+<li>The <code v-pre>ID</code> of the applications endpoint as defined in the <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a>.</li>
+<li>The <code v-pre>ID</code> of the application which hosts the endpoint identified by the endpoint <code v-pre>ID</code> above.</li>
 </ul>
 <p>A typical proxy call using the public API would look like this, when using <strong>cURL</strong>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -284,32 +286,32 @@
     &quot;https://server/api/public/v1/common/proxy/myEndpoint?BDeploy_group=MyGroup&amp;BDeploy_instance=xxxx-111-xxxx&amp;BDeploy_application=yyyy-111-yyyy&quot; &lt;2&gt; &lt;3&gt; &lt;4&gt; &lt;5&gt; &lt;6&gt;</code></pre>
 </doc-codeblock></div>
 <ol>
-<li><strong><X></strong> is a bearer token, which can be obtained from the Web UI (User drop-down menu).</li>
-<li><strong>server</strong> is the hostname (and port) of the <strong>BDeploy</strong> master. This may be either a <code v-pre>CENTRAL</code>, <code v-pre>MANAGED</code> or <code v-pre>STANDALONE</code> server, being in charge (directly or indirectly) of the application to tunnel to.</li>
-<li><strong>myEndpoint</strong> is the <code v-pre>id</code> of the endpoint to call as defined in the <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a> of the hosting application.</li>
-<li><strong>MyGroup</strong> is the <code v-pre>id</code> of the instance group which hosts the application to tunnel to.</li>
-<li><strong>xxxx-111-xxxx</strong> is the <code v-pre>id</code> of the instance which hosts the application to tunnel to.</li>
-<li><strong>yyyy-111-yyyy</strong> is the <code v-pre>id</code> of the application which hosts an endpoint with the given endpoint <code v-pre>id</code>.</li>
+<li><code v-pre>&lt;X&gt;</code> is a bearer token, which can be obtained from the Web UI (User drop-down menu).</li>
+<li><code v-pre>server</code> is the hostname (and port) of the <strong>BDeploy</strong> master. This may be either a <code v-pre>CENTRAL</code>, <code v-pre>MANAGED</code> or <code v-pre>STANDALONE</code> server, being in charge (directly or indirectly) of the application to tunnel to.</li>
+<li><code v-pre>myEndpoint</code> is the <code v-pre>ID</code> of the endpoint to call as defined in the <a href="../../power/product/index.html#app-infoyaml">app-info.yaml</a> of the hosting application.</li>
+<li><code v-pre>MyGroup</code> is the <code v-pre>ID</code> of the instance group which hosts the application to tunnel to.</li>
+<li><code v-pre>xxxx-111-xxxx</code> is the <code v-pre>ID</code> of the instance which hosts the application to tunnel to.</li>
+<li><code v-pre>yyyy-111-yyyy</code> is the <code v-pre>ID</code> of the application which hosts an endpoint with the given endpoint <code v-pre>ID</code>.</li>
 </ol>
-<doc-anchor-target id="how-to-obtain-required-ids">
+<doc-anchor-target id="obtaining-required-ids">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#how-to-obtain-required-ids">#</doc-anchor-trigger>
-        <span>How to obtain required IDs</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#obtaining-required-ids">#</doc-anchor-trigger>
+        <span>Obtaining required IDs</span>
     </h2>
 </doc-anchor-target>
-<p>There are two ways to obtain required IDs. You can use a pure manual approach and for instance deduce ID&#x27;s from URLs and the Web UI itself. Or you can use the public API to query <strong>BDeploy</strong> for available objects.</p>
+<p>There are two ways to obtain required IDs. You can use a purely manual approach and for example deduce ID&#x27;s from URLs and the Web UI itself. Or you can use the public API to query <strong>BDeploy</strong> for available objects.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">http://my-server/#/instances/dashboard/MyGroup/xxxx-111-xxxx</code></pre>
 </doc-codeblock></div>
-<p>From the above URL, you can find the instance group <code v-pre>id</code> (<strong>MyGroup</strong>) as well as the instance <code v-pre>id</code> (<strong>xxxx-111-xxxx</strong>). When on the instance dashboard, click the server application you want to tunnel to. The process control panel for that application opens up, and you will see the applications <code v-pre> Process ID</code> displayed.</p>
-<p>Last thing to manually lookup is the endpoint <code v-pre>id</code>. Endpoints can be accessed on the instance configuration page by clicking on to application you want to tunnel to and then clicking on [ <strong>Configure Endpoints</strong> ]</p>
+<p>From the above URL, you can find the <code v-pre>instance group ID</code> (<strong>MyGroup</strong>) as well as the <code v-pre>instance ID</code> (<strong>xxxx-111-xxxx</strong>). When on the instance dashboard, click the server application you want to tunnel to. The process control panel for that application opens up, and you will see the applications <code v-pre>process ID</code> displayed.</p>
+<p>Last thing to manually lookup is the <code v-pre>endpoint ID</code>. Endpoints can be accessed on the instance configuration page by clicking on the application you want to tunnel to and then clicking on [ <strong>Configure Endpoints</strong> ]</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_instanceconfig_endpoints.png" alt="Application Edit Panel" width="480">
     <figcaption class="caption">Application Edit Panel</figcaption>
 </figure>
 </p>
 </div>
-<p>You will be able to read the endpoint <code v-pre>id</code> and configure properties of the endpoint on this page. The configuration will be used by <strong>BDeploy</strong> when instructed remotely to call that endpoint. <strong>BDeploy</strong> will take care of things like authentication, security, etc. The actual caller will only require access (and permissions) on the master server he is calling into, not to the actual application. Instead, <strong>BDeploy</strong> itself is configured to be authorized to perform the call.</p>
+<p>You will be able to read the <code v-pre>endpoint ID</code> and configure properties of the endpoint on this page. The configuration will be used by <strong>BDeploy</strong> when instructed remotely to call that endpoint. <strong>BDeploy</strong> will take care of things like authentication, security, etc. The actual caller will only require access (and permissions) on the master server they are calling into, not to the actual application. Instead, <strong>BDeploy</strong> itself is configured to be authorized to perform the call.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_instanceconfig_endpointsconfig.png" alt="Application Endpoints Configuration" width="480">
     <figcaption class="caption">Application Endpoints Configuration</figcaption>
@@ -334,9 +336,9 @@ curl -k -H &quot;Accept: application/json&quot; \
     &quot;https://server/api/public/v1/common/endpoints?BDeploy_group=MyGroup&amp;BDeploy_instance=xxxx-111-xxxx&quot; &lt;2&gt; &lt;3&gt;</code></pre>
 </doc-codeblock></div>
 <ol>
-<li><strong><X></strong> in all the following <strong>cURL</strong> calls is the bearer token as obtained from the Web UI.</li>
-<li><strong>MyGroup</strong> is the name of one of the instance groups as obtained by the first API. You can fetch the <code v-pre>id</code> of each instance from the returned JSON.</li>
-<li><strong>xxxx-111-xxxx</strong> is the instance <code v-pre>id</code> as obtained by the second API. The returned JSON will include the application <code v-pre>id</code> hosting the endpoint along with the actual specific configuration of that endpoint (including its <code v-pre>id</code>).</li>
+<li><code v-pre>&lt;X&gt;</code> in the following <strong>cURL</strong> calls is the bearer token as obtained from the Web UI.</li>
+<li><code v-pre>MyGroup</code> is the name of one of the instance groups as obtained by the first API. You can fetch the <code v-pre>ID</code> of each instance from the returned JSON.</li>
+<li><code v-pre>xxxx-111-xxxx</code> is the <code v-pre>instance ID</code> as obtained by the second API. The returned JSON will include the <code v-pre>application ID</code> hosting the endpoint along with the actual specific configuration of that endpoint (including its <code v-pre>ID</code>).</li>
 </ol>
 <doc-anchor-target id="ui-endpoints">
     <h2>
@@ -436,7 +438,7 @@ curl -k -H &quot;Accept: application/json&quot; \
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>Only users which are logged in to <strong>BDeploy</strong> can access UI endpoints through the proxy mechanism!</p>
+<p>Only users which are logged in to <strong>BDeploy</strong> can access UI endpoints via the proxy mechanism.</p>
         </div>
     </div>
 </div>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Nodes</title>
     <meta name="title" content="Nodes">
-    <meta name="description" content="Nodes are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a...">
+    <meta name="description" content="Nodes are optional and only required in the case that the application that you want to deploy should run on different servers but be managed from a...">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://bdeploy.io/user/setup/node/index.html">
@@ -21,79 +21,81 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/user/setup/node/index.html">
     <meta property="og:title" content="Nodes">
-    <meta property="og:description" content="Nodes are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a...">
+    <meta property="og:description" content="Nodes are optional and only required in the case that the application that you want to deploy should run on different servers but be managed from a...">
     <meta property="og:image" content="https://bdeploy.io/user/images/doc_admin_nodes_details.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/user/setup/node/index.html">
     <meta property="twitter:title" content="Nodes">
-    <meta property="twitter:description" content="Nodes are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a...">
+    <meta property="twitter:description" content="Nodes are optional and only required in the case that the application that you want to deploy should run on different servers but be managed from a...">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/doc_admin_nodes_details.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -266,19 +268,19 @@
         <span>Nodes</span>
     </h1>
 </doc-anchor-target>
-<p><strong>Nodes</strong> are optional and only required in case that the application that you want to deploy should run on different servers but be managed from a certain master. By default a master is itself a node as well where applications can be deployed to.</p>
-<doc-anchor-target id="initializing">
+<p><strong>Nodes</strong> are optional and only required in the case that the application that you want to deploy should run on different servers but be managed from a certain master. By default a master is itself a node as well where applications can be deployed to.</p>
+<doc-anchor-target id="initialization">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#initializing">#</doc-anchor-trigger>
-        <span>Initializing</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#initialization">#</doc-anchor-trigger>
+        <span>Initialization</span>
     </h2>
 </doc-anchor-target>
-<p><strong>Nodes</strong> must be initialized on the according machines (or on the same machine using non-default ports; the default port is 7701).
+<p><strong>Nodes</strong> must be initialized on the corresponding machines (or on the same machine using non-default ports; the default port is 7701).
 The command is similar to the one used to initialize the <strong>master</strong>. Pass (for example) <code v-pre>--port=7702</code> to change the
 default port to some other value to avoid conflicts. Running multiple <strong>BDeploy</strong> nodes on the same machine is
 supported for testing, but not recommended for productive setups (as the <strong>master</strong> can be deployed to directly anyway - no need for an explicit <strong>node</strong>).</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy init --root=/path/to/node/root --hostname=&lt;hostname&gt; --nodeIdentFile=node-ident.txt --port=7702 --mode=node</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy init --root=&lt;/path/to/root&gt; --hostname=&lt;hostname&gt; --nodeIdentFile=node-ident.txt --port=7702 --mode=node</code></pre>
 </doc-codeblock></div>
 <p>Note the <code v-pre>--nodeIdentFile</code> parameter given to the <code v-pre>init</code> command: this file is created during <code v-pre>init</code>, and will contain the required access information for this <strong>node</strong>. You need it to register the <strong>node</strong> with the <strong>master</strong>, so make sure you will have it available when doing so.</p>
 <doc-anchor-target id="launch">
@@ -287,9 +289,9 @@ supported for testing, but not recommended for productive setups (as the <strong
         <span>Launch</span>
     </h2>
 </doc-anchor-target>
-<p>After the initialization - which needs to be done only once - the <strong>node</strong> can be started with the following command:</p>
+<p>After the initialization - which only has to be done once - the <strong>node</strong> can be started with the following command:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy start --root=/path/to/node/root</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy start --root=&lt;/path/to/root&gt;</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="administration">
     <h2>
@@ -297,16 +299,16 @@ supported for testing, but not recommended for productive setups (as the <strong
         <span>Administration</span>
     </h2>
 </doc-anchor-target>
-<p>To register, remove or manage a <strong>node</strong> on the <strong>master</strong> you can either use the command line interface or the administrative Web UI on the <strong>master</strong>.</p>
+<p>To register, remove or manage a <strong>node</strong> on the <strong>master</strong> you can either use the command line interface or the administrative web UI on the <strong>master</strong>.</p>
 <doc-anchor-target id="command-line-interface">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#command-line-interface">#</doc-anchor-trigger>
-        <span>Command line interface</span>
+        <span>Command Line Interface</span>
     </h3>
 </doc-anchor-target>
-<p>Use the CLI to register, remove or manage a <strong>node</strong> on the <strong>master</strong> (see the <code v-pre>bdeploy remote-node --help</code> command for more information).</p>
+<p>Use the CLI to register, remove and manage a <strong>node</strong> on the <strong>master</strong> (see the <code v-pre>bdeploy remote-node --help</code> command for more information).</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy remote-node --remote=https://master-host:7701/api --tokenFile=master-token.txt --add=node-name --nodeIdentFile=node-ident.txt</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-node --remote=https://&lt;hostname&gt;:7701/api --tokenFile=master-token.txt --add=&lt;node-name&gt; --nodeIdentFile=node-ident.txt</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
@@ -322,7 +324,7 @@ supported for testing, but not recommended for productive setups (as the <strong
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>Both the <code v-pre>https</code> (beware the <code v-pre>s</code>) prefix and the <code v-pre>/api</code> suffix are required in all <strong>BDeploy</strong> URIs.</p>
+<p>Both the <code v-pre>https</code> (note the <code v-pre>s</code>) prefix and the <code v-pre>/api</code> suffix are required in all <strong>BDeploy</strong> URIs.</p>
         </div>
     </div>
 </div>
@@ -373,7 +375,7 @@ This is also the name displayed when configuring applications to run on certain 
         <span>Replacing and Restoring Nodes</span>
     </h3>
 </doc-anchor-target>
-<p><strong>BDeploy</strong> supports replacing and restoring nodes. This is primarily meant to restore nodes after a catastrophic failure of the node in question. This feature is capable of re-installing all required node configurations of all instances which are/were deployed on the node.</p>
+<p><strong>BDeploy</strong> supports replacing and restoring nodes. This is primarily meant to restore nodes after a catastrophic failure of the node in question. This feature is capable of reinstalling all required node configurations of all instances which are/were deployed on the node.</p>
 <p>Replacing can be performed via the <doc-anchor-trigger to="#administrative-web-ui">Administrative Web UI</doc-anchor-trigger>, much the same as <em>editing</em> a node. The steps to replace a node are:</p>
 <ol>
 <li>Find the node in the <doc-anchor-trigger to="#administrative-web-ui">Administrative Web UI</doc-anchor-trigger> and click it to open the node details panel.</li>
@@ -382,7 +384,7 @@ This is also the name displayed when configuring applications to run on certain 
 <li>Drag &amp; drop the <code v-pre>node-ident.txt</code> file to the drop zone in the <em>Replace Node</em> panel. The URI and authentication information will be prefilled.</li>
 <li>Click the [ <strong>Save</strong> ] button. The panel will enter loading state. You can follow the progress of the operation in the <em>Activities</em> panel from the main menu.</li>
 <li>Once the operation completes, you will be brought back to the node details panel.</li>
-<li>Replacing and restoring has been performed, and all instances which use this node are available again.</li>
+<li>Replacing and restoring has been performed and all instances which use this node are available again.</li>
 </ol>
 <doc-anchor-target id="convertmigrate-to-node">
     <h3>
@@ -390,7 +392,7 @@ This is also the name displayed when configuring applications to run on certain 
         <span>Convert/Migrate to Node</span>
     </h3>
 </doc-anchor-target>
-<p>Existing <code v-pre>STANDALONE</code> and <code v-pre>MANAGED</code> servers can be migrated to type <code v-pre>NODE</code>. This can be handy in case software needs to run standalone on a <code v-pre>NODE</code> before the actual master server is available. In this case, setup a <code v-pre>STANDALONE</code> server on the node, configure all the required software, and migrate the server to <code v-pre>NODE</code> type later.</p>
+<p>Existing <code v-pre>STANDALONE</code> and <code v-pre>MANAGED</code> servers can be migrated to type <code v-pre>NODE</code>. This can be handy if software needs to run standalone on a <code v-pre>NODE</code> before the actual master server is available. In this case, setup a <code v-pre>STANDALONE</code> server on the node, configure all the required software, and migrate the server to <code v-pre>NODE</code> type later.</p>
 <p>To convert an existing server:</p>
 <ol>
 <li>Open the <doc-anchor-trigger to="#administrative-web-ui">Administrative Web UI</doc-anchor-trigger> on both servers in separate browser tabs.</li>
@@ -398,7 +400,7 @@ This is also the name displayed when configuring applications to run on certain 
 <li>On the to-be-migrated server, click the <strong>master</strong> node in the list of nodes. Click the [ <strong>Convert to Node...</strong> ] button.</li>
 <li>Now drag the yellow node identification card from the to-be-migrated server to the new masters drop zone.</li>
 <li>Information about the server is pre-filled in the form. Double check the information and press [ <strong>Save</strong> ] to start the migration.</li>
-<li>You will be promted to confirm the migration. Click [ <strong>Migrate</strong> ] to continue.</li>
+<li>You will be prompted to confirm the migration. Click [ <strong>Migrate</strong> ] to continue.</li>
 </ol>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_admin_nodes_conversion.png" alt="Node Conversion" width="480">
@@ -421,7 +423,7 @@ This is also the name displayed when configuring applications to run on certain 
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>During migration all <strong>Instances</strong> are modified in a way such that software still runs on the same phsyical hardware as before, i.e. the now-new master server is <strong>not</strong> participating in any of the <strong>Instances</strong> configuration. Instead, the previously-master, now-node server is still configured as deployment target where this was the case previously.</p>
+<p>During migration all <strong>Instances</strong> are modified in a way such that software still runs on the same physical hardware as before, i.e. the now-new master server is <strong>not</strong> participating in any of the <strong>Instances</strong> configuration. Instead, the previously-master, now-node server is still configured as deployment target where this was the case previously.</p>
         </div>
     </div>
 </div>
@@ -439,7 +441,7 @@ This is also the name displayed when configuring applications to run on certain 
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>If the to-be-migrated server has <strong>Nodes</strong> attached to it, all those <strong>Nodes</strong> will be attached to the new master after migration.</p>
+<p>If the to-be-migrated server has <strong>nodes</strong> attached to it, all those <strong>nodes</strong> will be attached to the new master after migration.</p>
         </div>
     </div>
 </div>

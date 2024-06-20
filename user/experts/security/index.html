@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762502641526">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772197328428">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,67 +31,69 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.762502641526" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772197328428" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.762502641526" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772197328428" data-turbo-eval="false" defer></script>
 
     <style>
-        table td {
-            vertical-align: top;
-        }
+      table td {
+        vertical-align: top;
+      }
 
-        img {
-            position: relative;
-            transition: transform 0.25s ease;
-            cursor: zoom-in;
-            z-index: 7;
-        }
-        
-        img.preview {
-            -webkit-transform: scale(2);
-            transform: scale(2);
-            cursor: zoom-out;
-            z-index: 9;
-        }
+      img {
+        position: relative;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+        z-index: 7;
+      }
 
-        .img-backdrop::after {
-            content: "";
-            display: block;
-            position: fixed;
-            background-color: black;
-            opacity: .7;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 8;
-        }
+      img.preview {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        cursor: zoom-out;
+        z-index: 9;
+      }
 
+      .img-backdrop::after {
+        content: "";
+        display: block;
+        position: fixed;
+        background-color: black;
+        opacity: 0.7;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+      }
     </style>
     <script>
-    document.addEventListener('click', function(event) {
-        if(event.target.tagName === 'IMG'){
-            const classList = event.target.classList;
-            if (classList.contains('preview')) {
-                classList.remove('preview');
-                document.body.classList.remove('img-backdrop')
-            } else {
-                classList.add('preview');
-                document.body.classList.add('img-backdrop')
-            }
-            event.target.parentElement
+      document.addEventListener("click", function (event) {
+        if (event.target.tagName === "IMG") {
+          const classList = event.target.classList;
+          if (classList.contains("preview")) {
+            classList.remove("preview");
+            document.body.classList.remove("img-backdrop");
+          } else {
+            classList.add("preview");
+            document.body.classList.add("img-backdrop");
+          }
+          event.target.parentElement;
         } else {
-            // if its not the image that was clicked, but backdrop is on, then cancel backdrop
-            if (document.body.classList.contains('img-backdrop')) {
-                document.body.classList.remove('img-backdrop')
-                document.getElementsByClassName('preview')[0].classList.remove('preview')
-            }
+          // if its not the image that was clicked, but backdrop is on, then cancel backdrop
+          if (document.body.classList.contains("img-backdrop")) {
+            document.body.classList.remove("img-backdrop");
+            document
+              .getElementsByClassName("preview")[0]
+              .classList.remove("preview");
+          }
         }
-    });
+      });
     </script>
+
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -264,13 +266,13 @@
         <span>Security</span>
     </h1>
 </doc-anchor-target>
-<p><strong>BDeploy</strong> uses HTTPS everywhere along with advanced <em>security tokens</em> which allow mutual authentication for every request. Think of it as a combination of <em>JWT</em> and mutual certificate based authentication.</p>
-<p>This mechanism is used for <em>every</em> remote communication, especially for every remote communication which would cause a state change in <strong>BDeploy</strong>. There are some endpoints in the Web UI backend which must be unsecured by design (e.g. the one performing authentication and issuing the <em>security token</em> for all following remote communication).</p>
+<p><strong>BDeploy</strong> uses HTTPS everywhere along with advanced <em>security tokens</em> which allow mutual authentication for every request. Think of it as a combination of <em>JWT</em> and mutual certificate-based authentication.</p>
+<p>This mechanism is used for <em>every</em> remote communication, especially for every remote communication which would cause a state change in <strong>BDeploy</strong>. There are some endpoints in the Web UI backend which cannot be secured by design (e.g. the one performing authentication and issuing the <em>security token</em> for all following remote communication).</p>
 <p>As a consequence, a <em>security token</em> is required for all CLI commands that communicate with a remote <strong>BDeploy</strong> server, when registering a <em>node</em> with a <em>master</em> minion (as they communicate), and for all toolings which communicate otherwise with <strong>BDeploy</strong> (e.g. build integrations which fetch dependencies and push <strong>Products</strong> to <strong>BDeploy</strong>).</p>
 <doc-anchor-target id="local-account-security">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#local-account-security">#</doc-anchor-trigger>
-        <span>Local account security</span>
+        <span>Local Account Security</span>
     </h2>
 </doc-anchor-target>
 <p><strong>BDeploy</strong> implements the <a href="https://github.com/OWASP/ASVS/blob/master/4.0/en/0x11-V2-Authentication.md#v21-password-security">OWASP ASVS Password Security Requirements</a> with a single exception.</p>
@@ -322,7 +324,7 @@
 <tr>
 <td>2.1.8</td>
 <td>Yes</td>
-<td>Strength meter for password stregth hint.</td>
+<td>Strength meter for password strength hint.</td>
 </tr>
 <tr>
 <td>2.1.9</td>
@@ -368,7 +370,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Caution</h5>
-<p>Exchanging the certificate will currently invalidate all issued <em>security tokens</em>. The ones issued to authenticated users, as well as the ones used to register <strong>BDeploy</strong> minions with other <strong>BDeploy</strong> servers.</p>
+<p>Exchanging the certificate will invalidate all issued <em>security tokens</em>. The ones issued to authenticated users, as well as the ones used to register <strong>BDeploy</strong> minions with other <strong>BDeploy</strong> servers.</p>
         </div>
     </div>
 </div>
@@ -386,7 +388,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Caution</h5>
-<p>It <strong>must</strong> be assured that if this is done, there is <em>always</em> a valid certificate for HTTPS installed and updated before the current one looses validity, as the HTTPS certificate is not only used for browsers (frontend), but <em>also</em> for backend communication. Thus if the HTTPS certificate expires, BDeploy will essentially stop working.</p>
+<p>It <strong>must</strong> be assured that if this is done, there is <em>always</em> a valid certificate for HTTPS installed and updated before the current one loses validity, as the HTTPS certificate is not only used for browsers (frontend), but <em>also</em> for backend communication. Thus if the HTTPS certificate expires, BDeploy will essentially stop working.</p>
         </div>
     </div>
 </div>
