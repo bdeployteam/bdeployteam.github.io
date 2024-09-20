@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.776354992290">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.780150453062">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.5.0">
+    <meta name="generator" content="Retype 3.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Integration of a new product</title>
@@ -33,13 +33,13 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.776354992290" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.780150453062" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.776354992290" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.780150453062" defer></script>
 
     <style>
       table td {
@@ -290,6 +290,9 @@
 </div>
 <p><doc-anchor-trigger to="#instance-variable-templateyaml">instance-variable-template.yaml</doc-anchor-trigger></p>
 <div><p> Optional YAML file(s) which can be used to provide shared definitions for instance variables which are re-usable in <doc-anchor-trigger to="#instance-templateyaml">instance-template.yaml</doc-anchor-trigger> files</p>
+</div>
+<p><doc-anchor-trigger to="#instance-variable-definitionsyaml">instance-variable-definitions.yaml</doc-anchor-trigger></p>
+<div><p> Optional YAML file(s) which can be used to provide instance variable definitions for the product. Whenever instance uses the product, it will generate instance variables (if missing) based on those definitions.</p>
 </div>
 <p><doc-anchor-trigger to="#system-templateyaml">system-template.yaml</doc-anchor-trigger></p>
 <div><p> Actually not part of any product itself. Freestanding description that can be used to create multiple instances of multiple products in one go</p>
@@ -672,12 +675,6 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 <p><em>Default:</em></p>
 <p><em>Mandatory:</em> no</p>
 <p><em>Description:</em> An optional group name. The configuration UI may use this information to group parameters with the same <code v-pre>groupName</code> together.</p>
-   </doc-panel>
-   <doc-panel id="attribute-suggestedvalues">
-       <template #title><strong>Attribute</strong>: <code v-pre>suggestedValues</code></template>
-<p><em>Default:</em></p>
-<p><em>Mandatory:</em> no</p>
-<p><em>Description:</em> An optional list of suggested values for paremters of type <code v-pre>STRING</code> (the default). The Web UI will present this list when editing the parameter value.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -695,6 +692,12 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
         </div>
     </div>
 </div>
+   </doc-panel>
+   <doc-panel id="attribute-suggestedvalues">
+       <template #title><strong>Attribute</strong>: <code v-pre>suggestedValues</code></template>
+<p><em>Default:</em></p>
+<p><em>Mandatory:</em> no</p>
+<p><em>Description:</em> An optional list of suggested values for parameters of type <code v-pre>STRING</code> (the default). The Web UI will present this list when editing the parameter value.</p>
    </doc-panel>
    <doc-panel id="attribute-parameter">
        <template #title><strong>Attribute</strong>: <code v-pre>parameter</code></template>
@@ -768,16 +771,16 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 <p>In this case you will want the user to be able to edit the value of <code v-pre>-Dmy.prop</code> parameter, but the user may <strong>never</strong> be able to edit the <code v-pre>-jar application.jar</code> part. A definition for this command line would look like this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-yaml"><code v-pre class="language-yaml">startCommand:
-  launcherPath: '{{M:openjdk/jre:1.8.0_u202-b08}}/bin/java{{WINDOWS:w.exe}}'
+  launcherPath: &quot;{{M:openjdk/jre:1.8.0_u202-b08}}/bin/java{{WINDOWS:w.exe}}&quot;
   parameters:
-    - id: 'my.prop'
-      name: 'My Property'
-      parameter: '-Dmy.prop'
+    - id: &quot;my.prop&quot;
+      name: &quot;My Property&quot;
+      parameter: &quot;-Dmy.prop&quot;
       mandatory: true
-    - id: 'my.jar'
-      name: 'Application JAR'
-      parameter: '-jar'
-      defaultValue: 'application.jar'
+    - id: &quot;my.jar&quot;
+      name: &quot;Application JAR&quot;
+      parameter: &quot;-jar&quot;
+      defaultValue: &quot;application.jar&quot;
       valueAsSeparateArg: true
       mandatory: true
       fixed: true &lt;1&gt;</code></pre>
@@ -806,16 +809,16 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 <p>A condition expression (isolated) looks like this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-yaml"><code v-pre class="language-yaml">condition:
-  parameter: 'my.param.2'
+  parameter: &quot;my.param.2&quot;
   must: EQUAL
-  value: 'Value 1'</code></pre>
+  value: &quot;Value 1&quot;</code></pre>
 </doc-codeblock></div>
 <p>Or, in its newer form, the very same (but ultimately more powerful) using <code v-pre>expression</code> would look like this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-yaml"><code v-pre class="language-yaml">condition:
-  expression: '{{V:my.param.2}}'
+  expression: &quot;{{V:my.param.2}}&quot;
   must: EQUAL
-  value: 'Value 1'</code></pre>
+  value: &quot;Value 1&quot;</code></pre>
 </doc-codeblock></div>
 <p>The power comes from the ability to provide an arbitrary amount of <a href="../variables/index.html#variable-expansions">Variable Expansions</a> in the <a href="../../user/instance/index.html#link-expressions">Link Expressions</a>.</p>
 <p>The condition block understands the following fields:</p>
@@ -1070,8 +1073,10 @@ parameterTemplates:
   - 'my-templates/param-template.yaml' &lt;9&gt;
 instanceVariableTemplates:
   - 'my-templates/variable-template.yaml' &lt;10&gt;
+instanceVariableDefinitions:
+  - 'my-definitions/instance-variable-definitions.yaml' &lt;11&gt;
 
-versionFile: my-versions.yaml &lt;11&gt;</code></pre>
+versionFile: my-versions.yaml &lt;12&gt;</code></pre>
 </doc-codeblock></div>
 <ol>
 <li>A human readable name of the <strong>Product</strong> for display purposes in the Web UI.</li>
@@ -1083,7 +1088,8 @@ versionFile: my-versions.yaml &lt;11&gt;</code></pre>
 <li>A reference to an application template YAML file which defines an <doc-anchor-trigger to="#application-templateyaml"><code v-pre>application-template.yaml</code></doc-anchor-trigger>.</li>
 <li>A reference to an instance template YAML file which defines an <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger>.</li>
 <li>A reference to a parameter template YAML file which defines a <doc-anchor-trigger to="#parameter-templateyaml"><code v-pre>parameter-template.yaml</code></doc-anchor-trigger>.</li>
-<li>A reference to a instance variable template YAML file which defines a <doc-anchor-trigger to="#instance-variable-templateyaml"><code v-pre>instance-variable-template.yaml</code></doc-anchor-trigger>.</li>
+<li>A reference to an instance variable template YAML file which defines an <doc-anchor-trigger to="#instance-variable-templateyaml"><code v-pre>instance-variable-template.yaml</code></doc-anchor-trigger>.</li>
+<li>A reference to an instance variable definitions YAML file which defines an <doc-anchor-trigger to="#instance-variable-definitionsyaml"><code v-pre>instance-variable-definitions.yaml</code></doc-anchor-trigger></li>
 <li>The <code v-pre>product-version.yaml</code> which associates the <strong>Application</strong> IDs (used above) with actual paths to <strong>Applications</strong> on the file system.</li>
 </ol>
 <doc-anchor-target id="product-versionyaml">
@@ -1158,12 +1164,12 @@ appInfo:
 <div class="codeblock-title">application-template.yaml</div>
 <pre class="language-yaml"><code v-pre class="language-yaml">id: server-with-sleep &lt;1&gt;
 application: server-app
-name: &quot;Server With Sleep (Oracle)&quot;
-processName: &quot;Server With Sleep&quot;
+name: &quot;Server With Sleep (Oracle)&quot; &lt;2&gt;
+processName: &quot;Server With Sleep&quot; &lt;2&gt;
 description: &quot;Server application which sleeps before exiting&quot;
-preferredProcessControlGroup: &quot;First Group&quot; &lt;2&gt;
+preferredProcessControlGroup: &quot;First Group&quot; &lt;3&gt;
 
-templateVariables: &lt;3&gt;
+templateVariables: &lt;4&gt;
   - id: sleep-timeout
     name: &quot;Sleep Timeout&quot;
     description: &quot;The amount of time the server application should sleep&quot;
@@ -1172,14 +1178,14 @@ templateVariables: &lt;3&gt;
     - '60'
     - '120'
 
-processControl: &lt;4&gt;
+processControl: &lt;5&gt;
   startType: MANUAL_CONFIRM
   keepAlive: false
   noOfRetries: 3
   gracePeriod: 30000
   attachStdin: true
 
-startParameters: &lt;5&gt;
+startParameters: &lt;6&gt;
 - id: param.sleep
   value: &quot;{{T:sleep-timeout}}&quot;</code></pre>
 </doc-codeblock></div>
@@ -1380,13 +1386,19 @@ instanceVariableDefaults: &lt;5&gt;
   - id: var.id
     value: &quot;A value other than above&quot;
 
-processControlGroups: &lt;6&gt;
+instanceVariableValues: &lt;6&gt;
+  - id: def.id
+    value: &quot;A value that will update instance variable created from def.id definition&quot;
+  - id: other.def.id
+    value: &quot;{{T:sleep-timeout}}&quot;
+
+processControlGroups: &lt;7&gt;
   - name: &quot;First Group&quot;
     startType: &quot;PARALLEL&quot;
     startWait: &quot;WAIT&quot;
     stopType: &quot;SEQUENTIAL&quot;
 
-groups: &lt;7&gt;
+groups: &lt;8&gt;
 - name: &quot;Server Apps&quot;
   description: &quot;All server applications&quot;
 
@@ -1394,22 +1406,22 @@ groups: &lt;7&gt;
   - application: server-app
     name: &quot;Server No Sleep&quot;
     description: &quot;Server application which immediately exits&quot;
-  - template: server-with-sleep &lt;8&gt;
-    fixedVariables: &lt;9&gt;
+  - template: server-with-sleep &lt;9&gt;
+    fixedVariables: &lt;10&gt;
       - id: sleep-timeout
         value: 10
-  - application: server-app &lt;10&gt;
+  - application: server-app &lt;11&gt;
     name: &quot;Server With Sleep&quot;
     description: &quot;Server application which sleeps before exiting&quot;
     processControl:
       startType: MANUAL_CONFIRM
-    startParameters: &lt;11&gt;
+    startParameters: &lt;12&gt;
     - id: param.sleep
       value: &quot;{{T:sleep-timeout}}&quot;
-    applyTo: &lt;12&gt;
+    applyTo: &lt;13&gt;
     - LINUX
 - name: &quot;Client Apps&quot;
-  type: CLIENT &lt;13&gt;
+  type: CLIENT &lt;14&gt;
   description: &quot;All client applications&quot;
 
   applications:
@@ -1422,16 +1434,34 @@ groups: &lt;7&gt;
 <li><a href="../../user/instance/index.html#instance-variables">Instance Variables</a> can be defined in an instance template. Those definitions will be applied to a new instance when this template is used. <a href="../../user/instance/index.html#link-expressions">Link Expressions</a> can then be used to expand to the <a href="../../user/instance/index.html#instance-variables">Instance Variables</a> values in parameters, configuration files, etc.</li>
 <li><a href="../../user/instance/index.html#instance-variables">Instance Variables</a> can also be defined in an <doc-anchor-trigger to="#instance-variable-templateyaml"><code v-pre>instance-variable-template.yaml</code></doc-anchor-trigger> file externally, and referenced via its ID.</li>
 <li><code v-pre>instanceVariableDefaults</code> allows to override the value of a previous <a href="../../user/instance/index.html#instance-variables">Instance Variables</a> definition in the same template. This is most useful when applying <doc-anchor-trigger to="#instance-variable-templateyaml"><code v-pre>instance-variable-template.yaml</code></doc-anchor-trigger> files using the <code v-pre>template</code> syntax in <code v-pre>instanceVariables</code>. The instance variable template can be shared more easily if instance templates have means of providing distinct values per instance template.</li>
+<li><code v-pre>instanceVariableValues</code> allows to override the value of an instance variable created from <doc-anchor-trigger to="#instance-variable-definitionsyaml">instance-variable-definitions.yaml</doc-anchor-trigger></li>
 <li><strong>Process Control Groups</strong> can be pre-configured for an instance template. If an application template later on wishes to be put into a certain <strong>Process Control Group</strong>, the group is created based on the template provided in the instance template. Note that the defaults for a <strong>Process Control Group</strong> in a template are slightly different from the implicit &#x27;Default&#x27; <strong>Process Control Group</strong> in <strong>BDeploy</strong>. The defaults are: <code v-pre>startType</code>: <code v-pre>PARALLEL</code>, <code v-pre>startWait</code>: <code v-pre>WAIT</code>, <code v-pre>stopType</code>: <code v-pre>PARALLEL</code>.</li>
 <li>A template defines one or more groups of applications to configure. Each group can be assigned to a physical node available on the target system. Groups can be skipped by not assigning them to a node, so they provide a mechanism to provide logical groups of processes (as result of configuring the applications) that belong together and might be optional. It is up to the user whether a group is mapped to a node, or not. Multiple groups can be mapped to the same physical node.</li>
 <li><strong>Instance Templates</strong> can reference <strong>Application Templates</strong> by their <code v-pre>id</code>. The <strong>Instance Templates</strong> can further refine an <strong>Application Template</strong> by setting any of the valid application fields in addition to the template reference.</li>
 <li>When referencing an application template, it is possible to define <em>overrides</em> for the template variables (<code v-pre>{{X:...}}</code>) used in the template. Use provided values will <strong>not</strong> be taken into account for this variable when applying the template, instead the <em>fixed</em> value will be used.</li>
-<li>A template group contains one or more applications to configure, which each can consist of process control configuration and parameter definitions for the start command of the resulting process - exactly the same fields are valid as for <strong>Application Tempaltes</strong> - except for the <code v-pre>id</code> which is not required.</li>
+<li>A template group contains one or more applications to configure, where each application can consist of process control configuration and parameter definitions for the start command of the resulting process - exactly the same fields are valid as for <strong>Application Templates</strong> - except for the <code v-pre>id</code> which is not required.</li>
 <li>Start command parameters are referenced by their ID, defined in <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</li>
 <li>Using <code v-pre>applyTo</code>, an application can be restricted to be applied only to certain nodes, running a specified operating system. A list of supported operating systems can be specified. If this is not specified, the application is assumed to be capable of being applied to nodes running any of all supported operating systems.</li>
 <li>A template group can have either type <code v-pre>SERVER</code> (default) or <code v-pre>CLIENT</code>. A group may only contain applications of a compatible type, i.e. only <code v-pre>SERVER</code> applications in <code v-pre>SERVER</code> type group. When applying the group to a node, applications will be instantiated to processes according to their supported OS and the nodes physical OS. If a <code v-pre>SERVER</code> application does not support the target nodes OS, it is ignored.</li>
 </ol>
 <p>An instance template will be presented to the user when visiting an <a href="../../user/instance/index.html#instance-templates">Empty Instance</a>.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p><code v-pre>instanceVariables</code> and <code v-pre>instanceVariableDefaults</code> have been deprecated (since 7.2.0) in favor of <code v-pre>instanceVariableValues</code> and <doc-anchor-trigger to="#instance-variable-definitionsyaml">instance-variable-definitions.yaml</doc-anchor-trigger>.</p>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="supported-templatevariables-attributes-1">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#supported-templatevariables-attributes-1">#</doc-anchor-trigger>
@@ -1542,6 +1572,32 @@ groups: &lt;7&gt;
 </tbody>
 </table>
 </div>
+<doc-anchor-target id="supported-instancevariablevalues-attributes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#supported-instancevariablevalues-attributes">#</doc-anchor-trigger>
+        <span>Supported <code v-pre>instanceVariableValues</code> Attributes</span>
+    </h3>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>id</code></td>
+<td>The unique ID of an instance variable definition defined in <doc-anchor-trigger to="#instance-variable-definitionsyaml"><code v-pre>instance-variable-definitions.yaml</code></doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><code v-pre>value</code></td>
+<td>The value to use when applying this instance template.</td>
+</tr>
+</tbody>
+</table>
+</div>
 <doc-anchor-target id="supported-processcontrolgroups-attributes">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#supported-processcontrolgroups-attributes">#</doc-anchor-trigger>
@@ -1559,7 +1615,7 @@ groups: &lt;7&gt;
 <tbody>
 <tr>
 <td><code v-pre>name</code></td>
-<td>The name of the [Process Control Group](<a href="../../user/instance/index.html#process-control-groups">Process Control Groups</a>) to create. This group can be referenced by <doc-anchor-trigger to="#application-templateyaml"><code v-pre>application-template.yaml</code></doc-anchor-trigger> files <code v-pre>preferredProcessControlGroup</code> attribute.</td>
+<td>The name of the <a href="../../user/instance/index.html#process-control-groups">Process Control Groups</a> to create. This group can be referenced by <doc-anchor-trigger to="#application-templateyaml"><code v-pre>application-template.yaml</code></doc-anchor-trigger> files <code v-pre>preferredProcessControlGroup</code> attribute.</td>
 </tr>
 <tr>
 <td><code v-pre>startType</code></td>
@@ -1705,6 +1761,117 @@ instanceVariables: &lt;2&gt;
         </div>
     </div>
 </div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p>Deprecated in favor of <doc-anchor-trigger to="#instance-variable-definitionsyaml"><code v-pre>instance-variable-definitions.yaml</code></doc-anchor-trigger></p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="instance-variable-definitionsyaml">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#instance-variable-definitionsyaml">#</doc-anchor-trigger>
+        <span>instance-variable-definitions.yaml</span>
+    </h2>
+</doc-anchor-target>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>There is no actual requirement for the file to be named <code v-pre>instance-variable-definitions.yaml</code> as it is referenced from the <code v-pre>product-info.yaml</code> by relative path anyway. Multiple <strong>Instance Variable Definitions</strong> YAML files can exist and be referenced by <code v-pre>product-info.yaml</code>.</p>
+        </div>
+    </div>
+</div>
+<p>An <code v-pre>instance-variable-definitions.yaml</code> provides definitions for instance variables, based on which instance variables will be created. The definition values can be overriden using <code v-pre>instanceVariableValues</code> in an <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">instance-variable-definitions.yaml</div>
+<pre class="language-yaml"><code v-pre class="language-yaml">
+definitions: &lt;1&gt;
+  - id: &quot;my-instance-variable-definition&quot;
+    name: 'My Instance Variable Definition'
+    longDescription: 'The description for instance variable definition'
+    type: 'STRING'
+    defaultValue: 'someDefaultValue'
+    groupName: 'Instance Variable Definitions Group'</code></pre>
+</doc-codeblock></div>
+<ol>
+<li>File consists of a single list of <code v-pre>definitions</code> containing an arbitrary amount of instance variable definitions.</li>
+</ol>
+<doc-anchor-target id="supported-definitions-attributes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#supported-definitions-attributes">#</doc-anchor-trigger>
+        <span>Supported <code v-pre>definitions</code> Attributes</span>
+    </h3>
+</doc-anchor-target>
+<p>Instance variable definitions support a subset of <doc-anchor-trigger to="#supported-parameters-attributes">supported parameters attributes</doc-anchor-trigger></p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code v-pre>id</code></td>
+<td>The unique ID of the instance variable definition. Instance variable created from definition will have the same ID.</td>
+</tr>
+<tr>
+<td><code v-pre>name</code></td>
+<td>A human readable name of the instance variable used as label in the configuration UI.</td>
+</tr>
+<tr>
+<td><code v-pre>longDescription</code></td>
+<td>An optional human readable description of the instance variable, which is displayed in an info popover next to the instance variable in the Web UI.</td>
+</tr>
+<tr>
+<td><code v-pre>type</code></td>
+<td>Type of instance variable. This defines the type of input field used to edit the variable. Available are <code v-pre>STRING</code>, <code v-pre>NUMERIC</code>, <code v-pre>BOOLEAN</code>, <code v-pre>PASSWORD</code>, <code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>defaultValue</code></td>
+<td>A default value for the variable. The default value may contain variable references according to the <a href="../variables/index.html#variable-expansions">Variable Expansion</a> rules.</td>
+</tr>
+<tr>
+<td><code v-pre>groupName</code></td>
+<td>An optional group name. The configuration UI may use this information to group variables with the same group name together.</td>
+</tr>
+<tr>
+<td><code v-pre>fixed</code></td>
+<td>Whether the instance variable is fixed. This means that the variable can <strong>not</strong> be changed by the user.</td>
+</tr>
+<tr>
+<td><code v-pre>suggestedValues</code></td>
+<td>An optional list of suggested values for variable of type STRING (the default). The Web UI will present this list when editing the variable value.</td>
+</tr>
+<tr>
+<td><code v-pre>customEditor</code></td>
+<td>A potentially required custom editor from a plug-in which needs to be used to edit the value of the instance variable.</td>
+</tr>
+</tbody>
+</table>
+</div>
 <doc-anchor-target id="system-templateyaml">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#system-templateyaml">#</doc-anchor-trigger>
@@ -1798,7 +1965,19 @@ instances:
 </tr>
 <tr>
 <td><code v-pre>type</code></td>
-<td>Type of parameter. This defines the type of input field used to edit the parameter. Available are <code v-pre>STRING</code>, <code v-pre>NUMERIC</code>, <code v-pre>BOOLEAN</code>, <code v-pre>PASSWORD</code>, <code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code>.</td>
+<td>Type of system variable. This defines the type of input field used to edit the parameter. Available are <code v-pre>STRING</code>, <code v-pre>NUMERIC</code>, <code v-pre>BOOLEAN</code>, <code v-pre>PASSWORD</code>, <code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>groupName</code></td>
+<td>An optional group name. The configuration UI may use this information to group variables with the same group name together.</td>
+</tr>
+<tr>
+<td><code v-pre>fixed</code></td>
+<td>Whether the system variable is fixed. This means that the variable can <strong>not</strong> be changed by the user.</td>
+</tr>
+<tr>
+<td><code v-pre>suggestedValues</code></td>
+<td>An optional list of suggested values for variable of type STRING (the default). The Web UI will present this list when editing the variable value.</td>
 </tr>
 <tr>
 <td><code v-pre>customEditor</code></td>
@@ -1903,7 +2082,7 @@ instances:
     </h2>
 </doc-anchor-target>
 <p>The <code v-pre>product-validation.yaml</code> file contains references to all files that should be sent to the server when performing a product pre-validation. This validation can be used to verify that the product and all its applications contain valid <strong>BDeploy</strong> YAML.</p>
-<p>The content of this files is very straight forward:</p>
+<p>The content of this file is very straight forward:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">product-validation.yaml</div>
 <pre class="language-yaml"><code v-pre class="language-yaml">product: product-info.yaml
@@ -2021,7 +2200,7 @@ task pushProduct(type: io.bdeploy.gradle.BDeployPushTask, dependsOn: buildProduc
   of buildProduct
 
   target.servers {
-    myServer { &lt;7&gt;
+    myServer { &lt;8&gt;
       useLogin = true
       instanceGroup = project.getProperty('instanceGroup')
     }
@@ -2034,7 +2213,7 @@ task pushProduct(type: io.bdeploy.gradle.BDeployPushTask, dependsOn: buildProduc
 <li>Applies the plugin <strong>BDeploy</strong> gradle plugin.</li>
 <li>Sets the project version. <strong>Gradle</strong> does not strictly require a version, and uses &#x27;unspecified&#x27; as default. <strong>BDeploy</strong> requires <em>some</em> sort of version, and setting it for the whole project is good practice.</li>
 <li>Calculate a build date, which will be substituted instead of the <code v-pre>SNAPSHOT</code> in the version. This is optional, you could just plainly use the version set. The actual <code v-pre>buildVersion</code> used later when building the product is derived from the project version and the <code v-pre>buildDate</code>.</li>
-<li>The <code v-pre>BDeployValidationTask</code> can be used to validate product information before actually building the product. The <doc-anchor-trigger to="#product-validationyaml"><code v-pre>product-validation.yaml</code></doc-anchor-trigger> file must contain a reference to the <code v-pre>product.info.yaml</code> used, as well as references to all <code v-pre>app-info.yaml</code> files.</li>
+<li>The <code v-pre>BDeployValidationTask</code> can be used to validate product information before actually building the product. The <doc-anchor-trigger to="#product-validationyaml"><code v-pre>product-validation.yaml</code></doc-anchor-trigger> file must contain a reference to the <code v-pre>product-info.yaml</code> used, as well as references to all <code v-pre>app-info.yaml</code> files.</li>
 <li>This task will actually build the product with the configured version. The actual data about the product is loaded from <code v-pre>bdeploy/product-info.yaml</code>, which we will create in a second. Note that this task depends on <code v-pre>installDist</code>, which will unpack the binary distribution of the application in this project into a folder, so <strong>BDeploy</strong> can import the individual files. Depending on the type of application and the way it is built, there might be different ways to achieve this.<br />
 The <code v-pre>repositoryServer</code> will be queried for additionally specified <code v-pre>runtimeDependencies</code> at build time. Those dependencies will be downloaded and embedded into the final product.</li>
 <li>If <code v-pre>buildProduct</code> built a product, this task will package it as a ZIP file. Note that a ZIP will always contain <em>all of</em> the product, whereas <code v-pre>pushProduct</code> can push only required deltas which are not present on the target server.</li>
@@ -2109,7 +2288,7 @@ startCommand:
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>The reason why you want to put this file into a separate folder is because it allows to reference various other files by relative path. Those files (and folders) must the reside next to the <doc-anchor-trigger to="#product-infoyaml"><code v-pre>product-info.yaml</code></doc-anchor-trigger>. Over time this can grow, and may clutter your source folders if you do not separate it.</p>
+<p>The reason why you want to put this file into a separate folder is because it allows to reference various other files by relative path. Those files (and folders) must reside next to the <doc-anchor-trigger to="#product-infoyaml"><code v-pre>product-info.yaml</code></doc-anchor-trigger>. Over time this can grow, and may clutter your source folders if you do not separate it.</p>
         </div>
     </div>
 </div>
@@ -2248,8 +2427,8 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">products.yaml</div>
 <pre class="language-yaml"><code v-pre class="language-yaml">products:
-  'Product One': 'prod-1-build.yaml'
-  'Product Two': 'prod-2-build.yaml'</code></pre>
+  &quot;Product One&quot;: &quot;prod-1-build.yaml&quot;
+  &quot;Product Two&quot;: &quot;prod-2-build.yaml&quot;</code></pre>
 </doc-codeblock></div>
 <p>The path to the <code v-pre>products.yaml</code> has to be configured in the <strong>Eclipse TEA</strong> preferences.</p>
 <div align="center"><p><figure class="content-center">

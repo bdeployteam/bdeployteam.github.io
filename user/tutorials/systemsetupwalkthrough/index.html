@@ -10,24 +10,24 @@
     <meta name="generator" content="Retype 3.6.0">
 
     <!-- Primary Meta Tags -->
-    <title>Variable Expansions</title>
-    <meta name="title" content="Variable Expansions">
-    <meta name="description" content="BDeploy provides a mechanism for variable expansion, used in Link Expressions and Configuration Files">
+    <title>How can I setup systems from the CLI</title>
+    <meta name="title" content="How can I setup systems from the CLI">
+    <meta name="description" content="This tutorial assumes that you are on a machine which can reach the central, managed and node server simultaneously.">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://bdeploy.io/user/power/variables/index.html">
+    <link rel="canonical" href="https://bdeploy.io/user/tutorials/systemsetupwalkthrough/index.html">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bdeploy.io/user/power/variables/index.html">
-    <meta property="og:title" content="Variable Expansions">
-    <meta property="og:description" content="BDeploy provides a mechanism for variable expansion, used in Link Expressions and Configuration Files">
+    <meta property="og:url" content="https://bdeploy.io/user/tutorials/systemsetupwalkthrough/index.html">
+    <meta property="og:title" content="How can I setup systems from the CLI">
+    <meta property="og:description" content="This tutorial assumes that you are on a machine which can reach the central, managed and node server simultaneously.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://bdeploy.io/user/power/variables/index.html">
-    <meta property="twitter:title" content="Variable Expansions">
-    <meta property="twitter:description" content="BDeploy provides a mechanism for variable expansion, used in Link Expressions and Configuration Files">
+    <meta property="twitter:url" content="https://bdeploy.io/user/tutorials/systemsetupwalkthrough/index.html">
+    <meta property="twitter:title" content="How can I setup systems from the CLI">
+    <meta property="twitter:description" content="This tutorial assumes that you are on a machine which can reach the central, managed and node server simultaneously.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -37,6 +37,7 @@
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
     <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.780150453062" defer></script>
 
     <style>
       table td {
@@ -260,372 +261,223 @@
                                 <!-- Rendered if sidebar right is enabled -->
                                 <div id="docs-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
-<doc-anchor-target id="variable-expansions" class="break-words">
+<doc-anchor-target id="how-can-i-setup-systems-from-the-cli" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#variable-expansions">#</doc-anchor-trigger>
-        <span>Variable Expansions</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-can-i-setup-systems-from-the-cli">#</doc-anchor-trigger>
+        <span>How can I setup systems from the CLI</span>
     </h1>
 </doc-anchor-target>
-<p><strong>BDeploy</strong> provides a mechanism for variable expansion, used in <a href="../../user/instance/index.html#link-expressions">Link Expressions</a> and <a href="../../user/instance/index.html#configuration-files">Configuration Files</a>. Variable expansion can happen at the following locations:</p>
+<doc-anchor-target id="preconditions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#preconditions">#</doc-anchor-trigger>
+        <span>Preconditions</span>
+    </h2>
+</doc-anchor-target>
+<p>This tutorial assumes that you are on a machine which can reach the central, managed and node server simultaneously. It also assumes that the central server is already set up and has a <strong>Software Repository</strong> which contains the <code v-pre>Product</code> that you want to deploy.</p>
+<doc-anchor-target id="creating-and-starting-the-servers">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-and-starting-the-servers">#</doc-anchor-trigger>
+        <span>Creating and starting the Servers</span>
+    </h2>
+</doc-anchor-target>
+<ol>
+<li><p>Download <strong>BDeploy</strong> from <a href="https://github.com/bdeployteam/bdeploy">GitHub</a>.</p>
+<ol>
+<li>Navigate to the <a href="https://github.com/bdeployteam/bdeploy/releases">Version</a> that you want.</li>
+<li>Find the zip files called <code v-pre>bdeploy-&lt;OPERATING_SYSTEM&gt;-&lt;VERSION_NUMBER&gt;.zip</code> and download the one that is appropriate for your operating system.</li>
+</ol>
+</li>
+<li><p>Unzip the zip file.</p>
+</li>
+<li><p>Open the unzipped folder and navigate to the subfolder <code v-pre>bin</code>. It contains a file called <code v-pre>bdeploy.bat</code> on Windows, and <code v-pre>bdeploy</code> on Linux. Execute this file via a CLI as shown below to initialize the servers:</p>
 <ul>
-<li>Launcher path specified in <a href="../product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a></li>
-<li>Any parameter value - either user-set value or the <code v-pre>defaultValue</code> specified in <a href="../product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a></li>
-<li>Any configuration file content</li>
-<li>Most of the <a href="../product/index.html#supported-endpointshttp-attributes">HTTP Endpoints</a> attributes</li>
-<li>Instance Variables</li>
-<li>System Variables (limited to certain expansions which are available globally)</li>
+<li><p>managed</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy init --root=&lt;PATH_TO_ROOT&gt; --hostname=&lt;URL&gt; --port=&lt;PORT&gt; --mode=managed --initUser=admin --initPassword=&lt;ADMIN_PASSWORD&gt;</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>node</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy init --root=&lt;PATH_TO_ROOT&gt; --hostname=&lt;URL&gt; --port=&lt;PORT&gt; --mode=node --nodeIdentFile=&lt;PATH_TO_NODE_TOKEN&gt;</code></pre>
+</doc-codeblock></div>
+</li>
 </ul>
-<p>Any of the above will be processed <em>as late as possible</em>, i.e. on the target node, right before writing the final content to the target directories.</p>
-<p>The general syntax for variables is <code v-pre>{{TYPE:VARNAME:SUBVAR}}</code>. There are various types, usually denoted by a single character. The following section gives an overview of types, variables, and possible sub-variables. Additionally, limited arithmetic expressions (only <code v-pre>+</code> and <code v-pre>-</code>) can be added as last component, e.g. <code v-pre>{{X:myvar:+3}}</code>. Arithmetic expressions may not be available depending on the data type used at the specific location (e.g. not available if the variable in question is of type <code v-pre>STRING</code>).</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Note</h5>
-<p><strong>BDeploy</strong> has a <em>link expression editor</em> built in. All elements in the UI (except the configuration file editor) can be switched from <em>plain value</em> editor to <em>link expression</em> editor, which gives rich content assist for link expressions (which contain one or more variable expansions). The configuration file editor uses rich content assist by default on [ <strong>CTRL</strong> ] + [ <strong>Space</strong> ] if the current word starts with <code v-pre>{{</code>.</p>
-        </div>
-    </div>
-</div>
-<doc-anchor-target id="m-manifest-reference">
+</li>
+</ol>
+<p>Where <code v-pre>&lt;PATH_TO_ROOT&gt;</code> is the path to the directory where the <strong>BDeploy</strong> server will be installed into, <code v-pre>&lt;URL&gt;</code> and <code v-pre>&lt;PORT&gt;</code> comprise the URL of the server via which the other servers will be able to contact it in the network and <code v-pre>&lt;ADMIN_PASSWORD&gt;</code> is the password for the initial admin account. The <code v-pre>PATH_TO_NODE_TOKEN</code> is a path where the node ident file will be created. This file contains a token that will be required to connect the node to another server.</p>
+<ol start="4">
+<li><p>Each server can be started with the command shown below, where <code v-pre>PATH_TO_ROOT</code> is the path to the home directory of the respective minion.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy start --root=&lt;PATH_TO_ROOT&gt;</code></pre>
+</doc-codeblock></div>
+<p>Alternatively you may configure a service on your operating system as described <a href="../../setup/service/index.html">here</a>.</p>
+</li>
+<li><p>Store local logins for each server for future convenience. Note that this will ask you for your username and password.</p>
+<ul>
+<li><p>central</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy login --add=central --remote=https://&lt;URI_OF_CENTRAL_SERVER&gt;/api</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>managed</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy login --add=managed --remote=https://&lt;URI_OF_MANAGED_SERVER&gt;/api</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<p>You can use</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy login --list</code></pre>
+</doc-codeblock></div>
+<p>to look at all currently stored connections. This will also show you the currently active connection. In case the currently active connection is not <code v-pre>central</code>, execute the following command to change that.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy login --use=central</code></pre>
+</doc-codeblock></div>
+<p>Note that the login information is by default stored in the current users HOME (~/.bdeploy_login). This can be changed by setting the environment variable BDEPLOY_LOGIN_STORAGE to a different directory.</p>
+</li>
+</ol>
+<doc-anchor-target id="creating-an-instance-group">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#m-manifest-reference">#</doc-anchor-trigger>
-        <span>M: Manifest Reference</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-an-instance-group">#</doc-anchor-trigger>
+        <span>Creating an Instance Group</span>
     </h2>
 </doc-anchor-target>
-<p>Used whenever it is required to get the absolute installation path to another manifest’s path on the target system. The name of the variable indicates the manifest which should be referenced. An optional tag - separated with a &#x27;:&#x27; - can be added to refer to a specific version.</p>
+<p>We must create an instance group on the central server in order to be able to connect the managed server to it. This is achieveable with the following command:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{M:&lt;Name of Manifest&gt;:&lt;Optional Manifest Tag&gt;}}</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-group --create=&lt;GROUP_NAME&gt;</code></pre>
 </doc-codeblock></div>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>{{M:adoptium/jre8}}</td>
-<td>Expands to the absolute path where the the manifest named &#x27;adoptium/jre8&#x27; is installed on the server. The exact version is specified through a <em>runtime dependency</em> in the <a href="../product/index.html#app-infoyaml"><code v-pre>app-info.yaml</code></a>.</td>
-</tr>
-<tr>
-<td>{{M:SELF}}</td>
-<td>Expands to the absolute path where the manifest is installed on the server which contains the <code v-pre>app-info.yaml</code> for this application. This substitution shortcut is only supported in <code v-pre>app-info.yaml</code> files.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<doc-anchor-target id="p-deployment-path">
+<p>If you lack the permission to create an instance group, find an administrator of that server that can create the group and assign permissions to you.</p>
+<doc-anchor-target id="connecting-the-servers">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#p-deployment-path">#</doc-anchor-trigger>
-        <span>P: Deployment Path</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#connecting-the-servers">#</doc-anchor-trigger>
+        <span>Connecting the Servers</span>
     </h2>
 </doc-anchor-target>
-<p>Used to expand to one of the special directories that are defined.</p>
+<doc-anchor-target id="connecting-the-managed-and-the-node-server">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#connecting-the-managed-and-the-node-server">#</doc-anchor-trigger>
+        <span>Connecting the managed and the node server</span>
+    </h3>
+</doc-anchor-target>
+<p>Connect the node to the managed server. You need to locate the file that was created during init of the node (<code v-pre>--nodeIdentFile</code> argument of init). Execute this command on the managed server:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{P:&lt;PATH_ID&gt;}}</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-node --useLogin=managed --add=&lt;NODE_NAME&gt; --nodeIdentFile=&lt;PATH_TO_NODE_TOKEN&gt;</code></pre>
 </doc-codeblock></div>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>{{P:CONFIG}}</td>
-<td>Directory where all configuration files are stored.</td>
-</tr>
-<tr>
-<td>{{P:BIN}}</td>
-<td>Directory where all binaries are stored.</td>
-</tr>
-<tr>
-<td>{{P:RUNTIME}}</td>
-<td>Directory with runtime data (e.g. stdout/stderr capture files) is stored.</td>
-</tr>
-<tr>
-<td>{{P:DATA}}</td>
-<td>Directory shared by multiple deployments of the same instance.</td>
-</tr>
-<tr>
-<td>{{P:LOG_DATA}}</td>
-<td>Configurable directory for log files on the server. The log data directory is shared by all instances, however, each instance has its own subdirectory therein. This expansion references the unique subdirectory applicable for the current instance. Configuration can be done via the <a href="../../experts/cli/index.html#initialization-and-local-configuration-management-commands">cli</a>. If not configured, the expansion defaults to be equal to {{P:DATA}}.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<doc-anchor-target id="v-parameter-value">
+<p>You can use this command to look at all currently connected nodes of the managed server:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-node --useLogin=managed --list</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="connecting-the-central-and-the-managed-server">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#connecting-the-central-and-the-managed-server">#</doc-anchor-trigger>
+        <span>Connecting the central and the managed server</span>
+    </h3>
+</doc-anchor-target>
+<ol>
+<li><p>Create a <code v-pre>managed-ident.txt</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-central --useLogin=managed --managedIdent --output=&lt;PATH_TO_MANAGED_TOKEN&gt;</code></pre>
+</doc-codeblock></div>
+</li>
+<li><p>Upload the <code v-pre>managed-ident.txt</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-central --instanceGroup=&lt;GROUP_NAME&gt; --attach=&lt;PATH_TO_MANAGED_TOKEN&gt; --description=&lt;DESCRIPTION&gt; --uri=https://&lt;URI_OF_MANAGED_SERVER&gt;/api</code></pre>
+</doc-codeblock></div>
+<p>Note: Make sure that <code v-pre>URI_OF_MANAGED_SERVER</code> is the URI as it is reachable from the central server. This might be different from how the managed server is reachable locally, e.g. due to NAT/VPN.</p>
+</li>
+</ol>
+<doc-anchor-target id="configuration-and-installation-of-instances">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#v-parameter-value">#</doc-anchor-trigger>
-        <span>V: Parameter Value</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#configuration-and-installation-of-instances">#</doc-anchor-trigger>
+        <span>Configuration and Installation of Instances</span>
     </h2>
 </doc-anchor-target>
-<p>Used to reference a parameter within the same application or withing any other application from the same instance. Typically used when one application publishes a service on a specific port (<em>server</em>) and other applications (<em>clients</em>) should then connect to this port. The configuration of the <em>client</em> applications would then refer to the port of the <em>server</em> application. Thus, when changing the port, only the configuration of the <em>server</em> application has to be edited.</p>
+<p>There are two ways to continue from here: Either with a: <doc-anchor-trigger to="#system-template">System Template</doc-anchor-trigger> or an <doc-anchor-trigger to="#instance-template">Instance Template</doc-anchor-trigger>. The former approach will create a whole system all at once, while the latter allows you to build up a system instance by instance.</p>
+<p>Either way, you will need the name of the managed server. It can be retrieved with this command:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{V:&lt;PARAM_ID&gt;}} - Refers to a parameter defined in the same application
-{{V:&lt;APP_NAME&gt;:&lt;PARAM_ID&gt;}} - Refers to a parameter defined in the application with the given name</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-central --list --instanceGroup=&lt;GROUP_NAME&gt;</code></pre>
 </doc-codeblock></div>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>{{V:my.param.id}}</td>
-<td>Takes the value from the <em>my.param.id</em> parameter defined in the same application.</td>
-</tr>
-<tr>
-<td>{{V:MyServer:my.param.id}}</td>
-<td>Takes the value from the parameter <em>my.param.id</em> that is defined in the <em>MyServer</em> application.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
-                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Warning</h5>
-<p>Beware that changing the name of an application will break the parameter reference mechanism. There is no mechanism that automatically adapts the configuration of applications which refer to values of other applications. This must be done manually if required.</p>
-        </div>
-    </div>
-</div>
-<doc-anchor-target id="i-instance-value">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#i-instance-value">#</doc-anchor-trigger>
-        <span>I: Instance Value</span>
-    </h2>
+<doc-anchor-target id="system-template">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#system-template">#</doc-anchor-trigger>
+        <span>System Template</span>
+    </h3>
 </doc-anchor-target>
-<p>Used to expand to values related to the instance containing the parameter&#x27;s process.</p>
+<p>See <a href="../../power/product/index.html#system-templateyaml">system-template.yaml</a> for an example system template.</p>
+<p>In order to use a system template via the CLI all of its <code v-pre>templateVariables</code> must have a <code v-pre>defaultValue</code>. In the example system template that is linked above, the template variables are marked with <code v-pre>&lt;2&gt;</code>. Furthermore, all template variables of the linked instance and application templates must be given a fixed value via <code v-pre>fixedVariables</code>. In the example system template that is linked above, the fixed variables of one instance are marked with <code v-pre>&lt;4&gt;</code>.</p>
+<p>Now we upload the system template, creating a new system in the process.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{I:&lt;VAR&gt;}}</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-system --create --name=&lt;SYSTEM_NAME&gt; --createFrom=&lt;PATH_TO_SYSTEM_TEMPLATE&gt;.yaml --instanceGroup=&lt;GROUP_NAME&gt; --server=&lt;MANAGED_SERVER_NAME&gt; --purpose=&lt;PRODUCTIVE|TEST|DEVELOPMENT&gt;</code></pre>
 </doc-codeblock></div>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>{{I:SYSTEM_PURPOSE}}</td>
-<td>The purpose of the instance. Allowed values: <code v-pre>PRODUCTIVE</code>, <code v-pre>TEST</code>, <code v-pre>DEVELOPMENT</code>.</td>
-</tr>
-<tr>
-<td>{{I:ID}}</td>
-<td>The ID of the instance.</td>
-</tr>
-<tr>
-<td>{{I:NAME}}</td>
-<td>The name of the instance.</td>
-</tr>
-<tr>
-<td>{{I:PRODUCT_ID}}</td>
-<td>The name of the &#x27;MANIFEST&#x27; keys name of the configured product.</td>
-</tr>
-<tr>
-<td>{{I:PRODUCT_TAG}}</td>
-<td>The tag (i.e. &#x27;version&#x27;) of the configured product.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<doc-anchor-target id="a-application-value">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#a-application-value">#</doc-anchor-trigger>
-        <span>A: Application Value</span>
-    </h2>
+<doc-anchor-target id="instance-template">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#instance-template">#</doc-anchor-trigger>
+        <span>Instance Template</span>
+    </h3>
 </doc-anchor-target>
-<p>Used to expand to values related to the application containing the parameter&#x27;s.</p>
+<p>See <a href="../../power/product/index.html#instance-templateyaml">instance-template.yaml</a> for an example instance template.</p>
+<p>In order to use an instance template via the CLI you must have a so-called &quot;response file&quot; which contains all values required to apply the instance template without the need to query things from the user, as the CLI cannot do that. The response file has the exact same syntax as the section responsible for an individual instance template inside a system template.</p>
+<p>This is an example of such a response file:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{A:&lt;VAR&gt;}}</code></pre>
+<pre class="language-yaml"><code v-pre class="language-yaml">name: &quot;Demo Instance&quot;
+description: &quot;The Test System's Demo Instance&quot;
+productId: 'io.bdeploy/demo'
+productVersionRegex: &quot;2\\..*&quot;
+templateName: &quot;Default Configuration&quot;
+fixedVariables:
+ - id: 'text-param'
+   value: 'XX'
+ - id: 'sleep-timeout'
+   value: 10
+defaultMappings:
+ - group: 'Server Apps'
+   node: 'master'
+ - group: 'Client Apps'
+   node: 'Client Applications'</code></pre>
 </doc-codeblock></div>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>{{A:ID}}</td>
-<td>The ID of the application.</td>
-</tr>
-<tr>
-<td>{{A:NAME}}</td>
-<td>The name of the application.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<doc-anchor-target id="h-minion-properties">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#h-minion-properties">#</doc-anchor-trigger>
-        <span>H: Minion Properties</span>
-    </h2>
+<p>Note: The node of all client applications must be <em>exactly</em> &quot;Client Applications&quot;.</p>
+<p>First we want to create an empty system. The following command can be used for this.<br>
+Note that the return value of this operation will contain the <code v-pre>SYSTEM_ID</code> (which is not the same thing as the <code v-pre>SYSTEM_NAME</code>), which will be required in the next step.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-system --instanceGroup=&lt;GROUP_NAME&gt; --create --name=&lt;SYSTEM_NAME&gt; --server=localhost</code></pre>
+</doc-codeblock></div>
+<p>Now we have to setup the system variable mentioned in the above response file. Depending on the instance templates and response files you are using you might have to set up way more than one variable - or none at all.<br>
+E.g. the <code v-pre>PARAMETER_ID</code> of the parameter that would have to be set in the example above is &quot;text-param&quot;.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-system --instanceGroup=&lt;GROUP_NAME&gt; --update --uuid=&lt;SYSTEM_ID&gt; --setVariable=&lt;PARAMETER_ID&gt; --setValue=&lt;VALUE&gt;</code></pre>
+</doc-codeblock></div>
+<p>Next, we apply the individual instance templates, each with its response files.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-instance --create=&lt;INSTANCE_NAME&gt; --template=&lt;PATH_TO_RESPONSE_FILE&gt;.yaml --instanceGroup=&lt;GROUP_NAME&gt; --purpose=&lt;PRODUCTIVE|TEST|DEVELOPMENT&gt; --system=&lt;SYSTEM_ID&gt; --server=MANAGED_SERVER_NAME</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="install-activate-start">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#install-activate-start">#</doc-anchor-trigger>
+        <span>Install, Activate, Start</span>
+    </h1>
 </doc-anchor-target>
-<p>Used to expand to properties of the minion where the application is deployed.</p>
+<p>Figure out the ID of the system you just created in case you don&#x27;t have it at hand anymore:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{H:&lt;VAR&gt;}}</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-system --list --instanceGroup=&lt;GROUP_NAME&gt;</code></pre>
 </doc-codeblock></div>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>{{H:HOSTNAME}}</td>
-<td>Expands to the hostname of the target minion where the application is deployed.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
-                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Warning</h5>
-<p>Beware that due to the nature of variable expansion (the point in time this happens), <code v-pre>HOSTNAME</code> may not be what you expect, <em>especially</em> on global parameters used by multiple processes (it can be a different hostname for each process, if they are configured to different nodes). Even more precaution is required when using <code v-pre>HOSTNAME</code> on client applications, as it will expand to the <em>clients</em> hostname.</p>
-        </div>
-    </div>
-</div>
-<doc-anchor-target id="operating-system">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#operating-system">#</doc-anchor-trigger>
-        <span>Operating System</span>
-    </h2>
-</doc-anchor-target>
-<p>Enables conditional output of text based on the current operating system. The name of the variable refers to the name of the operating system. Using
-this variable allows the usage of different arguments for different operating systems while still using a single YAML file.</p>
+<p>Figure out all instances in the instance group belonging to that system. In the result the ID of the system should be contained in the system column to identify instances of the system.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{OSNAME:&lt;conditional output&gt;}}</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-instance --list --instanceGroup=&lt;GROUP_NAME&gt;</code></pre>
 </doc-codeblock></div>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>{{LINUX:java}}</td>
-<td>Expands to <em>java</em> on <em>Linux</em>.</td>
-</tr>
-<tr>
-<td>{{WINDOWS:java.exe}}</td>
-<td>Expands to <em>java.exe</em> on <em>Windows</em>.</td>
-</tr>
-<tr>
-<td>java{{WINDOWS:.exe}}</td>
-<td>Expands to <em>java</em> on Linux and <em>java.exe</em> on <em>Windows</em>.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<doc-anchor-target id="environmental-values">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#environmental-values">#</doc-anchor-trigger>
-        <span>Environmental Values</span>
-    </h2>
-</doc-anchor-target>
-<p>Enables access to environmental variables defined in the operating system. The name of the variable refers to the name of the environmental variable.</p>
+<p>For each of the instances, install &amp; activate them. The <code v-pre>--uuid</code> receives the value from the &quot;ID&quot; column of the previous command. <code v-pre>--version</code> receives the version you want to install, which is most likely the highest version number (&quot;Ver.&quot; column in output of previous command) for this instance.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{ENV:NAME}}
-{{DELAYED:ENV:NAME}}</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-deployment --instanceGroup=&lt;GROUP_NAME&gt; --install --uuid=&lt;INSTANCE_ID&gt; --version=&lt;VERSION_NUMBER&gt;</code></pre>
 </doc-codeblock></div>
-<div class="table-wrapper scrollbar overflow-hidden">
-<table class="comfortable">
-<thead>
-<tr>
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>{{ENV:MY_VARIABLE}}</td>
-<td>Expands to the value of the environmental variable when the application is <strong>installed</strong> on the node or client.</td>
-</tr>
-<tr>
-<td>{{DELAYED:ENV:MY_VARIABLE}}</td>
-<td>Expands to the value of the environmental variable when the application is <strong>launched</strong> on the node or client.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Variables are replaced with their actual values when the process is installed on the target minion node. This might not always be desired.
-Especially for client applications it can be useful to do the actual replacing when the process is launched. This is can be achieved by prefixing
-the actual variable with the <strong>DELAYED</strong> prefix. This enables that different users of the client application are getting different parameter values
-depending on the value of the environmental variable.</p>
-<doc-anchor-target id="x-instance-and-system-variables">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#x-instance-and-system-variables">#</doc-anchor-trigger>
-        <span>X: Instance and System Variables</span>
-    </h2>
-</doc-anchor-target>
-<p>Used to expand to instance and system variables. The same prefix is used for both. Instance Variables take precedence over System Variables in expansions, if both have a variable with the same ID.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{X:&lt;VAR&gt;}}</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-deployment --instanceGroup=&lt;GROUP_NAME&gt; --activate --uuid=&lt;INSTANCE_ID&gt; --version=&lt;VERSION_NUMBER&gt;</code></pre>
 </doc-codeblock></div>
-<p><a href="../../user/instance/index.html#instance-variables">Instance Variables</a> are defined in the <a href="../../user/instance/index.html#instance-configuration">Instance Settings</a> and <a href="../../user/instancegroup/index.html#system-variables">System Variables</a> are defined on <a href="../../user/instancegroup/index.html#systems">Systems</a> level in the <strong>Instance Group</strong>.</p>
-<doc-anchor-target id="if-conditional-expansion">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#if-conditional-expansion">#</doc-anchor-trigger>
-        <span>IF: Conditional Expansion</span>
-    </h2>
-</doc-anchor-target>
-<p>The conditional expansion can be used to convert a boolean expression to any given value. The format of the conditional is</p>
+<p>Finally, start the instance - this will start all processes of the given instance which are set to be started automatically. Again - do this for all instances created.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{IF:condition?value-if-true:value-if-false}}</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-process --instanceGroup=&lt;GROUP_NAME&gt; --uuid=&lt;INSTANCE_ID&gt; --start</code></pre>
 </doc-codeblock></div>
-<p>The condition is any other variable expansion <em>without</em> the curly braces, like for instance <code v-pre>X:MyVar</code> to resolve the instance variable <code v-pre>MyVar</code>. The result of the expression is expected to be boolean, however non-empty strings will be treated as <code v-pre>true</code> as well. The values the expression expands to can be of arbitrary type, and need to be plain values, i.e. they can <em>not</em> contain variable expansions.</p>
-<p>Some examples:</p>
+<p>Note that the aforementioned command only starts processes that have the start type <code v-pre>INSTANCE</code>. To start manual applications, the specific ID of the application must be provided, like so:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">{{IF:V:use-auth?SchemeBasic:SchemeNone}}
-{{IF:X:instance-bool?ValueIfTrue:ValueIfFalse}}</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-process --instanceGroup=&lt;GROUP_NAME&gt; --uuid=&lt;INSTANCE_ID&gt; --start --application=&lt;APPLICATION_ID&gt;</code></pre>
 </doc-codeblock></div>
 
                                 
@@ -636,20 +488,20 @@ depending on the value of the environmental variable.</p>
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../power/product/index.html">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../tutorials/deployproduct/index.html">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Integration of a new product</span>
+                                                <span class="block mt-1">How can I deploy a new Product Version?</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../power/runtimedependencies/index.html">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../power/index.html">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Runtime Dependencies</span>
+                                                <span class="block mt-1">Advanced Usage</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -693,6 +545,6 @@ depending on the value of the environmental variable.</p>
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Variable Expansions", level: 2, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "How can I setup systems from the CLI", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.776354992290">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.780150453062">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.5.0">
+    <meta name="generator" content="Retype 3.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Command Line Interface</title>
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.776354992290" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.780150453062" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
 
     <style>
       table td {
@@ -575,7 +575,7 @@
     </h2>
 </doc-anchor-target>
 <p><strong>BHive</strong> is the underlying storage used by <strong>BDeploy</strong>. <strong>BDeploy</strong> serves <strong>BHives</strong> for all minions (<em>master</em> and <em>node</em>), and has additional <strong>BHives</strong> per <strong>Instance Group</strong> and <strong>Software Repository</strong> on the <em>master</em>.</p>
-<p><strong>BHive</strong> itself is does not know about <strong>BDeploy</strong>, it is &#x27;just&#x27; a dumb storage backend (which is responsible for de-duplicated, distributed, fail-tolerant (failure-recoverable) storage of file contents).</p>
+<p><strong>BHive</strong> itself does not know about <strong>BDeploy</strong>, it is &#x27;just&#x27; a dumb storage backend which is responsible for de-duplicated, distributed, fail-tolerant (failure-recoverable) storage of file contents.</p>
 <p>Much like Git, <strong>BHive</strong> only knows two commands that actually perform remote communication: <code v-pre>fetch</code> and <code v-pre>push</code>. All other commands are performing their work locally.</p>
 <doc-anchor-target id="analysis-and-maintenance-commands">
     <h3>
@@ -640,7 +640,7 @@
 <tbody>
 <tr>
 <td><code v-pre>export</code></td>
-<td>Reads a <strong>Manifest</strong> from the given <strong>BHive</strong> and writes it&#x27;s content to a given target folder.</td>
+<td>Reads a <strong>Manifest</strong> from the given <strong>BHive</strong> and writes its content to a given target folder.</td>
 </tr>
 <tr>
 <td><code v-pre>import</code></td>

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.776354992290">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.780150453062">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.5.0">
+    <meta name="generator" content="Retype 3.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Client Applications</title>
@@ -33,12 +33,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.776354992290" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.780150453062" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
 
     <style>
       table td {
@@ -282,7 +282,7 @@
         <span>Launcher</span>
     </h2>
 </doc-anchor-target>
-<p><strong>Client Application</strong> are started through a special <strong>Launcher</strong> that needs to be installed on all client devices. The launcher is responsible for keeping the application up-to-date and to pass the configured parameters to the application.</p>
+<p><strong>Client Application</strong> is started through a special <strong>Launcher</strong> that needs to be installed on all client devices. The launcher is responsible for keeping the application up-to-date and to pass the configured parameters to the application.</p>
 <doc-anchor-target id="installer">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#installer">#</doc-anchor-trigger>
@@ -366,7 +366,7 @@ Start -FilePath &quot;./Installer.exe&quot; -ArgumentList &quot;/Unattended&quot
         <span>Authenticode Signature</span>
     </h4>
 </doc-anchor-target>
-<p>All Windows binaries of <strong>BDeploy</strong> are signed using a <em>SSI Schaefer IT Solutions GmbH</em> code signing certificate. The installers are built and signed at release time. However, due to the very dynamic nature of applications in <strong>BDeploy</strong>, the installer needs to be branded <em>after</em> being signed during the build (to make it know which server to contact, which application to install, etc.).</p>
+<p>All Windows binaries of <strong>BDeploy</strong> are signed using an <em>SSI Schaefer IT Solutions GmbH</em> code signing certificate. The installers are built and signed at release time. However, due to the very dynamic nature of applications in <strong>BDeploy</strong>, the installer needs to be branded <em>after</em> being signed during the build (to make it know which server to contact, which application to install, etc.).</p>
 <p><strong>BDeploy</strong> uses a technique commonly called <em>Signature Stuffing</em>. This technique is widely used in various installation programs, as many have the same requirements. Unfortunately, this technique can also be abused by malicious code and is thus regarded as potential security risk, see <a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2013-3900">the official Microsoft report</a>. Microsoft does <em>not</em> enable the mitigation for this vulnerability by default, since this breaks signature validation on <em>many</em> installation programs.</p>
 <p>The effect of enabling the recommended settings as per the report above will have the effect, that all branded <strong>BDeploy</strong> binaries will be regarded <em>unsigned</em>. Those binaries will be shown (in properties dialogs and all other means of verification, e.g. <code v-pre>signtool verify</code>) as <em>unsigned</em>. No hint will be displayed, that the binary is, in fact, signed but does not meet the stricter security policy in place.</p>
 <doc-anchor-target id="linux">
@@ -471,7 +471,7 @@ Start -FilePath &quot;./Installer.exe&quot; -ArgumentList &quot;/Unattended&quot
         <span>Multi-User Installations</span>
     </h2>
 </doc-anchor-target>
-<p>Larger organizations typically do not want to deploy client applications on each client device manually. They prefer to install the client software on a central server and publish the software via <em>Citrix</em> or similar technologies so that all users have access to one shared installation. This has the advantage that the administrators are in control of the installation and can centralize the update handling. <strong>BDeploy</strong> supports such an installation szenario.</p>
+<p>Larger organizations typically do not want to deploy client applications on each client device manually. They prefer to install the client software on a central server and publish the software via <em>Citrix</em> or similar technologies so that all users have access to one shared installation. This has the advantage that the administrators are in control of the installation and can centralize the update handling. <strong>BDeploy</strong> supports such an installation scenario.</p>
 <p>There are two different locations that are important in the context of deploying applications in a multi-user environment:</p>
 <ul>
 <li><p><strong>Installation Area</strong> - The location where the launcher as well as all applications are installed. This location is typically protected by file system privileges so that an <strong>Administrator</strong> has full permissions and all other users have read permissions. This location is defined by the environment variable <strong>BDEPLOY_HOME</strong>.</p>

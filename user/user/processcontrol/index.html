@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.776354992290">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.780150453062">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.5.0">
+    <meta name="generator" content="Retype 3.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Process Control</title>
@@ -33,12 +33,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.776354992290" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.780150453062" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
 
     <style>
       table td {
@@ -286,7 +286,7 @@
         <span>Process Bulk Control</span>
     </h2>
 </doc-anchor-target>
-<p>In addition to the actions for individual processes, the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a> offers <strong>bulk control</strong> actions from its toolbar. The three instance control buttons exclusively affect processes with <strong>start type</strong> <code v-pre>INSTANCE</code>, while the three <strong>Selected Processes</strong> buttons affect all processes except for those with <strong>start type</strong> <code v-pre>MANUAL_CONFIRM</code>.</p>
+<p>In addition to the actions for individual processes, the <a href="../instance/index.html#instance-dashboard">Instance Dashboard</a> offers <strong>bulk control</strong> actions from its toolbar. The three instance control buttons exclusively affect all processes with <strong>start type</strong> <code v-pre>INSTANCE</code>, while the three <strong>Selected Processes</strong> buttons affect selected processes except for those with <strong>start type</strong> <code v-pre>MANUAL_CONFIRM</code>.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_dashboardbulkprocesscontrol.png" alt="Bulk Process Control" width="480">
     <figcaption class="caption">Bulk Process Control</figcaption>
@@ -411,7 +411,7 @@
 </table>
 </div>
 <p>It is a common requirement that certain <strong>Processes</strong> of an <strong>Instance</strong> should be automatically started whenever the <strong>BDeploy</strong> server itself is started. To accomplish that, the <em>Automatic Startup</em> flag of the <strong>Instance</strong> must be set. This can be done in the <a href="../instance/index.html#instance-configuration">Instance Configuration</a>. Additionally, the <strong>start type</strong> of the <strong>Process</strong> must set to <code v-pre>INSTANCE</code>. This can be done in the <strong>parameter configuration</strong> of the <strong>Process</strong>.</p>
-<p><strong>Processes</strong> that are executing actions that cannot be reverted or that are potentially dangerous in productive environments (e.g. dropping a database and/or deleting files) should be configured with the start type <code v-pre>MANUAL_CONFIRM</code>. Doing that results in an additional popup dialog that forces the user to enter the name of the <strong>Process</strong> before it is started. The idea is that the user takes an additional moment to ensure that they are really want to start the selected <strong>Process</strong>.</p>
+<p><strong>Processes</strong> that are executing actions that cannot be reverted or that are potentially dangerous in productive environments (e.g. dropping a database and/or deleting files) should be configured with the start type <code v-pre>MANUAL_CONFIRM</code>. Doing that results in an additional popup dialog that forces the user to enter the name of the <strong>Process</strong> before it is started. The idea is that the user takes an additional moment to ensure that they really want to start the selected <strong>Process</strong>.</p>
 <div align="center"><p><figure class="content-center">
     <img src="../../images/doc_dashboardprocessmanualconfirm.png" alt="Manual Confirmation on Startup" width="480">
     <figcaption class="caption">Manual Confirmation on Startup</figcaption>

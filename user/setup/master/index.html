@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.776354992290">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.780150453062">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.5.0">
+    <meta name="generator" content="Retype 3.6.0">
 
     <!-- Primary Meta Tags -->
     <title>Master</title>
@@ -33,12 +33,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.776354992290" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.780150453062" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.776354992290" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
 
     <style>
       table td {
@@ -294,7 +294,7 @@
 </tr>
 <tr>
 <td><code v-pre>CENTRAL</code></td>
-<td>Allows a central <strong>BDeploy</strong> master to control and manage multiple <code v-pre>MANAGED</code> masters. The <code v-pre>CENTRAL</code> master itself has no local deployment capabilities. Its purpose ist <em>exclusively</em> to control other masters. Other than that, from a users perspective, the server handles mostly like a <code v-pre>STANDALONE</code> or <code v-pre>MANAGED</code> master.</td>
+<td>Allows a central <strong>BDeploy</strong> master to control and manage multiple <code v-pre>MANAGED</code> masters. The <code v-pre>CENTRAL</code> master itself has no local deployment capabilities. Its purpose is <em>exclusively</em> to control other masters. Other than that, from a users perspective, the server handles mostly like a <code v-pre>STANDALONE</code> or <code v-pre>MANAGED</code> master.</td>
 </tr>
 <tr>
 <td><code v-pre>NODE</code></td>
@@ -476,6 +476,19 @@ See <a href="../../power/variables/index.html">Variable Expansions</a> for furth
     </h2>
 </doc-anchor-target>
 <p>Only authenticated users have access to the Web UI. The initial user has been created by the <code v-pre>init</code> command. Use this user to log in to the Web UI and create additional users (or provide external authentication mechanisms) from the <a href="../../experts/system/index.html#user-accounts">User Accounts</a> administration page.</p>
+<doc-anchor-target id="sessions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sessions">#</doc-anchor-trigger>
+        <span>Sessions</span>
+    </h2>
+</doc-anchor-target>
+<p>The Web UI uses timed sessions for authenticated users. Sessions follow these rules:</p>
+<ul>
+<li>A user must be &#x27;active&#x27; (i.e. visiting the <strong>BDeploy</strong> Web UI in some way) within a configurable timeframe, by default 24 hours. Otherwise, the session is timed out.</li>
+<li>A session times out latest after a configurable session timeout, by default 7 days.</li>
+<li>Active sessions are stored on disc every 5 minutes. Sessions are not guaranteed to be deemed active after a server restart, but will be in most cases. A forced server shutdown will not write currently active sessions (e.g. <code v-pre>kill -9</code>).</li>
+<li>The <code v-pre>bdeploy config</code> command can be used to modify the timeout values.</li>
+</ul>
 
                                 
                                 <!-- Required only on API pages -->
