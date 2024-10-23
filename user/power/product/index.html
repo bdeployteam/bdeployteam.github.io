@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.780150453062">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.783008230903">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -33,13 +33,13 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.6.0.780150453062" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.783008230903" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.783008230903" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.780150453062" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.780150453062" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.783008230903" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.783008230903" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.783008230903" defer></script>
 
     <style>
       table td {
@@ -1169,7 +1169,10 @@ processName: &quot;Server With Sleep&quot; &lt;2&gt;
 description: &quot;Server application which sleeps before exiting&quot;
 preferredProcessControlGroup: &quot;First Group&quot; &lt;3&gt;
 
-templateVariables: &lt;4&gt;
+applyOn: &lt;4&gt;
+  - LINUX
+
+templateVariables: &lt;5&gt;
   - id: sleep-timeout
     name: &quot;Sleep Timeout&quot;
     description: &quot;The amount of time the server application should sleep&quot;
@@ -1178,14 +1181,14 @@ templateVariables: &lt;4&gt;
     - '60'
     - '120'
 
-processControl: &lt;5&gt;
+processControl: &lt;6&gt;
   startType: MANUAL_CONFIRM
   keepAlive: false
   noOfRetries: 3
   gracePeriod: 30000
   attachStdin: true
 
-startParameters: &lt;6&gt;
+startParameters: &lt;7&gt;
 - id: param.sleep
   value: &quot;{{T:sleep-timeout}}&quot;</code></pre>
 </doc-codeblock></div>
@@ -1193,6 +1196,7 @@ startParameters: &lt;6&gt;
 <li>An <strong>Application Template</strong> must have an ID. This can be used to reference it from an <strong>Instance Template</strong>.</li>
 <li><code v-pre>name</code> is the value user sees when they choose the template in UI. <code v-pre>processName</code> is the name of the resulting process configuration.</li>
 <li>The preferred process control group is used to determine which process control group to use when applying the application template. This is only used if a <strong>Process Control Group</strong> with this name exists in the instance configuration. <strong>Process Control Groups</strong> can be pre-configured in an <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger>.</li>
+<li>A list of operating systems that this application may run on. If the node is running on an operating system that is not contained in the list, then the process will not be imported whenever an instance template references this application. If no list is present, then all operating systems are considered valid.</li>
 <li>A template can define (and use) template variables which are mandatory input by the user when using the template. A template variable can be referenced in parameter value definitions using the <code v-pre>{{T:varname}}</code> syntax. If the parameter value is numeric, you can also use simple arithmetic operations on the template variable like <code v-pre>{{T:varname:+10}}</code> which will add 10 to the numeric value of the template variable.</li>
 <li>A template can define arbitrary process control parameters to further control the default process control settings.</li>
 <li>Start command parameters are referenced by their ID, defined in <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</li>
@@ -1413,15 +1417,17 @@ groups: &lt;8&gt;
   - application: server-app &lt;11&gt;
     name: &quot;Server With Sleep&quot;
     description: &quot;Server application which sleeps before exiting&quot;
+    applyOn: &lt;12&gt;
+      - LINUX
     processControl:
       startType: MANUAL_CONFIRM
-    startParameters: &lt;12&gt;
+    startParameters: &lt;13&gt;
     - id: param.sleep
       value: &quot;{{T:sleep-timeout}}&quot;
-    applyTo: &lt;13&gt;
+    applyTo: &lt;14&gt;
     - LINUX
 - name: &quot;Client Apps&quot;
-  type: CLIENT &lt;14&gt;
+  type: CLIENT &lt;15&gt;
   description: &quot;All client applications&quot;
 
   applications:
@@ -1440,6 +1446,7 @@ groups: &lt;8&gt;
 <li><strong>Instance Templates</strong> can reference <strong>Application Templates</strong> by their <code v-pre>id</code>. The <strong>Instance Templates</strong> can further refine an <strong>Application Template</strong> by setting any of the valid application fields in addition to the template reference.</li>
 <li>When referencing an application template, it is possible to define <em>overrides</em> for the template variables (<code v-pre>{{X:...}}</code>) used in the template. Use provided values will <strong>not</strong> be taken into account for this variable when applying the template, instead the <em>fixed</em> value will be used.</li>
 <li>A template group contains one or more applications to configure, where each application can consist of process control configuration and parameter definitions for the start command of the resulting process - exactly the same fields are valid as for <strong>Application Templates</strong> - except for the <code v-pre>id</code> which is not required.</li>
+<li>A list of operating systems where this application will be applied. If the node is running on an operating system that is not contained in the list, then the application will not be imported. If no list is present, then all operating systems are considered valid.</li>
 <li>Start command parameters are referenced by their ID, defined in <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</li>
 <li>Using <code v-pre>applyTo</code>, an application can be restricted to be applied only to certain nodes, running a specified operating system. A list of supported operating systems can be specified. If this is not specified, the application is assumed to be capable of being applied to nodes running any of all supported operating systems.</li>
 <li>A template group can have either type <code v-pre>SERVER</code> (default) or <code v-pre>CLIENT</code>. A group may only contain applications of a compatible type, i.e. only <code v-pre>SERVER</code> applications in <code v-pre>SERVER</code> type group. When applying the group to a node, applications will be instantiated to processes according to their supported OS and the nodes physical OS. If a <code v-pre>SERVER</code> application does not support the target nodes OS, it is ignored.</li>
