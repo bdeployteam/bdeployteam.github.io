@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.783008230903">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.783686716168">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.6.0.783008230903" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.783686716168" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.783008230903" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.783686716168" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.783008230903" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.783008230903" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.783686716168" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.783686716168" data-turbo-eval="false" defer></script>
 
     <style>
       table td {
@@ -267,10 +267,73 @@
     </h1>
 </doc-anchor-target>
 <p><strong>BDeploy</strong> provides users with several troubleshooting options to address potential problems.</p>
-<doc-anchor-target id="verify-and-reinstall">
+<doc-anchor-target id="verify-installation-and-log">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#verify-and-reinstall">#</doc-anchor-trigger>
-        <span>Verify and Reinstall</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#verify-installation-and-log">#</doc-anchor-trigger>
+        <span>Verify Installation and Log</span>
+    </h2>
+</doc-anchor-target>
+<p>As a first step, you should always verify the installation and the log contents. The first part is verifying that the
+data and the binary directory are separate.</p>
+<p>This is an example of how it <em>should</em> be:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">/opt
+  - /bdeploy
+    - /bdeploy
+      - /bin
+      - /lib
+      - ...
+    - /data
+      - /etc
+      - /hive
+      - /log
+      - /storage
+      - ...</code></pre>
+</doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p>The binaries (<code v-pre>bin</code>, <code v-pre>lib</code>, ...) are <em>separate</em> from the data directory (<code v-pre>hive</code>, <code v-pre>storage</code>). This is important as
+updates to BDeploy <em>change</em> the contents of the binaries. This could potentially interfere with the data directory if it
+would reside within the same directory!</p>
+        </div>
+    </div>
+</div>
+<p>The second part is to check the content of the log directory. <code v-pre>audit.log</code> will contain a brief sequence of &#x27;modifying&#x27;
+and generally failed operations. This means it is a good first place to see things that went wrong at a glance. You can
+use the timestamp found in the <code v-pre>audit.log</code> to further continue looking for detailed information in <code v-pre>server.log</code>.</p>
+<p>Generally <code v-pre>server.log</code> will contain exceptions and stack traces for issues that occured. In case you are reporting an
+issue to the BDeploy Team, please make sure to attach both <code v-pre>audit.log</code> and <code v-pre>server.log</code> to facilitate troubleshooting on
+our side.</p>
+<doc-anchor-target id="connection-to-managed">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#connection-to-managed">#</doc-anchor-trigger>
+        <span>Connection to <code v-pre>MANAGED</code></span>
+    </h2>
+</doc-anchor-target>
+<p>Sometimes it is hard to wrap your head around how the network between <code v-pre>CENTRAL</code> and <code v-pre>MANAGED</code> servers works. Connecting
+a <code v-pre>MANAGED</code> to a <code v-pre>CENTRAL</code> server involves dropping the server information card on the <code v-pre>CENTRAL</code> server, which will
+prefill all the input fields with values (URL, Port) <em>as known by the <code v-pre>MANAGED</code></em>. This can differ vastly from how the
+<code v-pre>CENTRAL</code> server <em>reaches</em> the <code v-pre>MANAGED</code>.</p>
+<p>Thus, when connecting a <code v-pre>MANAGED</code> server make sure to <strong>change</strong> the prefilled values so they reflect how the <code v-pre>CENTRAL</code>
+server will actually be able to reach the <code v-pre>MANAGED</code> server. This may include using IP addresses, depending on the setup
+even <em>different</em> IP addresses from what the server has if there are VPNs and NATs in place.</p>
+<p>A good indicator whether the connection will be fine is if you can ping the target server <em>from</em> the <code v-pre>CENTRAL</code>
+directly (via CLI, not BDeploy).</p>
+<doc-anchor-target id="corrupted-installations">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#corrupted-installations">#</doc-anchor-trigger>
+        <span>Corrupted Installations</span>
     </h2>
 </doc-anchor-target>
 <p>If you suspect that the server or client application may be corrupted, you can initiate the verification process by clicking on the [ <strong>Verify</strong> ] button. This action will assess the integrity of the application files and provide you with feedback about the application state. The result will indicate how many files have been modified, how many are missing, and how many remained unmodified. If the verification reveals that the application has indeed been corrupted, the recommended course of action is to reinstall the application to ensure its proper functionality. For that click on the [ <strong>Reinstall</strong> ] button.</p>
@@ -310,15 +373,75 @@ For client applications the [ <strong>Reinstall</strong> ] is always available f
         </div>
     </div>
 </div>
-<doc-anchor-target id="repair-and-prune">
+<doc-anchor-target id="general-bhive-failures">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#repair-and-prune">#</doc-anchor-trigger>
-        <span>Repair and Prune</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#general-bhive-failures">#</doc-anchor-trigger>
+        <span>General BHive Failures</span>
     </h2>
 </doc-anchor-target>
-<p>Additionally, if certain <strong>BHive</strong> operations within <strong>BDeploy</strong> cease to work as expected, it may be due to issues with the associated <strong>BHives</strong>. To address this, users can utilize the [ <strong>Repair and Prune Unused Objects</strong> ] button, which initiates a filesystem consistency check (FSCK) and prune operations.<br />
-FSCK operation identifies and repairs any corrupted files within the <strong>BHives</strong>, potentially resolving the operational issues you have encountered.<br />
-Pruning any unreferenced objects from a <strong>BHive</strong> will clean leftovers from cancelled previous operations, which could potentially be broken and consume unnecessary disc space.</p>
+<p>Failing BHive (the underlying storage of BDeploy) operations will typically show the text <code v-pre>Operation on hive ... failed</code>
+either in the UI or the logs.</p>
+<p>If certain <strong>BHive</strong> operations within <strong>BDeploy</strong> cease to work as expected, it may be due to issues caused by
+interrupted operations, network failures, anti-virus software keeping locks on files while checking or even removing
+objects (depending on the product deployed with BDeploy, not BDeploy itself). To address this, users can utilize the [ *
+<em>Repair and Prune Unused Objects</em>* ] button, which
+initiates a filesystem consistency check (FSCK) and prune operations.<br />
+FSCK operation identifies and repairs any corrupted files within the <strong>BHives</strong>, potentially resolving the operational
+issues you have encountered.
+Pruning any unreferenced objects from a <strong>BHive</strong> will clean leftovers from cancelled and/or failed previous operations,
+which could potentially be broken (and thus make subsequent operations fail as well) and consume unnecessary disc space.</p>
+<doc-anchor-target id="https-certificates">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#https-certificates">#</doc-anchor-trigger>
+        <span>HTTPS Certificates</span>
+    </h2>
+</doc-anchor-target>
+<p>Certificates in general can be a tedious topic. However, there is no way around learning a bit about how they function.
+The BDeploy team suggests that you at least are familiar (i.e. read up about) those topics and terms:</p>
+<ul>
+<li>PEM</li>
+<li>Certificate Chain</li>
+<li>RSA Private Key</li>
+<li>Key Encryption</li>
+<li>PKCS (#7 and #12)</li>
+<li>Certificate Authority</li>
+</ul>
+<p>Once you know about those, make sure you convert any certificate &amp; private key combo to a <em>single</em> PEM file containing:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">[Main Certificate]
+[Certificate Chain {1}]
+[Certificate Chain {...}]
+[RSA Private Key (unencrypted)]</code></pre>
+</doc-codeblock></div>
+<p>This file, if prepared correctly, can be fed to BDeploy to install the certificate. All the conversions can be done e.g.
+with the <code v-pre>openssl</code> command line tooling.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p>The certificate <strong>must</strong> be signed by an authority which is <strong>trusted</strong>. This includes both the browser that will access
+BDeploy and the <strong>Java VM</strong> used by BDeploy. This is typically the case for all large official CAs, however self signed
+certificates issued by a private CA will cause issues and more work to get them to work.</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="connection-closedrefused">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#connection-closedrefused">#</doc-anchor-trigger>
+        <span>Connection closed/refused</span>
+    </h2>
+</doc-anchor-target>
+<p>Typically <code v-pre>Connection refused</code>, <code v-pre>Connection closed</code>, <code v-pre>Connection reset</code> and other connection related issues are <em>not</em>
+related to BDeploy. Please troubleshoot the network connection(s) between the involved parties.</p>
 
                                 
                                 <!-- Required only on API pages -->
