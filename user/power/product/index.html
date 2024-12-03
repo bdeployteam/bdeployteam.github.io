@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.784726717050">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786523450158">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -33,13 +33,13 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.6.0.784726717050" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.786523450158" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.784726717050" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.784726717050" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.784726717050" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.784726717050" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.786523450158" defer></script>
 
     <style>
       table td {
@@ -612,6 +612,13 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 </tr>
 <tr>
 <td>CLIENT</td>
+<td><code v-pre>workingDirectory</code></td>
+<td><code v-pre>AUTOMATIC</code>, <code v-pre>DONT_SET</code>, <code v-pre>SET</code></td>
+<td><code v-pre>AUTOMATIC</code></td>
+<td>Whether to set the applications working directory when launching. <code v-pre>AUTOMATIC</code> will determine this from whether a <code v-pre>startScriptName</code> is set. The working directory will not be set if a <code v-pre>startScriptName</code> is set to avoid issues with CLI applications.</td>
+</tr>
+<tr>
+<td>CLIENT</td>
 <td><code v-pre>offlineStartAllowed</code></td>
 <td><code v-pre>true</code>, <code v-pre>false</code></td>
 <td>false</td>
@@ -1176,6 +1183,7 @@ templateVariables: &lt;5&gt;
   - id: sleep-timeout
     name: &quot;Sleep Timeout&quot;
     description: &quot;The amount of time the server application should sleep&quot;
+    type: NUMERIC
     defaultValue: 60
     suggestedValues:
     - '60'
@@ -1259,6 +1267,10 @@ fixedVariables: &lt;2&gt;
 <tr>
 <td><code v-pre>description</code></td>
 <td>Further detailed description of the template variable, explaining to the user the purpose of the variable.</td>
+</tr>
+<tr>
+<td><code v-pre>type</code></td>
+<td>Type of template variable. This defines the type of input field used to edit the variable. Available are <code v-pre>STRING</code> (default), <code v-pre>NUMERIC</code>, <code v-pre>BOOLEAN</code> and <code v-pre>PASSWORD</code>.</td>
 </tr>
 <tr>
 <td><code v-pre>defaultValue</code></td>
@@ -1972,7 +1984,7 @@ instances:
 </tr>
 <tr>
 <td><code v-pre>type</code></td>
-<td>Type of system variable. This defines the type of input field used to edit the parameter. Available are <code v-pre>STRING</code>, <code v-pre>NUMERIC</code>, <code v-pre>BOOLEAN</code>, <code v-pre>PASSWORD</code>, <code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code>.</td>
+<td>Type of system variable. This defines the type of input field used to edit the variable. Available are <code v-pre>STRING</code>, <code v-pre>NUMERIC</code>, <code v-pre>BOOLEAN</code>, <code v-pre>PASSWORD</code>, <code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code>.</td>
 </tr>
 <tr>
 <td><code v-pre>groupName</code></td>

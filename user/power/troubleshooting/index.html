@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.784726717050">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786523450158">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.6.0.784726717050" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.786523450158" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.784726717050" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.784726717050" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.784726717050" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
 
     <style>
       table td {
@@ -304,17 +304,32 @@ data and the binary directory are separate.</p>
         <div class="pr-5 ml-3 w-full">
             <h5>Warning</h5>
 <p>The binaries (<code v-pre>bin</code>, <code v-pre>lib</code>, ...) are <em>separate</em> from the data directory (<code v-pre>hive</code>, <code v-pre>storage</code>). This is important as
-updates to BDeploy <em>change</em> the contents of the binaries. This could potentially interfere with the data directory if it
-would reside within the same directory!</p>
+updates to BDeploy <em>change</em> the contents of the binaries. This could potentially interfere with the data directory if it were to reside within the same directory!</p>
         </div>
     </div>
 </div>
 <p>The second part is to check the content of the log directory. <code v-pre>audit.log</code> will contain a brief sequence of &#x27;modifying&#x27;
 and generally failed operations. This means it is a good first place to see things that went wrong at a glance. You can
 use the timestamp found in the <code v-pre>audit.log</code> to further continue looking for detailed information in <code v-pre>server.log</code>.</p>
-<p>Generally <code v-pre>server.log</code> will contain exceptions and stack traces for issues that occured. In case you are reporting an
+<p>Generally, <code v-pre>server.log</code> will contain exceptions and stack traces for issues that occurred. In case you are reporting an
 issue to the BDeploy Team, please make sure to attach both <code v-pre>audit.log</code> and <code v-pre>server.log</code> to facilitate troubleshooting on
 our side.</p>
+<doc-anchor-target id="issues-with-the-windows-service">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#issues-with-the-windows-service">#</doc-anchor-trigger>
+        <span>Issues with the Windows Service</span>
+    </h2>
+</doc-anchor-target>
+<p>In case you are having trouble with the Windows service installation, e.g. the service does not start, verify:</p>
+<ul>
+<li>... that the installation follows the example above. The binaries in one directory, e.g. C:\BDeploy\bdeploy-win64, and
+the root/data in a different directory, e.g. C:\BDeploy\root.</li>
+<li>... that you specified the full path to <code v-pre>bdeploy.bat</code> and the root directory to the service installation bat,
+e.g. <code v-pre>bdeploy-service-install.bat --master C:\BDeploy\bdeploy-win64\bin\bdeploy.bat C:\BDeploy\root</code> - using the
+example paths from above.</li>
+</ul>
+<p>You can use the <code v-pre>bdeploy-service-uninstall.bat --master</code> command to remove the existing service registration and redo
+the registration with the above command in case you have doubts.</p>
 <doc-anchor-target id="connection-to-managed">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#connection-to-managed">#</doc-anchor-trigger>
@@ -323,13 +338,13 @@ our side.</p>
 </doc-anchor-target>
 <p>Sometimes it is hard to wrap your head around how the network between <code v-pre>CENTRAL</code> and <code v-pre>MANAGED</code> servers works. Connecting
 a <code v-pre>MANAGED</code> to a <code v-pre>CENTRAL</code> server involves dropping the server information card on the <code v-pre>CENTRAL</code> server, which will
-prefill all the input fields with values (URL, Port) <em>as known by the <code v-pre>MANAGED</code></em>. This can differ vastly from how the
+fill all the input fields with values (URL, Port) <em>as known by the <code v-pre>MANAGED</code></em>. This can differ vastly from how the
 <code v-pre>CENTRAL</code> server <em>reaches</em> the <code v-pre>MANAGED</code>.</p>
-<p>Thus, when connecting a <code v-pre>MANAGED</code> server make sure to <strong>change</strong> the prefilled values so they reflect how the <code v-pre>CENTRAL</code>
-server will actually be able to reach the <code v-pre>MANAGED</code> server. This may include using IP addresses, depending on the setup
+<p>Thus, when connecting a <code v-pre>MANAGED</code> server make sure to <strong>change</strong> the values so they reflect how the <code v-pre>CENTRAL</code>
+server will actually be able to reach the <code v-pre>MANAGED</code> server. This may include using IP addresses - depending on the setup
 even <em>different</em> IP addresses from what the server has if there are VPNs and NATs in place.</p>
 <p>A good indicator whether the connection will be fine is if you can ping the target server <em>from</em> the <code v-pre>CENTRAL</code>
-directly (via CLI, not BDeploy).</p>
+directly (via a CLI, not BDeploy).</p>
 <doc-anchor-target id="corrupted-installations">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#corrupted-installations">#</doc-anchor-trigger>
@@ -413,8 +428,7 @@ The BDeploy team suggests that you at least are familiar (i.e. read up about) th
 [Certificate Chain {...}]
 [RSA Private Key (unencrypted)]</code></pre>
 </doc-codeblock></div>
-<p>This file, if prepared correctly, can be fed to BDeploy to install the certificate. All the conversions can be done e.g.
-with the <code v-pre>openssl</code> command line tooling.</p>
+<p>This file can be fed to BDeploy to install the certificate. All the conversions can be done e.g. with the <code v-pre>openssl</code> command line tooling.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">

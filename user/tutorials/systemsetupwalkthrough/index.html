@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.784726717050">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786523450158">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>How can I setup systems from the CLI</title>
     <meta name="title" content="How can I setup systems from the CLI">
-    <meta name="description" content="This tutorial assumes that you are on a machine which can reach the central, managed and node server simultaneously.">
+    <meta name="description" content="You must know the common Terms of BDeploy.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://bdeploy.io/user/tutorials/systemsetupwalkthrough/index.html">
@@ -21,23 +21,23 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/user/tutorials/systemsetupwalkthrough/index.html">
     <meta property="og:title" content="How can I setup systems from the CLI">
-    <meta property="og:description" content="This tutorial assumes that you are on a machine which can reach the central, managed and node server simultaneously.">
+    <meta property="og:description" content="You must know the common Terms of BDeploy.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/user/tutorials/systemsetupwalkthrough/index.html">
     <meta property="twitter:title" content="How can I setup systems from the CLI">
-    <meta property="twitter:description" content="This tutorial assumes that you are on a machine which can reach the central, managed and node server simultaneously.">
+    <meta property="twitter:description" content="You must know the common Terms of BDeploy.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.6.0.784726717050" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.786523450158" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.784726717050" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.784726717050" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.784726717050" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.784726717050" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.786523450158" defer></script>
 
     <style>
       table td {
@@ -273,7 +273,14 @@
         <span>Preconditions</span>
     </h2>
 </doc-anchor-target>
-<p>This tutorial assumes that you are on a machine which can reach the central, managed and node server simultaneously. It also assumes that the central server is already set up and has a <strong>Software Repository</strong> which contains the <code v-pre>Product</code> that you want to deploy.</p>
+<ul>
+<li>You must know the common <a href="../../intro/terms/index.html">Terms</a> of <strong>BDeploy</strong>.
+<ul>
+<li>Having read the documentation about <a href="../../user/instance/index.html">Instances</a> is also adviceable.</li>
+</ul>
+</li>
+<li>You must be on a machine which can reach the central, managed and node server simultaneously. It is also assumed that the central server is already set up and has a <strong>Software Repository</strong> which contains the <code v-pre>Product</code> that you want to deploy.</li>
+</ul>
 <doc-anchor-target id="creating-and-starting-the-servers">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#creating-and-starting-the-servers">#</doc-anchor-trigger>
@@ -284,7 +291,7 @@
 <li><p>Download <strong>BDeploy</strong> from <a href="https://github.com/bdeployteam/bdeploy">GitHub</a>.</p>
 <ol>
 <li>Navigate to the <a href="https://github.com/bdeployteam/bdeploy/releases">Version</a> that you want.</li>
-<li>Find the zip files called <code v-pre>bdeploy-&lt;OPERATING_SYSTEM&gt;-&lt;VERSION_NUMBER&gt;.zip</code> and download the one that is appropriate for your operating system.</li>
+<li>Find the zip files called <code v-pre>bdeploy-&lt;OPERATING_SYSTEM&gt;-&lt;BDEPLOY_VERSION_NUMBER&gt;.zip</code> and download the one that is appropriate for your operating system.</li>
 </ol>
 </li>
 <li><p>Unzip the zip file.</p>
@@ -346,20 +353,20 @@
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">bdeploy remote-group --create=&lt;GROUP_NAME&gt;</code></pre>
 </doc-codeblock></div>
-<p>If you lack the permission to create an instance group, find an administrator of that server that can create the group and assign permissions to you.</p>
+<p>If you lack the permission to create an instance group, find an administrator of that server that can create the group and/or assign permissions to you.</p>
 <doc-anchor-target id="connecting-the-servers">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#connecting-the-servers">#</doc-anchor-trigger>
         <span>Connecting the Servers</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="connecting-the-managed-and-the-node-server">
+<doc-anchor-target id="connecting-the-node-to-the-managed-server">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#connecting-the-managed-and-the-node-server">#</doc-anchor-trigger>
-        <span>Connecting the managed and the node server</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#connecting-the-node-to-the-managed-server">#</doc-anchor-trigger>
+        <span>Connecting the node to the managed server</span>
     </h3>
 </doc-anchor-target>
-<p>Connect the node to the managed server. You need to locate the file that was created during init of the node (<code v-pre>--nodeIdentFile</code> argument of init). Execute this command on the managed server:</p>
+<p>In order to connect the node to the managed server you need to locate the file that was created during init of the node (<code v-pre>--nodeIdentFile</code> argument of init). Execute this command on the node server:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">bdeploy remote-node --useLogin=managed --add=&lt;NODE_NAME&gt; --nodeIdentFile=&lt;PATH_TO_NODE_TOKEN&gt;</code></pre>
 </doc-codeblock></div>
@@ -367,10 +374,10 @@
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">bdeploy remote-node --useLogin=managed --list</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="connecting-the-central-and-the-managed-server">
+<doc-anchor-target id="connecting-the-managed-to-the-central-server">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#connecting-the-central-and-the-managed-server">#</doc-anchor-trigger>
-        <span>Connecting the central and the managed server</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#connecting-the-managed-to-the-central-server">#</doc-anchor-trigger>
+        <span>Connecting the managed to the central server</span>
     </h3>
 </doc-anchor-target>
 <ol>
@@ -416,7 +423,7 @@
     </h3>
 </doc-anchor-target>
 <p>See <a href="../../power/product/index.html#instance-templateyaml">instance-template.yaml</a> for an example instance template.</p>
-<p>In order to use an instance template via the CLI you must have a so-called &quot;response file&quot; which contains all values required to apply the instance template without the need to query things from the user, as the CLI cannot do that. The response file has the exact same syntax as the section responsible for an individual instance template inside a system template.</p>
+<p>In order to use an instance template via the CLI you must have a so-called &quot;response file&quot; which contains all values required to apply the instance template without the need to query things from the user, as the CLI cannot do that. The response file has the exact same syntax as the <a href="../../power/product/index.html#supported-instance-attributes"><code v-pre>instances</code> section of a system template</a>.</p>
 <p>This is an example of such a response file:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-yaml"><code v-pre class="language-yaml">name: &quot;Demo Instance&quot;
@@ -439,7 +446,7 @@ defaultMappings:
 <p>First we want to create an empty system. The following command can be used for this.<br>
 Note that the return value of this operation will contain the <code v-pre>SYSTEM_ID</code> (which is not the same thing as the <code v-pre>SYSTEM_NAME</code>), which will be required in the next step.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy remote-system --instanceGroup=&lt;GROUP_NAME&gt; --create --name=&lt;SYSTEM_NAME&gt; --server=localhost</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-system --instanceGroup=&lt;GROUP_NAME&gt; --create --name=&lt;SYSTEM_NAME&gt; --server=&lt;MANAGED_SERVER_NAME&gt;</code></pre>
 </doc-codeblock></div>
 <p>Now we have to setup the system variable mentioned in the above response file. Depending on the instance templates and response files you are using you might have to set up way more than one variable - or none at all.<br>
 E.g. the <code v-pre>PARAMETER_ID</code> of the parameter that would have to be set in the example above is &quot;text-param&quot;.</p>
@@ -448,14 +455,17 @@ E.g. the <code v-pre>PARAMETER_ID</code> of the parameter that would have to be 
 </doc-codeblock></div>
 <p>Next, we apply the individual instance templates, each with its response files.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy remote-instance --create=&lt;INSTANCE_NAME&gt; --template=&lt;PATH_TO_RESPONSE_FILE&gt;.yaml --instanceGroup=&lt;GROUP_NAME&gt; --purpose=&lt;PRODUCTIVE|TEST|DEVELOPMENT&gt; --system=&lt;SYSTEM_ID&gt; --server=MANAGED_SERVER_NAME</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-instance --create=&lt;INSTANCE_NAME&gt; --template=&lt;PATH_TO_RESPONSE_FILE&gt;.yaml --instanceGroup=&lt;GROUP_NAME&gt; --purpose=&lt;PRODUCTIVE|TEST|DEVELOPMENT&gt; --system=&lt;SYSTEM_ID&gt; --server=&lt;MANAGED_SERVER_NAME&gt;</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="install-activate-start">
-    <h1>
+    <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#install-activate-start">#</doc-anchor-trigger>
         <span>Install, Activate, Start</span>
-    </h1>
+    </h2>
 </doc-anchor-target>
+<blockquote>
+<p>Check out the page on <a href="../../user/deployment/index.html">Deployment</a> for details on this topic.</p>
+</blockquote>
 <p>Figure out the ID of the system you just created in case you don&#x27;t have it at hand anymore:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">bdeploy remote-system --list --instanceGroup=&lt;GROUP_NAME&gt;</code></pre>
@@ -464,12 +474,13 @@ E.g. the <code v-pre>PARAMETER_ID</code> of the parameter that would have to be 
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">bdeploy remote-instance --list --instanceGroup=&lt;GROUP_NAME&gt;</code></pre>
 </doc-codeblock></div>
-<p>For each of the instances, install &amp; activate them. The <code v-pre>--uuid</code> receives the value from the &quot;ID&quot; column of the previous command. <code v-pre>--version</code> receives the version you want to install, which is most likely the highest version number (&quot;Ver.&quot; column in output of previous command) for this instance.</p>
+<p>Note for the above command: If you are executing this command on the central server you can add --server=&lt;NAME_OF_MANAGED_SERVER&gt; to limit the output to this the given managed server.</p>
+<p>For each of the instances, install &amp; activate them. The <code v-pre>--uuid</code> receives the value from the &quot;ID&quot; column of the previous command. <code v-pre>--version</code> receives the instance version you want to install, which is most likely the highest version number (&quot;Ver.&quot; column in output of previous command) for this instance.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy remote-deployment --instanceGroup=&lt;GROUP_NAME&gt; --install --uuid=&lt;INSTANCE_ID&gt; --version=&lt;VERSION_NUMBER&gt;</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-deployment --instanceGroup=&lt;GROUP_NAME&gt; --install --uuid=&lt;INSTANCE_ID&gt; --version=&lt;INSTANCE_VERSION_NUMBER&gt;</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy remote-deployment --instanceGroup=&lt;GROUP_NAME&gt; --activate --uuid=&lt;INSTANCE_ID&gt; --version=&lt;VERSION_NUMBER&gt;</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-deployment --instanceGroup=&lt;GROUP_NAME&gt; --activate --uuid=&lt;INSTANCE_ID&gt; --version=&lt;INSTANCE_VERSION_NUMBER&gt;</code></pre>
 </doc-codeblock></div>
 <p>Finally, start the instance - this will start all processes of the given instance which are set to be started automatically. Again - do this for all instances created.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
