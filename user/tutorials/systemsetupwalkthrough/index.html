@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786523450158">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.792516567888">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -31,13 +31,13 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.6.0.786523450158" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.792516567888" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.792516567888" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.786523450158" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.792516567888" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.792516567888" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.792516567888" defer></script>
 
     <style>
       table td {
@@ -414,7 +414,7 @@
 <p>In order to use a system template via the CLI all of its <code v-pre>templateVariables</code> must have a <code v-pre>defaultValue</code>. In the example system template that is linked above, the template variables are marked with <code v-pre>&lt;2&gt;</code>. Furthermore, all template variables of the linked instance and application templates must be given a fixed value via <code v-pre>fixedVariables</code>. In the example system template that is linked above, the fixed variables of one instance are marked with <code v-pre>&lt;4&gt;</code>.</p>
 <p>Now we upload the system template, creating a new system in the process.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy remote-system --create --name=&lt;SYSTEM_NAME&gt; --createFrom=&lt;PATH_TO_SYSTEM_TEMPLATE&gt;.yaml --instanceGroup=&lt;GROUP_NAME&gt; --server=&lt;MANAGED_SERVER_NAME&gt; --purpose=&lt;PRODUCTIVE|TEST|DEVELOPMENT&gt;</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-system --create --name=&lt;SYSTEM_NAME&gt; --createFrom=&lt;PATH_TO_SYSTEM_TEMPLATE&gt; --instanceGroup=&lt;GROUP_NAME&gt; --server=&lt;MANAGED_SERVER_NAME&gt; --purpose=&lt;PRODUCTIVE|TEST|DEVELOPMENT&gt;</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="instance-template">
     <h3>
@@ -426,23 +426,28 @@
 <p>In order to use an instance template via the CLI you must have a so-called &quot;response file&quot; which contains all values required to apply the instance template without the need to query things from the user, as the CLI cannot do that. The response file has the exact same syntax as the <a href="../../power/product/index.html#supported-instance-attributes"><code v-pre>instances</code> section of a system template</a>.</p>
 <p>This is an example of such a response file:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">response-file.yaml</div>
 <pre class="language-yaml"><code v-pre class="language-yaml">name: &quot;Demo Instance&quot;
 description: &quot;The Test System's Demo Instance&quot;
-productId: 'io.bdeploy/demo'
+productId: &quot;io.bdeploy/demo&quot;
 productVersionRegex: &quot;2\\..*&quot;
 templateName: &quot;Default Configuration&quot;
 fixedVariables:
- - id: 'text-param'
-   value: 'XX'
- - id: 'sleep-timeout'
-   value: 10
+  - id: &quot;text-param&quot;
+    value: &quot;XX&quot;
+  - id: &quot;sleep-timeout&quot;
+    value: 10
 defaultMappings:
- - group: 'Server Apps'
-   node: 'master'
- - group: 'Client Apps'
-   node: 'Client Applications'</code></pre>
+  - group: &quot;Server Apps&quot;
+    node: &quot;master&quot;
+  - group: &quot;Client Apps&quot;
+    node: &quot;Client Applications&quot;</code></pre>
 </doc-codeblock></div>
 <p>Note: The node of all client applications must be <em>exactly</em> &quot;Client Applications&quot;.</p>
+<p>A response file may also be created via the CLI by using</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-product --instanceGroup=&lt;GROUP_NAME&gt; --createResponseFile=&lt;PATH/TO/RESPONSE_FILE&gt;.yaml --product=&lt;PRODUCT_ID&gt;</code></pre>
+</doc-codeblock></div>
 <p>First we want to create an empty system. The following command can be used for this.<br>
 Note that the return value of this operation will contain the <code v-pre>SYSTEM_ID</code> (which is not the same thing as the <code v-pre>SYSTEM_NAME</code>), which will be required in the next step.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -455,7 +460,7 @@ E.g. the <code v-pre>PARAMETER_ID</code> of the parameter that would have to be 
 </doc-codeblock></div>
 <p>Next, we apply the individual instance templates, each with its response files.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">bdeploy remote-instance --create=&lt;INSTANCE_NAME&gt; --template=&lt;PATH_TO_RESPONSE_FILE&gt;.yaml --instanceGroup=&lt;GROUP_NAME&gt; --purpose=&lt;PRODUCTIVE|TEST|DEVELOPMENT&gt; --system=&lt;SYSTEM_ID&gt; --server=&lt;MANAGED_SERVER_NAME&gt;</code></pre>
+<pre class="language-none"><code v-pre class="language-none">bdeploy remote-instance --create --name=&lt;INSTANCE_NAME&gt; --template=&lt;PATH_TO_RESPONSE_FILE&gt; --instanceGroup=&lt;GROUP_NAME&gt; --purpose=&lt;PRODUCTIVE|TEST|DEVELOPMENT&gt; --system=&lt;SYSTEM_ID&gt; --server=&lt;MANAGED_SERVER_NAME&gt;</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="install-activate-start">
     <h2>
@@ -525,9 +530,12 @@ E.g. the <code v-pre>PARAMETER_ID</code> of the parameter that would have to be 
                             <footer class="flex flex-wrap items-center justify-between">
                                 <div>
                                     <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bdeployteam/bdeploy/releases/tag/v7.5.0">Release 7.5.0</a>
+                                        </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>

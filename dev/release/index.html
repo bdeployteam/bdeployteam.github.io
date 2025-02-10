@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/dev">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786523445695">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.792516565063">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Release Procedure</title>
     <meta name="title" content="Release Procedure">
-    <meta name="description" content="Make sure to run a manual test and check at least this before releasing:">
+    <meta name="description" content="Make sure that all relevant changes are merged to the master.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://bdeploy.io/dev/release/index.html">
@@ -21,24 +21,24 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bdeploy.io/dev/release/index.html">
     <meta property="og:title" content="Release Procedure">
-    <meta property="og:description" content="Make sure to run a manual test and check at least this before releasing:">
+    <meta property="og:description" content="Make sure that all relevant changes are merged to the master.">
     <meta property="og:image" content="https://bdeploy.io/dev/images/staging-repo.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://bdeploy.io/dev/release/index.html">
     <meta property="twitter:title" content="Release Procedure">
-    <meta property="twitter:description" content="Make sure to run a manual test and check at least this before releasing:">
+    <meta property="twitter:description" content="Make sure that all relevant changes are merged to the master.">
     <meta property="twitter:image" content="https://bdeploy.io/dev/images/staging-repo.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.6.0.786523445695" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.6.0.792516565063" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.6.0.786523445695" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.6.0.792516565063" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../resources/js/search.js?v=3.6.0.786523445695" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.6.0.786523445695" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/search.js?v=3.6.0.792516565063" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.6.0.792516565063" data-turbo-eval="false" defer></script>
 
     <style>
         table td {
@@ -272,13 +272,12 @@
         <span>Preparation</span>
     </h2>
 </doc-anchor-target>
-<p>Make sure to run a manual test and check at least this before releasing:</p>
+<p>Make sure that all relevant changes are merged to the master. Then, check out the master and run a manual test, checking at least the following procedures:</p>
 <ul>
 <li>Setup a fresh server.</li>
 <li>Create an instance with a client application.</li>
 <li>Download the installer for the client and check if it is working as intended.</li>
 </ul>
-<p>The rest is covered pretty well by automated tests already.</p>
 <doc-anchor-target id="branches-tags--github-release">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#branches-tags--github-release">#</doc-anchor-trigger>
@@ -305,13 +304,13 @@
 </div>
 <p>Prerequisites:</p>
 <ul>
-<li>Know the version you want to release (i.e. <code v-pre>RELEASE_VERSION</code>)</li>
+<li>Know the version you want to release (i.e. <code v-pre>RELEASE_VERSION</code>).</li>
 <li>Know the &quot;next&quot; version, which will be the one set as active version <strong>after</strong> the release (i.e. <code v-pre>NEXT_VERSION</code>).</li>
 <li>A GitHub account (i.e. <code v-pre>GH_USER</code>) and a token (i.e. <code v-pre>GH_TOKEN</code>) with the permission to create and update a release on the <strong>BDeploy</strong> GitHub repository.</li>
 <li>A SonaType account (i.e. <code v-pre>SONATYPE_USER</code>) and a token (i.e. <code v-pre>SONATYPE_TOKEN</code>) with the permission to upload and release artifacts to <code v-pre>oss.sonatype.org</code> targeting maven central.</li>
-<li>A GPG Key which is registered with sonatype which can be used to sign the application JAR files for upload to maven. You need the key file (i.e. <code v-pre>GPG_FILE</code>), the ID of the key (i.e. <code v-pre>GPG_ID</code>) and the password to the key file (i.e. <code v-pre>GPG_PASS</code>).</li>
-<li>A clone of the repository - since right now an internal repository is used as well as the GitHub repository, you need a clone of the internal repository</li>
-<li>An empty directory where JDKs can be downloaded to. Set the path in the environment variable <code v-pre>JDK_DL_ROOT</code></li>
+<li>A GPG Key which is registered with SonaType which can be used to sign the application JAR files for upload to maven. You need the key file (i.e. <code v-pre>GPG_FILE</code>), the ID of the key (i.e. <code v-pre>GPG_ID</code>) and the password to the key file (i.e. <code v-pre>GPG_PASS</code>).</li>
+<li>A clone of the repository - since right now an internal repository is used as well as the GitHub repository, you need a clone of the internal repository.</li>
+<li>An empty directory where JDKs can be downloaded to. Set the path in the environment variable <code v-pre>JDK_DL_ROOT</code>.</li>
 </ul>
 <p>Steps:</p>
 <ul>
@@ -381,7 +380,7 @@
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">git log --no-merges v3.5.0..</code></pre>
 </doc-codeblock></div>
-<p>assuming that <code v-pre>3.5.0</code> was the last release. Scroll to the bottom of the output and work your way upwards commit after commit. Not <strong>every</strong> commit needs mentioning in the release notes, but quite often nearly every commit ends up in some or another way in the release notes.</p>
+<p>assuming that <code v-pre>3.5.0</code> was the last release. Scroll to the bottom of the output and work your way upwards commit after commit. Not <strong>every</strong> commit needs mentioning in the release notes, but quite often nearly every commit ends up in there in one way or another.</p>
 <doc-anchor-target id="mavencentral-release">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#mavencentral-release">#</doc-anchor-trigger>
@@ -509,9 +508,12 @@
                             <footer class="flex flex-wrap items-center justify-between">
                                 <div>
                                     <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bdeployteam/bdeploy/releases/tag/v7.5.0">Release 7.5.0</a>
+                                        </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>

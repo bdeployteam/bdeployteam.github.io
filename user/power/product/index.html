@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786523450158">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.792516567888">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -33,13 +33,13 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.6.0.786523450158" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.6.0.792516567888" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.792516567888" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.786523450158" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.786523450158" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.792516567888" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.792516567888" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.792516567888" defer></script>
 
     <style>
       table td {
@@ -415,17 +415,17 @@ branding: &lt;5&gt;
 
 processControl: &lt;6&gt;
   supportedStartTypes:
-   - INSTANCE
+    - INSTANCE
   supportsKeepAlive: true
   noOfRetries: 5
   gracePeriod: 3000
   attachStdin: false
   startupProbe: &lt;7&gt;
-     endpoint: &quot;Startup Endpoint&quot;
+    endpoint: &quot;Startup Endpoint&quot;
   livenessProbe: &lt;8&gt;
-     endpoint: &quot;Liveness Endpoint&quot;
-     initialDelaySeconds: 5
-     periodSeconds: 10
+    endpoint: &quot;Liveness Endpoint&quot;
+    initialDelaySeconds: 5
+    periodSeconds: 10
   configDirs: &quot;/dir1,/dir2&quot; &lt;9&gt;
   supportsAutostart: true
 
@@ -439,6 +439,7 @@ startCommand: &lt;10&gt;
       parameter: &quot;--number&quot;
       defaultValue: &quot;{{X:instance-number}}&quot;  &lt;11&gt;
       type: NUMERIC
+      validateRegex: ^\d+$ &lt;12&gt;
     - id: &quot;my.param.2&quot;
       name: &quot;My textual parameter&quot;
       longDescription: &quot;This is a textual parameter&quot;
@@ -453,33 +454,33 @@ startCommand: &lt;10&gt;
       longDescription: &quot;This is only visible and configurable if my.param.2 has value 'Value 1'&quot;
       parameter: &quot;--conditional&quot;
       mandatory: true
-      condition: &lt;12&gt;
+      condition: &lt;13&gt;
         parameter: &quot;my.param.2&quot;
         must: EQUAL
         value: &quot;Value 1&quot;
-    - template: param.template &lt;13&gt;
+    - template: param.template &lt;14&gt;
 
-stopCommand: &lt;14&gt;
+stopCommand: &lt;15&gt;
   ...
 
-endpoints: &lt;15&gt;
+endpoints: &lt;16&gt;
   http:
-    - id: &quot;my-endpoint&quot; &lt;16&gt;
+    - id: &quot;my-endpoint&quot; &lt;17&gt;
       path: &quot;path/to/the/endpoint&quot;
-      port: &quot;{{V:port-param}}&quot; &lt;17&gt;
+      port: &quot;{{V:port-param}}&quot; &lt;18&gt;
       secure: false
     - id: &quot;Startup Endpoint&quot;
-      type: PROBE_STARTUP &lt;18&gt;
+      type: PROBE_STARTUP &lt;19&gt;
       path: &quot;startup/endpoint&quot;
       port: &quot;{{V:port-param}}&quot;
       secure: false
     - id: &quot;Liveness Endpoint&quot;
-      type: PROBE_ALIVE &lt;18&gt;
+      type: PROBE_ALIVE &lt;19&gt;
       path: &quot;liveness/endpoint&quot;
       port: &quot;{{V:port-param}}&quot;
       secure: false
 
-runtimeDependencies: &lt;19&gt;
+runtimeDependencies: &lt;20&gt;
   - &quot;adoptium/jre:1.8.0_202-b08&quot;</code></pre>
 </doc-codeblock></div>
 <ol>
@@ -494,6 +495,7 @@ runtimeDependencies: &lt;19&gt;
 <li>Allowed configuration directories preset - only valid for <code v-pre>CLIENT</code> applications. These relative sub-directories of the configuration files directory tree will be made available to this application when run on a client PC. This can later also be configured per process using the <a href="../../user/instance/index.html#allowable-configuration-directories">Allowable Configuration Directories</a> configuration.</li>
 <li>The start command of the <strong>Application</strong>. Contains the path to the <em>executable</em> to launch, as well as all known and supported parameters. For details, see the full list of <doc-anchor-trigger to="#supported-parameters-attributes">parameter</doc-anchor-trigger> attributes. To apply e.g. instance-specific values, <a href="../variables/index.html#variable-expansions">Variable Expansion</a> is a powerful tool. It can be used for the <code v-pre>launcherPath</code> and each parameter&#x27;s <code v-pre>defaultValue</code>. In the Web UI it can be used for the parameter values.</li>
 <li><a href="../variables/index.html#variable-expansions">Variable Expansion</a> can also be used to expand to <a href="../../user/instance/index.html#instance-variables">Instance Variables</a> in default values. These instance variables are required to exist once the application is configured in an instance. They can either be pre-provided using <a href="../../user/instance/index.html#instance-templates">Instance Templates</a> or need to be manually created when required.</li>
+<li>An optional regular expression that will be used to validate input on UI parameter configuration form (not applicable to <code v-pre>BOOLEAN</code> type).</li>
 <li>A conditional parameter is a parameter with a condition on it. The condition always refers to another parameter of the same application. The parameter with the condition set will only be visible and configurable if the condition on the referenced parameter is met.</li>
 <li>A product can provide <doc-anchor-trigger to="#parameter-templateyaml">parameter templates</doc-anchor-trigger> which can be re-used by referencing their ID inline in applications parameter definitions. All parameter definitions in the template will be inlined at the place the template is referenced.</li>
 <li>The optional stop command can be specified to provide a mechanism for a clean application shutdown once <strong>BDeploy</strong> tries to stop a process. This command may use <a href="../variables/index.html#variable-expansions">Variable Expansion</a> to access parameter values of the <code v-pre>startCommand</code> (e.g. configured &#x27;stop port&#x27;, etc.). It is <strong>not</strong> configurable through the Web UI though. All parameter values will have their (expanded) default values set when the command is run. If no <code v-pre>stopCommand</code> is specified, <strong>BDeploy</strong> will try to gracefully quit the process (i.e. <code v-pre>SIGTERM</code>). Both with and without <code v-pre>stopCommand</code>, <strong>BDeploy</strong> resorts to a <code v-pre>SIGKILL</code> after the <doc-anchor-trigger to="#supported-parameters-attributes"><code v-pre>gracePeriod</code></doc-anchor-trigger> has expired.</li>
@@ -1072,16 +1074,16 @@ configTemplates: my-config &lt;5&gt;
 pluginFolder: my-plugins &lt;6&gt;
 
 applicationTemplates:
-  - 'my-templates/app-template.yaml' &lt;7&gt;
+  - &quot;my-templates/app-template.yaml&quot; &lt;7&gt;
 instanceTemplates:
-  - 'my-templates/template.yaml' &lt;8&gt;
+  - &quot;my-templates/template.yaml&quot; &lt;8&gt;
 
 parameterTemplates:
-  - 'my-templates/param-template.yaml' &lt;9&gt;
+  - &quot;my-templates/param-template.yaml&quot; &lt;9&gt;
 instanceVariableTemplates:
-  - 'my-templates/variable-template.yaml' &lt;10&gt;
+  - &quot;my-templates/variable-template.yaml&quot; &lt;10&gt;
 instanceVariableDefinitions:
-  - 'my-definitions/instance-variable-definitions.yaml' &lt;11&gt;
+  - &quot;my-definitions/instance-variable-definitions.yaml&quot; &lt;11&gt;
 
 versionFile: my-versions.yaml &lt;12&gt;</code></pre>
 </doc-codeblock></div>
@@ -1171,18 +1173,18 @@ appInfo:
 <div class="codeblock-title">application-template.yaml</div>
 <pre class="language-yaml"><code v-pre class="language-yaml">id: server-with-sleep &lt;1&gt;
 application: server-app
-name: &quot;Server With Sleep (Oracle)&quot; &lt;2&gt;
-processName: &quot;Server With Sleep&quot; &lt;2&gt;
-description: &quot;Server application which sleeps before exiting&quot;
-preferredProcessControlGroup: &quot;First Group&quot; &lt;3&gt;
+name: 'Server With Sleep (Oracle)' &lt;2&gt;
+processName: 'Server With Sleep' &lt;2&gt;
+description: 'Server application which sleeps before exiting'
+preferredProcessControlGroup: 'First Group' &lt;3&gt;
 
 applyOn: &lt;4&gt;
   - LINUX
 
 templateVariables: &lt;5&gt;
   - id: sleep-timeout
-    name: &quot;Sleep Timeout&quot;
-    description: &quot;The amount of time the server application should sleep&quot;
+    name: 'Sleep Timeout'
+    description: 'The amount of time the server application should sleep'
     type: NUMERIC
     defaultValue: 60
     suggestedValues:
@@ -1198,7 +1200,7 @@ processControl: &lt;6&gt;
 
 startParameters: &lt;7&gt;
 - id: param.sleep
-  value: &quot;{{T:sleep-timeout}}&quot;</code></pre>
+  value: '{{T:sleep-timeout}}'</code></pre>
 </doc-codeblock></div>
 <ol>
 <li>An <strong>Application Template</strong> must have an ID. This can be used to reference it from an <strong>Instance Template</strong>.</li>
@@ -1230,7 +1232,7 @@ startParameters: &lt;7&gt;
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">application-template.yaml</div>
 <pre class="language-yaml"><code v-pre class="language-yaml">id: fixed-sleep
-name: &quot;Server With 10 Seconds Sleep&quot;
+name: 'Server With 10 Seconds Sleep'
 template: server-with-sleep &lt;1&gt;
 
 fixedVariables: &lt;2&gt;
@@ -1824,14 +1826,14 @@ instanceVariables: &lt;2&gt;
 <p>An <code v-pre>instance-variable-definitions.yaml</code> provides definitions for instance variables, based on which instance variables will be created. The definition values can be overriden using <code v-pre>instanceVariableValues</code> in an <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">instance-variable-definitions.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">
-definitions: &lt;1&gt;
+<pre class="language-yaml"><code v-pre class="language-yaml">definitions: &lt;1&gt;
   - id: &quot;my-instance-variable-definition&quot;
-    name: 'My Instance Variable Definition'
-    longDescription: 'The description for instance variable definition'
-    type: 'STRING'
-    defaultValue: 'someDefaultValue'
-    groupName: 'Instance Variable Definitions Group'</code></pre>
+    name: &quot;My Instance Variable Definition&quot;
+    longDescription: &quot;The description for instance variable definition&quot;
+    type: &quot;STRING&quot;
+    defaultValue: &quot;someDefaultValue&quot;
+    groupName: &quot;Instance Variable Definitions Group&quot;
+    validateRegex: ^[a-zA-Z]+$</code></pre>
 </doc-codeblock></div>
 <ol>
 <li>File consists of a single list of <code v-pre>definitions</code> containing an arbitrary amount of instance variable definitions.</li>
@@ -1888,6 +1890,10 @@ definitions: &lt;1&gt;
 <td><code v-pre>customEditor</code></td>
 <td>A potentially required custom editor from a plug-in which needs to be used to edit the value of the instance variable.</td>
 </tr>
+<tr>
+<td><code v-pre>validateRegex</code></td>
+<td>An optional regular expression that will be used to validate input on UI instance variables configuration form (not applicable to <code v-pre>BOOLEAN</code> type).</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1901,12 +1907,13 @@ definitions: &lt;1&gt;
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">system-template.yaml</div>
 <pre class="language-yaml"><code v-pre class="language-yaml">name: Test System
-description: 'A test system with both demo and chat product'
+description: &quot;A test system with both demo and chat product&quot;
 
 systemVariables: &lt;1&gt;
   - id: test.system.var
-    description: 'A test system variable'
+    description: &quot;A test system variable&quot;
     value: testValue
+    validateRegex: ^[a-zA-Z]+$
 
 templateVariables: &lt;2&gt;
   - id: node-base-name
@@ -1914,21 +1921,21 @@ templateVariables: &lt;2&gt;
     defaultValue: &quot;Node&quot;
 
 instances:
-  - name: 'Demo Instance' &lt;3&gt;
-    description: &quot;The Test System's Demo Instance&quot;
-    productId: 'io.bdeploy/demo'
+  - name: &quot;Demo Instance&quot; &lt;3&gt;
+    description: &quot;The Test System&quot;s Demo Instance&quot;
+    productId: &quot;io.bdeploy/demo&quot;
     productVersionRegex: &quot;2\\..*&quot;
-    templateName: 'Default Configuration'
-  - name: 'Chat Instance'
+    templateName: &quot;Default Configuration&quot;
+  - name: &quot;Chat Instance&quot;
     description: &quot;The Test System's first Chat Instance&quot;
-    productId: 'io.bdeploy/chat-app'
+    productId: &quot;io.bdeploy/chat-app&quot;
     fixedVariables: &lt;4&gt;
       - id: app-name
         value: &quot;{{T:node-base-name}}&quot;
-    templateName: 'Default Configuration'
+    templateName: &quot;Default Configuration&quot;
     defaultMappings: &lt;5&gt;
-      - group: 'Chat App'
-        node: '{{T:cell-base-name}}'</code></pre>
+      - group: &quot;Chat App&quot;
+        node: &quot;{{T:cell-base-name}}&quot;</code></pre>
 </doc-codeblock></div>
 <ol>
 <li>The single core artifact created on <strong>BDeploy</strong> using a <strong>System Template</strong> is - of course - a <strong>System</strong>. It is possible to define an arbitrary amount of <a href="../../user/instancegroup/index.html#system-variables">System Variables</a> using the template.</li>
@@ -2001,6 +2008,10 @@ instances:
 <tr>
 <td><code v-pre>customEditor</code></td>
 <td>Reserved, currently not supported.</td>
+</tr>
+<tr>
+<td><code v-pre>validateRegex</code></td>
+<td>An optional regular expression that will be used to validate input on UI system variables configuration form (not applicable to <code v-pre>BOOLEAN</code> type).</td>
 </tr>
 </tbody>
 </table>
@@ -2174,7 +2185,7 @@ applications:
   id 'io.bdeploy.gradle.plugin' version '3.1.1-1' &lt;1&gt;
 }
 
-version = &quot;1.0.0-SNAPSHOT&quot; &lt;2&gt;
+version = '1.0.0-SNAPSHOT' &lt;2&gt;
 
 ext { &lt;3&gt;
   buildDate = new Date().format('yyyyMMddHHmmss')
@@ -2211,7 +2222,7 @@ task buildProduct(type: io.bdeploy.gradle.BDeployProductTask, dependsOn: install
 
 task zipProduct(type: io.bdeploy.gradle.BDeployZipTask, dependsOn: buildProduct) { &lt;6&gt;
   of buildProduct
-  output = new File(buildDir, &quot;product-&quot; + project.ext.buildVersion + &quot;.zip&quot;);
+  output = new File(buildDir, 'product-' + project.ext.buildVersion + '.zip');
 }
 
 
@@ -2517,9 +2528,12 @@ applications:
                             <footer class="flex flex-wrap items-center justify-between">
                                 <div>
                                     <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bdeployteam/bdeploy/releases/tag/v7.5.0">Release 7.5.0</a>
+                                        </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2024. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
