@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.796220736549">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.9.0.802455816184">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.6.0">
+    <meta name="generator" content="Retype 3.9.0">
 
     <!-- Primary Meta Tags -->
     <title>Integration of a new product</title>
@@ -31,15 +31,15 @@
     <meta property="twitter:description" content="This chapter is intended for those who want to integrate their own Product to be deployed with BDeploy">
     <meta property="twitter:image" content="https://bdeploy.io/user/images/yaml-overview.png">
 
-    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.6.0.796220736549" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.9.0.802455816184" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.6.0.796220736549" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.6.0.796220736549" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.6.0.796220736549" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.6.0.796220736549" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.9.0.802455816184" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.9.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.9.0.802455816184" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.9.0.802455816184" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.9.0.802455816184" defer></script>
 
     <style>
       table td {
@@ -116,8 +116,8 @@
                                 <img class="max-h-10 dark:hidden md:inline-block" src="../../images/logo.svg">
                                 <img class="max-h-10 hidden dark:inline-block" src="../../images/logo-dark.svg">
                             </span>
-                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">BDeploy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">User</span>
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">BDeploy</span>
+                        </a><span class="hidden mt-1 px-2 py-1 ml-4 text-xs font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-md md:inline-block">User</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -141,7 +141,7 @@
                                 <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bdeployteam/bdeploy" target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
                                         <g fill="currentColor">
-                                            <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                            <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
                                         </g>
                                     </svg>
                                     <span>GitHub</span>
@@ -189,9 +189,8 @@
     
         <div class="container relative flex bg-white">
             <!-- Sidebar Skeleton -->
-            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-white border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
             
-                <!-- Render this div, if config.showSidebarFilter is `true` -->
                 <div class="flex items-center h-16 px-6">
                     <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
                 </div>
@@ -235,7 +234,7 @@
                                         <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/bdeployteam/bdeploy" target="_blank">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
                                                 <g fill="currentColor">
-                                                    <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                                    <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"/>
                                                 </g>
                                             </svg>
                                             <span>GitHub</span>
@@ -301,8 +300,8 @@
 <div><p> A configuration file which references all the YAML files which should be part of a product pre-validation</p>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -319,7 +318,7 @@
     </div>
 </div>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/yaml-overview.png" alt="YAML relation overview" width="480">
+    <img src="../../images/yaml-overview.png" alt="YAML relation overview" width="480" />
     <figcaption class="caption">YAML relation overview</figcaption>
 </figure>
 </p>
@@ -333,8 +332,8 @@
 </doc-anchor-target>
 <p>The <code v-pre>app-info.yaml</code> file is one of the most important parts of <strong>BDeploy</strong>. It describes an <strong>Application</strong>, especially its start command. This <strong>Application</strong> may be <em>any</em> application which contains an <em>executable</em> (script, executable, etc.) and which allows &#x27;installation&#x27; by copy to a directory. This is important, as <strong>BDeploy</strong> will &#x27;install&#x27; an application by ultimately copying the application to an automatically determined internal directory and launch it from there.</p>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -351,8 +350,8 @@
     </div>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -368,8 +367,8 @@
     </div>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -512,8 +511,8 @@ runtimeDependencies: &lt;20&gt;
     </h3>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -643,8 +642,8 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
     </h3>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -685,8 +684,8 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 <p><em>Mandatory:</em> no</p>
 <p><em>Description:</em> An optional group name. The configuration UI may use this information to group parameters with the same <code v-pre>groupName</code> together.</p>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -714,8 +713,8 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 <p><em>Mandatory:</em> yes</p>
 <p><em>Description:</em> The actual parameter, e.g. <code v-pre>--parameter</code>, <code v-pre>-Dmy.system.prop</code>, etc.</p>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -800,8 +799,8 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
        <template #title><strong>Attribute</strong>: <code v-pre>type</code></template>
 <p><em>Default:</em> <code v-pre>STRING</code></p>
 <p><em>Mandatory:</em> no</p>
-<p><em>Description:</em> Type of parameter. This defines the type of input field used to edit the parameter. Available are <code v-pre>STRING</code>, <code v-pre>NUMERIC</code>, <code v-pre>BOOLEAN</code>, <code v-pre>PASSWORD</code>, <code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code>. Since <em>5.6.0</em>, <code v-pre>ENVIRONMENT</code> is available as an additional type.</p>
-<p>The <code v-pre>CLIENT_PORT</code> and <code v-pre>SERVER_PORT</code> types are treated like <code v-pre>NUMERIC</code> parameters throughout the whole application, with the exception of the dialogs that deal with ports specifically.</p>
+<p><em>Description:</em> The Type of the parameter. This defines the type of input field used to edit the parameter. Available are <code v-pre>STRING</code>, <code v-pre>NUMERIC</code>, <code v-pre>BOOLEAN</code>, <code v-pre>PASSWORD</code>, <code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code>, <code v-pre>URL</code> and <code v-pre>ENVIRONMENT</code>.</p>
+<p><code v-pre>CLIENT_PORT</code>, <code v-pre>SERVER_PORT</code> and <code v-pre>URL</code> are special because they can be modified via some port-specific dialogs, e.g. the port-shift functionality on the instance configuration page.</p>
 <p>The <code v-pre>ENVIRONMENT</code> type will cause a parameter to be put in the process&#x27; environment instead of its command line. The name of the environment variable is specified using the <code v-pre>parameter</code> field. The fields <code v-pre>hasValue</code>, <code v-pre>valueAsSeparateArg</code> and <code v-pre>valueSeparator</code> must not be set on <code v-pre>ENVIRONMENT</code> parameters, and are ignored. Instead the Operating System specific Environment Variable handling is applied.</p>
    </doc-panel>
    <doc-panel id="attribute-customeditor">
@@ -897,8 +896,8 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 </table>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -914,8 +913,8 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
     </div>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -940,8 +939,8 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
     </h3>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -953,7 +952,25 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>Endpoints definitions are templates which can later on be configured by the user. The only values not editable by the user are <code v-pre>id</code> and <code v-pre>path</code>.</p>
+<p>Endpoints definitions are templates which can later on be configured by the user. Please check table below for properties that <strong>are not</strong> editable.</p>
+        </div>
+    </div>
+</div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Note</h5>
+<p>For some properties <a href="../variables/index.html#variable-expansions">Variable Expansion</a> can be used, for instance to reference a parameter of the application (using <code v-pre>{{V:port-param}}</code> where <code v-pre>port-param</code> is the ID of a parameter on the <code v-pre>startCommand</code>).</p>
         </div>
     </div>
 </div>
@@ -962,64 +979,120 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 <thead>
 <tr>
 <th>Attribute</th>
+<th>Variable Expansion</th>
+<th>Editable</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code v-pre>id</code></td>
+<td>No</td>
+<td>No</td>
 <td>The unique ID of the endpoint. This ID can be used by an authorized third-party application to instruct <strong>BDeploy</strong> to call this endpoint and return the result.</td>
 </tr>
 <tr>
 <td><code v-pre>enabled</code></td>
-<td>Any <a href="../../user/instance/index.html#link-expressions">Link Expression</a>. If the expression evaluates to a non-empty value which does <em>not</em> equal <code v-pre>false</code>, the endpoint is considered available/enabled and presented to the user both for configuration and usage. This can be used to tie an endpoint to the configuration of a certain parameter, e.g. the server port configuration which will host the endpoint.</td>
+<td>Yes</td>
+<td>No</td>
+<td>Where or not the endpoint can be used. When using <a href="../../user/instance/index.html#link-expressions">Link Expression</a>, if the expression evaluates to a non-empty value which does <em>not</em> equal <code v-pre>false</code>, the endpoint is considered available/enabled and presented to the user both for configuration and usage. This can be used to tie an endpoint to the configuration of a certain parameter, e.g. the server port configuration which will host the endpoint.</td>
+</tr>
+<tr>
+<td><code v-pre>proxying</code></td>
+<td>No</td>
+<td>No</td>
+<td>Should be true if this endpoint supports <a href="../../experts/proxy/index.html#ui-endpoints">UI Endpoint Proxying</a>.</td>
 </tr>
 <tr>
 <td><code v-pre>type</code></td>
+<td>No</td>
+<td>No</td>
 <td>Currently <code v-pre>DEFAULT</code>, <code v-pre>PROBE_STARTUP</code> and <code v-pre>PROBE_ALIVE</code> are supported. Endpoints referenced by <em>startup</em> or <em>liveness probes</em> in the <code v-pre>processControl</code> section of a server process need to have the according type. If not specified, the <code v-pre>DEFAULT</code> type is assumed.</td>
 </tr>
 <tr>
 <td><code v-pre>path</code></td>
+<td>Yes</td>
+<td>No</td>
 <td>The path of the endpoint on the target process. <strong>BDeploy</strong> uses this and other parameters (<code v-pre>port</code>) to construct an URI to the local server.</td>
 </tr>
 <tr>
+<td><code v-pre>contextPath</code></td>
+<td>Yes</td>
+<td>No</td>
+<td>May be used to add more path segments to the link generated by BDeploy for a <a href="../../experts/proxy/index.html#ui-endpoints">UI Endpoint</a>.</td>
+</tr>
+<tr>
 <td><code v-pre>port</code></td>
-<td>The port this endpoint is hosted on. <a href="../variables/index.html#variable-expansions">Variable Expansion</a> can be used, for instance to reference a parameter of the application (using <code v-pre>{{V:port-param}}</code> where <code v-pre>port-param</code> is the ID of a parameter on the <code v-pre>startCommand</code>).</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The port this endpoint is hosted on.</td>
 </tr>
 <tr>
 <td><code v-pre>secure</code></td>
-<td>Whether HTTPS should be used when calling the endpoint</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Whether HTTPS should be used when calling the endpoint.</td>
 </tr>
 <tr>
 <td><code v-pre>trustAll</code></td>
+<td>No</td>
+<td>Yes</td>
 <td>Whether to trust any certificate when using HTTPS to call the endpoint. Otherwise a custom <code v-pre>trustStore</code> must be set if a self-signed certificate is used by the application.</td>
 </tr>
 <tr>
 <td><code v-pre>trustStore</code></td>
-<td>Path to a KeyStore in the <code v-pre>JKS</code> format, containing certificates to trust. <a href="../variables/index.html#variable-expansions">Variable Expansion</a> can be used.</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Path to a KeyStore in the <code v-pre>JKS</code> format, containing certificates to trust.</td>
 </tr>
 <tr>
 <td><code v-pre>trustStorePass</code></td>
-<td>The passphrase used to load the <code v-pre>trustStore</code>. <a href="../variables/index.html#variable-expansions">Variable Expansion</a> can be used.</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The passphrase used to load the <code v-pre>trustStore</code>.</td>
 </tr>
 <tr>
 <td><code v-pre>authType</code></td>
-<td>The type of authentication used by <strong>BDeploy</strong> when calling the endpoint. Can be <code v-pre>NONE</code>, <code v-pre>BASIC</code> or <code v-pre>DIGEST</code>.</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The type of authentication used by <strong>BDeploy</strong> when calling the endpoint. Can be <code v-pre>NONE</code>, <code v-pre>BASIC</code>, <code v-pre>DIGEST</code> or <code v-pre>OIDC</code>.</td>
 </tr>
 <tr>
 <td><code v-pre>authUser</code></td>
-<td>The username to use for <code v-pre>BASIC</code> or <code v-pre>DIGEST</code> <code v-pre>authType</code>. <a href="../variables/index.html#variable-expansions">Variable Expansion</a> can be used.</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The username to use for <code v-pre>BASIC</code> or <code v-pre>DIGEST</code> <code v-pre>authType</code>.</td>
 </tr>
 <tr>
 <td><code v-pre>authPass</code></td>
-<td>The password to use for <code v-pre>BASIC</code> or <code v-pre>DIGEST</code> <code v-pre>authType</code>. <a href="../variables/index.html#variable-expansions">Variable Expansion</a> can be used.</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The password to use for <code v-pre>BASIC</code> or <code v-pre>DIGEST</code> <code v-pre>authType</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>tokenUrl</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The URL for obtaining a token to use for <code v-pre>OIDC</code> <code v-pre>authType</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>clientId</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The client id for which you are obtaining a token for <code v-pre>OIDC</code> <code v-pre>authType</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>clientSecret</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The client secret to use for <code v-pre>OIDC</code> <code v-pre>authType</code>.</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1042,8 +1115,8 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
     </h2>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1065,32 +1138,34 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 <pre class="language-yaml"><code v-pre class="language-yaml">name: My Product &lt;1&gt;
 product: com.example/product &lt;2&gt;
 vendor: My Company &lt;3&gt;
+minMinionVersion: 1.2.3 &lt;4&gt;
 
-applications:
-  - my-app1 &lt;4&gt;
+applications: &lt;5&gt;
+  - my-app1
   - my-app2
 
-configTemplates: my-config &lt;5&gt;
-pluginFolder: my-plugins &lt;6&gt;
+configTemplates: my-config &lt;6&gt;
+pluginFolder: my-plugins &lt;7&gt;
 
 applicationTemplates:
-  - &quot;my-templates/app-template.yaml&quot; &lt;7&gt;
+  - &quot;my-templates/app-template.yaml&quot; &lt;8&gt;
 instanceTemplates:
-  - &quot;my-templates/template.yaml&quot; &lt;8&gt;
+  - &quot;my-templates/template.yaml&quot; &lt;9&gt;
 
 parameterTemplates:
-  - &quot;my-templates/param-template.yaml&quot; &lt;9&gt;
+  - &quot;my-templates/param-template.yaml&quot; &lt;10&gt;
 instanceVariableTemplates:
-  - &quot;my-templates/variable-template.yaml&quot; &lt;10&gt;
+  - &quot;my-templates/variable-template.yaml&quot; &lt;11&gt;
 instanceVariableDefinitions:
-  - &quot;my-definitions/instance-variable-definitions.yaml&quot; &lt;11&gt;
+  - &quot;my-definitions/instance-variable-definitions.yaml&quot; &lt;12&gt;
 
-versionFile: my-versions.yaml &lt;12&gt;</code></pre>
+versionFile: my-versions.yaml &lt;13&gt;</code></pre>
 </doc-codeblock></div>
 <ol>
 <li>A human readable name of the <strong>Product</strong> for display purposes in the Web UI.</li>
 <li>A unique ID of the <strong>Product</strong> which is used to base <strong>Instances</strong> of. This should not change, as changing the <strong>Product</strong> ID of an existing <strong>Instance</strong> is not supported.</li>
 <li>The vendor of the product. Displayed in the Web UI and used when installing client applications.</li>
+<li>The minimum BDeploy version that a minion must have in order to allow installation of this product.</li>
 <li>The list of <strong>Applications</strong> which are part of the <strong>Product</strong>. These IDs can be anything, they just have to match the IDs used in the <code v-pre>product-version.yaml</code> referenced below.</li>
 <li>Optional: A relative path to a directory containing configuration file templates, which will be used as the default set of configuration files when creating an <strong>Instance</strong> from the resulting <strong>Product</strong>.</li>
 <li>Optional: A relative path to a directory containing one or more plugin JAR files. These plugins are loaded by the server on demand and provided for use when configuring applications which use this very product version.</li>
@@ -1108,8 +1183,8 @@ versionFile: my-versions.yaml &lt;12&gt;</code></pre>
     </h2>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1151,8 +1226,8 @@ appInfo:
     </h2>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1212,8 +1287,8 @@ startParameters: &lt;7&gt;
 <li>Start command parameters are referenced by their ID, defined in <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</li>
 </ol>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1225,7 +1300,12 @@ startParameters: &lt;7&gt;
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Note</h5>
-<p>An <strong>Application Template</strong> can also <em>extend</em> another previously defined template. This works the same as the <code v-pre>template</code> specifier in <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger> and also allows for <code v-pre>fixedVariables</code>.</p>
+<p>An <strong>Application Template</strong> can also <em>extend</em> another previously defined template. This works the same as the <code v-pre>template</code>
+specifier in <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger> and also allows for <code v-pre>fixedVariables</code>. In this case
+specify <code v-pre>template</code> (passing the id of another application template) instead of <code v-pre>application</code>. The last template in the
+inheritance chain must specify an <code v-pre>application</code>.
+Inheritance will apply all the properties of the &quot;parent&quot; application template to the current one, allowing to override
+or extend individual properties.</p>
         </div>
     </div>
 </div>
@@ -1286,8 +1366,8 @@ fixedVariables: &lt;2&gt;
 </table>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1364,8 +1444,8 @@ fixedVariables: &lt;2&gt;
     </h2>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1443,6 +1523,8 @@ groups: &lt;8&gt;
 - name: &quot;Client Apps&quot;
   type: CLIENT &lt;15&gt;
   description: &quot;All client applications&quot;
+  autoStart: false &lt;16&gt;
+  autoUninstall: true &lt;17&gt;
 
   applications:
   - application: client-app
@@ -1464,11 +1546,13 @@ groups: &lt;8&gt;
 <li>Start command parameters are referenced by their ID, defined in <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger>. If a value is given, this value is applied. If not, the default value is used. If a parameter is optional, it will be added to the configuration if it is referenced in the template, regardless of whether a value is given or not.</li>
 <li>Using <code v-pre>applyTo</code>, an application can be restricted to be applied only to certain nodes, running a specified operating system. A list of supported operating systems can be specified. If this is not specified, the application is assumed to be capable of being applied to nodes running any of all supported operating systems.</li>
 <li>A template group can have either type <code v-pre>SERVER</code> (default) or <code v-pre>CLIENT</code>. A group may only contain applications of a compatible type, i.e. only <code v-pre>SERVER</code> applications in <code v-pre>SERVER</code> type group. When applying the group to a node, applications will be instantiated to processes according to their supported OS and the nodes physical OS. If a <code v-pre>SERVER</code> application does not support the target nodes OS, it is ignored.</li>
+<li>Whether the instance should be started automatically when starting the minion(s). This parameter is optional and will be <code v-pre>false</code> if not specified.</li>
+<li>Whether to schedule background uninstallation of old instance versions. This parameter is optional and will be <code v-pre>true</code> if not specified.</li>
 </ol>
 <p>An instance template will be presented to the user when visiting an <a href="../../user/instance/index.html#instance-templates">Empty Instance</a>.</p>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1490,8 +1574,8 @@ groups: &lt;8&gt;
     </h3>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1508,8 +1592,8 @@ groups: &lt;8&gt;
     </div>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1710,8 +1794,8 @@ parameters: &lt;2&gt;
 <li>The <code v-pre>parameters</code> can contain an arbitrary amount of parameter definitions, which follow exactly the same schema as <doc-anchor-trigger to="#supported-parameters-attributes">supported <code v-pre>parameters</code> attributes</doc-anchor-trigger> in <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger>.</li>
 </ol>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1728,8 +1812,8 @@ parameters: &lt;2&gt;
     </div>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1766,8 +1850,8 @@ instanceVariables: &lt;2&gt;
 <li>An arbitrary amount of instance variable templates. The schema is the same as <doc-anchor-trigger to="#supported-instancevariables-attributes">supported <code v-pre>instanceVariables</code> Attributes</doc-anchor-trigger> in <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger></li>
 </ol>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1783,8 +1867,8 @@ instanceVariables: &lt;2&gt;
     </div>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1806,8 +1890,8 @@ instanceVariables: &lt;2&gt;
     </h2>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -1897,6 +1981,36 @@ instanceVariables: &lt;2&gt;
 </tbody>
 </table>
 </div>
+<doc-anchor-target id="response-file-yaml">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#response-file-yaml">#</doc-anchor-trigger>
+        <span>response-file-yaml</span>
+    </h2>
+</doc-anchor-target>
+<p>Response files are required in order to use instance templates via the CLI. They can be created manually, but there is also a CLI command in the <a href="../../experts/cli/index.html#product-management-commands">remote-product tool</a> that may be used to download a blueprint.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">response-file.yaml</div>
+<pre class="language-yaml"><code v-pre class="language-yaml">name: &quot;Demo Instance&quot;
+description: &quot;The Test System's Demo Instance&quot;
+productId: &quot;io.bdeploy/demo&quot;
+productVersionRegex: &quot;3\\..*&quot;
+initialProductVersionRegex: &quot;2\\..*&quot;
+templateName: &quot;Default Configuration&quot;
+autoStart: false
+autoUninstall: true
+defaultMappings:
+  - group: &quot;Server Apps&quot;
+    node: &quot;master&quot;
+  - group: &quot;Client Apps&quot;
+    node: &quot;Client Applications&quot;
+fixedVariables:
+  - id: &quot;text-param&quot;
+    value: &quot;XX&quot;
+  - id: &quot;sleep-timeout&quot;
+    value: 10
+</code></pre>
+</doc-codeblock></div>
+<p>See <doc-anchor-trigger to="#supported-instance-attributes">supported instance attributes</doc-anchor-trigger> for explanations of the individual fields.</p>
 <doc-anchor-target id="system-templateyaml">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#system-templateyaml">#</doc-anchor-trigger>
@@ -1927,6 +2041,8 @@ instances:
     productVersionRegex: &quot;3\\..*&quot;
     initialProductVersionRegex: &quot;2\\..&quot;
     templateName: &quot;Default Configuration&quot;
+    autoStart: false
+    autoUninstall: true
   - name: &quot;Chat Instance&quot;
     description: &quot;The Test System's first Chat Instance&quot;
     productId: &quot;io.bdeploy/chat-app&quot;
@@ -1946,8 +2062,8 @@ instances:
 <li><code v-pre>defaultMappings</code> can be used to pre-assign <strong>Instance Template</strong> groups to available nodes. If a node with the specified name is not available during application of the <strong>System Template</strong>, no node will be preselected by UI and an exception will be thrown by CLI. To specify the <strong>Client Application</strong> node, you can either specify &#x27;Client Applications&#x27; or the internal name &#x27;__ClientApplications&#x27;.</li>
 </ol>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2024,8 +2140,8 @@ instances:
     </h3>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2042,8 +2158,8 @@ instances:
     </div>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2090,6 +2206,14 @@ instances:
 <tr>
 <td><code v-pre>productVersionRegex</code></td>
 <td>An optional regular expression which is used to is used to filter newer product versions for product update suggestions. Serves as initialProductVersionRegex, if initialProductVersionRegex is not provided.</td>
+</tr>
+<tr>
+<td><code v-pre>autoStart</code></td>
+<td>Whether the instance should be started automatically when starting the minion(s). If present, will override the value from the instance template. This parameter is optional, and if not specified in either template, will have the value <code v-pre>false</code>.</td>
+</tr>
+<tr>
+<td><code v-pre>autoUninstall</code></td>
+<td>Whether to schedule background uninstallation of old instance versions. This parameter is optional, and if not specified in either template, will have the value <code v-pre>true</code>.</td>
 </tr>
 <tr>
 <td><code v-pre>initialProductVersionRegex</code></td>
@@ -2166,8 +2290,8 @@ applications:
 <p><strong>BDeploy</strong> provides a <a href="https://plugins.gradle.org/plugin/io.bdeploy.gradle.plugin"><strong>Gradle</strong> plugin</a>. This plugin can be used to build a product out of your application.</p>
 <p>Given a sample Java application which has been created from the default gradle template using <code v-pre>gradle init</code>, these are the changes you need to build a <strong>BDeploy</strong> product for this single application. For this demo, the application is named <code v-pre>test</code>.</p>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2256,8 +2380,8 @@ The <code v-pre>repositoryServer</code> will be queried for additionally specifi
 <li>Multiple target servers can be specified in the <code v-pre>target.servers</code> section. The plugin will push to each of them.</li>
 </ol>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2276,8 +2400,8 @@ The <code v-pre>repositoryServer</code> will be queried for additionally specifi
 <p>Next we need the required descriptors for the product and the application. For this sample, the information will be the bare minimum, please see <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger> and <doc-anchor-trigger to="#product-infoyaml"><code v-pre>product-info.yaml</code></doc-anchor-trigger> for all supported content.</p>
 <p>Lets start off with the <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger>, which describes the <code v-pre>test</code> application.</p>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2310,8 +2434,8 @@ startCommand:
 </ol>
 <p>Finally, we need a <doc-anchor-trigger to="#product-infoyaml"><code v-pre>product-info.yaml</code></doc-anchor-trigger> describing the product itself. We&#x27;ll put this file into a <code v-pre>bdeploy</code> subfolder. This is not required, it can reside anywhere in the project. You just need to adapt the path to it in the <code v-pre>build.gradle</code>.</p>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2345,8 +2469,8 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
 </ol>
 <p>That&#x27;s all that is required to build a product. You can now run <code v-pre>./gradlew zipProduct</code> on the CLI to try it out. The result will be a <code v-pre>build/product-1.0.0-XXX.zip</code> where <code v-pre>XXX</code> is the <code v-pre>buildDate</code> we set previously. The content of the ZIP file is a <strong>BHive</strong>, which is the internal data format used by <strong>BDeploy</strong>. You can upload this product to any <strong>BDeploy</strong> server using its Web UI.</p>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2363,8 +2487,8 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
     </div>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2381,8 +2505,8 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
     </div>
 </div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2406,21 +2530,21 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
 <p><strong>BDeploy</strong> provides integration into <a href="https://www.eclipse.org/tea/">Eclipse TEA</a>. Using this integration, you can easily export <strong>Eclipse RCP</strong> based products as <strong>Applications</strong> and bundle them into a custom <strong>Product</strong>.</p>
 <p>Once you have required files, select <strong>TEA &gt; TEA Build Library &gt; Build BDeploy Product...</strong>. You will be prompted which <strong>Product</strong> to build and where to put the resulting product. You can choose to create a self-contained ZIP, or to push deltas to a selected server.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/tea_build_product.png" alt="TEA Integration Product Build" width="480">
+    <img src="../../images/tea_build_product.png" alt="TEA Integration Product Build" width="480" />
     <figcaption class="caption">TEA Integration Product Build</figcaption>
 </figure>
 </p>
 </div>
 <p>You can configure multiple servers by using the [ <strong>Add</strong> ], [ <strong>Delete</strong> ] and [ <strong>Edit</strong> ] buttons.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/tea_edit_server.png" alt="TEA BDeploy Server configuration" width="480">
+    <img src="../../images/tea_edit_server.png" alt="TEA BDeploy Server configuration" width="480" />
     <figcaption class="caption">TEA BDeploy Server configuration</figcaption>
 </figure>
 </p>
 </div>
 <p>Enter a description and a URL. You will then be able to use the [ <strong>Login</strong> ] button to create a token for the server.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/tea_login.png" alt="TEA BDeploy Login" width="480">
+    <img src="../../images/tea_login.png" alt="TEA BDeploy Login" width="480" />
     <figcaption class="caption">TEA BDeploy Login</figcaption>
 </figure>
 </p>
@@ -2429,7 +2553,7 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
 <p>When confirming the build dialog, on first run you will be prompted to login to the Software Repositories <strong>BDeploy</strong> server configured in the TEA <strong>BDeploy</strong> preferences.</p>
 <p>Since product builds are stored in the workspace, you can choose to re-push a previous build of the product (to the same or another server). Select <strong>TEA &gt; TEA Build Library &gt; Push BDeploy Product...</strong> to do so. You will be presented a list of available local product versions and the configured <strong>BDeploy</strong> servers.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/tea_push_product.png" alt="TEA Integration Product Push" width="480">
+    <img src="../../images/tea_push_product.png" alt="TEA Integration Product Push" width="480" />
     <figcaption class="caption">TEA Integration Product Push</figcaption>
 </figure>
 </p>
@@ -2441,8 +2565,8 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
     </h3>
 </doc-anchor-target>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+    <div class="shrink-0 w-1.5 rounded-tl-lg rounded-bl-lg bg-blue-300"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr-lg rounded-br-lg doc-callout bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
             <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
@@ -2467,7 +2591,7 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
 </doc-codeblock></div>
 <p>The path to the <code v-pre>products.yaml</code> has to be configured in the <strong>Eclipse TEA</strong> preferences.</p>
 <div align="center"><p><figure class="content-center">
-    <img src="../../images/tea_preferences_products.png" alt="TEA Integration Products Preference" width="480">
+    <img src="../../images/tea_preferences_products.png" alt="TEA Integration Products Preference" width="480" />
     <figcaption class="caption">TEA Integration Products Preference</figcaption>
 </figure>
 </p>
@@ -2505,7 +2629,7 @@ applications:
                             </div>
                             <footer class="clear-both">
                             
-                                <nav class="flex mt-14">
+                                <nav class="print:hidden flex mt-14">
                                     <div class="w-1/2">
                                         <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../power/terms/index.html">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
@@ -2529,16 +2653,16 @@ applications:
                             </footer>
                         </main>
                 
-                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
-                            <footer class="flex flex-wrap items-center justify-between">
-                                <div>
+                        <div class="print:border-none border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between print:justify-center">
+                                <div class="print:hidden">
                                     <ul class="flex flex-wrap items-center text-sm">
                                         <li>
-                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bdeployteam/bdeploy/releases/tag/v7.6.0">Release 7.6.0</a>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bdeployteam/bdeploy/releases/tag/v7.7.0">Release 7.7.0</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                                <div class="print:justify-center docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
