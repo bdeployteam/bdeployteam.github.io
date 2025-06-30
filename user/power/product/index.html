@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.9.0.802455816184">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.10.0.804579363613">
 
     <!-- See retype.com -->
-    <meta name="generator" content="Retype 3.9.0">
+    <meta name="generator" content="Retype 3.10.0">
 
     <!-- Primary Meta Tags -->
     <title>Integration of a new product</title>
@@ -33,13 +33,13 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.9.0.802455816184" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.10.0.804579363613" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.9.0.802455816184" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.9.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.9.0.802455816184" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.9.0.802455816184" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.9.0.802455816184" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.10.0.804579363613" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/retype.js?v=3.10.0" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.10.0.804579363613" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.10.0.804579363613" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.10.0.804579363613" defer></script>
 
     <style>
       table td {
@@ -99,25 +99,25 @@
 
 </head>
 <body>
-    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+    <div id="retype-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
         <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
     
-        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+        <header id="retype-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
             <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
                 <!-- Mobile menu button skeleton -->
-                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
-                <div v-cloak id="docs-sidebar-toggle"></div>
+                <button v-cloak class="skeleton retype-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="retype-sidebar-left-toggle-button"></div>
         
                 <!-- Logo -->
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
-                        <a id="docs-site-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
+                        <a id="retype-branding-logo" href="../../index.html" class="flex items-center leading-snug text-2xl">
                             <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
                                 <img class="max-h-10 dark:hidden md:inline-block" src="../../images/logo.svg">
                                 <img class="max-h-10 hidden dark:inline-block" src="../../images/logo-dark.svg">
                             </span>
                             <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">BDeploy</span>
-                        </a><span class="hidden mt-1 px-2 py-1 ml-4 text-xs font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-md md:inline-block">User</span>
+                        </a><span id="retype-branding-label" class="hidden mt-1 px-2 py-1 ml-4 text-xs font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-md md:inline-block">User</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -125,7 +125,7 @@
         
                 <div class="flex justify-between md:grow">
                     <!-- Top Nav -->
-                    <nav class="hidden md:flex">
+                    <nav id="retype-header-nav" class="hidden md:flex">
                         <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
                             <li class="mr-6">
                                 <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://bdeploy.io" target="_blank">
@@ -177,7 +177,7 @@
                     </div>
         
                     <div v-cloak class="flex justify-end grow">
-                        <div id="docs-mobile-search-button"></div>
+                        <div id="retype-mobile-search-button"></div>
                         <doc-search-desktop></doc-search-desktop>
         
                         <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
@@ -187,7 +187,7 @@
             </div>
         </header>
     
-        <div class="container relative flex bg-white">
+        <div id="retype-container" class="container relative flex bg-white">
             <!-- Sidebar Skeleton -->
             <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-white border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
             
@@ -256,11 +256,11 @@
             <div class="grow min-w-0 dark:bg-dark-850">
                 <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
                 <div class="flex">
-                    <div class="min-w-0 p-4 grow md:px-16">
+                    <div id="retype-main" class="min-w-0 p-4 grow md:px-16">
                         <main class="relative pb-12 lg:pt-2">
-                            <div class="docs-markdown" id="docs-content">
+                            <div class="retype-markdown" id="retype-content">
                                 <!-- Rendered if sidebar right is enabled -->
-                                <div id="docs-sidebar-right-toggle"></div>
+                                <div id="retype-sidebar-right-toggle"></div>
                                 <!-- Page content  -->
 <doc-anchor-target id="integration-of-a-new-product" class="break-words">
     <h1>
@@ -387,7 +387,7 @@
 <p>The <code v-pre>app-info.yaml</code> file must be placed in the root directory of the <strong>Application</strong> it describes.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">app-info.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">name: &quot;My Application&quot; &lt;1&gt;
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">name: &quot;My Application&quot; &lt;1&gt;
 type: CLIENT &lt;2&gt;
 pooling: GLOBAL &lt;3&gt;
 
@@ -774,11 +774,11 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 <p><em>Description:</em> Whether the parameter is fixed. This means that the parameter can <strong>not</strong> be changed by the user.</p>
 <p>Consider a command line like this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-bash"><code v-pre class="language-bash">/path/to/java/bin/java -Dmy.prop=value -jar application.jar</code></pre>
+<pre translate="no" class="language-bash"><code v-pre class="language-bash">/path/to/java/bin/java -Dmy.prop=value -jar application.jar</code></pre>
 </doc-codeblock></div>
 <p>In this case you will want the user to be able to edit the value of <code v-pre>-Dmy.prop</code> parameter, but the user may <strong>never</strong> be able to edit the <code v-pre>-jar application.jar</code> part. A definition for this command line would look like this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-yaml"><code v-pre class="language-yaml">startCommand:
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">startCommand:
   launcherPath: &quot;{{M:openjdk/jre:1.8.0_u202-b08}}/bin/java{{WINDOWS:w.exe}}&quot;
   parameters:
     - id: &quot;my.prop&quot;
@@ -816,14 +816,14 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 <p><em>Description:</em> A conditional parameter is a parameter with a condition on it. The condition always refers to another parameter on the same application. The parameter with the condition set will only be visible and configurable if the condition on the referenced parameter is met.</p>
 <p>A condition expression (isolated) looks like this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-yaml"><code v-pre class="language-yaml">condition:
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">condition:
   parameter: &quot;my.param.2&quot;
   must: EQUAL
   value: &quot;Value 1&quot;</code></pre>
 </doc-codeblock></div>
 <p>Or, in its newer form, the very same (but ultimately more powerful) using <code v-pre>expression</code> would look like this:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-yaml"><code v-pre class="language-yaml">condition:
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">condition:
   expression: &quot;{{V:my.param.2}}&quot;
   must: EQUAL
   value: &quot;Value 1&quot;</code></pre>
@@ -1135,7 +1135,7 @@ The mock app-info.yaml above is marked as a <code v-pre>CLIENT</code> applicatio
 <p>The <code v-pre>product-info.yaml</code> file describes which <strong>Applications</strong> are part of the final <strong>Product</strong>, as well as some additional <strong>Product</strong> metadata.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">product-info.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">name: My Product &lt;1&gt;
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">name: My Product &lt;1&gt;
 product: com.example/product &lt;2&gt;
 vendor: My Company &lt;3&gt;
 minMinionVersion: 1.2.3 &lt;4&gt;
@@ -1204,7 +1204,7 @@ versionFile: my-versions.yaml &lt;13&gt;</code></pre>
 <p>The reason why this file is separate from the <code v-pre>product-info.yaml</code> is because its content (e.g. version) is specific to a single product <strong>Build</strong> . Therefore the <code v-pre>product-version.yaml</code> ideally is created during the build process of the product by the build system of your choice. This is different to the <code v-pre>app-info.yaml</code> files and the <code v-pre>product-info.yaml</code> file as they are written manually.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">product-version.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">version: &quot;2.1.0.201906141135&quot; &lt;1&gt;
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">version: &quot;2.1.0.201906141135&quot; &lt;1&gt;
 appInfo:
   my-app1: &lt;2&gt;
     WINDOWS: &quot;build/windows/app-info.yaml&quot; &lt;3&gt;
@@ -1246,7 +1246,7 @@ appInfo:
 <p>This file defines a single <strong>Application Template</strong>. A <doc-anchor-trigger to="#product-infoyaml"><code v-pre>product-info.yaml</code></doc-anchor-trigger> can reference multiple templates, from which the user can choose.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">application-template.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">id: server-with-sleep &lt;1&gt;
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">id: server-with-sleep &lt;1&gt;
 application: server-app
 name: 'Server With Sleep (Oracle)' &lt;2&gt;
 processName: 'Server With Sleep' &lt;2&gt;
@@ -1311,7 +1311,7 @@ or extend individual properties.</p>
 </div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">application-template.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">id: fixed-sleep
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">id: fixed-sleep
 name: 'Server With 10 Seconds Sleep'
 template: server-with-sleep &lt;1&gt;
 
@@ -1464,7 +1464,7 @@ fixedVariables: &lt;2&gt;
 <p>This file defines a single <strong>Instance Template</strong>. A <doc-anchor-trigger to="#product-infoyaml"><code v-pre>product-info.yaml</code></doc-anchor-trigger> can reference multiple templates, from which the user can choose.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">instance-template.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">name: Default Configuration &lt;1&gt;
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">name: Default Configuration &lt;1&gt;
 description: &quot;Creates an instance with the default server and client configuration&quot;
 
 templateVariables: &lt;2&gt;
@@ -1781,7 +1781,7 @@ groups: &lt;8&gt;
 <p>A <code v-pre>parameter-template.yaml</code> allows products to define re-usable blocks of parameters associated to a unique ID. These can then be applied in <code v-pre>app-info.yaml</code> files. For the user of <strong>BDeploy</strong>, those parameters will appear as if they were defined directly in the <doc-anchor-trigger to="#app-infoyaml"><code v-pre>app-info.yaml</code></doc-anchor-trigger> of the application.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">parameter-template.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">id: param.template &lt;1&gt;
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">id: param.template &lt;1&gt;
 
 parameters: &lt;2&gt;
   - id: tpl-param
@@ -1837,7 +1837,7 @@ parameters: &lt;2&gt;
 <p>An <code v-pre>instance-variable-template.yaml</code> works the same as a <code v-pre>parameter-template.yaml</code> in that it provides common definitions for instance variables, which can be re-used in <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger> files. Those definitions are inlined early on, so variables from <code v-pre>instance-variable-template.yaml</code> files can do exactly the same things as <code v-pre>instanceVariables</code> in a <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">instance-variable-template.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">id: var.template &lt;1&gt;
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">id: var.template &lt;1&gt;
 
 instanceVariables: &lt;2&gt;
   - id: &quot;my-instance-var&quot;
@@ -1910,7 +1910,7 @@ instanceVariables: &lt;2&gt;
 <p>An <code v-pre>instance-variable-definitions.yaml</code> provides definitions for instance variables, based on which instance variables will be created. The definition values can be overriden using <code v-pre>instanceVariableValues</code> in an <doc-anchor-trigger to="#instance-templateyaml"><code v-pre>instance-template.yaml</code></doc-anchor-trigger>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">instance-variable-definitions.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">definitions: &lt;1&gt;
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">definitions: &lt;1&gt;
   - id: &quot;my-instance-variable-definition&quot;
     name: &quot;My Instance Variable Definition&quot;
     longDescription: &quot;The description for instance variable definition&quot;
@@ -1990,7 +1990,7 @@ instanceVariables: &lt;2&gt;
 <p>Response files are required in order to use instance templates via the CLI. They can be created manually, but there is also a CLI command in the <a href="../../experts/cli/index.html#product-management-commands">remote-product tool</a> that may be used to download a blueprint.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">response-file.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">name: &quot;Demo Instance&quot;
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">name: &quot;Demo Instance&quot;
 description: &quot;The Test System's Demo Instance&quot;
 productId: &quot;io.bdeploy/demo&quot;
 productVersionRegex: &quot;3\\..*&quot;
@@ -2020,7 +2020,7 @@ fixedVariables:
 <p>A (freestanding) <code v-pre>system-template.yaml</code> allows you to specify a broader scoped template than a (product-bound) <code v-pre>instance-template.yaml</code>. A <code v-pre>system-template.yaml</code> can reference multiple products, and <strong>Instance Templates</strong> therin to create systems containing of many instances from different products.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">system-template.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">name: Test System
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">name: Test System
 description: &quot;A test system with both demo and chat product&quot;
 
 systemVariables: &lt;1&gt;
@@ -2244,7 +2244,7 @@ instances:
 <p>The content of this file is very straight forward:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">product-validation.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">product: product-info.yaml
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">product: product-info.yaml
 
 applications:
   my-application: app1/src/main/dist/app-info.yaml
@@ -2309,7 +2309,7 @@ applications:
 </div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">build.gradle</div>
-<pre class="language-groovy"><code v-pre class="language-groovy">plugins {
+<pre translate="no" class="language-groovy"><code v-pre class="language-groovy">plugins {
   ...
   id 'io.bdeploy.gradle.plugin' version '3.1.1-1' &lt;1&gt;
 }
@@ -2419,7 +2419,7 @@ The <code v-pre>repositoryServer</code> will be queried for additionally specifi
 </div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">src/main/dist/app-info.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">name: Test Application
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">name: Test Application
 
 supportedOperatingSystems: &lt;1&gt;
   - LINUX
@@ -2453,7 +2453,7 @@ startCommand:
 </div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">bdeploy/product-info.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">name: Test Product
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">name: Test Product
 product: io.bdeploy/test &lt;1&gt;
 vendor: BDeploy Team
 
@@ -2585,7 +2585,7 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
 <p>This file is required and lists the <doc-anchor-trigger to="#product-buildyaml"><code v-pre>product-build.yaml</code></doc-anchor-trigger> files which are available to the integration.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">products.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">products:
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">products:
   &quot;Product One&quot;: &quot;prod-1-build.yaml&quot;
   &quot;Product Two&quot;: &quot;prod-2-build.yaml&quot;</code></pre>
 </doc-codeblock></div>
@@ -2606,7 +2606,7 @@ versionFile: product-version.yaml &lt;3&gt;</code></pre>
 <p>This file references a <doc-anchor-trigger to="#product-infoyaml"><code v-pre>product-info.yaml</code></doc-anchor-trigger> file and describes how to build the actual applications referenced in the <code v-pre>product-info.yaml</code>.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">product-build.yaml</div>
-<pre class="language-yaml"><code v-pre class="language-yaml">productInfoYaml: my-prod-info.yaml
+<pre translate="no" class="language-yaml"><code v-pre class="language-yaml">productInfoYaml: my-prod-info.yaml
 
 applications:
   - name: my-app1
@@ -2627,9 +2627,9 @@ applications:
                                 <!-- Required only on API pages -->
                                 <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
                             </div>
-                            <footer class="clear-both">
+                            <footer id="retype-content-footer" class="clear-both">
                             
-                                <nav class="print:hidden flex mt-14">
+                                <nav id="retype-nextprev" class="print:hidden flex mt-14">
                                     <div class="w-1/2">
                                         <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../power/terms/index.html">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
@@ -2653,16 +2653,16 @@ applications:
                             </footer>
                         </main>
                 
-                        <div class="print:border-none border-t dark:border-dark-650 pt-6 mb-8">
+                        <div id="retype-page-footer" class="print:border-none border-t dark:border-dark-650 pt-6 mb-8">
                             <footer class="flex flex-wrap items-center justify-between print:justify-center">
-                                <div class="print:hidden">
+                                <div id="retype-footer-links" class="print:hidden">
                                     <ul class="flex flex-wrap items-center text-sm">
                                         <li>
-                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bdeployteam/bdeploy/releases/tag/v7.7.0">Release 7.7.0</a>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://github.com/bdeployteam/bdeploy/releases/tag/v7.7.1">Release 7.7.1</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="print:justify-center docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
+                                <div id="retype-copyright" class="print:justify-center docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2025. All rights reserved.</p></div>
                             </footer>
                         </div>
                     </div>
@@ -2689,7 +2689,7 @@ applications:
     </div>
 
 
-    <div id="docs-overlay-target"></div>
+    <div id="retype-overlay-target"></div>
 
     <script data-cfasync="false">window.__DOCS__ = { "title": "Integration of a new product", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
