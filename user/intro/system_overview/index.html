@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/user">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.10.0.810191746372">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.10.0.810284749920">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.10.0">
@@ -33,12 +33,12 @@
 
     <script data-cfasync="false">(function(){var cl=document.documentElement.classList,ls=localStorage.getItem("retype_scheme"),hd=cl.contains("dark"),hl=cl.contains("light"),wm=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;if(ls==="dark"||(!ls&&wm&&!hd&&!hl)){cl.remove("light");cl.add("dark")}else if(ls==="light"||(!ls&&!wm&&!hd&&!hl)){cl.remove("dark");cl.add("light")}})();</script>
 
-    <link href="../../resources/css/retype.css?v=3.10.0.810191746372" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.10.0.810284749920" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.10.0.810191746372" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.10.0.810284749920" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.10.0" data-turbo-eval="false" defer></script>
-    <script data-cfasync="false" src="../../resources/js/search.js?v=3.10.0.810191746372" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.10.0.810191746372" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/search.js?v=3.10.0.810284749920" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.10.0.810284749920" data-turbo-eval="false" defer></script>
 
     <style>
       table td {
@@ -273,7 +273,7 @@
         <span>1. Introduction – What is BDeploy?</span>
     </h2>
 </doc-anchor-target>
-<p><strong>BDeploy</strong> is an open-source deployment platform designed to manage the delivery of software products across distributed systems. It provides a centralized interface for managing releases, configurations, and deployments of both server and desktop client applications. BDeploy is particularly well-suited for environments with multiple target systems such as testing, staging and production. It ensures reproducible and efficient deployments at any time.</p>
+<p><strong>BDeploy</strong> is an open-source deployment platform designed to manage the delivery of software products across distributed systems. It provides a centralized interface for managing releases, configurations, and deployments of both server and desktop client applications. BDeploy is particularly well-suited for environments with multiple target systems such as testing, staging, and production. It ensures reproducible and efficient deployments at any time.</p>
 <doc-anchor-target id="2-core-concepts-and-terminology">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#2-core-concepts-and-terminology">#</doc-anchor-trigger>
@@ -306,8 +306,8 @@
 <li><strong>Decentralized control</strong>: Full local control is ensured, as configuration is stored locally; the central server acts only as auxiliary remote control.</li>
 <li><strong>Versioned configuration</strong>: Supports reproducible deployments and comprehensive traceability throughout the lifecycle of an instance.</li>
 <li><strong>Automation</strong>: BDeploy offers REST APIs, build tool integrations, a command-line interface (CLI) and YAML-based configuration. This collectively supports automation across CI/CD pipelines and DevOps workflows, e.g. with Jenkins or Ansible.</li>
-<li><strong>Runtime control</strong>: BDeploy orchestrates the startup of configured processes in the correct order and continuously monitors their runtime</li>
-<li><strong>Monitoring &amp; system health</strong>: Support troubleshooting and application monitoring with seamless access to log files, data files, process output &amp; process health through the central or local web UI or CLI.</li>
+<li><strong>Runtime control</strong>: BDeploy orchestrates the startup of configured processes in the correct order and continuously monitors their runtime.</li>
+<li><strong>Monitoring &amp; system health</strong>: Supports troubleshooting and application monitoring with seamless access to log files, data files, process output &amp; process health through the central or local web UI or CLI.</li>
 <li><strong>Scalability</strong>: Supports both small, standalone setups on a single machine and large-scale environments with numerous nodes, systems, and products.</li>
 </ul>
 <doc-anchor-target id="4-high-level-overview--solution-strategy">
@@ -317,7 +317,7 @@
     </h2>
 </doc-anchor-target>
 <p><figure class="content-center">
-    <img src="../../images/systemoverview.png" alt="System Overview" />
+    <img src="../../images/systemoverview.png" alt="System Overview" width="480" />
     <figcaption class="caption">System Overview</figcaption>
 </figure>
 </p>
@@ -328,7 +328,7 @@
         <span>1. Releasing a software product</span>
     </h3>
 </doc-anchor-target>
-<p>A release - which is a product version in BDeploy - is an immutable, versioned deployment unit of a software product. It encapsulates all files, resources, scripts and metadata that are independent of a specific deployment target.</p>
+<p>A release - which is a product version in BDeploy - is an immutable, versioned deployment unit of a software product. It encapsulates all files, resources, scripts, and metadata that are independent of a specific deployment target.</p>
 <p>BDeploy does not manage the build process itself. Instead, it takes over the build artifacts and stores them either in a software repository or within an instance group, from where they can be deployed.</p>
 <p>Upon importing a product version into BDeploy, all files are hashed and organized into a Merkle tree structure. This structure forms the foundation for efficient delta-based transfers and data de-duplication, enabling optimized deployment performance and storage efficiency.</p>
 <hr>
@@ -381,7 +381,7 @@
         <span>7. Deployment &amp; efficient data transfer</span>
     </h3>
 </doc-anchor-target>
-<p>BDeploy uses a delta-transfer mechanism to minimize the amount of data transmitted across the network during deployments. Only the necessary files are transferred — and only if they have changed — reducing bandwidth usage, deployment times, and risk of errors. A key differentiator of BDeploy is the combination of Merkle tree–based file organization, deduplication, and delta transfer, which enables highly efficient synchronization, even over slow or unstable networks.</p>
+<p>BDeploy uses a delta-transfer mechanism to minimize the amount of data transmitted across the network during deployments. Only the necessary files are transferred — and only if they have changed — reducing bandwidth usage, deployment times, and risk of errors. A key differentiator of BDeploy is the combination of Merkle tree–based file organization, deduplication, and delta-transfer, which enables highly efficient synchronization, even over slow or unstable networks.</p>
 <p>From a process perspective, BDeploy separates the installation of a new instance version (which includes data transfer and file system operations on all target nodes) from the activation and startup of that version (which affects runtime operations). This separation helps minimize potential downtime during deployments and supports smooth transitions to new versions.</p>
 <hr>
 <doc-anchor-target id="8-managed-servers-as-deployment-targets">
